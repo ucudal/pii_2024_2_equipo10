@@ -3,8 +3,8 @@ namespace Library;
 public interface IType
 {
     string Name { get; }
-    Array[] SuperEffective { get; }
-    Array[] NormalEffective { get; }
-    Array[] NotVeryEffective { get; }
-    Array[] NoEffect { get; }
+    IType[] SuperEffective { get; }
+    IType[] NormalEffective { get; }
+    IType[] NotVeryEffective { get; }
+    IType[] NoEffect { get; }
 }

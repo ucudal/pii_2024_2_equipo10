@@ -4,19 +4,11 @@ namespace Library;
 
 public class Water : IType
 {
-    public string Name;
-    public IType[] SuperEffective;
-    public IType[] NormalEffective;
-    public IType[] NotVeryEffective;
-    public IType[] NoEffect;
+    public string Name { get;  }
+    public IType[] SuperEffective { get;  }
+    public IType[] NormalEffective { get; }
+    public IType[] NotVeryEffective { get; }
+    public IType[] NoEffect { get; }
 
-    public Water()
-    {
-        Name = "Water";
-        IType[] SuperEffective = new IType[Fire, Ground, Rock];
-        IType[] NormalEffective = new IType[Normal, Electric, Ice, Fighting, Poison, Flying, Psychic, Bug, Ghost, Dark, Steel, Fairy];
-        IType[] NotVeryEffective = new IType[Water, Grass, Dragon];
-        IType[] NoEffect = null;
-    }
-
+ 
 }
