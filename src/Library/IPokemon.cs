@@ -5,9 +5,9 @@ public interface IPokemon
     public string Name
     { get; set;}
 
-    public List<IMove> Moves { get; set;} = List<IMove>;
+    public List<IMove> Moves { get; set;}
 
-    public List<IType> Types { get; set;} = List<IType>;
+    public List<IType> Types { get; set;}
 
     public int BaseLife
     { get; set;}

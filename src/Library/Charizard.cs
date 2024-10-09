@@ -2,13 +2,13 @@ namespace Library;
 
 public class Charizard : IPokemon
 {
-    public string Name { get; }
-    public List<IMove> Moves { get; private set; } = new List<IMove>();
-    public List<IType> Types { get; } = new List<IType>();
-    public int BaseLife { get; }
-    public int BaseAttack { get; }
-    public int BaseDefense { get; }
-    public int CurrentLife { get; }
+    public string Name { get; set; }
+    public List<IMove> Moves { get; set; } = new List<IMove>();
+    public List<IType> Types { get; set; } = new List<IType>();
+    public int BaseLife { get; set; }
+    public int BaseAttack { get; set; }
+    public int BaseDefense { get; set; }
+    public int CurrentLife { get; set; }
 
     public void RestoreBaseLife()
     {
