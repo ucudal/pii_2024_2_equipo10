@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "lrAs2MS753Nnj6tkAqLXc3xRQOohre8mz4gkXbHWRV63Yp581Aa/l4syinUMLeyBycZT3CDMZrUthmfqaNWIog==",
+  "dgSpecHash": "bxlPEZmFvnk=",
   "success": true,
   "projectFilePath": "C:\\Repos\\pii_2024_2_equipo10\\src\\Program\\Program.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Repos\\pii_2024_2_equipo10\\src\\Program\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
