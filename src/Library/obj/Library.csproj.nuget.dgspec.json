@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj": {}
+    "C:\\Repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj": {
+    "C:\\Repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\Repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj",
+        "projectPath": "C:\\Repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj",
         "packagesPath": "C:\\Users\\barra\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\obj\\",
+        "outputPath": "C:\\Repos\\pii_2024_2_equipo10\\src\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\barra\\AppData\\Roaming\\NuGet\\NuGet.Config"
