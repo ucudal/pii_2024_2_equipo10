@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zEhIa2OnUi7tU33EdVHaNchYZN5ZR9ArUbsfJXrGZUEr+RgSa2XRosjJBJcAY6kIYYMrXm2eORe9eXw/N7NP/Q==",
+  "dgSpecHash": "DDBgNK+/EuKIx8fp+MFw02aVW+NjSoSNAFy76SfwlkLR+hpIuNYmPqQvSuiQxmHyYlB2Pg2cGomcDNrNaGu0EA==",
   "success": true,
-  "projectFilePath": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj",
+  "projectFilePath": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -27,19 +27,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\barra\\.nuget\\packages\\": {}
+    "C:\\Users\\mateo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Repos\\PII_Pokemon\\src\\Program\\Program.csproj",
+      "projectUniqueName": "C:\\repos\\pii_2024_2_equipo10\\src\\Program\\Program.csproj",
       "projectName": "Program",
-      "projectPath": "C:\\Repos\\PII_Pokemon\\src\\Program\\Program.csproj",
-      "packagesPath": "C:\\Users\\barra\\.nuget\\packages\\",
-      "outputPath": "C:\\Repos\\PII_Pokemon\\src\\Program\\obj\\",
+      "projectPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Program\\Program.csproj",
+      "packagesPath": "C:\\Users\\mateo\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Program\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\barra\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\mateo\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -51,8 +51,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj": {
-              "projectPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj"
+            "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj": {
+              "projectPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj"
             }
           }
         }

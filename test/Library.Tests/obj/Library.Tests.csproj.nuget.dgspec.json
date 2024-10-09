@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Repos\\PII_Pokemon\\test\\Library.Tests\\Library.Tests.csproj": {}
+    "C:\\repos\\pii_2024_2_equipo10\\test\\Library.Tests\\Library.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj": {
+    "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj",
+        "projectUniqueName": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj",
         "projectName": "Library",
-        "projectPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj",
-        "packagesPath": "C:\\Users\\barra\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\obj\\",
+        "projectPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj",
+        "packagesPath": "C:\\Users\\mateo\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\barra\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mateo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -57,17 +57,17 @@
         }
       }
     },
-    "C:\\Repos\\PII_Pokemon\\test\\Library.Tests\\Library.Tests.csproj": {
+    "C:\\repos\\pii_2024_2_equipo10\\test\\Library.Tests\\Library.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Repos\\PII_Pokemon\\test\\Library.Tests\\Library.Tests.csproj",
+        "projectUniqueName": "C:\\repos\\pii_2024_2_equipo10\\test\\Library.Tests\\Library.Tests.csproj",
         "projectName": "Library.Tests",
-        "projectPath": "C:\\Repos\\PII_Pokemon\\test\\Library.Tests\\Library.Tests.csproj",
-        "packagesPath": "C:\\Users\\barra\\.nuget\\packages\\",
-        "outputPath": "C:\\Repos\\PII_Pokemon\\test\\Library.Tests\\obj\\",
+        "projectPath": "C:\\repos\\pii_2024_2_equipo10\\test\\Library.Tests\\Library.Tests.csproj",
+        "packagesPath": "C:\\Users\\mateo\\.nuget\\packages\\",
+        "outputPath": "C:\\repos\\pii_2024_2_equipo10\\test\\Library.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\barra\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mateo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -79,8 +79,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj": {
-                "projectPath": "C:\\Repos\\PII_Pokemon\\src\\Library\\Library.csproj"
+              "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj": {
+                "projectPath": "C:\\repos\\pii_2024_2_equipo10\\src\\Library\\Library.csproj"
               }
             }
           }
