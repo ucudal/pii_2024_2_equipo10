@@ -9,7 +9,7 @@ public class Player
 
     public IAction ChooseAction()
     {
-
+        return;
     }
 
     public void AddToTeam(IPokemon pokemon)
