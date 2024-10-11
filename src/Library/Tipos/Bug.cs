@@ -1,3 +1,5 @@
+using System.Reflection;
+
 namespace Library;
 
 public class Bug : IType
@@ -9,8 +11,16 @@ public class Bug : IType
 
     public Bug()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Bug";
+        Fire fire = new Fire();
+        Rock rock = new Rock();
+        Flying flying = new Flying();
+        this.NotVeryEffective = [fire,rock];
+        Fighting fighting = new Fighting();
+        Grass grass = new Grass();
+        Ground ground = new Ground();
+        this.NotVeryEffective = [fighting,grass,ground];
+        this.NoEffect = [];
     }
 
 }

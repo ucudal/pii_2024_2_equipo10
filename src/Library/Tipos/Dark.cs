@@ -11,7 +11,16 @@ public class Dark : IType
 
     public Dark()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Dark";
+        Bug bug = new Bug();
+        Fairy fairy = new Fairy();
+        Fighting fighting = new Fighting();
+        this.SuperEffective = [fighting,bug,fairy];
+        Ghost ghost = new Ghost();
+        Dark dark = new Dark();
+        this.NotVeryEffective = [ghost,dark];
+        Psychic psychic = new Psychic();
+        this.NoEffect = [psychic];
+
     }
 }

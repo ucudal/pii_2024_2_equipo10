@@ -1,6 +1,7 @@
-using System.Net;
 
-namespace Library;
+using Library.Tipos;
+
+namespace Library.Movimientos;
 
 public class Water : IType
 {
@@ -11,12 +12,15 @@ public class Water : IType
 
     public Water()
     {
-        this.Name = "Agua";
+        this.Name = "Water";
+        Grass grass = new Grass();
+        Electric electric = new Electric();
+        this.SuperEffective = [grass,electric];
         Fire fire = new Fire();
-        Ground ground = new Ground();
-        Rock rock = new Rock();
-        SuperEffective.Append(fire);
-        SuperEffective.Append(ground);
-        SuperEffective.Append();
+        Steel steel = new Steel();
+        Water water = new Water();
+        Ice ice = new Ice();
+        this.NotVeryEffective = [fire,steel,water,ice];
+        this.NoEffect = [];
     }
 }

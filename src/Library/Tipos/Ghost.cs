@@ -11,7 +11,18 @@ public class Ghost : IType
 
     public Ghost()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Fantasma";
+        Ghost ghost = new Ghost();
+        Dark dark = new Dark();
+        SuperEffective.Append(ghost);
+        SuperEffective.Append(dark);
+        Bug bug = new Bug();
+        Poison poison = new Poison();
+        NotVeryEffective.Append(bug);
+        NotVeryEffective.Append(poison);
+        Normal normal = new Normal();
+        Fighting fighting = new Fighting();
+        NoEffect.Append(normal);
+        NoEffect.Append(fighting);
     }
 }

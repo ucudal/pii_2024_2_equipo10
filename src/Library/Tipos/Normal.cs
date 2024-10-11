@@ -9,7 +9,12 @@ public class Normal: IType
     
     public Normal()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Normal";
+        Fighting fighting = new Fighting();
+        this.SuperEffective = [fighting];
+        this.NotVeryEffective = [];
+        Ghost ghost = new Ghost();
+        this.NoEffect = [ghost];
+
     }
 }

@@ -1,3 +1,5 @@
+using Library.Tipos;
+
 namespace Library;
 
 public class Electric : IType
@@ -9,8 +11,15 @@ public class Electric : IType
 
     public Electric()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Electric";
+        Ground ground = new Ground();
+        this.SuperEffective = [ground];
+        Flying flying = new Flying();
+        Steel steel = new Steel();
+        Electric electric = new Electric();
+        this.NotVeryEffective = [flying,steel,electric];
+        this.NoEffect = [];
+
     }
 
 }

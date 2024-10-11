@@ -1,3 +1,5 @@
+using Microsoft.VisualBasic;
+
 namespace Library.Tipos;
 
 public class Steel: IType
@@ -9,18 +11,23 @@ public class Steel: IType
     
     public Steel()
     {
-        this.Name = "Acero";
-        Ice ice = new Ice();
-        Rock rock = new Rock();
-        Fairy fairy = new Fairy();
-        SuperEffective.Append(ice);
-        SuperEffective.Append(rock);
-        SuperEffective.Append(fairy);
+        this.Name = "Steel";
         Ground ground = new Ground();
         Fighting fight = new Fighting();
         Fire fire = new Fire();
-        NotVeryEffective.Append(ground);
-        NotVeryEffective.Append(fight);
-        NotVeryEffective.Append(fire);
+        this.SuperEffective = [ground,fight,fire];
+        Steel steel = new Steel();
+        Ice ice = new Ice();
+        Bug bug = new Bug();
+        Rock rock = new Rock();
+        Fairy fairy = new Fairy();
+        Dragon dragon = new Dragon();
+        Normal normal = new Normal();
+        Grass grass = new Grass();
+        Psychic psychic = new Psychic();
+        Flying flying = new Flying();
+        this.NotVeryEffective = [steel,ice,bug,rock,fairy,dragon,normal,grass,psychic,flying];
+        Poison poison = new Poison();
+        this.NoEffect = [poison];
     }
 }

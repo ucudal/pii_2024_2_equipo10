@@ -11,7 +11,15 @@ public class Fighting : IType
 
     public Fighting()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Fighting";
+        Fairy fairy = new Fairy();
+        Psychic psychic = new Psychic();
+        Flying flying = new Flying();
+        this.NotVeryEffective = [fairy,psychic,flying];
+        Dark dark = new Dark();
+        Rock rock = new Rock();
+        Bug bug = new Bug();
+        this.NotVeryEffective = [dark,rock,bug];
+        this.NotVeryEffective = [];
     }
 }

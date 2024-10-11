@@ -11,7 +11,16 @@ public class Flying : IType
 
     public Flying()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Flying";
+        Electric electric = new Electric();
+        Ice ice = new Ice();
+        Rock rock = new Rock();
+        this.SuperEffective = [electric,ice,rock];
+        Bug bug = new Bug();
+        Fighting fighting = new Fighting();
+        Grass grass = new Grass();
+        this.NotVeryEffective = [fighting,bug,grass];
+        Ground ground = new Ground();
+        this.NoEffect = [ground];
     }
 }

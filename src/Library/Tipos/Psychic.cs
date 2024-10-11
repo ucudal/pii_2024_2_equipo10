@@ -1,3 +1,5 @@
+using System.Threading.Tasks.Dataflow;
+
 namespace Library;
 
 public class Psychic: IType
@@ -9,7 +11,14 @@ public class Psychic: IType
     
     public Psychic()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Psychic";
+        Bug bug = new Bug();
+        Ghost ghost = new Ghost();
+        Dark dark = new Dark();
+        this.SuperEffective = [bug,ghost,dark];
+        Fighting fighting = new Fighting();
+        Psychic psychic = new Psychic(); 
+        this.NotVeryEffective = [fighting,psychic];
+        this.NoEffect = [];
     }
 }

@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Library.Tipos;
 
 namespace Library;
 
@@ -11,7 +12,15 @@ public class Fairy : IType
 
     public Fairy()
     {
-        this.Name = "Fuego";
-        SuperEffective.Aggregate();
+        this.Name = "Fairy";
+        Steel steel = new Steel();
+        Poison poison = new Poison();
+        this.SuperEffective = [steel,poison];
+        Bug bug = new Bug();
+        Fighting fighting = new Fighting();
+        Dark dark = new Dark();
+        this.NotVeryEffective = [fighting,bug,dark];
+        Dragon dragon = new Dragon();
+        this.NoEffect = [dragon];
     }
 }
