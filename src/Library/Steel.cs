@@ -4,13 +4,14 @@ namespace Library.Tipos;
 
 public class Steel: IType
 {
-    public string Name { get; }
+    public string Name { get; private set; }
     public IType[] SuperEffective { get; private set; }
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
     
     public Steel()
     {
+        //Aplicamos Creator
         this.Name = "Steel";
         Ground ground = new Ground();
         Fighting fight = new Fighting();

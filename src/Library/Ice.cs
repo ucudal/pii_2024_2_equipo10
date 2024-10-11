@@ -11,6 +11,7 @@ public class Ice : IType
 
     public Ice()
     {
+        //Aplicamos Creator
         this.Name = "Ice";
         Steel steel = new Steel();
         Fire fire = new Fire();

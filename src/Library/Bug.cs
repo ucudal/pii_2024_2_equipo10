@@ -11,6 +11,7 @@ public class Bug : IType
 
     public Bug()
     {
+        //Aplicamos Creator
         this.Name = "Bug";
         Fire fire = new Fire();
         Rock rock = new Rock();

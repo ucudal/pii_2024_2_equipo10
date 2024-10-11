@@ -2,13 +2,14 @@ namespace Library;
 
 public class Normal: IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set; }
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
     
     public Normal()
     {
+        //Aplicamos Creator
         this.Name = "Normal";
         Fighting fighting = new Fighting();
         this.SuperEffective = [fighting];

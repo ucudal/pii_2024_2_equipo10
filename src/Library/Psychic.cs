@@ -1,16 +1,16 @@
-using System.Threading.Tasks.Dataflow;
 
 namespace Library;
 
 public class Psychic: IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set; }
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
     
     public Psychic()
     {
+        //Aplicamos Creator
         this.Name = "Psychic";
         Bug bug = new Bug();
         Ghost ghost = new Ghost();

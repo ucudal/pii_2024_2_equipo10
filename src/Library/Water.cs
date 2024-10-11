@@ -1,17 +1,18 @@
 
 using Library.Tipos;
 
-namespace Library.Movimientos;
+namespace Library;
 
 public class Water : IType
 {
-    public string Name { get;  }
-    public IType[] SuperEffective { get;  }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set; }
+    public IType[] SuperEffective { get; private set; }
+    public IType[] NotVeryEffective { get; private set; }
+    public IType[] NoEffect { get; private set; }
 
     public Water()
     {
+        //Aplicamos Creator
         this.Name = "Water";
         Grass grass = new Grass();
         Electric electric = new Electric();

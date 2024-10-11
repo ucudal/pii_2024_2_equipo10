@@ -1,3 +1,4 @@
+
 namespace Library;
 
 public class Game
@@ -29,7 +30,14 @@ public class Game
         }
         else if (action is StatsChangerMove statsChangerMove)
         {
-            this.players[this.ActivePlayer].ActivePokemon.BaseAttack += statsChangerMove.Buff;
+            if (statsChangerMove.StatBuff == "Attack")
+            {
+                this.players[this.ActivePlayer].ActivePokemon.BuffAttack(statsChangerMove.Buff);
+            }
+            else if (statsChangerMove.StatBuff == "Defense")
+            {
+                this.players[this.ActivePlayer].ActivePokemon.BuffDefense(statsChangerMove.Buff);
+            }
         }
         else if (action is Pokeball pokeball)
         {

@@ -1,17 +1,15 @@
-using System.Diagnostics;
-using Library.Movimientos;
-
 namespace Library;
 
 public class Grass : IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set;}
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
 
     public Grass()
     {
+        //Aplicamos Creator
         this.Name = "Grass";
         Bug bug = new Bug();
         Fire fire = new Fire();

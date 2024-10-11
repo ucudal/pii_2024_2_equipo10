@@ -1,17 +1,17 @@
-using Library.Movimientos;
 using Library.Tipos;
 
 namespace Library;
 
 public class Rock: IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set; }
+    public IType[] SuperEffective { get; private set; }
+    public IType[] NotVeryEffective { get; private set; }
+    public IType[] NoEffect { get; private set; }
     
     public Rock()
     {
+        //Aplicamos Creator
         this.Name = "Rock";
         Steel steel = new Steel();
         Water water = new Water();
