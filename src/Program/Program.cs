@@ -1,9 +1,12 @@
-﻿namespace Program;
+﻿using Library;
+
+namespace Program;
 
 class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
+        PokemonCatalogue a = new PokemonCatalogue();
+        a.ShowCatalogue();
     }
 }

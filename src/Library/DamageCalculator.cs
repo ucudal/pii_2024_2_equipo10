@@ -1,16 +1,13 @@
 namespace Library;
 
+// Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
+// Es la clase Experta al momento de calcular daño
+// Es una clase abstracta la cual nos permite evitar que el programa tenga interdependencias innecesarias (Aplicando DIP).
 public class DamageCalculator
 {
-    public static int CalculateEfectivness(IPokemon pokemon)
-    {
-        foreach (IType type in pokemon.Types)
-        {
-            
-        }
-    }
     public static int CalculateDamage(IPokemon attackerPokemon, IPokemon attackedPokemon, DamageMove move)
     {
-        Efectivness = DamageCalculator.CalculateEfectivness(attackedPokemon);
+        // En un futuro va a tener en cuenta las efectividades de tipos
+        return (attackerPokemon.CurrentAttack*move.power)/2 ; 
     }
 }

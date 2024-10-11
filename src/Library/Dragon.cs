@@ -1,17 +1,16 @@
-using System.Diagnostics;
-using Library.Movimientos;
 
 namespace Library;
 
 public class Dragon : IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set;}
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
 
     public Dragon()
     {
+        //Aplicamos Creator
         this.Name = "Dragon";
         Dragon dragon = new Dragon();
         Fairy fairy = new Fairy();

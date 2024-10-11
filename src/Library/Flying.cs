@@ -4,13 +4,14 @@ namespace Library;
 
 public class Flying : IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get; private set;}
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
 
     public Flying()
     {
+        //Aplicamos Creator
         this.Name = "Flying";
         Electric electric = new Electric();
         Ice ice = new Ice();

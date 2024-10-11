@@ -4,8 +4,8 @@ using Library;
 public class Player
 {
     public string  Name;
-    public List<IPokemon> PokemonTeam { get; set;} =  new List<IPokemon> ();
-    IPokemon ActivePokemon;
+    public List<IPokemon> PokemonTeam { get; private set;} =  new List<IPokemon> ();
+    public IPokemon ActivePokemon { get; }
 
     public IAction ChooseAction()
     {

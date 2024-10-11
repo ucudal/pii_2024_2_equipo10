@@ -1,16 +1,15 @@
-using Library.Movimientos;
-
 namespace Library;
 
 public class Ground: IType
 {
-    public string Name { get; }
-    public IType[] SuperEffective { get; }
-    public IType[] NotVeryEffective { get; }
-    public IType[] NoEffect { get; }
+    public string Name { get;private set; }
+    public IType[] SuperEffective { get; private set;}
+    public IType[] NotVeryEffective { get; private set;}
+    public IType[] NoEffect { get; private set;}
     
     public Ground()
     {
+        //Aplicamos Creator
         this.Name = "Ground";
         Water water = new Water();
         Ice ice = new Ice();

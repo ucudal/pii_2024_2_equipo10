@@ -11,6 +11,7 @@ public class Electric : IType
 
     public Electric()
     {
+        //Aplicamos Creator
         this.Name = "Electric";
         Ground ground = new Ground();
         this.SuperEffective = [ground];

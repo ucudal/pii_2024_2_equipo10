@@ -11,6 +11,7 @@ public class Fighting : IType
 
     public Fighting()
     {
+        //Aplicamos Creator
         this.Name = "Fighting";
         Fairy fairy = new Fairy();
         Psychic psychic = new Psychic();

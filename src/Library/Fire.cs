@@ -1,4 +1,3 @@
-using Library.Movimientos;
 using Library.Tipos;
 
 namespace Library;
@@ -12,6 +11,7 @@ public class Fire : IType
 
     public Fire()
     {
+        //Aplicamos Creator
         this.Name = "Fire";
         Water water = new Water();
         Rock rock = new Rock();
