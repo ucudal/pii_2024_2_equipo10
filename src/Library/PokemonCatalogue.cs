@@ -7,7 +7,10 @@ public class PokemonCatalogue
 
     public void ShowCatalogue()
     {
-        Console.WriteLine(PokemonList[0].Name);
+        foreach (IPokemon pokemon in PokemonList)
+        {
+            Console.WriteLine(pokemon.Name);
+        }
     }
 
     public PokemonCatalogue()

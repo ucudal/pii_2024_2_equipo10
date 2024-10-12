@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace Library;
 
 public class Fairy : IType
