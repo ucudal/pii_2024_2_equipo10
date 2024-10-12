@@ -8,6 +8,6 @@ public class DamageCalculator
     public static int CalculateDamage(IPokemon attackerPokemon, IPokemon attackedPokemon, DamageMove move)
     {
         // En un futuro va a tener en cuenta las efectividades de tipos
-        return (attackerPokemon.CurrentAttack*move.power)/2 ; 
+        return (attackerPokemon.CurrentAttack*move.Power)/2 ; 
     }
 }
