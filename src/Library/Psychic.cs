@@ -1,28 +1,25 @@
+
 namespace Library;
 
-public class Grass : IType
+public class Psychic: IType
 {
-    public string Name { get; private set;}
+    public string Name { get; private set; }
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
     public bool EffectiveAgainstItself { get; private set; }
     public bool NotVeryEffectiveAgainstItself { get; private set; }
 
-    public Grass()
+    public Psychic()
     {
         //Aplicamos Creator
-        this.Name = "Grass";
+        this.Name = "Psychic";
         Bug bug = new Bug();
-        Fire fire = new Fire();
-        Ice ice = new Ice();
-        Poison poison = new Poison();
-        Flying flying = new Flying();
-        this.SuperEffective = [bug,fire,ice,poison,flying];
-        Water water = new Water();
-        Electric electric = new Electric();
-        Ground ground = new Ground();
-        this.NotVeryEffective = [water,electric,ground];
+        Ghost ghost = new Ghost();
+        Dark dark = new Dark();
+        this.SuperEffective = [bug,ghost,dark];
+        Fighting fighting = new Fighting();
+        this.NotVeryEffective = [fighting];
         this.NoEffect = [];
         this.EffectiveAgainstItself = false;
         this.NotVeryEffectiveAgainstItself = true;

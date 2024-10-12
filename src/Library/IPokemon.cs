@@ -3,35 +3,29 @@ namespace Library;
 public interface IPokemon
 {
     public string Name
-    { get; set;}
+    { get; }
 
-    public List<IMove> Moves { get; set;}
+    public List<IMove> Moves { get; }
 
-    public List<IType> Types { get; set;}
+    public List<IType> Types { get; }
 
     public int BaseLife
-    { get; set;}
+    { get; }
     public int CurrentLife
-    { get; set;}
+    { get; }
     public int BaseAttack
-    { get; set;}
+    { get; }
+    public int CurrentAttack { get;}
     public int BaseDefense
-    { get; set;}
+    { get; }
+    public int CurrentDefense { get;}
+
+    public void RestoreBaseLife();
 
 
-    public void RestoreBaseLife()
-    {
+    public void TakeDamage(int damage);
 
-    }
+    public void BuffAttack(int buff);
 
-    public void Attack(IMove move)
-    {
-
-    }
-
-    public void TakeDamage(int damage)
-    {
-
-    }
-
+    public void BuffDefense(int buff);
 }
