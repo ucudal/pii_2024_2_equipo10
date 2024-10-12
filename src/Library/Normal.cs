@@ -6,7 +6,9 @@ public class Normal: IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
-    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
     public Normal()
     {
         //Aplicamos Creator
@@ -16,6 +18,7 @@ public class Normal: IType
         this.NotVeryEffective = [];
         Ghost ghost = new Ghost();
         this.NoEffect = [ghost];
-
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false;
     }
 }

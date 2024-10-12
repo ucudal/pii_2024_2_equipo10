@@ -1,5 +1,3 @@
-using Library.Tipos;
-
 namespace Library;
 
 public class Rock: IType
@@ -8,7 +6,9 @@ public class Rock: IType
     public IType[] SuperEffective { get; private set; }
     public IType[] NotVeryEffective { get; private set; }
     public IType[] NoEffect { get; private set; }
-    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
     public Rock()
     {
         //Aplicamos Creator
@@ -25,5 +25,7 @@ public class Rock: IType
         Flying flying = new Flying();
         this.NotVeryEffective = [fire,normal,poison,flying];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false;
     }
 }

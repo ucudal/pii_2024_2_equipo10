@@ -1,4 +1,3 @@
-using System.Diagnostics;
 
 namespace Library;
 
@@ -8,6 +7,9 @@ public class Dark : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+    public bool EffectiveAgainstItself { get; private set; }
+
 
     public Dark()
     {        
@@ -18,10 +20,10 @@ public class Dark : IType
         Fighting fighting = new Fighting();
         this.SuperEffective = [fighting,bug,fairy];
         Ghost ghost = new Ghost();
-        Dark dark = new Dark();
-        this.NotVeryEffective = [ghost,dark];
+        this.NotVeryEffective = [ghost];
         Psychic psychic = new Psychic();
         this.NoEffect = [psychic];
-
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 }

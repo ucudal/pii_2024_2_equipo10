@@ -4,9 +4,9 @@ namespace Program;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        PokemonCatalogue a = new PokemonCatalogue();
-        a.ShowCatalogue();
+        PokemonCatalogue p = new PokemonCatalogue();
+        p.ShowCatalogue();
     }
 }

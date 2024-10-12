@@ -1,5 +1,3 @@
-using System.Reflection;
-
 namespace Library;
 
 public class Bug : IType
@@ -8,6 +6,10 @@ public class Bug : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
 
     public Bug()
     {
@@ -16,12 +18,13 @@ public class Bug : IType
         Fire fire = new Fire();
         Rock rock = new Rock();
         Flying flying = new Flying();
-        this.NotVeryEffective = [fire,rock];
+        this.SuperEffective = [fire, rock, flying];
         Fighting fighting = new Fighting();
         Grass grass = new Grass();
         Ground ground = new Ground();
-        this.NotVeryEffective = [fighting,grass,ground];
+        this.NotVeryEffective = [fighting, grass, ground];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false ;
     }
-
 }

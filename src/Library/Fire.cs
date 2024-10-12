@@ -1,5 +1,3 @@
-using Library.Tipos;
-
 namespace Library;
 
 public class Fire : IType
@@ -8,7 +6,9 @@ public class Fire : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
-
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+    
     public Fire()
     {
         //Aplicamos Creator
@@ -20,12 +20,12 @@ public class Fire : IType
         Grass grass = new Grass();
         Steel steel = new Steel();
         Bug bug = new Bug();
-        Fire fire = new Fire();
         Fairy fairy = new Fairy();
         Ice ice = new Ice();
-        this.NotVeryEffective = [grass,steel,bug,fire,fairy,ice];
+        this.NotVeryEffective = [grass,steel,bug,fairy,ice];
         this.NoEffect = [];
-
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 
 }

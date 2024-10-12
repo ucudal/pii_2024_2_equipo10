@@ -6,6 +6,8 @@ public class Grass : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
 
     public Grass()
     {
@@ -19,9 +21,10 @@ public class Grass : IType
         this.SuperEffective = [bug,fire,ice,poison,flying];
         Water water = new Water();
         Electric electric = new Electric();
-        Grass grass = new Grass();
         Ground ground = new Ground();
-        this.NotVeryEffective = [water,electric,grass,ground];
+        this.NotVeryEffective = [water,electric,ground];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 }

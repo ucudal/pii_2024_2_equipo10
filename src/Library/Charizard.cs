@@ -26,7 +26,7 @@ public class Charizard : IPokemon
         this.Types = new List<IType>();
         Fire fire = new Fire();
         this.Types.Add(fire);
-        // La lista de IMoves aplica LSP ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
+        // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
         this.Moves = new List<IMove>();
         IMove flamethrower = new DamageMove("Flamethrower",false,100,90,fire);

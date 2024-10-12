@@ -7,18 +7,14 @@ public class PokemonCatalogue
 
     public void ShowCatalogue()
     {
-        foreach (IPokemon pokemon in PokemonList)
-        {
-            Console.WriteLine(pokemon);
-        }
-        
+        Console.WriteLine(PokemonList[0].Name);
     }
 
     public PokemonCatalogue()
     {
         //Aplicamos Creator
         this.PokemonList = new List<IPokemon>();
-        Charizard charizard = new Charizard();
+        IPokemon charizard = new Charizard();
         this.PokemonList.Add(charizard);
     }
     

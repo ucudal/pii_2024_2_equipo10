@@ -4,12 +4,13 @@ using Library;
 public class Player
 {
     public string  Name { get; }
-    public List<IPokemon> PokemonTeam { get; set;} =  new List<IPokemon> ();
+    public List<IPokemon> PokemonTeam { get; private set;}
     public IPokemon ActivePokemon { get; private set; }
 
     public Player(string name)
     {
         this.Name = name;
+        this.PokemonTeam = new List<IPokemon>();
     }
     
     public IAction ChooseAction()

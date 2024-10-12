@@ -1,5 +1,3 @@
-using Library.Tipos;
-
 namespace Library;
 
 public class Ice : IType
@@ -8,6 +6,8 @@ public class Ice : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
 
     public Ice()
     {
@@ -17,10 +17,11 @@ public class Ice : IType
         Fire fire = new Fire();
         Fighting fighting = new Fighting();
         Rock rock = new Rock();
-        this.SuperEffective = [fighting, fire,steel];
-        Ice ice = new Ice();
-        this.NotVeryEffective = [ice];
+        this.SuperEffective = [fighting, fire,steel,rock];
         this.NotVeryEffective = [];
+        this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 
 }

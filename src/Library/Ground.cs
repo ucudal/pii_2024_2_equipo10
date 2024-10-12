@@ -6,7 +6,9 @@ public class Ground: IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
-    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
     public Ground()
     {
         //Aplicamos Creator
@@ -20,6 +22,8 @@ public class Ground: IType
         this.NotVeryEffective = [rock,poison];
         Electric electric = new Electric();
         this.NoEffect = [electric];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false;
 
     }
 }

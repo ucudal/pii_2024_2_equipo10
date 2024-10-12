@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Library.Tipos;
 
 namespace Library;
 
@@ -9,6 +8,8 @@ public class Fairy : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
 
     public Fairy()
     {
@@ -23,5 +24,7 @@ public class Fairy : IType
         this.NotVeryEffective = [fighting,bug,dark];
         Dragon dragon = new Dragon();
         this.NoEffect = [dragon];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false;
     }
 }

@@ -7,7 +7,9 @@ public class Psychic: IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
-    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
     public Psychic()
     {
         //Aplicamos Creator
@@ -17,8 +19,9 @@ public class Psychic: IType
         Dark dark = new Dark();
         this.SuperEffective = [bug,ghost,dark];
         Fighting fighting = new Fighting();
-        Psychic psychic = new Psychic(); 
-        this.NotVeryEffective = [fighting,psychic];
+        this.NotVeryEffective = [fighting];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 }

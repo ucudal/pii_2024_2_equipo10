@@ -6,7 +6,9 @@ public class Poison: IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
-    
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
+
     public Poison()
     {
         //Aplicamos Creator
@@ -18,8 +20,9 @@ public class Poison: IType
         Fairy fairy = new Fairy();
         Fighting fighting = new Fighting();
         Grass grass = new Grass();
-        Poison poison = new Poison();
-        this.NotVeryEffective = [fighting, poison,grass,bug,fairy];
+        this.NotVeryEffective = [fighting,grass,bug,fairy];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 }

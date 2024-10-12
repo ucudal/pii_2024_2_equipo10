@@ -1,6 +1,3 @@
-
-using Library.Tipos;
-
 namespace Library;
 
 public class Water : IType
@@ -9,6 +6,8 @@ public class Water : IType
     public IType[] SuperEffective { get; private set; }
     public IType[] NotVeryEffective { get; private set; }
     public IType[] NoEffect { get; private set; }
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
 
     public Water()
     {
@@ -19,9 +18,10 @@ public class Water : IType
         this.SuperEffective = [grass,electric];
         Fire fire = new Fire();
         Steel steel = new Steel();
-        Water water = new Water();
         Ice ice = new Ice();
-        this.NotVeryEffective = [fire,steel,water,ice];
+        this.NotVeryEffective = [fire,steel,ice];
         this.NoEffect = [];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = true;
     }
 }

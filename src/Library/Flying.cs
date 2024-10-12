@@ -1,5 +1,3 @@
-using System.Net;
-
 namespace Library;
 
 public class Flying : IType
@@ -8,6 +6,8 @@ public class Flying : IType
     public IType[] SuperEffective { get; private set;}
     public IType[] NotVeryEffective { get; private set;}
     public IType[] NoEffect { get; private set;}
+    public bool EffectiveAgainstItself { get; private set; }
+    public bool NotVeryEffectiveAgainstItself { get; private set; }
 
     public Flying()
     {
@@ -23,5 +23,7 @@ public class Flying : IType
         this.NotVeryEffective = [fighting,bug,grass];
         Ground ground = new Ground();
         this.NoEffect = [ground];
+        this.EffectiveAgainstItself = false;
+        this.NotVeryEffectiveAgainstItself = false;
     }
 }
