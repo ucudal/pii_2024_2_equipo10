@@ -1,6 +1,6 @@
 namespace Library;
 
-public class Grass : IType
+public class Flying : IType
 {
     public string Name { get; private set;}
     public IType[] SuperEffective { get; private set;}
@@ -9,22 +9,21 @@ public class Grass : IType
     public bool EffectiveAgainstItself { get; private set; }
     public bool NotVeryEffectiveAgainstItself { get; private set; }
 
-    public Grass()
+    public Flying()
     {
         //Aplicamos Creator
-        this.Name = "Grass";
-        Bug bug = new Bug();
-        Fire fire = new Fire();
-        Ice ice = new Ice();
-        Poison poison = new Poison();
-        Flying flying = new Flying();
-        this.SuperEffective = [bug,fire,ice,poison,flying];
-        Water water = new Water();
+        this.Name = "Flying";
         Electric electric = new Electric();
+        Ice ice = new Ice();
+        Rock rock = new Rock();
+        this.SuperEffective = [electric,ice,rock];
+        Bug bug = new Bug();
+        Fighting fighting = new Fighting();
+        Grass grass = new Grass();
+        this.NotVeryEffective = [fighting,bug,grass];
         Ground ground = new Ground();
-        this.NotVeryEffective = [water,electric,ground];
-        this.NoEffect = [];
+        this.NoEffect = [ground];
         this.EffectiveAgainstItself = false;
-        this.NotVeryEffectiveAgainstItself = true;
+        this.NotVeryEffectiveAgainstItself = false;
     }
 }
