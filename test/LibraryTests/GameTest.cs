@@ -1,6 +1,11 @@
-namespace Library.Tests;
+using Library;
+using NUnit.Framework;
 
-public class GameTests
+namespace LibraryTests;
+
+[TestFixture]
+[TestOf(typeof(Game))]
+public class GameTest
 {
     [SetUp]
     public void Setup()
@@ -16,5 +21,4 @@ public class GameTests
         game.NextTurn();
         Assert.That(1, Is.EqualTo(game.TurnCount));
     }
-    
 }

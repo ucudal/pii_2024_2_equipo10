@@ -1,3 +1,6 @@
+using Library;
+using NUnit.Framework;
+
 namespace Library.Tests;
 
 [TestFixture]

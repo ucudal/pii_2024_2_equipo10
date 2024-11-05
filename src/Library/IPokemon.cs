@@ -6,9 +6,7 @@ public interface IPokemon
     { get; }
 
     public List<IMove> Moves { get; }
-
-    public List<IType> Types { get; }
-
+    
     public int BaseLife
     { get; }
     public int CurrentLife
@@ -28,4 +26,6 @@ public interface IPokemon
     public void BuffAttack(int buff);
 
     public void BuffDefense(int buff);
+    
+    
 }
