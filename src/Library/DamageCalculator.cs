@@ -120,9 +120,9 @@ public static class DamageCalculator
     
     
     
-    public static int CalculateDamage(Pokemon attackerPokemon, Pokemon attackedPokemon, DamageMove move)
+    public static int CalculateDamage(Pokemon attackerPokemon, Pokemon attackedPokemon, Attack move)
     {
         // En un futuro va a tener en cuenta las efectividades de tipos
-        return (attackerPokemon.CurrentAttack*move.Power)/2 ; 
+        return move.Power ; 
     }
 }

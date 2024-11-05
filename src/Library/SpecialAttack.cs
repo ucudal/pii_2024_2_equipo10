@@ -4,4 +4,9 @@ public class SpecialAttack : Attack
 {
     string SpecialEffect;
     int LastTurnPlayed;
+
+    public
+    {
+        
+    }
 }
