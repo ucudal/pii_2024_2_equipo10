@@ -13,23 +13,18 @@ public abstract class Pokemon
     public int CurrentDefense { get; private set; }
     
     
-    protected Pokemon(int life, int atk, int def)
+    protected Pokemon(string name, int life, Type type, IMove move)
     {
         //Aplicamos Creator
+        this.Name = name;
         this.BaseLife = life;
-        this.BaseAttack = atk;
-        this.BaseDefense = def;
         this.CurrentLife = BaseLife;
-        this.CurrentAttack = BaseAttack;
-        this.CurrentDefense = BaseDefense;
         this.Types = new List<Type>();
-        Type fire = Type.Fire;
-        this.Types.Add(fire);
+        this.Moves = new List<IMove>();
+        this.Types.Add(type);
         // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
-        this.Moves = new List<IMove>();
-        IMove flamethrower = new DamageMove("Flamethrower",false,100,90,fire);
-        this.Moves.Add(flamethrower);
+        this.Moves.Add(move);
     }
 
     public void RestoreBaseLife()
