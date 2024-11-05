@@ -3,13 +3,13 @@
 public class Player
 {
     public string  Name { get; }
-    public List<IPokemon> PokemonTeam { get; private set;}
-    public IPokemon ActivePokemon { get; private set; }
+    public List<Pokemon> PokemonTeam { get; private set;}
+    public Pokemon ActivePokemon { get; private set; }
 
     public Player(string name)
     {
         this.Name = name;
-        this.PokemonTeam = new List<IPokemon>();
+        this.PokemonTeam = new List<Pokemon>();
     }
     
     public IAction ChooseAction()
@@ -32,13 +32,13 @@ public class Player
         return action;
     }
 
-    public void AddToTeam(IPokemon pokemon)
+    public void AddToTeam(Pokemon pokemon)
     {
         if(this.PokemonTeam.Count < 6)
             this.PokemonTeam.Add(pokemon);
     }
 
-    public void ChangeActivePokemon(IPokemon pokemon)
+    public void ChangeActivePokemon(Pokemon pokemon)
     {
         this.ActivePokemon = pokemon;
     }
