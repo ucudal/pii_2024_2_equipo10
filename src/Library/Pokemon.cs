@@ -1,6 +1,6 @@
 namespace Library;
 
-public class Charizard : Pokemon
+public abstract class Pokemon
 {
     public string Name { get; set; }
     public List<IMove> Moves { get; private set; }
@@ -11,15 +11,14 @@ public class Charizard : Pokemon
     public int CurrentLife { get; private set; }
     public int CurrentAttack { get; private set; }
     public int CurrentDefense { get; private set; }
-
-
-    public Charizard():base()
+    
+    
+    protected Pokemon(int life, int atk, int def)
     {
         //Aplicamos Creator
-        this.Name = "Charizard";
-        this.BaseLife = 80;
-        this.BaseAttack = 109;
-        this.BaseDefense = 85;
+        this.BaseLife = life;
+        this.BaseAttack = atk;
+        this.BaseDefense = def;
         this.CurrentLife = BaseLife;
         this.CurrentAttack = BaseAttack;
         this.CurrentDefense = BaseDefense;
@@ -42,14 +41,5 @@ public class Charizard : Pokemon
     {
         this.CurrentLife -= damage;
     }
-
-    public void BuffAttack(int buff)
-    {
-        this.CurrentAttack *= buff;
-    }
-
-    public void BuffDefense(int buff)
-    {
-        this.CurrentDefense *= buff;
-    }
+    
 }

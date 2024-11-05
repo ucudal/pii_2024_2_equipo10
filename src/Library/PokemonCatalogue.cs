@@ -3,11 +3,11 @@ namespace Library;
 
 public class PokemonCatalogue
 {
-    public List<IPokemon> PokemonList { get; private set; }
+    public List<Pokemon> PokemonList { get; private set; }
 
     public void ShowCatalogue()
     {
-        foreach (IPokemon pokemon in PokemonList)
+        foreach (Pokemon pokemon in PokemonList)
         {
             Console.WriteLine(pokemon.Name);
         }
@@ -16,8 +16,8 @@ public class PokemonCatalogue
     public PokemonCatalogue()
     {
         //Aplicamos Creator
-        this.PokemonList = new List<IPokemon>();
-        IPokemon charizard = new Charizard();
+        this.PokemonList = new List<Pokemon>();
+        Charizard charizard = new Charizard();
         this.PokemonList.Add(charizard);
     }
     
