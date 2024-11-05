@@ -1,4 +1,3 @@
-
 namespace Library;
 
 public class Game
@@ -24,17 +23,18 @@ public class Game
     public void ExecuteAction()
     {
         IAction action = this.players[ActivePlayer].ChooseAction();
-        if (action is DamageMove damageMove)
+        if (action is Attack attack)
         {
-            this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(DamageCalculator.CalculateDamage(this.players[this.ActivePlayer].ActivePokemon,this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, damageMove));
-        }
-        else if (action is StatsChangerMove statsChangerMove)
-        {
-            
+            this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(DamageCalculator.CalculateDamage(this.players[this.ActivePlayer].ActivePokemon,this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
         }
         else if (action is Pokeball pokeball)
         {
             pokeball.ChangePokemon(this.players[ActivePlayer]);
+        }
+
+        else if (action is Backpack backpack)
+        {
+           backpack.UseItem(players[ActivePlayer]);
         }
         
     }
