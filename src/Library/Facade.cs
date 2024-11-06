@@ -7,6 +7,8 @@ public static class Facade
     private static WaitingList WaitingList { get; } = new WaitingList();
 
     public static GameList GameList{ get; } = new GameList();
+    
+    
     public static string ShowAtacks(string playerName)
     {
         //chequear que este en la partida
