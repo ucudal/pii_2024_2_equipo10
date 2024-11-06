@@ -33,18 +33,22 @@ public abstract class Pokemon
 
     public void RestoreBaseLife(double hp)
     {
-        if (this.CurrentLife > 0)
+        
+        this.CurrentLife += hp;
+        if (this.CurrentLife > hp)
         {
-            if (this.CurrentLife < BaseLife)
-            {
-                this.CurrentLife += hp;
-            }
+            this.CurrentLife = BaseLife;
         }
+        
     }
 
     public void TakeDamage(double damage)
     {
         this.CurrentLife -= damage;
+        if (this.CurrentLife < 0)
+        {
+            this.CurrentLife = 0;
+        }
     }
 
     public string GetLife()
