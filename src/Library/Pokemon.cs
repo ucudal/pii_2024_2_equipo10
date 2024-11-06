@@ -17,6 +17,7 @@ public abstract class Pokemon
         //Aplicamos Creator
         this.Name = name;
         this.BaseLife = life;
+        this.CurrentState = null;
         this.CurrentLife = BaseLife;
         this.Type = new List<Type>();
         this.Attacks = new List<IAttack>();

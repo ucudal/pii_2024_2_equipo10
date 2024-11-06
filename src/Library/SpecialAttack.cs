@@ -18,4 +18,9 @@ public class SpecialAttack : Attack
             Cooldown -= 1;
         }
     }
+
+    public void SetCooldown()
+    {
+        Cooldown = 2;
+    }
 }

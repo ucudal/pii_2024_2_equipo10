@@ -22,26 +22,6 @@ public class Player
         this.Items.Add(new FullHealth());
     }
     
-    public IAction ChooseAction()
-    {
-        // mostrar movimientos en pantalla, podría llamar a otra
-        // clase para imprimir en pantalla las opciones
-        //obtengo la selección del usuario, por ejemplo le pido un int
-        // x=0
-        // if (x < 5)
-        // {
-        //     return this.ActivePokemon.Moves[x - 1];
-        // }
-        // else 
-        // {
-        //     IAction action = new Pokeball();
-        //     return action;
-        // }
-        
-        IAction action = new Pokeball();
-        return action;
-    }
-
     public void AddToTeam(Pokemon pokemon)
     {
         if (this.PokemonTeam.Count < 6)
@@ -49,9 +29,49 @@ public class Player
             this.PokemonTeam.Add(pokemon);
         }
     }
-    
-    public void ChangeActivePokemon(Pokemon pokemon)
+
+    public void SetActivePokemon(Pokemon pokemon)
     {
         this.ActivePokemon = pokemon;
     }
+    
+    public Pokemon ChoosePokemon(string strPokemon)
+    {
+        foreach (Pokemon pokemon in this.PokemonTeam)
+        {
+            if (pokemon.Name == strPokemon)
+            {
+                return pokemon;
+            }
+        }
+
+        return null;
+    }
+
+    public IItem ChooseItem(string strItem)
+    {
+        foreach (IItem item in this.Items)
+        {
+            if (item.Name == strItem)
+            {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
+    public IAttack ChooseAttack(string strAttack)
+    {
+        foreach (IAttack attack in this.ActivePokemon.Attacks)
+        {
+            if (attack.Name == strAttack)
+            {
+                return attack;
+            }
+        }
+
+        return null;
+    }
+    
 }
