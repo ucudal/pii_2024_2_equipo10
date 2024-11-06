@@ -22,7 +22,7 @@ public class Player
         this.Items.Add(new FullHealth());
     }
     
-    public IAction ChooseAction()
+    /*public IAction ChooseAction()
     {
         // mostrar movimientos en pantalla, podría llamar a otra
         // clase para imprimir en pantalla las opciones
@@ -40,7 +40,7 @@ public class Player
         
         IAction action = new Pokeball();
         return action;
-    }
+    }*/
 
     public void AddToTeam(Pokemon pokemon)
     {
@@ -52,4 +52,11 @@ public class Player
     {
         this.ActivePokemon = pokemon;
     }
+
+    public IAttack ChooseAttack()
+    {
+        
+        return attack;
+    }
+    
 }

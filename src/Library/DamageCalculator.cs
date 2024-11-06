@@ -153,7 +153,7 @@ public static class DamageCalculator
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
         {
             attackedPokemon.CurrentState = specialAttack.SpecialEffect;
-            specialAttack.Cooldown = 2;
+            specialAttack.SetCooldown();
         }
     }
 

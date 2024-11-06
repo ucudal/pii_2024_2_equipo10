@@ -13,10 +13,29 @@ public class Game
         this.ActivePlayer = 0;
         this.TurnCount = 0;
     }
-    
-    public void NextTurn()
+
+    public bool OngoingGameCheck()
     {
-        this.TurnCount++;
+        foreach (var player in players)
+        {
+            bool Ongoing = false;
+            foreach (var pokemon in player.PokemonTeam)
+            {
+                if (pokemon.CurrentLife > 0)
+                {
+                    Ongoing = true;
+                }
+            }
+            if (!Ongoing)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void CooldownCheck()
+    { 
         foreach (var player in players)
         {
             foreach (var pokemon in player.PokemonTeam)
@@ -30,7 +49,21 @@ public class Game
                 }
             }
         }
-        this.ActivePlayer = (this.ActivePlayer + 1) % 2;
+    }
+
+    public void NextTurn()
+    {
+        if (OngoingGameCheck())
+        {
+           this.TurnCount++;
+           CooldownCheck();          
+           this.ActivePlayer = (this.ActivePlayer + 1) % 2;
+        }
+    }
+
+    public void ExecuteAttack()
+    {
+        
     }
 
     public string? ExecuteAction()
