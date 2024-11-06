@@ -7,11 +7,15 @@ public static class Facade
     private static WaitingList WaitingList { get; } = new WaitingList();
 
     public static GameList GameList{ get; } = new GameList();
+    // historia de usuario 2
     public static string ShowAtacks(string playerName)
     {
-        //chequear que este en la partida
-        string result = "";
         Player player = GameList.FindPlayerByName(playerName);
+        if (player != null)
+        {
+            return "El jugador no está en ninguna partida.";
+        }
+        string result = "";
         foreach (IAttack atack in player.ActivePokemon.Attacks)
         {
             result += atack.Name + "\n";
@@ -20,6 +24,7 @@ public static class Facade
         return result;
     }
 
+    // historia de usuario 3
     public static string ShowPokemonsHP(string playerName, string playerToCheckName = null)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -45,6 +50,7 @@ public static class Facade
                     return result;
                 }
             }
+
             return "El jugador no pertenece a tu partida.";
         }
     }
