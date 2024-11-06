@@ -1,4 +1,3 @@
-
 namespace Library;
 
 public class Game
@@ -50,17 +49,48 @@ public class Game
                     return
                         $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
             }
-            else if (action is Backpack backpack)
-            {
-            }
-            else if (action is Pokeball pokeball)
-            {
-                pokeball.ChangePokemon(this.players[ActivePlayer]);
-            }
+            else return $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
+        }
+        else if (action is Backpack backpack)
+        {
+            
+        }
 
-            return "accion no reconocida, introduzcala nuevamente";
-            StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
-            StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
+        else if (action is Pokeball pokeball)
+        {
+            pokeball.ChangePokemon(this.players[ActivePlayer]);
+        }
+        return "accion no reconocida, introduzcala nuevamente";
+        StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
+        StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
+
+    }
+
+    public void MenuCambioPokemon()
+    {
+        
+            int n = 1;
+            Console.WriteLine($"Que pokemon va a luchar?:");
+            foreach (var pokemon in this.players[ActivePlayer].PokemonTeam)
+            {
+                Console.WriteLine($"{n}) {pokemon.Name}");
+                n++;
+            }
+            while (true)
+            {
+                Console.Write(">");
+                int R = Convert.ToInt32(Console.ReadLine());//posible error si se ingresa str
+                if (R > 1 && R <= n)
+                {
+                    this.players[ActivePlayer].ChangeActivePokemon(players[ActivePlayer].PokemonTeam[R - 1]);
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Opcion invalida");
+                }
+            }
+        
 
     }
     
