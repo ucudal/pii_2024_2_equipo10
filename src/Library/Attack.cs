@@ -13,5 +13,6 @@ public class Attack : IAttack
         this.types = type;
         this.Accuracy = Accuracy;
         this.Power = Power;
+
     }
 }
