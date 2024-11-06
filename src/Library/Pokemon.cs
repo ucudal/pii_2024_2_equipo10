@@ -3,43 +3,57 @@ namespace Library;
 public abstract class Pokemon
 {
     public string Name { get; set; }
-    public List<IMove> Moves { get; private set; }
-    public List<Type> Types { get; private set; }
+    public List<IAttack> Attacks { get; private set; }
+    public List<Type> Type { get; private set; }
+    public State? CurrentState { get; set; }
+    
+    public int AsleepTurns { get; set; }
     public int BaseLife { get; private set; }
-    public int BaseAttack { get; private set; }
-    public int BaseDefense { get; private set; }
-    public int CurrentLife { get; private set; }
-    public int CurrentAttack { get; private set; }
-    public int CurrentDefense { get; private set; }
+    public int CurrentLife { get; set; }
     
     
-    protected Pokemon(int life, int atk, int def)
+    protected Pokemon(string name, int life, Type type)
     {
         //Aplicamos Creator
+        this.Name = name;
         this.BaseLife = life;
-        this.BaseAttack = atk;
-        this.BaseDefense = def;
         this.CurrentLife = BaseLife;
-        this.CurrentAttack = BaseAttack;
-        this.CurrentDefense = BaseDefense;
-        this.Types = new List<Type>();
-        Type fire = Type.Fire;
-        this.Types.Add(fire);
+        this.Type = new List<Type>();
+        this.Attacks = new List<IAttack>();
+        this.Type.Add(type);
+        this.AsleepTurns = 0;
         // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
-        this.Moves = new List<IMove>();
-        IMove flamethrower = new DamageMove("Flamethrower",false,100,90,fire);
-        this.Moves.Add(flamethrower);
+        // this.Attacks.Add(attack1);
+        // this.Attacks.Add(attack2);
+        // this.Attacks.Add(attack3);
+        // this.Attacks.Add(attack4);
+
     }
 
-    public void RestoreBaseLife()
+    public void RestoreBaseLife(int hp)
     {
-        this.CurrentLife = BaseLife;
+        if (this.CurrentLife > BaseLife)
+        {
+            
+        }
+        else if (this.CurrentLife < BaseLife)
+        {
+            
+        }
+        {
+            this.CurrentLife += hp;
+        }
     }
 
     public void TakeDamage(int damage)
     {
         this.CurrentLife -= damage;
+    }
+
+    public string GetLife()
+    {
+        return $"{this.CurrentLife}/{this.BaseLife}";
     }
     
 }
