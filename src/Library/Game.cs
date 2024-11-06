@@ -63,16 +63,21 @@ public class Game
 
     public string ExecuteAttack(Attack attack)
     {
-        bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
-        bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
-        if (!asleep & !paralized)
+        if (attack != null)
         {
-            Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
-            double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
-            attackedPokemon.TakeDamage(damage);
-            return $"{attackedPokemon} recibió {damage} puntos de daño";
+            bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
+            bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
+            if (!asleep & !paralized)
+            {
+                Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
+                double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
+                attackedPokemon.TakeDamage(damage);
+                return $"{attackedPokemon} recibió {damage} puntos de daño";
+            }
+            else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
         }
-        else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
+
+        return null;
     }
 
 
