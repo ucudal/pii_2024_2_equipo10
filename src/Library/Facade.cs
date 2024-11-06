@@ -11,7 +11,7 @@ public static class Facade
     
     public static string ShowAtacks(string playerName)
     {
-        //chequear que este en la partida
+        //chequear que esté en la partida
         string result = "";
         Player player = GameList.FindPlayerByName(playerName);
         foreach (IAttack atack in player.ActivePokemon.Attacks)
@@ -50,4 +50,23 @@ public static class Facade
             return "El jugador no pertenece a tu partida.";
         }
     }
+    public static string ChooseTeam(string player, string cPokemon)
+    {
+        PokemonCatalogue.SetCatalogue();
+        
+        foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
+        {
+            if (pokemon.Name != cPokemon || !player.PokemonTeam.Contains(pokemon))
+            {
+                player.AddToTeam(pokemon);
+                return $"El pokemon {cPokemon}fue añadido al equipo";
+            }
+            else
+            {
+                
+            }
+        }
+
+        return $"El pokemon {cPokemon} no fue encontrado";
+    }    
 }
