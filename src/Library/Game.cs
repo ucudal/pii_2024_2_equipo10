@@ -14,8 +14,9 @@ public class Game
         this.TurnCount = 0;
     }
 
-    public bool OngoingGameCheck()
+    public string GameStatus()
     {
+        Player Loser = null;
         foreach (var player in Players)
         {
             bool Ongoing = false;
@@ -28,10 +29,12 @@ public class Game
             }
             if (!Ongoing)
             {
-                return false;
+                
+                Loser = player;
+                return $"{Loser.Name} ha perdido la partida.";
             }
         }
-        return true;
+        return null;
     }
 
     public void CooldownCheck()
