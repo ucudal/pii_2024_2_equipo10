@@ -19,6 +19,8 @@ public class Game
     {
         this.TurnCount++;
         this.ActivePlayer = (this.ActivePlayer + 1) % 2;
+        StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
+        StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
     }
 
     public string? ExecuteAction()
@@ -46,9 +48,6 @@ public class Game
             }
 
             return "accion no reconocida, introduzcala nuevamente";
-            StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
-            StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
-
     }
     
 }
