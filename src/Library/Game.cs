@@ -48,6 +48,7 @@ public class Game
             return "accion no reconocida, introduzcala nuevamente";
             StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
             StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
+
     }
     
 }
