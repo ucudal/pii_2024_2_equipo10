@@ -49,6 +49,7 @@ public static class Facade
         }
     }
 
+    //Historia de usuario 5
     public static string CheckTurn(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -76,4 +77,55 @@ public static class Facade
         }
         return null;
     }
+
+    //Historia de usuario 7
+    public static string MidBattlePokemonChange(string playerName, string pokemonName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return $"El jugador {player.Name} no está en ninguna partida.";
+        }
+        //funcion q va a hacer mateopara encontrar partida
+        game.ChangePokemon(player.ChoosePokemon(pokemonName));
+
+    }
+
+    /*
+    public void MenuCambioPokemon()
+    {
+        
+            int n = 1;
+            Console.WriteLine($"Que pokemon va a luchar?:");
+            foreach (var pokemon in this.players[ActivePlayer].PokemonTeam)
+            {
+                Console.WriteLine($"{n}) {pokemon.Name}");
+                n++;
+            }
+            while (true)
+            {
+                pokeball.ChangePokemon(this.Players[ActivePlayer]);
+            }
+            return "accion no reconocida, introduzcala nuevamente";
+            //StateLogic.PoisonedEffect(Players[ActivePlayer].ActivePokemon);
+            //StateLogic.BurnedEffect(Players[ActivePlayer].ActivePokemon);
+
+      
+              Console.Write(">");
+                int R = Convert.ToInt32(Console.ReadLine());//posible error si se ingresa str
+                if (R > 1 && R <= n)
+                {
+                    this.players[ActivePlayer].ChangeActivePokemon(players[ActivePlayer].PokemonTeam[R - 1]);
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Opcion invalida");
+                }
+            }
+        
+    }
+    */
+
+
 }
