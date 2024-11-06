@@ -1,146 +1,51 @@
+using System.Runtime.CompilerServices;
+
 namespace Library;
 
 public static class Facade
 {
+    private static WaitingList WaitingList { get; } = new WaitingList();
 
-    /// <summary>
-    /// Agrega un jugador a la lista de espera.
-    /// </summary>
-    /// <param name="displayName">El nombre del jugador.</param>
-    /// <returns>Un mensaje con el resultado.</returns>
-    public static string AddTrainerToWaitingList(string displayName)
+    public static GameList GameList{ get; } = new GameList();
+    public static string ShowAtacks(string playerName)
     {
-        if (this.WaitingList.AddTrainer(displayName))
+        //chequear que este en la partida
+        string result = "";
+        Player player = GameList.FindPlayerByName(playerName);
+        foreach (IAttack atack in player.ActivePokemon.Attacks)
         {
-            return $"{displayName} agregado a la lista de espera";
-        }
-        
-        return $"{displayName} ya está en la lista de espera";
-    }
-
-    /// <summary>
-    /// Remueve un jugador de la lista de espera.
-    /// </summary>
-    /// <param name="displayName">El jugador a remover.</param>
-    /// <returns>Un mensaje con el resultado.</returns>
-    public static string RemoveTrainerFromWaitingList(string displayName)
-    {
-        if (this.WaitingList.RemoveTrainer(displayName))
-        {
-            return $"{displayName} removido de la lista de espera";
-        }
-        else
-        {
-            return $"{displayName} no está en la lista de espera";
-        }
-    }
-
-    /// <summary>
-    /// Obtiene la lista de jugadores esperando.
-    /// </summary>
-    /// <returns>Un mensaje con el resultado.</returns>
-    public static string GetAllTrainersWaiting()
-    {
-        if (this.WaitingList.Count == 0)
-        {
-            return "No hay nadie esperando";
+            result += atack.Name + "\n";
         }
 
-        string result = "Esperan: ";
-        foreach (Trainer trainer in this.WaitingList.GetAllWaiting())
-        {
-            result = result + trainer.DisplayName + "; ";
-        }
-        
         return result;
     }
 
-    /// <summary>
-    /// Determina si un jugador está esperando para jugar.
-    /// </summary>
-    /// <param name="displayName">El jugador.</param>
-    /// <returns>Un mensaje con el resultado.</returns>
-    public static string TrainerIsWaiting(string displayName)
+    public static string ShowPokemonsHP(string playerName, string playerToCheckName = null)
     {
-        Trainer? trainer = this.WaitingList.FindTrainerByDisplayName(displayName);
-        if (trainer == null)
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+            return "El jugador no está en ninguna partida.";
+        if (playerToCheckName == null)
         {
-            return $"{displayName} no está esperando";
+            string result = "";
+            foreach (Pokemon pokemon in player.PokemonTeam)
+                result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
+            return result;
         }
-        
-        return $"{displayName} está esperando";
-    }
-
-
-    private static string CreateBattle(string playerDisplayName, string opponentDisplayName)
-    {
-        // Aunque playerDisplayName y opponentDisplayName no estén en la lista
-        // esperando para jugar los removemos igual para evitar preguntar si
-        // están para luego removerlos.
-        this.WaitingList.RemoveTrainer(playerDisplayName);
-        this.WaitingList.RemoveTrainer(opponentDisplayName);
-        
-        BattlesList.AddBattle(playerDisplayName, opponentDisplayName);
-        return $"Comienza {playerDisplayName} vs {opponentDisplayName}";
-    }
-
-    /// <summary>
-    /// Crea una batalla entre dos jugadores.
-    /// </summary>
-    /// <param name="playerDisplayName">El primer jugador.</param>
-    /// <param name="opponentDisplayName">El oponente.</param>
-    /// <returns>Un mensaje con el resultado.</returns>
-    public static string StartBattle(string playerDisplayName, string? opponentDisplayName)
-    {
-        // El símbolo ? luego de Trainer indica que la variable opponent puede
-        // referenciar una instancia de Trainer o ser null.
-        Trainer? opponent;
-        
-        if (!OpponentProvided() && !SomebodyIsWaiting())
+        else
         {
-            return "No hay nadie esperando";
-        }
-        
-        if (!OpponentProvided()) // && SomebodyIsWaiting
-        {
-            opponent = this.WaitingList.GetAnyoneWaiting();
-            
-            // El símbolo ! luego de opponent indica que sabemos que esa
-            // variable no es null. Estamos seguros porque SomebodyIsWaiting
-            // retorna true si y solo si hay usuarios esperando y en tal caso
-            // GetAnyoneWaiting nunca retorna null.
-            return this.CreateBattle(playerDisplayName, opponent!.DisplayName);
-        }
-
-        // ¡El símbolo! Luego de opponentDisplayName indica que sabemos que esa
-        // variable no es null. Estamos seguros porque OpponentProvided hubiera
-        // retorna false antes y no habríamos llegado hasta aquí.
-        opponent = this.WaitingList.FindTrainerByDisplayName(opponentDisplayName!);
-        
-        if (!OpponentFound())
-        {
-            return $"{opponentDisplayName} no está esperando";
-        }
-        
-        return this.CreateBattle(playerDisplayName, opponent!.DisplayName);
-        
-        // Funciones locales a continuación para mejorar la legibilidad
-
-        bool OpponentProvided()
-        {
-            return !string.IsNullOrEmpty(opponentDisplayName);
-        }
-
-        bool SomebodyIsWaiting()
-        {
-            return this.WaitingList.Count != 0;
-        }
-
-        bool OpponentFound()
-        {
-            return opponent != null;
+            Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
+            string result = "";
+            foreach (Game game in GameList.Games)
+            {
+                if (game.Players.Contains(player) && game.Players.Contains(playerToCheck))
+                {
+                    foreach (Pokemon pokemon in playerToCheck.PokemonTeam)
+                        result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
+                    return result;
+                }
+            }
+            return "El jugador no pertenece a tu partida.";
         }
     }
-}
-
 }
