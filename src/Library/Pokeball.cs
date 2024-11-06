@@ -8,6 +8,7 @@ public class Pokeball: IAction
     public void ChangePokemon(Player player)
     {
         //Muestra pokemones en pantalla//
-        player.ChangeActivePokemon();
+        Charizard charizard = new Charizard();
+        player.ChangeActivePokemon(charizard);
     }
 }
