@@ -2,14 +2,8 @@ namespace Library;
 
 public static class Facade
 {
-    public static string ChooseTeam(string player, String cPokemon)
+    public static string ChooseTeam(string player, string cPokemon)
     {
-        foreach (Game game in )
-        {
-            if (game.play)
-            {
-                
-            }
             PokemonCatalogue.SetCatalogue();
             foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
             {

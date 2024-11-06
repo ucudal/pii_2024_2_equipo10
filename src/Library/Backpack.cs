@@ -2,9 +2,8 @@ namespace Library;
 
 public class Backpack : IAction
 {
-    public void UseItem(Player player)
+    public void UseItem(Player player, IItem item)
     {
-        
-
+        item.Use(pokemon);
     }
 }

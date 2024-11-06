@@ -27,8 +27,8 @@ public static class PokemonCatalogue
         list.Add(chikorita);
         list.Add(gengar);
         list.Add(charizard);
-
-        return list;
+        PokemonList = list;
+        return PokemonList;
     }
     
 }
