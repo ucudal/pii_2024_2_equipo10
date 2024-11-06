@@ -5,12 +5,14 @@ public class PokemonCatalogue
 {
     public List<Pokemon> PokemonList { get; private set; }
 
-    public void ShowCatalogue()
+    public string ShowCatalogue()
     {
+        string pokemonsAvailable = "";
         foreach (Pokemon pokemon in PokemonList)
         {
-            Console.WriteLine(pokemon.Name);
+            pokemonsAvailable += pokemon.Name +"\n";
         }
+        return pokemonsAvailable;
     }
 
     public PokemonCatalogue()

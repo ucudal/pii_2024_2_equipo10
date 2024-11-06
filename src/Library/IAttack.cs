@@ -3,5 +3,5 @@ namespace Library;
 public interface IAttack: IAction
 { 
     protected string Name { get; }
-    protected Type types{get;}
+    protected Type Type {get;}
 }
