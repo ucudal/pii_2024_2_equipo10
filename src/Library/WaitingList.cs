@@ -30,12 +30,18 @@ public class WaitingList
 
     public Player? FindPlayerByName(string playerName)
     {
-        foreach (Player player in this.Players)
-            if (player.Name == playerName)
-                return player;
-        return null;
+        {
+            foreach (Player player in this.Players)
+            {
+                if (player.Name == playerName)
+                {
+                    return player;
+                }
+            }
+
+            return null;
+        }
     }
-    
     public Player? GetAnyoneWaiting()
     {
         Random random = new Random();
