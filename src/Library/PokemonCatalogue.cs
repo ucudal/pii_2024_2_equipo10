@@ -1,11 +1,11 @@
 namespace Library;
 // Clase experta encargada de mostrar el catálogo disponible
 
-public class PokemonCatalogue
+public static class PokemonCatalogue
 {
-    public List<Pokemon> PokemonList { get; private set; }
+    public static List<Pokemon> PokemonList { get; private set; }
 
-    public string ShowCatalogue()
+    public static string ShowCatalogue()
     {
         string pokemonsAvailable = "";
         foreach (Pokemon pokemon in PokemonList)
@@ -15,12 +15,20 @@ public class PokemonCatalogue
         return pokemonsAvailable;
     }
 
-    public PokemonCatalogue()
+    public static List<Pokemon> SetCatalogue()
     {
-        //Aplicamos Creator
-        this.PokemonList = new List<Pokemon>();
         Charizard charizard = new Charizard();
-        this.PokemonList.Add(charizard);
+        Chikorita chikorita = new Chikorita();
+        Gengar gengar = new Gengar();
+        Caterpie caterpie = new Caterpie();
+        List<Pokemon> list = new List<Pokemon>();
+        list.Add(charizard);
+        list.Add(caterpie);
+        list.Add(chikorita);
+        list.Add(gengar);
+        list.Add(charizard);
+
+        return list;
     }
     
 }
