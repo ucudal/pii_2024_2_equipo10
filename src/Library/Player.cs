@@ -35,7 +35,7 @@ public class Player
         this.ActivePokemon = pokemon;
     }
     
-    public Pokemon ChoosePokemon(string strPokemon)
+    public Pokemon? ChoosePokemon(string strPokemon)
     {
         foreach (Pokemon pokemon in this.PokemonTeam)
         {
@@ -48,7 +48,7 @@ public class Player
         return null;
     }
 
-    public IItem ChooseItem(string strItem)
+    public IItem? ChooseItem(string strItem)
     {
         foreach (IItem item in this.Items)
         {
@@ -61,7 +61,7 @@ public class Player
         return null;
     }
 
-    public IAttack ChooseAttack(string strAttack)
+    public IAttack? ChooseAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.Attacks)
         {

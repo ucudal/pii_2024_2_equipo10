@@ -2,21 +2,21 @@ namespace Library;
 
 public class Game
 {
-    List<Player> players = new List<Player> (); //Cambiar a Array
-    public int ActivePlayer;
-    public int TurnCount;
+    public List<Player> Players { get; private set; } = new List<Player> ();
+    public int ActivePlayer { get; private set; }
+    public int TurnCount { get; private set; }
 
     public Game(Player player1, Player player2)
     {
-        this.players.Add(player1);
-        this.players.Add(player2);
+        this.Players.Add(player1);
+        this.Players.Add(player2);
         this.ActivePlayer = 0;
         this.TurnCount = 0;
     }
 
     public bool OngoingGameCheck()
     {
-        foreach (var player in players)
+        foreach (var player in Players)
         {
             bool Ongoing = false;
             foreach (var pokemon in player.PokemonTeam)
@@ -36,7 +36,7 @@ public class Game
 
     public void CooldownCheck()
     { 
-        foreach (var player in players)
+        foreach (var player in Players)
         {
             foreach (var pokemon in player.PokemonTeam)
             {
@@ -63,16 +63,16 @@ public class Game
 
     public string ExecuteAttack(Attack attack)
     {
-        bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
-        bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
+        bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
+        bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
         if (!asleep & !paralized)
         {
-            Pokemon attackedPokemon = this.players[(this.ActivePlayer + 1) % 2].ActivePokemon;
+            Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
             double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
             attackedPokemon.TakeDamage(damage);
             return $"{attackedPokemon} recibió {damage} puntos de daño";
         }
-        else return $"{this.players[ActivePlayer].ActivePokemon} está {this.players[ActivePlayer].ActivePokemon.CurrentState}";
+        else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
     }
 
 
@@ -97,7 +97,7 @@ public class Game
         {
             return "Ese Pokemon no está en tu equipo.";
         }
-        this.players[ActivePlayer].SetActivePokemon(pokemon);
+        this.Players[ActivePlayer].SetActivePokemon(pokemon);
         return $"{pokemon.Name} es tu nuevo Pokemon activo.";
     }
     
