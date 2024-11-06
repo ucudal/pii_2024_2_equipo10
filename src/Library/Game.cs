@@ -61,70 +61,44 @@ public class Game
         }
     }
 
-    public void ExecuteAttack()
+    public string ExecuteAttack(Attack attack)
     {
-        
+        bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
+        bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
+        if (!asleep & !paralized)
+        {
+            Pokemon attackedPokemon = this.players[(this.ActivePlayer + 1) % 2].ActivePokemon;
+            double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
+            attackedPokemon.TakeDamage(damage);
+            return $"{attackedPokemon} recibió {damage} puntos de daño";
+        }
+        else return $"{this.players[ActivePlayer].ActivePokemon} está {this.players[ActivePlayer].ActivePokemon.CurrentState}";
     }
 
-    public string? ExecuteAction()
+
+    public string UseItem(IItem item, Pokemon pokemon)
     {
-            IAction action = this.players[ActivePlayer].ChooseAction();
-            if (action is Attack attack)
-            {
-                bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
-                bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
-                if (!asleep & !paralized)
-                {
-                    this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(
-                        DamageCalculator.CalculateDamage(this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
-                }
-                else
-                    return
-                        $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
-            }
-            else return $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
-        }
-        else if (action is Backpack backpack)
+        if (item == null)
         {
-            
+            return "Ese item no está en tu inventario.";
         }
 
-        else if (action is Pokeball pokeball)
+        if (pokemon == null)
         {
-            pokeball.ChangePokemon(this.players[ActivePlayer]);
+            return "Ese Pokemon no está en tu equipo.";
         }
-        return "accion no reconocida, introduzcala nuevamente";
-        StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
-        StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
 
+        return item.Use(pokemon);
     }
 
-    public void MenuCambioPokemon()
+    public string ChangePokemon(Pokemon pokemon)
     {
-        
-            int n = 1;
-            Console.WriteLine($"Que pokemon va a luchar?:");
-            foreach (var pokemon in this.players[ActivePlayer].PokemonTeam)
-            {
-                Console.WriteLine($"{n}) {pokemon.Name}");
-                n++;
-            }
-            while (true)
-            {
-                Console.Write(">");
-                int R = Convert.ToInt32(Console.ReadLine());//posible error si se ingresa str
-                if (R > 1 && R <= n)
-                {
-                    this.players[ActivePlayer].ChangeActivePokemon(players[ActivePlayer].PokemonTeam[R - 1]);
-                    return;
-                }
-                else
-                {
-                    Console.WriteLine("Opcion invalida");
-                }
-            }
-        
-
+        if (pokemon == null)
+        {
+            return "Ese Pokemon no está en tu equipo.";
+        }
+        this.players[ActivePlayer].SetActivePokemon(pokemon);
+        return $"{pokemon.Name} es tu nuevo Pokemon activo.";
     }
     
 }
