@@ -5,8 +5,11 @@ public abstract class Pokemon
     public string Name { get; set; }
     public List<IAttack> Attacks { get; private set; }
     public List<Type> Type { get; private set; }
+    public State? CurrentState { get; set; }
+    
+    public int AsleepTurns { get; set; }
     public int BaseLife { get; private set; }
-    public int CurrentLife { get; private set; }
+    public int CurrentLife { get; set; }
     
     
     protected Pokemon(string name, int life, Type type)
@@ -18,6 +21,7 @@ public abstract class Pokemon
         this.Type = new List<Type>();
         this.Attacks = new List<IAttack>();
         this.Type.Add(type);
+        this.AsleepTurns = 0;
         // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
         // this.Attacks.Add(attack1);

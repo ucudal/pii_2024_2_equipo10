@@ -21,14 +21,22 @@ public class Game
         this.ActivePlayer = (this.ActivePlayer + 1) % 2;
     } 
 
-    public void ExecuteAction()
+    public string? ExecuteAction()
     {
         IAction action = this.players[ActivePlayer].ChooseAction();
-        if (action is DamageMove damageMove)
+        if (action is Attack attack)
         {
-            this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(DamageCalculator.CalculateDamage(this.players[this.ActivePlayer].ActivePokemon,this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, damageMove));
+            bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
+            bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
+            if (!asleep & !paralized)
+            {
+                this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(
+                    DamageCalculator.CalculateDamage(this.players[this.ActivePlayer].ActivePokemon,
+                        this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
+            }
+            else return $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
         }
-        else if (action is StatsChangerMove statsChangerMove)
+        else if (action is Backpack backpack)
         {
             
         }
@@ -36,6 +44,8 @@ public class Game
         {
             pokeball.ChangePokemon(this.players[ActivePlayer]);
         }
+        StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
+        StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
         
     }
 }
