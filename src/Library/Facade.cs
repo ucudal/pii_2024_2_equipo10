@@ -4,14 +4,19 @@ namespace Library;
 
 public static class Facade
 {
-    private static WaitingList WaitingList { get;} = new WaitingList();
+    private static WaitingList WaitingList { get; } = new WaitingList();
 
-    public static GameList GameList{ get;} = new GameList();
+    public static GameList GameList{ get; } = new GameList();
+    // historia de usuario 2
     public static string ShowAtacks(string playerName)
     {
-        //chequear que este en la partida
-        string result = "";
+        
         Player player = GameList.FindPlayerByName(playerName);
+        if (player != null)
+        {
+            return $"El jugador {playerName} no está en ninguna partida.";
+        }
+        string result = "";
         foreach (IAttack atack in player.ActivePokemon.Attacks)
         {
             result += atack.Name + "\n";
@@ -20,11 +25,12 @@ public static class Facade
         return result;
     }
 
+    // historia de usuario 3
     public static string ShowPokemonsHP(string playerName, string playerToCheckName = null)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
-            return "El jugador no está en ninguna partida.";
+            return $"El jugador {playerName} no está en ninguna partida.";
         if (playerToCheckName == null)
         {
             string result = "";
@@ -36,16 +42,14 @@ public static class Facade
         {
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
             string result = "";
-            foreach (Game game in GameList.Games)
+            Game game = GameList.FindGameByPlayer(player);
+            if (game.Players.Contains(player) && game.Players.Contains(playerToCheck))
             {
-                if (game.Players.Contains(player) && game.Players.Contains(playerToCheck))
-                {
-                    foreach (Pokemon pokemon in playerToCheck.PokemonTeam)
-                        result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
-                    return result;
-                }
+                foreach (Pokemon pokemon in playerToCheck.PokemonTeam)
+                    result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
+                return result;
             }
-            return "El jugador no pertenece a tu partida.";
+            return $"El jugador {playerToCheckName} no está en tu partida.";
         }
     }
 
@@ -53,27 +57,87 @@ public static class Facade
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
+            return $"El jugador {playerName} no está en ninguna partida.";
+        Game game = GameList.FindGameByPlayer(player);
+        string opciones = $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
+        if (game.Players.Contains(player))
         {
-            return "El jugador no está en ninguna partida.";
-
-        }
-        foreach (Game game in GameList.Games)
-        {
-            string opciones = $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
-            if (game.Players.Contains(player))
-            {
-               int activePlayerIndex = game.ActivePlayer;
-               Player activePlayer = game.Players[activePlayerIndex];
-               if (activePlayer.Name == playerName)
-               {
-                    return "Es tu turno:\n" + opciones;
-               }
-               else
-               {
-                    return "no puedes jugar porque no es tu turno";
-               }
-            }
+            int activePlayerIndex = game.ActivePlayer;
+            Player activePlayer = game.Players[activePlayerIndex];
+            if (activePlayer.Name == playerName)
+                return "Es tu turno:\n" + opciones;
+            return "No es tu turno";
         }
         return null;
+    }
+    // historia de usuario 9
+    public static string AddPlayerToWaitingList(string playerName)
+    {
+        if (WaitingList.AddPlayer(playerName))
+            return $"{playerName} agregado a la lista de espera";
+        return $"{playerName} ya está en la lista de espera";
+    }
+    
+    public static string RemovePlayerFromWaitingList(string playerName)
+    {
+        if (WaitingList.RemovePlayer(playerName))
+            return $"{playerName} removido de la lista de espera";
+        return $"{playerName} no está en la lista de espera";
+    }
+    //historia de usuario 10
+    public static string GetAllPlayersWaiting()
+    {
+        if (WaitingList.Count == 0)
+        {
+            return "No hay nadie esperando";
+        }
+
+        string result = "Esperan: ";
+        foreach (Player player in WaitingList.Players)
+        {
+            result = result + player.Name + "; ";
+        }
+        
+        return result;
+    }
+    //historia de usuario 11
+    private static string CreateGame(string playerName, string opponentName)
+    {
+        Player player = WaitingList.FindPlayerByName(playerName);
+        Player opponent = WaitingList.FindPlayerByName(opponentName);
+        WaitingList.RemovePlayer(playerName);
+        WaitingList.RemovePlayer(opponentName);
+        GameList.AddGame(player, opponent);
+        return $"Comienza {playerName} vs {opponentName}";
+    }
+    
+    public static string StartBattle(string playerName, string? opponentName)
+    {
+        Player? opponent;
+        if (!OpponentProvided() && !SomebodyIsWaiting())
+            return "No hay nadie esperando";
+        if (!OpponentProvided())
+        {
+            opponent = WaitingList.GetAnyoneWaiting();
+            return CreateGame(playerName, opponent!.Name);
+        }
+        opponent = WaitingList.FindPlayerByName(opponentName!);
+        if (!OpponentFound())
+        {
+            return $"{opponentName} no está esperando";
+        }
+        return CreateGame(playerName, opponent!.Name);
+        bool OpponentProvided()
+        {
+            return !string.IsNullOrEmpty(opponentName);
+        }
+        bool SomebodyIsWaiting()
+        {
+            return WaitingList.Count != 0;
+        }
+        bool OpponentFound()
+        {
+            return opponent != null;
+        }
     }
 }
