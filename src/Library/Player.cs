@@ -44,8 +44,10 @@ public class Player
 
     public void AddToTeam(Pokemon pokemon)
     {
-        if(this.PokemonTeam.Count < 6)
+        if (this.PokemonTeam.Count < 6)
+        {
             this.PokemonTeam.Add(pokemon);
+        }
     }
     
     public void ChangeActivePokemon(Pokemon pokemon)
