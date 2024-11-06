@@ -10,7 +10,7 @@ namespace Library;
 // Es una clase abstracta la cual nos permite evitar que el programa tenga interdependencias innecesarias (Aplicando DIP).
 public static class DamageCalculator
 {
-    private static Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase 
+    private static Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase
     {
         // Izquierda tipo del ataque, derecha tipo del pokemon atacado
         get
@@ -78,10 +78,10 @@ public static class DamageCalculator
             effectivnessDataBase.Add(new Tuple<Type, Type>(ice, grass), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(poison, grass), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(flying, grass), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(water, grass),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(electric, grass),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, grass),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(ground, grass),0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(water, grass), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(electric, grass), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, grass), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(ground, grass), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(bug, psychic), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, psychic), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ghost, psychic), 2.0);
@@ -89,40 +89,70 @@ public static class DamageCalculator
             effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, rock), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(grass, rock), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ground, rock), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(fire, rock),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(normal, rock),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(poison, rock),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(flying, rock),0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(fire, rock), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(normal, rock), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(poison, rock), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(flying, rock), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(water, ground), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ice, ground), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(grass, ground), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(rock, ground), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(poison, ground), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(electric, ground),0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(electric, ground), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(bug, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(psychic, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ground, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ground, poison), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, poison),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(poison, poison),0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, poison), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(poison, poison), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(electric, flying), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ice, flying), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(rock, flying), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(bug, flying),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, flying),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, flying),0.5);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(ground, flying),0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(bug, flying), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, flying), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(grass, flying), 0.5);
+            effectivnessDataBase.Add(new Tuple<Type, Type>(ground, flying), 0.5);
 
             return effectivnessDataBase;
         }
     }
-    
-    
-    
-    public static int CalculateDamage(Pokemon attackerPokemon, Pokemon attackedPokemon, Attack move)
+
+    public static double GetEffectivness(Type type, List<Type> types)
     {
-        // En un futuro va a tener en cuenta las efectividades de tipos
-        return move.Power ; 
+        foreach (Type type1 in types)
+        {
+            Tuple<Type, Type> tuple = new Tuple<Type, Type>(type, type1);
+            if (EffectivnessDataBase.ContainsKey(tuple))
+            {
+                double effectivness = EffectivnessDataBase[tuple];
+                return effectivness;
+            }
+            else
+            {
+                return 1.0;
+            }
+        }
+
+        return 1.0;
+    }
+
+    public static double CriticalCheck()
+    {
+        Random random = new Random();
+        int chance = random.Next(1,11);
+        if (chance == 1)
+        {
+            return 1.20;
+        }
+        return 1.0;
+    }
+
+public static double CalculateDamage(Pokemon attackedPokemon, Attack move)
+    {
+        double power = move.Power;
+        double efectivness = GetEffectivness(move.Type, attackedPokemon.Type);
+        double critial = CriticalCheck();
+        return power*efectivness*critial;
     }
 }

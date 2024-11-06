@@ -8,11 +8,11 @@ public abstract class Pokemon
     public State? CurrentState { get; set; }
     
     public int AsleepTurns { get; set; }
-    public int BaseLife { get; private set; }
-    public int CurrentLife { get; set; }
+    public double BaseLife { get; private set; }
+    public double CurrentLife { get; set; }
     
     
-    protected Pokemon(string name, int life, Type type)
+    protected Pokemon(string name, double life, Type type)
     {
         //Aplicamos Creator
         this.Name = name;
@@ -31,22 +31,18 @@ public abstract class Pokemon
 
     }
 
-    public void RestoreBaseLife(int hp)
+    public void RestoreBaseLife(double hp)
     {
-        if (this.CurrentLife > BaseLife)
+        if (this.CurrentLife > 0)
         {
-            
-        }
-        else if (this.CurrentLife < BaseLife)
-        {
-            
-        }
-        {
-            this.CurrentLife += hp;
+            if (this.CurrentLife < BaseLife)
+            {
+                this.CurrentLife += hp;
+            }
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(double damage)
     {
         this.CurrentLife -= damage;
     }

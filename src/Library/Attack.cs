@@ -3,9 +3,9 @@ namespace Library;
 public class Attack : IAttack
 {
     public string Name { get; }
-    public Type Type{get;}
-    int Accuracy {get;}
-    int Power {get;}
+    public Type Type{get; }
+    public int Accuracy {get; private set; }
+    public int Power {get; private set; }
 
     public Attack(string name, Type type, int accuracy, int power)
     {

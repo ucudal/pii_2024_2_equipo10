@@ -19,33 +19,35 @@ public class Game
     {
         this.TurnCount++;
         this.ActivePlayer = (this.ActivePlayer + 1) % 2;
-    } 
+    }
 
     public string? ExecuteAction()
     {
-        IAction action = this.players[ActivePlayer].ChooseAction();
-        if (action is Attack attack)
-        {
-            bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
-            bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
-            if (!asleep & !paralized)
+            IAction action = this.players[ActivePlayer].ChooseAction();
+            if (action is Attack attack)
             {
-                this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(
-                    DamageCalculator.CalculateDamage(this.players[this.ActivePlayer].ActivePokemon,
-                        this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
+                bool asleep = StateLogic.AsleepEffect(players[ActivePlayer].ActivePokemon);
+                bool paralized = StateLogic.ParalizedEffect(players[ActivePlayer].ActivePokemon);
+                if (!asleep & !paralized)
+                {
+                    this.players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(
+                        DamageCalculator.CalculateDamage(this.players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
+                }
+                else
+                    return
+                        $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
             }
-            else return $"{this.players[ActivePlayer].ActivePokemon} is {this.players[ActivePlayer].ActivePokemon.CurrentState}";
-        }
-        else if (action is Backpack backpack)
-        {
-            
-        }
-        else if (action is Pokeball pokeball)
-        {
-            pokeball.ChangePokemon(this.players[ActivePlayer]);
-        }
-        StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
-        StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
-        
+            else if (action is Backpack backpack)
+            {
+            }
+            else if (action is Pokeball pokeball)
+            {
+                pokeball.ChangePokemon(this.players[ActivePlayer]);
+            }
+
+            return "accion no reconocida, introduzcala nuevamente";
+            StateLogic.PoisonedEffect(players[ActivePlayer].ActivePokemon);
+            StateLogic.BurnedEffect(players[ActivePlayer].ActivePokemon);
     }
+    
 }
