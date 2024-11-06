@@ -3,12 +3,13 @@ namespace Library;
 
 public class Game
 {
-    public List<Player> Players = new List<Player> (); //Cambiar a Array
-    public int ActivePlayer;
-    public int TurnCount;
+    public List<Player> Players {get; private set;}//Cambiar a Array
+    public int ActivePlayer {get; private set;}
+    public int TurnCount {get; private set;}
 
     public Game(Player player1, Player player2)
     {
+        this.Players = new List<Player>();
         this.Players.Add(player1);
         this.Players.Add(player2);
         this.ActivePlayer = 0;
