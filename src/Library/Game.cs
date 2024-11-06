@@ -38,4 +38,32 @@ public class Game
         }
         
     }
+
+    public void MenuCambioPokemon()
+    {
+        
+            int n = 1;
+            Console.WriteLine($"Que pokemon va a luchar?:");
+            foreach (var pokemon in this.players[ActivePlayer].PokemonTeam)
+            {
+                Console.WriteLine($"{n}) {pokemon.Name}");
+                n++;
+            }
+            while (true)
+            {
+                Console.Write(">");
+                int R = Convert.ToInt32(Console.ReadLine());//posible error si se ingresa str
+                if (R > 1 && R <= n)
+                {
+                    this.players[ActivePlayer].ChangeActivePokemon(players[ActivePlayer].PokemonTeam[R - 1]);
+                    return;
+                }
+                else
+                {
+                    Console.WriteLine("Opcion invalida");
+                }
+            }
+        
+    }
+
 }
