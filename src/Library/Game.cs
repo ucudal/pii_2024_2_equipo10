@@ -18,6 +18,19 @@ public class Game
     public void NextTurn()
     {
         this.TurnCount++;
+        foreach (var player in players)
+        {
+            foreach (var pokemon in player.PokemonTeam)
+            {
+                foreach (var attack in pokemon.Attacks)
+                {
+                    if (attack is SpecialAttack specialAttack)
+                    {
+                        specialAttack.LowerCooldown();
+                    }
+                }
+            }
+        }
         this.ActivePlayer = (this.ActivePlayer + 1) % 2;
     }
 
