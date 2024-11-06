@@ -19,4 +19,12 @@ public class GameList
                     return player;
         return null;
     }
+
+    public Game? FindGameByPlayer(Player player)
+    {
+        foreach (Game game in this.Games)
+            if (game.Players.Contains(player))
+                return game;
+        return null;
+    }
 }
