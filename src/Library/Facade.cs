@@ -14,15 +14,10 @@ public static class Facade
         
         Player player = GameList.FindPlayerByName(playerName);
         if (player != null)
-        {
             return $"El jugador {playerName} no está en ninguna partida.";
-        }
         string result = "";
         foreach (IAttack atack in player.ActivePokemon.GetAttacks())
-        {
             result += atack.Name + "\n";
-        }
-
         return result;
     }
 
@@ -121,16 +116,10 @@ public static class Facade
     public static string GetAllPlayersWaiting()
     {
         if (WaitingList.Count == 0)
-        {
             return "No hay nadie esperando";
-        }
-
         string result = "Esperan: ";
         foreach (Player player in WaitingList.GetWaitingList())
-        {
             result = result + player.Name + "; ";
-        }
-        
         return result;
     }
     //historia de usuario 11
