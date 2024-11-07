@@ -13,7 +13,7 @@ public static class Facade
     {
         
         Player player = GameList.FindPlayerByName(playerName);
-        if (player != null)
+        if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
         string result = "";
         foreach (IAttack atack in player.ActivePokemon.GetAttacks())
