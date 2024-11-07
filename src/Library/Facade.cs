@@ -54,6 +54,7 @@ public static class Facade
         }
     }
 
+    //Historia de usuario 5
     public static string CheckTurn(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -71,6 +72,18 @@ public static class Facade
         }
         return null;
     }
+    
+    //Historia de usuario 6
+    public static string ChckGameStatus(Game game)
+    {
+        if (game.GameStatus())
+        {
+            return "Próximo turno";
+        }
+        return game.Winner();
+    }
+    
+    
     // historia de usuario 9
     public static string AddPlayerToWaitingList(string playerName)
     {
