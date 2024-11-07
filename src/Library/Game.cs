@@ -14,9 +14,8 @@ public class Game
         this.TurnCount = 0;
     }
 
-    public string GameStatus()
+    public bool GameStatus()
     {
-        Player Loser = null;
         foreach (var player in Players)
         {
             bool Ongoing = false;
@@ -29,12 +28,27 @@ public class Game
             }
             if (!Ongoing)
             {
-                
-                Loser = player;
-                return $"{Loser.Name} ha perdido la partida.";
+                return false;
             }
         }
-        return null;
+        return true;
+    }
+
+    public string Winner()
+    {
+     
+        int winner = 0;
+        foreach (var pokemon in Players[1].PokemonTeam)
+        {
+            if (pokemon.CurrentLife > 0)
+            {
+                winner = 1;
+            }
+        }
+
+        int loser = (winner + 1) % 2;
+        return $"Ganador: {Players[winner]}. Perdedor: {Players[loser]}";
+
     }
 
     public void CooldownCheck()

@@ -75,7 +75,11 @@ public static class Facade
     //Historia de usuario 6
     public static string ChckGameStatus(Game game)
     {
-        return game.GameStatus();
+        if (game.GameStatus())
+        {
+            return "Próximo turno";
+        }
+        return game.Winner();
     }
     
     
