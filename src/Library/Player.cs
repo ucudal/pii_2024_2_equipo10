@@ -73,5 +73,15 @@ public class Player
 
         return null;
     }
+
+    public string GetPokemonAttacks()
+    {
+        string result = "";
+        foreach (IAttack atack in ActivePokemon.Attacks)
+        {
+            result += atack.Name + "\n";
+        }
+        return result;
+    }
     
 }

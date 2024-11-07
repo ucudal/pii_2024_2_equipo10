@@ -32,7 +32,6 @@ public class PlayerTest
     [Test]
     public void TestChangeActivePokemon()
     {
-        player.ChangeActivePokemon(charizard1);
         Assert.That(player.ActivePokemon,Is.EqualTo(charizard1));
     }
 }

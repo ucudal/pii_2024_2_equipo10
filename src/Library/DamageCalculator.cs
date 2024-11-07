@@ -148,7 +148,7 @@ public static class DamageCalculator
         return 1.0;
     }
 
-    public static void SpecialCheck(Pokemon attackedPokemon, Attack attack)
+    public static void SpecialCheck(Pokemon attackedPokemon, IAttack attack)
     {
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
         {
@@ -157,7 +157,7 @@ public static class DamageCalculator
         }
     }
 
-public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
+public static double CalculateDamage(Pokemon attackedPokemon, IAttack attack)
     {
         Random random = new Random();
         int randomInt = random.Next(1, 101);
@@ -168,9 +168,8 @@ public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
             double effectivness = GetEffectivness(attack.Type, attackedPokemon.Type);
             double critical = CriticalCheck();
             SpecialCheck(attackedPokemon, attack);
-            return power*effectivness*critical;
+            return power * effectivness * critical;
         }
-
         return 0.0;
     }
 }
