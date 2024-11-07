@@ -14,7 +14,7 @@ public class GameList
     public Player? FindPlayerByName(string playerName)
     {
         foreach (Game game in this.Games)
-            foreach (Player player in game.Players)
+            foreach (Player player in game.GetPlayers())
                 if (player.Name == playerName)
                     return player;
         return null;
@@ -23,7 +23,7 @@ public class GameList
     public Game? FindGameByPlayer(Player player)
     {
         foreach (Game game in this.Games)
-            if (game.Players.Contains(player))
+            if (game.GetPlayers().Contains(player))
                 return game;
         return null;
     }
