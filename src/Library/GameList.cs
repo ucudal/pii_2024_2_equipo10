@@ -2,7 +2,7 @@ namespace Library;
 
 public class GameList
 {
-    public List<Game> Games { get; private set; } = new List<Game>();
+    private List<Game> Games { get; set; } = new List<Game>();
     
     public Game AddGame(Player player1, Player player2)
     {

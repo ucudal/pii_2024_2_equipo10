@@ -2,7 +2,7 @@ namespace Library;
 
 public class WaitingList
 {
-    public List<Player> Players { get; private set; }= new List<Player>();
+    private List<Player> Players { get; set; }= new List<Player>();
 
     public int Count
     {
@@ -41,5 +41,10 @@ public class WaitingList
         Random random = new Random();
         int randomNumber = random.Next(0, this.Count);
         return this.Players[randomNumber];
+    }
+
+    public List<Player> GetWaitingList()
+    {
+        return this.Players;
     }
 }
