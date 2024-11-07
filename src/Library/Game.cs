@@ -8,7 +8,7 @@ public class Game
     /// <summary>
     /// Obtiene la lista de los jugadores de la partida.
     /// </summary>
-    public List<Player> Players { get; private set; } = new List<Player> ();
+    private List<Player> Players { get; set; } = new List<Player> ();
     
     /// <summary>
     /// Obtiene el valor del índice del jugador activo de la partida.
@@ -24,26 +24,39 @@ public class Game
     {
         this.Players.Add(player1);
         this.Players.Add(player2);
-        this.ActivePlayer = Random1or2();
+        this.ActivePlayer = Random0or1();
         this.TurnCount = 0;
     }
 
     /// <summary>
-    /// Obtiene un valor aleatorio entre 1 y 2.
+    /// Obtiene la lista de jugadores de la partida.
     /// </summary>
-    /// <returns></returns>
-    public int Random1or2()
+    public List<Player> GetPlayers()
+    {
+        return Players;
+    }
+
+    /// <summary>
+    /// Obtiene un valor aleatorio entre 0 y 1.
+    /// </summary>
+    /// <returns><c>int</c> Valor entre 0 y 1.</returns>
+    public int Random0or1()
     {
         Random random = new Random();
         return random.Next(0, 2);
     }
-
+    
+    /// <summary>
+    /// Verifica si el juego sigue en curso evaluando el nivel de vida de cada Pokemon para ambos jugadores.
+    /// </summary>
+    /// <returns> <c>true</c> si al menos un jugador tiene un Pokemon con vida en su equipo.
+    /// <c>false</c> si ningún jugador tiene ningún Pokemon con vida.</returns>
     public bool GameStatus()
     {
         foreach (var player in Players)
         {
             bool ongoing = false;
-            foreach (var pokemon in player.PokemonTeam)
+            foreach (var pokemon in player.GetPokemonTeam())
             {
                 if (pokemon.CurrentLife > 0)
                 {
@@ -58,9 +71,12 @@ public class Game
         return true;
     }
 
+    /// <summary>
+    /// Determina el ganador y el perdedor del juego basándose en la cantidad de vida de los Pokemon de cada jugador.
+    /// </summary>
+    /// <returns> <c>string</c> indicando al ganador y al perdedor de la partida. </returns>
     public string Winner()
     {
-     
         int winner = 0;
         foreach (var pokemon in Players[1].GetPokemonTeam())
         {

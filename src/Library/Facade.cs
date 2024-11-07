@@ -6,13 +6,14 @@ public static class Facade
 {
     private static WaitingList WaitingList { get; } = new WaitingList();
 
-    private static GameList GameList{ get; } = new GameList();
+    public static GameList GameList{ get; } = new GameList();
     
     // historia de usuario 2
     public static string ShowAtacks(string playerName)
     {
+        
         Player player = GameList.FindPlayerByName(playerName);
-        if (player == null)
+        if (player != null)
         {
             return $"El jugador {playerName} no está en ninguna partida.";
         }
@@ -43,7 +44,7 @@ public static class Facade
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
             string result = "";
             Game game = GameList.FindGameByPlayer(player);
-            if (game != null && game.Players.Contains(player) && game.Players.Contains(playerToCheck))
+            if (game.GetPlayers().Contains(player) && game.GetPlayers().Contains(playerToCheck))
             {
                 foreach (Pokemon pokemon in playerToCheck.GetPokemonTeam())
                     result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
@@ -61,10 +62,10 @@ public static class Facade
         {return $"El jugador {playerName} no está en ninguna partida.";}
         Game game = GameList.FindGameByPlayer(player);
         string opciones = $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
-        if (game != null && game.Players.Contains(player))
+        if (game.GetPlayers().Contains(player))
         {
             int activePlayerIndex = game.ActivePlayer;
-            Player activePlayer = game.Players[activePlayerIndex];
+            Player activePlayer = game.GetPlayers()[activePlayerIndex];
             if (activePlayer.Name == playerName)
                 return "Es tu turno:\n" + opciones;
             return "No es tu turno";
@@ -159,17 +160,14 @@ public static class Facade
             return $"{opponentName} no está esperando";
         }
         return CreateGame(playerName, opponent!.Name);
-        
         bool OpponentProvided()
         {
             return !string.IsNullOrEmpty(opponentName);
         }
-        
         bool SomebodyIsWaiting()
         {
             return WaitingList.Count != 0;
         }
-        
         bool OpponentFound()
         {
             return opponent != null;
@@ -180,36 +178,28 @@ public static class Facade
     
     public static string ChooseTeam(string playerName, string cPokemon)
     {
-        
-        
         PokemonCatalogue.SetCatalogue();
         Player player = GameList.FindPlayerByName(playerName);
-        
         if (player == null)
         {
             return "Para poder elegir un equipo, primero debes estar en una batalla";
         }
-        if (player.GetPokemonTeam().Count < 6)
+        else if (cPokemon != null)
         {
-            if (cPokemon != null)
+            foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
             {
-                foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
+                if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
                 {
-                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        player.AddToTeam(pokemon);
-                        return $"El pokemon {cPokemon} fue añadido al equipo";
-                    }
-                    else if (player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-                    }
+                    player.AddToTeam(pokemon);
+                    return $"El pokemon {cPokemon} fue añadido al equipo";
+                }
+                else if (player.GetPokemonTeam().Contains(pokemon))
+                {
+                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
                 }
             }
-            return $"El pokemon {cPokemon} no fue encontrado";
         }
-
-        return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
+        return $"El pokemon {cPokemon} no fue encontrado";
     }
 
     public static string ShowCatalogue()
