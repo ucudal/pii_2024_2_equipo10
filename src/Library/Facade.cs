@@ -141,4 +141,39 @@ public static class Facade
             return opponent != null;
         }
     }
+    
+    // Historia 1
+    
+    public static string ChooseTeam(string playerName, string cPokemon)
+    {
+        PokemonCatalogue.SetCatalogue();
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "Para poder elegir un equipo, primero debes estar en una batalla";
+        }
+        else if (cPokemon != null)
+        {
+            foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
+            {
+                if (pokemon.Name == cPokemon && !player.PokemonTeam.Contains(pokemon))
+                {
+                    player.AddToTeam(pokemon);
+                    return $"El pokemon {cPokemon} fue añadido al equipo";
+                }
+                else if (player.PokemonTeam.Contains(pokemon))
+                {
+                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                }
+            }
+        }
+        return $"El pokemon {cPokemon} no fue encontrado";
+    }
+
+    public static string ShowCatalogue()
+    {
+        PokemonCatalogue.SetCatalogue();
+        return PokemonCatalogue.ShowCatalogue();
+    }
+    
 }
