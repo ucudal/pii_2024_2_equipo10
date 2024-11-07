@@ -25,7 +25,7 @@ public class Game
         foreach (var player in Players)
         {
             bool Ongoing = false;
-            foreach (var pokemon in player.PokemonTeam)
+            foreach (var pokemon in player.GetPokemonTeam())
             {
                 if (pokemon.CurrentLife > 0)
                 {
@@ -44,7 +44,7 @@ public class Game
     {
      
         int winner = 0;
-        foreach (var pokemon in Players[1].PokemonTeam)
+        foreach (var pokemon in Players[1].GetPokemonTeam())
         {
             if (pokemon.CurrentLife > 0)
             {
@@ -61,9 +61,9 @@ public class Game
     { 
         foreach (var player in Players)
         {
-            foreach (var pokemon in player.PokemonTeam)
+            foreach (var pokemon in player.GetPokemonTeam())
             {
-                foreach (var attack in pokemon.Attacks)
+                foreach (var attack in pokemon.GetAttacks())
                 {
                     if (attack is SpecialAttack specialAttack)
                     {
