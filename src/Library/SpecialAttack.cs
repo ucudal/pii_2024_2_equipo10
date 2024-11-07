@@ -2,13 +2,25 @@ namespace Library;
 
 public class SpecialAttack : Attack
 {
-    string SpecialEffect;
-    int LastTurnPlayed;
+    public State SpecialEffect { get; private set; }
+    public int Cooldown { get; private set; }
 
-    public SpecialAttack(string name, Type type, int accuracy, int power, string specialEffect): base(name, type, accuracy, power)
+    public SpecialAttack(string name, Type type, int accuracy, int power, State specialEffect): base(name, type, accuracy, power)
     {
-        this.LastTurnPlayed = 0;
-        
-        
+        this.Cooldown = 0;
+        this.SpecialEffect = specialEffect;
+    }
+
+    public void LowerCooldown()
+    {
+        if (Cooldown > 0)
+        {
+            Cooldown -= 1;
+        }
+    }
+
+    public void SetCooldown()
+    {
+        Cooldown = 2;
     }
 }

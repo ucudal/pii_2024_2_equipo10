@@ -1,55 +1,109 @@
-
 namespace Library;
 
 public class Game
 {
-    public List<Player> Players { get; private set; } //Cambiar a Array
+    public List<Player> Players { get; private set; } = new List<Player> ();
     public int ActivePlayer { get; private set; }
     public int TurnCount { get; private set; }
 
     public Game(Player player1, Player player2)
     {
-        this.Players = new List<Player>();
         this.Players.Add(player1);
         this.Players.Add(player2);
         this.ActivePlayer = 0;
         this.TurnCount = 0;
     }
-    
-    public void NextTurn()
+
+    public bool OngoingGameCheck()
     {
-        this.TurnCount++;
-        this.ActivePlayer = (this.ActivePlayer + 1) % 2;
-        StateLogic.PoisonedEffect(Players[ActivePlayer].ActivePokemon);
-        StateLogic.BurnedEffect(Players[ActivePlayer].ActivePokemon);
+        foreach (var player in Players)
+        {
+            bool Ongoing = false;
+            foreach (var pokemon in player.PokemonTeam)
+            {
+                if (pokemon.CurrentLife > 0)
+                {
+                    Ongoing = true;
+                }
+            }
+            if (!Ongoing)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
-    public string? ExecuteAction()
-    {
-            IAction action = this.Players[ActivePlayer].ChooseAction();
-            if (action is Attack attack)
+    public void CooldownCheck()
+    { 
+        foreach (var player in Players)
+        {
+            foreach (var pokemon in player.PokemonTeam)
             {
-                bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
-                bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
-                if (!asleep & !paralized)
+                foreach (var attack in pokemon.Attacks)
                 {
-                    this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon.TakeDamage(
-                        DamageCalculator.CalculateDamage(this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon, attack));
+                    if (attack is SpecialAttack specialAttack)
+                    {
+                        specialAttack.LowerCooldown();
+                    }
                 }
-                else
-                    return
-                        $"{this.Players[ActivePlayer].ActivePokemon} is {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
             }
-            else if (action is Backpack backpack)
-            {
-                
-            }
-            else if (action is Pokeball pokeball)
-            {
-                pokeball.ChangePokemon(this.Players[ActivePlayer]);
-            }
+        }
+    }
 
-            return "accion no reconocida, introduzcala nuevamente";
+    public void NextTurn()
+    {
+        if (OngoingGameCheck())
+        {
+           this.TurnCount++;
+           CooldownCheck();          
+           this.ActivePlayer = (this.ActivePlayer + 1) % 2;
+        }
+    }
+
+    public string ExecuteAttack(Attack attack)
+    {
+        if (attack != null)
+        {
+            bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
+            bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
+            if (!asleep & !paralized)
+            {
+                Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
+                double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
+                attackedPokemon.TakeDamage(damage);
+                return $"{attackedPokemon} recibió {damage} puntos de daño";
+            }
+            else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
+        }
+
+        return null;
+    }
+
+
+    public string UseItem(IItem item, Pokemon pokemon)
+    {
+        if (item == null)
+        {
+            return "Ese item no está en tu inventario.";
+        }
+
+        if (pokemon == null)
+        {
+            return "Ese Pokemon no está en tu equipo.";
+        }
+
+        return item.Use(pokemon);
+    }
+
+    public string ChangePokemon(Pokemon pokemon)
+    {
+        if (pokemon == null)
+        {
+            return "Ese Pokemon no está en tu equipo.";
+        }
+        this.Players[ActivePlayer].SetActivePokemon(pokemon);
+        return $"{pokemon.Name} es tu nuevo Pokemon activo.";
     }
     
 }

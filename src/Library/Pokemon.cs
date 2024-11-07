@@ -17,6 +17,7 @@ public abstract class Pokemon
         //Aplicamos Creator
         this.Name = name;
         this.BaseLife = life;
+        this.CurrentState = null;
         this.CurrentLife = BaseLife;
         this.Type = new List<Type>();
         this.Attacks = new List<IAttack>();
@@ -44,7 +45,7 @@ public abstract class Pokemon
 
     public void TakeDamage(double damage)
     {
-        this.CurrentLife -= damage;
+        this.CurrentLife -= (int)Math.Round(damage);
         if (this.CurrentLife < 0)
         {
             this.CurrentLife = 0;

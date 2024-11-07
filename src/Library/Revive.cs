@@ -3,8 +3,9 @@ namespace Library;
 public class Revive : IItem
 {
     public string Name { get; }
-    public void Use(Pokemon pokemon)
+    public string Use(Pokemon pokemon)
     {
         pokemon.CurrentLife = (pokemon.BaseLife / 2);
+        return $"{pokemon} ha revivido.";
     }
 }

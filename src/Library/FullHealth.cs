@@ -3,8 +3,9 @@ namespace Library;
 public class FullHealth : IItem
 {
     public string Name { get; }
-    public void Use(Pokemon pokemon)
+    public string Use(Pokemon pokemon)
     {
         pokemon.CurrentState = null;
+        return $"{pokemon} ya no tiene ningún estado negativo.";
     }
 }
