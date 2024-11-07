@@ -5,15 +5,15 @@ namespace Library;
 public class GameList
 {
     /// <summary>
-    /// Obtiene la lista de partidas.
+    /// Lista de partidas.
     /// </summary>
     private List<Game> Games { get; set; } = new List<Game>();
     
     /// <summary>
     /// Agrega una partida a la lista de partidas.
     /// </summary>
-    /// <param name="player1"></param>
-    /// <param name="player2"></param>
+    /// <param name="player1"> Jugador 1.</param>
+    /// <param name="player2"> Jugador 2.</param>
     /// <returns>La partida agregada.</returns>
     public Game AddGame(Player player1, Player player2)
     {
@@ -24,7 +24,7 @@ public class GameList
     /// <summary>
     /// Elimina una partida de la lista de partidas.
     /// </summary>
-    /// <param name="game"></param>
+    /// <param name="game">Partida a remover.</param>
     /// <returns>
     /// <c>true</c> si la partida fue eliminada. <c>false</c> si no encontró la partida.
     /// </returns>
@@ -38,7 +38,7 @@ public class GameList
     /// <summary>
     /// Devuelve un jugador buscandolo por su nombre
     /// </summary>
-    /// <param name="playerName"></param>
+    /// <param name="playerName">Nombre del jugador a buscar.</param>
     /// <returns>
     /// <c>null</c> si el jugador no está en ninguna partida.
     /// </returns>
@@ -54,7 +54,7 @@ public class GameList
     /// <summary>
     /// Devuelve la partida en la que se encuentra un jugador.
     /// </summary>
-    /// <param name="player"></param>
+    /// <param name="player"> Jugador a buscar. </param>
     /// <returns>
     /// <c>null</c> si el jugador no está en ninguna partida.
     /// </returns>
@@ -64,5 +64,13 @@ public class GameList
             if (game.GetPlayers().Contains(player))
                 return game;
         return null;
+    }
+    
+    /// <summary>
+    /// Devuelve la lista de partidas.
+    /// </summary>
+    public List<Game> GetGameList()
+    {
+        return this.Games;
     }
 }
