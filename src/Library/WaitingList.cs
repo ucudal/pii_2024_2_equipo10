@@ -1,14 +1,30 @@
 namespace Library;
-
+/// <summary>
+/// Esta clase representa la lista de espera.
+/// </summary>
 public class WaitingList
 {
+    /// <summary>
+    /// Obtiene la lista de jugadores en espera.
+    /// </summary>
     public List<Player> Players { get; private set; }= new List<Player>();
 
+    /// <summary>
+    /// Devuelve el número de jugadores en espera.
+    /// </summary>
     public int Count
     {
         get { return this.Players.Count; }
     }
     
+    /// <summary>
+    /// Agrega un jugador a la lista de espera.
+    /// </summary>
+    /// <param name="playerName"></param>
+    /// <returns>
+    ///<c>true</c> si el jugador fue agregado. <c>false</c> si ya estaba esperando.
+    /// </returns>
+    /// <exception cref="ArgumentException"></exception>
     public bool AddPlayer(string playerName)
     {
         if (string.IsNullOrEmpty(playerName))
