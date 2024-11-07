@@ -1,9 +1,23 @@
 namespace Library;
 
+/// <summary>
+/// Esta clase representa una partida entre dos jugadores.
+/// </summary>
 public class Game
 {
+    /// <summary>
+    /// Obtiene la lista de los jugadores de la partida.
+    /// </summary>
     public List<Player> Players { get; private set; } = new List<Player> ();
+    
+    /// <summary>
+    /// Obtiene el valor del índice del jugador activo de la partida.
+    /// </summary>
     public int ActivePlayer { get; private set; }
+    
+    /// <summary>
+    /// Obtiene la cantidad de turnos que lleva la partida.
+    /// </summary>
     public int TurnCount { get; private set; }
 
     public Game(Player player1, Player player2)
@@ -14,6 +28,10 @@ public class Game
         this.TurnCount = 0;
     }
 
+    /// <summary>
+    /// Obtiene un valor aleatorio entre 1 y 2.
+    /// </summary>
+    /// <returns></returns>
     public int Random1or2()
     {
         Random random = new Random();
@@ -24,15 +42,15 @@ public class Game
     {
         foreach (var player in Players)
         {
-            bool Ongoing = false;
+            bool ongoing = false;
             foreach (var pokemon in player.PokemonTeam)
             {
                 if (pokemon.CurrentLife > 0)
                 {
-                    Ongoing = true;
+                    ongoing = true;
                 }
             }
-            if (!Ongoing)
+            if (!ongoing)
             {
                 return false;
             }
@@ -42,7 +60,6 @@ public class Game
 
     public string Winner()
     {
-     
         int winner = 0;
         foreach (var pokemon in Players[1].PokemonTeam)
         {
