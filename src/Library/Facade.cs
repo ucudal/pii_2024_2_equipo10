@@ -8,6 +8,38 @@ public static class Facade
 
     public static GameList GameList{ get; } = new GameList();
     
+    public static string ChooseTeam(string playerName, string cPokemon)
+    {
+        PokemonCatalogue.SetCatalogue();
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "Para poder elegir un equipo, primero debes estar en una batalla";
+        }
+        else if (cPokemon != null)
+        {
+            foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
+            {
+                if (pokemon.Name == cPokemon && !player.PokemonTeam.Contains(pokemon))
+                {
+                    player.AddToTeam(pokemon);
+                    return $"El pokemon {cPokemon} fue añadido al equipo";
+                }
+                else if (player.PokemonTeam.Contains(pokemon))
+                {
+                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                }
+            }
+        }
+        return $"El pokemon {cPokemon} no fue encontrado";
+    }
+
+    public static string ShowCatalogue()
+    {
+        PokemonCatalogue.SetCatalogue();
+        return PokemonCatalogue.ShowCatalogue();
+    }
+    
     // historia de usuario 2
     public static string ShowAtacks(string playerName)
     {
@@ -36,9 +68,13 @@ public static class Facade
         else
         {
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
+            if (playerToCheck == null)
+            {
+                return $"El jugador {playerToCheckName} no pudo ser encontrado";
+            }
             string result = "";
             Game game = GameList.FindGameByPlayer(player);
-            if (game.Players.Contains(player) && game.Players.Contains(playerToCheck))
+            if (game != null && game.Players.Contains(player) && game.Players.Contains(playerToCheck))
             {
                 foreach (Pokemon pokemon in playerToCheck.PokemonTeam)
                     result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
@@ -137,40 +173,6 @@ public static class Facade
             return opponent != null;
         }
     }
-    
-    // Historia 1
-    
-    public static string ChooseTeam(string playerName, string cPokemon)
-    {
-        PokemonCatalogue.SetCatalogue();
-        Player player = GameList.FindPlayerByName(playerName);
-        if (player == null)
-        {
-            return "Para poder elegir un equipo, primero debes estar en una batalla";
-        }
-        else if (cPokemon != null)
-        {
-            foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
-            {
-                if (pokemon.Name == cPokemon && !player.PokemonTeam.Contains(pokemon))
-                {
-                    player.AddToTeam(pokemon);
-                    return $"El pokemon {cPokemon} fue añadido al equipo";
-                }
-                else if (player.PokemonTeam.Contains(pokemon))
-                {
-                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-                }
-            }
-        }
-        return $"El pokemon {cPokemon} no fue encontrado";
-    }
-
-    public static string ShowCatalogue()
-    {
-        PokemonCatalogue.SetCatalogue();
-        return PokemonCatalogue.ShowCatalogue();
-    }
 
     public static string ChooseAttack(string playerName, string attackName)
     {
@@ -187,18 +189,17 @@ public static class Facade
         }
 
         if (attack is Attack)
-        {
-            foreach (Game game in GameList.Games)
+        { 
+            Game game = GameList.FindGameByPlayer(player);
+            if (game == null)
             {
-                if (game.Players.Contains(player))
-                {
-                    string gameResult = game.ExecuteAttack(attack);
-                    game.NextTurn();
-                    return gameResult;
-                }
-            } 
-        }
-        return "El ataque no tiene daño";
+                return "Esa partida no está en curso";
+            }
+            string gameResult = game.ExecuteAttack(attack);
+            string nextTurn = game.NextTurn();
+            return gameResult + nextTurn;
+        } 
+        return "El ataque no hace nada";
     }
 
 }

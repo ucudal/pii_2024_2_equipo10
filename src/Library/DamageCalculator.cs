@@ -157,7 +157,7 @@ public static class DamageCalculator
         }
     }
 
-public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
+public static double CalculateDamage(Pokemon attackedPokemon, IAttack attack)
     {
         Random random = new Random();
         int randomInt = random.Next(1, 101);

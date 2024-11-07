@@ -4,7 +4,8 @@ public interface IAttack
 { 
     public string Name { get; }
     public Type Type {get;}
-
-
+    public int Power {get;}
+    public double Accuracy {get; }
+    
 
 }

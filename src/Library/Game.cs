@@ -51,17 +51,20 @@ public class Game
         }
     }
 
-    public void NextTurn()
+    public string NextTurn()
     {
         if (OngoingGameCheck())
         {
            this.TurnCount++;
            CooldownCheck();          
            this.ActivePlayer = (this.ActivePlayer + 1) % 2;
+           return $"Ahora es el turno de {Players[ActivePlayer].Name}";
         }
+        
+        return "La batalla ha concluido, el ganador es {} ";
     }
 
-    public string ExecuteAttack(Attack attack)
+    public string ExecuteAttack(IAttack attack)
     {
         if (attack != null)
         {
@@ -72,14 +75,20 @@ public class Game
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
                 double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
                 attackedPokemon.TakeDamage(damage);
+                if (attack.Power == 0)
+                {
+                    return $"El poder del ataque {attack} era de 0, por lo tanto no hizo daño";
+                }
+                if (damage == 0.0)
+                {
+                    return "El ataque falló y no fue exitoso";
+                }
                 return $"{attackedPokemon} recibió {damage} puntos de daño";
             }
             else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
         }
-
         return null;
     }
-
 
     public string UseItem(IItem item, Pokemon pokemon)
     {
