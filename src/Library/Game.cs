@@ -10,8 +10,14 @@ public class Game
     {
         this.Players.Add(player1);
         this.Players.Add(player2);
-        this.ActivePlayer = 0;
+        this.ActivePlayer = Random1or2();
         this.TurnCount = 0;
+    }
+
+    public int Random1or2()
+    {
+        Random random = new Random();
+        return random.Next(0, 2);
     }
 
     public bool GameStatus()
@@ -70,7 +76,7 @@ public class Game
 
     public void NextTurn()
     {
-        if (OngoingGameCheck())
+        if (GameStatus())
         {
            this.TurnCount++;
            CooldownCheck();          
