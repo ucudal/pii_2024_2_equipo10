@@ -7,7 +7,8 @@ public class WaitingList
     /// <summary>
     /// Obtiene la lista de jugadores en espera.
     /// </summary>
-    public List<Player> Players { get; private set; }= new List<Player>();
+    
+    private List<Player> Players { get; set; }= new List<Player>();
 
     /// <summary>
     /// Devuelve el número de jugadores en espera.
@@ -74,5 +75,10 @@ public class WaitingList
         Random random = new Random();
         int randomNumber = random.Next(0, this.Count);
         return this.Players[randomNumber];
+    }
+
+    public List<Player> GetWaitingList()
+    {
+        return this.Players;
     }
 }

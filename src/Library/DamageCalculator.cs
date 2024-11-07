@@ -165,12 +165,11 @@ public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
         if (randomDouble <= attack.Accuracy)
         {
             double power = attack.Power;
-            double effectivness = GetEffectivness(attack.Type, attackedPokemon.Type);
+            double effectivness = GetEffectivness(attack.Type, attackedPokemon.GetTypes());
             double critical = CriticalCheck();
             SpecialCheck(attackedPokemon, attack);
             return power*effectivness*critical;
         }
-
         return 0.0;
     }
 }

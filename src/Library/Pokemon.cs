@@ -3,8 +3,8 @@ namespace Library;
 public abstract class Pokemon
 {
     public string Name { get; set; }
-    public List<IAttack> Attacks { get; private set; }
-    public List<Type> Type { get; private set; }
+    private List<IAttack> Attacks { get; set; }
+    private List<Type> Type { get; set; }
     public State? CurrentState { get; set; }
     
     public int AsleepTurns { get; set; }
@@ -12,7 +12,7 @@ public abstract class Pokemon
     public double CurrentLife { get; set; }
     
     
-    protected Pokemon(string name, double life, Type type)
+    protected Pokemon(string name, double life, Type type, IAttack attack1, IAttack attack2, IAttack attack3, IAttack attack4)
     {
         //Aplicamos Creator
         this.Name = name;
@@ -25,10 +25,10 @@ public abstract class Pokemon
         this.AsleepTurns = 0;
         // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
-        // this.Attacks.Add(attack1);
-        // this.Attacks.Add(attack2);
-        // this.Attacks.Add(attack3);
-        // this.Attacks.Add(attack4);
+        this.Attacks.Add(attack1);
+        this.Attacks.Add(attack2);
+        this.Attacks.Add(attack3);
+        this.Attacks.Add(attack4);
 
     }
 
@@ -56,5 +56,14 @@ public abstract class Pokemon
     {
         return $"{this.CurrentLife}/{this.BaseLife}";
     }
+
+    public List<IAttack> GetAttacks()
+    {
+        return this.Attacks;
+    }
     
+    public List<Type> GetTypes()
+    {
+        return this.Type;
+    }
 }

@@ -18,7 +18,7 @@ public static class Facade
             return $"El jugador {playerName} no está en ninguna partida.";
         }
         string result = "";
-        foreach (IAttack atack in player.ActivePokemon.Attacks)
+        foreach (IAttack atack in player.ActivePokemon.GetAttacks())
         {
             result += atack.Name + "\n";
         }
@@ -35,7 +35,7 @@ public static class Facade
         if (playerToCheckName == null)
         {
             string result = "";
-            foreach (Pokemon pokemon in player.PokemonTeam)
+            foreach (Pokemon pokemon in player.GetPokemonTeam())
                 result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
             return result;
         }
@@ -44,9 +44,9 @@ public static class Facade
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
             string result = "";
             Game game = GameList.FindGameByPlayer(player);
-            if (game.Players.Contains(player) && game.Players.Contains(playerToCheck))
+            if (game.GetPlayers().Contains(player) && game.GetPlayers().Contains(playerToCheck))
             {
-                foreach (Pokemon pokemon in playerToCheck.PokemonTeam)
+                foreach (Pokemon pokemon in playerToCheck.GetPokemonTeam())
                     result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
                 return result;
             }
@@ -59,13 +59,13 @@ public static class Facade
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
-            return $"El jugador {playerName} no está en ninguna partida.";
+        {return $"El jugador {playerName} no está en ninguna partida.";}
         Game game = GameList.FindGameByPlayer(player);
         string opciones = $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
-        if (game.Players.Contains(player))
+        if (game.GetPlayers().Contains(player))
         {
             int activePlayerIndex = game.ActivePlayer;
-            Player activePlayer = game.Players[activePlayerIndex];
+            Player activePlayer = game.GetPlayers()[activePlayerIndex];
             if (activePlayer.Name == playerName)
                 return "Es tu turno:\n" + opciones;
             return "No es tu turno";
@@ -81,6 +81,25 @@ public static class Facade
             return "Próximo turno";
         }
         return game.Winner();
+    }
+    
+    //Historia de usuario 8
+    public static string UseAnItem(string playerName, string item, string pokemon)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
+        
+        if (player == null)
+        { 
+            return $"El jugador {playerName} no está en ninguna partida.";   
+        }
+        
+        if (game == null)
+        {
+            return "Partida inexistente.";   
+        }
+
+        return game.UseItem(player.ChooseItem(item), player.ChoosePokemon(pokemon));
     }
     
     
@@ -107,7 +126,7 @@ public static class Facade
         }
 
         string result = "Esperan: ";
-        foreach (Player player in WaitingList.Players)
+        foreach (Player player in WaitingList.GetWaitingList())
         {
             result = result + player.Name + "; ";
         }
@@ -169,12 +188,12 @@ public static class Facade
         {
             foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
             {
-                if (pokemon.Name == cPokemon && !player.PokemonTeam.Contains(pokemon))
+                if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
                 {
                     player.AddToTeam(pokemon);
                     return $"El pokemon {cPokemon} fue añadido al equipo";
                 }
-                else if (player.PokemonTeam.Contains(pokemon))
+                else if (player.GetPokemonTeam().Contains(pokemon))
                 {
                     return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
                 }
