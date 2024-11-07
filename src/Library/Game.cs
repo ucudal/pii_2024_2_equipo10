@@ -24,15 +24,15 @@ public class Game
     {
         foreach (var player in Players)
         {
-            bool Ongoing = false;
+            bool ongoing = false;
             foreach (var pokemon in player.GetPokemonTeam())
             {
                 if (pokemon.CurrentLife > 0)
                 {
-                    Ongoing = true;
+                    ongoing = true;
                 }
             }
-            if (!Ongoing)
+            if (!ongoing)
             {
                 return false;
             }
