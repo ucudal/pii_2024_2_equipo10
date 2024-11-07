@@ -148,28 +148,36 @@ public static class Facade
     
     public static string ChooseTeam(string playerName, string cPokemon)
     {
+        
+        
         PokemonCatalogue.SetCatalogue();
         Player player = GameList.FindPlayerByName(playerName);
+        
         if (player == null)
         {
             return "Para poder elegir un equipo, primero debes estar en una batalla";
         }
-        else if (cPokemon != null)
+        if (player.GetPokemonTeam().Count < 6)
         {
-            foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
+            if (cPokemon != null)
             {
-                if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                foreach (Pokemon pokemon in PokemonCatalogue.PokemonList)
                 {
-                    player.AddToTeam(pokemon);
-                    return $"El pokemon {cPokemon} fue añadido al equipo";
-                }
-                else if (player.GetPokemonTeam().Contains(pokemon))
-                {
-                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                    {
+                        player.AddToTeam(pokemon);
+                        return $"El pokemon {cPokemon} fue añadido al equipo";
+                    }
+                    else if (player.GetPokemonTeam().Contains(pokemon))
+                    {
+                        return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                    }
                 }
             }
+            return $"El pokemon {cPokemon} no fue encontrado";
         }
-        return $"El pokemon {cPokemon} no fue encontrado";
+
+        return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
     }
 
     public static string ShowCatalogue()
