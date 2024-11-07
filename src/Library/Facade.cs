@@ -184,16 +184,20 @@ public static class Facade
         {
             return $"El ataque {attackName} no pudo ser encontrado";
         }
-        foreach (Game game in GameList.Games)
+
+        if (attack is Attack)
         {
-            if (game.Players.Contains(player))
+            foreach (Game game in GameList.Games)
             {
-                string gameResult = game.ExecuteAttack(attack);
-                game.NextTurn();
-                return gameResult;
-            }
+                if (game.Players.Contains(player))
+                {
+                    string gameResult = game.ExecuteAttack(attack);
+                    game.NextTurn();
+                    return gameResult;
+                }
+            } 
         }
-        return "El ataque no pudo ser concretado";
+        return "El ataque no tiene daño";
     }
 
 }

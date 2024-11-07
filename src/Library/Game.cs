@@ -61,7 +61,7 @@ public class Game
         }
     }
 
-    public string ExecuteAttack(IAttack attack)
+    public string ExecuteAttack(Attack attack)
     {
         if (attack != null)
         {
