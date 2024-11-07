@@ -86,8 +86,8 @@ public static class Facade
         {
             return $"El jugador {player.Name} no está en ninguna partida.";
         }
-        //funcion q va a hacer mateopara encontrar partida
-        game.ChangePokemon(player.ChoosePokemon(pokemonName));
+        Game game = GameList.FindGameByPlayer(player); 
+        return game.ChangePokemon(player.ChoosePokemon(pokemonName));
 
     }
 
