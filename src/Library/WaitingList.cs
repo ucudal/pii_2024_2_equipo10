@@ -34,7 +34,14 @@ public class WaitingList
         this.Players.Add(new Player(playerName));
         return true;
     }
-
+    
+    /// <summary>
+    /// Elimina un jugador de la lista de espera.
+    /// </summary>
+    /// <param name="playerName"></param>
+    /// <returns>
+    ///<c>true</c> si el jugador fue eliminado. <c>false</c> si no estaba esperando.
+    /// </returns>
     public bool RemovePlayer(string playerName)
     {
         Player? player = FindPlayerByName(playerName);
@@ -44,6 +51,13 @@ public class WaitingList
         return true;
     }
 
+    /// <summary>
+    /// Devuelve un jugador de la lista de espera buscandolo por su nombre.
+    /// </summary>
+    /// <param name="playerName"></param>
+    /// <returns>
+    /// <c>null</c> si el jugador no está esperando.
+    /// </returns>
     public Player? FindPlayerByName(string playerName)
     {
         foreach (Player player in this.Players)
@@ -52,6 +66,9 @@ public class WaitingList
         return null;
     }
     
+    /// <summary>
+    /// Devuelve un jugador al azar de la lista de espera.
+    /// </summary>
     public Player? GetAnyoneWaiting()
     {
         Random random = new Random();
