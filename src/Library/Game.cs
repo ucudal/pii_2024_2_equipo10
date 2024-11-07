@@ -10,16 +10,22 @@ public class Game
     {
         this.Players.Add(player1);
         this.Players.Add(player2);
-        this.ActivePlayer = 0;
+        this.ActivePlayer = Random1or2();
         this.TurnCount = 0;
     }
 
-    public bool OngoingGameCheck()
+    public int Random1or2()
+    {
+        Random random = new Random();
+        return random.Next(0, 2);
+    }
+
+    public bool GameStatus()
     {
         foreach (var player in Players)
         {
             bool Ongoing = false;
-            foreach (var pokemon in player.PokemonTeam)
+            foreach (var pokemon in player.GetPokemonTeam())
             {
                 if (pokemon.CurrentLife > 0)
                 {
@@ -34,13 +40,30 @@ public class Game
         return true;
     }
 
+    public string Winner()
+    {
+     
+        int winner = 0;
+        foreach (var pokemon in Players[1].GetPokemonTeam())
+        {
+            if (pokemon.CurrentLife > 0)
+            {
+                winner = 1;
+            }
+        }
+
+        int loser = (winner + 1) % 2;
+        return $"Ganador: {Players[winner]}. Perdedor: {Players[loser]}";
+
+    }
+
     public void CooldownCheck()
     { 
         foreach (var player in Players)
         {
-            foreach (var pokemon in player.PokemonTeam)
+            foreach (var pokemon in player.GetPokemonTeam())
             {
-                foreach (var attack in pokemon.Attacks)
+                foreach (var attack in pokemon.GetAttacks())
                 {
                     if (attack is SpecialAttack specialAttack)
                     {
@@ -53,7 +76,7 @@ public class Game
 
     public void NextTurn()
     {
-        if (OngoingGameCheck())
+        if (GameStatus())
         {
            this.TurnCount++;
            CooldownCheck();          

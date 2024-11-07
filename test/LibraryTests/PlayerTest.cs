@@ -27,9 +27,9 @@ public class PlayerTest
     public void TestAddToTeam()
     {
         player.AddToTeam(charizard1);
-        Assert.That(player.PokemonTeam.Contains(charizard1));
+        Assert.That(player.GetPokemonTeam().Contains(charizard1));
         player.AddToTeam(charizard2);
-        Assert.That(player.PokemonTeam.Count, Is.EqualTo(2));
+        Assert.That(player.GetPokemonTeam().Count, Is.EqualTo(2));
     }
     
     
