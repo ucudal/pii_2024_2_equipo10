@@ -4,8 +4,8 @@ using Library;
 public class Player
 {
     public string  Name { get; }
-    public List<Pokemon> PokemonTeam { get; private set;}
-    public List<IItem> Items { get; private set;}
+    private List<Pokemon> PokemonTeam { get; set;}
+    private List<IItem> Items { get; set;}
     public Pokemon ActivePokemon { get; private set; }
 
     public Player(string name)
@@ -63,7 +63,7 @@ public class Player
 
     public IAttack? ChooseAttack(string strAttack)
     {
-        foreach (IAttack attack in this.ActivePokemon.Attacks)
+        foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {
             if (attack.Name == strAttack)
             {
@@ -72,6 +72,16 @@ public class Player
         }
 
         return null;
+    }
+
+    public List<Pokemon> GetPokemonTeam()
+    {
+        return this.PokemonTeam;
+    }
+    
+    public List<IItem> GetItemList()
+    {
+        return this.Items;
     }
     
 }
