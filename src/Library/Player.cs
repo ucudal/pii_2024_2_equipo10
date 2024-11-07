@@ -66,10 +66,14 @@ public class Player
     /// </returns>
     public bool SetActivePokemon(Pokemon pokemon)
     {
-        if (pokemon.CurrentLife > 0)
+        if (pokemon != null)
         {
-            this.ActivePokemon = pokemon;
-            return true;
+            if (pokemon.CurrentLife > 0)
+            {
+                this.ActivePokemon = pokemon;
+                return true;
+            }
+            return false;
         }
         return false;
     }

@@ -1,5 +1,7 @@
 namespace Library;
-
+    /// <summary>
+    /// Esta clase representa un ataque básico que puede aprender el pokémon.
+    /// </summary>
 public class Attack : IAttack
 {
     /// <summary>
@@ -27,14 +29,14 @@ public class Attack : IAttack
     /// </summary>
     /// <param name="name">Nombre del ataque a crear.</param>
     /// <param name="type">Tipo del ataque a crear.</param>
-    /// <param name="Accuracy">Precisión del ataque a crear.</param>
-    /// <param name="Power">Potencia del ataque a crear.</param>
-    public Attack(string name, Type type, int Accuracy, int Power)
+    /// <param name="accuracy">Precisión del ataque a crear.</param>
+    /// <param name="power">Potencia del ataque a crear.</param>
+    public Attack(string name, Type type, int accuracy, int power)
     {
         this.Name = name;
         this.Type = type;
-        this.Accuracy = Accuracy;
-        this.Power = Power;
+        this.Accuracy = accuracy;
+        this.Power =power;
 
     }
 }
