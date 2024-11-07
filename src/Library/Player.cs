@@ -65,9 +65,12 @@ public class Player
     {
         foreach (IAttack attack in this.ActivePokemon.Attacks)
         {
-            if (attack.Name == strAttack)
+            if (attack is Attack)
             {
-                return attack;
+                if (attack.Name == strAttack)
+                {
+                    return attack;
+                } 
             }
         }
 

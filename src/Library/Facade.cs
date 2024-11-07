@@ -179,6 +179,7 @@ public static class Facade
         {
             return "Para poder atacar necesitas estar en una batalla";
         }
+        
         IAttack attack = player.ChooseAttack(attackName);
         if (attack == null)
         {
