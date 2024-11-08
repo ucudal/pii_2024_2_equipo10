@@ -16,7 +16,7 @@ public static class Facade
             return "Para poder elegir un equipo, primero debes estar en una batalla";
         }
 
-        if (player.GetPokemonTeam().Count == 6)
+        if (player.GetPokemonTeam().Count < 6)
         {
             if (cPokemon != null)
             {
@@ -27,7 +27,6 @@ public static class Facade
                         player.AddToTeam(pokemon);
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }
-
                     return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
                 }
             }
