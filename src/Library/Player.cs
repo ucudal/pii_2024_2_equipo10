@@ -44,7 +44,6 @@ public class Player
                 return pokemon;
             }
         }
-
         return null;
     }
 
@@ -61,13 +60,13 @@ public class Player
         return null;
     }
 
-    public IAttack? ChooseAttack(string strAttack)
+    public Attack? ChooseAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {
-            if (attack.Name == strAttack)
+            if (attack.Name == strAttack && attack is Attack attack2)
             {
-                return attack;
+                return attack2;
             }
         }
 

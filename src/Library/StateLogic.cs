@@ -14,7 +14,7 @@ public static class StateLogic
 
             if (pokemon.AsleepTurns == 0)
             {
-                pokemon.CurrentState = null;
+                pokemon.EditState(null);
             }
         }
 

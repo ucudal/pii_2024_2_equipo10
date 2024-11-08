@@ -99,7 +99,6 @@ public class Game
             }
             else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
         }
-
         return null;
     }
 

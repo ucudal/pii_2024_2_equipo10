@@ -5,14 +5,15 @@ public abstract class Pokemon
     public string Name { get; set; }
     private List<IAttack> Attacks { get; set; }
     private List<Type> Type { get; set; }
-    public State? CurrentState { get; set; }
-    
+    public State? CurrentState { get; private set; }
+
     public int AsleepTurns { get; set; }
     public double BaseLife { get; private set; }
     public double CurrentLife { get; set; }
-    
-    
-    protected Pokemon(string name, double life, Type type, IAttack attack1, IAttack attack2, IAttack attack3, IAttack attack4)
+
+
+    protected Pokemon(string name, double life, Type type, IAttack attack1, IAttack attack2, IAttack attack3,
+        IAttack attack4)
     {
         //Aplicamos Creator
         this.Name = name;
@@ -23,24 +24,24 @@ public abstract class Pokemon
         this.Attacks = new List<IAttack>();
         this.Type.Add(type);
         this.AsleepTurns = 0;
-        // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove) o movimientos de buffeo (StatChangerMove)
+        // La lista de IMoves aplica LSP, ya que el pokemon puede tener movimientos de daño (DamageMove)
         // y el funcionamiento de la lista es el mismo.
-        this.Attacks.Add(attack1);
-        this.Attacks.Add(attack2);
-        this.Attacks.Add(attack3);
-        this.Attacks.Add(attack4);
+        this.AddAttack(attack1);
+        this.AddAttack(attack2);
+        this.AddAttack(attack3);
+        this.AddAttack(attack4);
 
     }
 
     public void RestoreBaseLife(double hp)
     {
-        
+
         this.CurrentLife += hp;
         if (this.CurrentLife > hp)
         {
             this.CurrentLife = BaseLife;
         }
-        
+
     }
 
     public void TakeDamage(double damage)
@@ -61,9 +62,36 @@ public abstract class Pokemon
     {
         return this.Attacks;
     }
-    
+
     public List<Type> GetTypes()
     {
         return this.Type;
+    }
+
+    public void EditState(State? state)
+    {
+        this.CurrentState = state;
+    }
+
+    public void AddAttack(IAttack attack)
+    {
+        if (this.Attacks.Count < 4)
+        {
+            this.Attacks.Add(attack);
+        }
+    }
+
+    public Attack FindAttackByName(string attackString)
+    {
+        foreach (IAttack attack in Attacks)
+        {
+            if (attack is Attack attack2)
+            {
+                return attack2;
+            }
+
+        }
+
+        return null;
     }
 }
