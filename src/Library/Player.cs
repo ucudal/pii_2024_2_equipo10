@@ -84,7 +84,7 @@ public class Player
     /// <returns>
     /// <c>null</c> si el pokemon no está en la lista de pokemons.
     /// </returns>
-    public Pokemon ChoosePokemon(string strPokemon)
+    public Pokemon FindPokemon(string strPokemon)
     {
         foreach (Pokemon pokemon in this.PokemonTeam)
         {
@@ -103,7 +103,7 @@ public class Player
     /// <returns>
     ///<c>null</c> si el item no está en la lista items. 
     /// </returns>
-    public IItem ChooseItem(string strItem)
+    public IItem FindItem(string strItem)
     {
         foreach (IItem item in this.Items)
         {
@@ -123,7 +123,7 @@ public class Player
     /// <returns>
     /// <c>null</c> si el ataque no se encuentra en la lista de ataques. 
     /// </returns>
-    public Attack ChooseAttack(string strAttack)
+    public Attack FindAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {

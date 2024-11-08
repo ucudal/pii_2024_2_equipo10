@@ -99,7 +99,7 @@ public static class Facade
             {
                 return "Tu equipo pokemon está incompleto, elige hasta tener 6 pokemones en tu equipo";
             }
-            Pokemon choosenPokemon = player.ChoosePokemon(pokemonName);
+            Pokemon choosenPokemon = player.FindPokemon(pokemonName);
             if (choosenPokemon == null)
             {
                 return $"El pokemon {pokemonName} no fue encontrado en tu equipo";
@@ -132,7 +132,7 @@ public static class Facade
             return "Partida inexistente.";   
         }
 
-        return game.UseItem(player.ChooseItem(item), player.ChoosePokemon(pokemon));
+        return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
     }
     
     
@@ -246,7 +246,7 @@ public static class Facade
         {
             return "Para poder atacar necesitas estar en una batalla";
         }
-        Attack attack = player.ChooseAttack(attackName);
+        Attack attack = player.FindAttack(attackName);
         if (attack == null)
         {
             return $"El ataque {attackName} no pudo ser encontrado";

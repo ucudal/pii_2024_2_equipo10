@@ -80,7 +80,7 @@ public abstract class Pokemon
     /// puede ser mayor a la vida base del Pokemon.
     /// </summary>
     /// <param name="hp">Puntos de vida a recuperar.</param>
-    public void RestoreBaseLife(double hp)
+    public void GainLife(double hp)
     {
         this.CurrentLife += hp;
         if (this.CurrentLife > this.BaseLife)
