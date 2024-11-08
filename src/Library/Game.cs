@@ -20,6 +20,11 @@ public class Game
     /// </summary>
     public int TurnCount { get; private set; }
 
+    /// <summary>
+    /// Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+    /// </summary>
+    /// <param name="player1"> Primer jugador.</param>
+    /// <param name="player2"> Segundo jugador.</param>
     public Game(Player player1, Player player2)
     {
         this.Players.Add(player1);
@@ -90,7 +95,9 @@ public class Game
         return $"Ganador: {Players[winner]}. Perdedor: {Players[loser]}";
 
     }
-
+    /// <summary>
+    /// Reduce el tiempo de enfriamiento (cooldown) de todos los ataques especiales de cada Pokemon en los equipos de los jugadores.
+    /// </summary>
     public void CooldownCheck()
     { 
         foreach (var player in Players)
@@ -108,6 +115,9 @@ public class Game
         }
     }
 
+    /// <summary>
+    /// Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
+    /// y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
     public void NextTurn()
     {
         if (GameStatus())
@@ -118,6 +128,15 @@ public class Game
         }
     }
 
+
+    /// <summary>
+    /// Ejecuta un ataque por parte del Pokemon activo del jugador actual, siempre y cuando no se encuentre dormido ni paralizado.
+    /// </summary>
+    /// <param name="attack">El ataque que se va a ejecutar.</param>
+    /// <returns>
+    /// <c>string</c>Un mensaje que indica el daño infligido al Pokemon objetivo o el estado actual que impidió el ataque.
+    /// Devuelve null si no se proporciona un ataque válido.
+    /// </returns>
     public string ExecuteAttack(Attack attack)
     {
         if (attack != null)
@@ -129,6 +148,14 @@ public class Game
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
                 double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
                 attackedPokemon.TakeDamage(damage);
+                if (attack.Power == 0)
+                {
+                    return $"El poder del ataque {attack} era de 0, por lo tanto no hizo daño";
+                }
+                if (damage == 0.0)
+                {
+                    return "El ataque falló y no fue exitoso";
+                }
                 return $"{attackedPokemon} recibió {damage} puntos de daño";
             }
             else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
@@ -137,6 +164,14 @@ public class Game
     }
 
 
+    /// <summary>
+    /// Permite que un jugador use un item en un Pokemon específico de su equipo, verificando la validez del item y del Pokemon.
+    /// </summary>
+    /// <param name="item">El item que se va a usar.</param>
+    /// <param name="pokemon">El Pokemon sobre el que se usará el item.</param>
+    /// <returns>
+    /// Un mensaje indicando el resultado del uso del objeto, o un mensaje de error si el objeto o el Pokemon no son válidos.
+    /// </returns>
     public string UseItem(IItem item, Pokemon pokemon)
     {
         if (item == null)
@@ -152,14 +187,28 @@ public class Game
         return item.Use(pokemon);
     }
 
+    /// <summary>
+    /// Cambia el Pokemon activo del jugador actual por otro de su equipo, verificando si el cambio es válido.
+    /// </summary>
+    /// <param name="pokemon">El nuevo Pokemon que se intentará establecer como activo.</param>
+    /// <returns>
+    /// <c>string</c>Un mensaje indicando que el cambio fue exitoso, o un mensaje de error si el Pokemon proporcionado no es válido
+    /// o si no tiene vida.
+    /// </returns>
+
     public string ChangePokemon(Pokemon pokemon)
     {
         if (pokemon == null)
         {
             return "Ese Pokemon no está en tu equipo.";
         }
-        this.Players[ActivePlayer].SetActivePokemon(pokemon);
-        return $"{pokemon.Name} es tu nuevo Pokemon activo.";
+
+        if (this.Players[ActivePlayer].SetActivePokemon(pokemon))
+        { 
+            return $"{pokemon.Name} es tu nuevo Pokemon activo.";
+        }
+
+        return $"{pokemon.Name} no tiene vida. Suerte bro, lo siento :/";
     }
     
 }

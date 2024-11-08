@@ -33,6 +33,18 @@ public class Attack : IAttack
     /// <param name="power">Potencia del ataque a crear.</param>
     public Attack(string name, Type type, double accuracy, int power)
     {
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new ArgumentException("El nombre ingresado no es válido");
+        }
+        if (Accuracy < 0 || Accuracy > 1)
+        {
+            throw new ArgumentException("La precision ingresada no es válido");
+        }
+        if (Power < 0)
+        {
+           throw new ArgumentException("El poder ingresado no es válido");
+        }
         this.Name = name;
         this.Type = type;
         this.Accuracy = accuracy;

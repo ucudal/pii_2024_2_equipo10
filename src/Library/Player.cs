@@ -152,5 +152,15 @@ public class Player
     {
         return this.Items;
     }
+
+    public string GetPokemonAttacks()
+    {
+        string result = "";
+        foreach (IAttack atack in ActivePokemon.GetAttacks())
+        {
+            result += atack.Name + "\n";
+        }
+        return result;
+    }
     
 }
