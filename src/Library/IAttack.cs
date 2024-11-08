@@ -3,7 +3,7 @@ namespace Library;
 /// <summary>
 /// Interfaz de Ataque. Creada para subir la cohesión y bajar el acoplamiento.
 /// </summary>
-public interface IAttack: IAction
+public interface IAttack
 { 
     /// <summary>
     /// Nombre del ataque.
@@ -15,7 +15,5 @@ public interface IAttack: IAction
     /// </summary>
     public Type Type {get;}
     public double Accuracy {get;}
-    public int Power {get; }
-
 
 }

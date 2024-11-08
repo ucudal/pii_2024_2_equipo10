@@ -157,7 +157,7 @@ public class Player
     public string GetPokemonAttacks()
     {
         string result = "";
-        foreach (IAttack atack in ActivePokemon.Attacks)
+        foreach (IAttack atack in ActivePokemon.GetAttacks())
         {
             result += atack.Name + "\n";
         }

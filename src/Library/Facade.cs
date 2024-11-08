@@ -13,15 +13,8 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
-<<<<<<< HEAD
-        }
+         
         return player.GetPokemonAttacks();
-=======
-        string result = "";
-        foreach (IAttack atack in player.ActivePokemon.GetAttacks())
-            result += atack.Name + "\n";
-        return result;
->>>>>>> main
     }
 
     // historia de usuario 3
@@ -253,14 +246,14 @@ public static class Facade
         {
             return "Para poder atacar necesitas estar en una batalla";
         }
-        IAttack attack = player.ChooseAttack(attackName);
+        Attack attack = player.ChooseAttack(attackName);
         if (attack == null)
         {
             return $"El ataque {attackName} no pudo ser encontrado";
         }
-        foreach (Game game in GameList.Games)
+        foreach (Game game in GameList.GetGameList())
         {
-            if (game.Players.Contains(player))
+            if (game.GetPlayers().Contains(player))
             {
                 string gameResult = game.ExecuteAttack(attack);
                 game.NextTurn();
