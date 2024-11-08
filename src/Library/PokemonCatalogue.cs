@@ -1,20 +1,34 @@
 namespace Library;
-// Clase experta encargada de mostrar el catálogo disponible
 
+/// <summary>
+/// Esta clase representa el catalogo de Pokemons.
+/// </summary>
 public static class PokemonCatalogue
 {
-    public static List<Pokemon> PokemonList { get; private set; }
-
+    /// <summary>
+    /// Lista de Pokemons.
+    /// </summary>
+    private static List<Pokemon> PokemonList { get; set; }
+    
+    /// <summary>
+    /// Devuelve el nombre de todos los Pokemons en el catalogo. 
+    /// </summary>
+    /// <returns></returns>
     public static string ShowCatalogue()
     {
+        List<Pokemon> pokedex = SetCatalogue();
         string pokemonsAvailable = "";
-        foreach (Pokemon pokemon in PokemonList)
+        foreach (Pokemon pokemon in pokedex)
         {
             pokemonsAvailable += pokemon.Name +"\n";
         }
         return pokemonsAvailable;
     }
 
+    /// <summary>
+    /// Inicialia el catalogo.
+    /// </summary>
+    /// <returns>Devuelve la lista con los Pokemons creados.</returns>
     public static List<Pokemon> SetCatalogue()
     {
         Charizard charizard = new Charizard();

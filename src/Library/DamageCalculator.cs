@@ -182,7 +182,7 @@ public static class DamageCalculator
     {
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
         {
-            attackedPokemon.CurrentState = specialAttack.SpecialEffect;
+            attackedPokemon.EditState(specialAttack.SpecialEffect);
             specialAttack.SetCooldown();
         }
     }
@@ -208,7 +208,7 @@ public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
             double effectivness = GetEffectivness(attack.Type, attackedPokemon.GetTypes());
             double critical = CriticalCheck();
             SpecialCheck(attackedPokemon, attack);
-            return power*effectivness*critical;
+            return power * effectivness * critical;
         }
         return 0.0;
     }

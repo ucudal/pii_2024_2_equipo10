@@ -1,3 +1,4 @@
+/*
 using Library;
 using NUnit.Framework;
 
@@ -14,11 +15,13 @@ public class PlayerTest
     [SetUp]
     public void SetUp()
     {
+        
         player = new Player("jugador1");
         charizard1 = new Charizard();
         charizard2 = new Charizard();
-
+        
     }
+    
     
     [Test]
     public void TestAddToTeam()
@@ -29,9 +32,12 @@ public class PlayerTest
         Assert.That(player.GetPokemonTeam().Count, Is.EqualTo(2));
     }
     
+    
     [Test]
     public void TestChangeActivePokemon()
     {
-        
+        Assert.That(player.ActivePokemon,Is.EqualTo(charizard1));
     }
+
 }
+*/

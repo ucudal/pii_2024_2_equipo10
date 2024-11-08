@@ -1,5 +1,8 @@
 namespace Library;
 
+/// <summary>
+/// Representa los tipos.
+/// </summary>
 public enum Type
 {
     Bug,
