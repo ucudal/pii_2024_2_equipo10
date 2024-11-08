@@ -1,11 +1,19 @@
 namespace Library;
-// Interfaz creada para subir la cohesión y bajar el acoplamiento.
+
+/// <summary>
+/// Interfaz de Ataque. Creada para subir la cohesión y bajar el acoplamiento.
+/// </summary>
 public interface IAttack
 { 
+    /// <summary>
+    /// Nombre del ataque.
+    /// </summary>
     public string Name { get; }
-    public Type Type {get;}
-    public int Power {get;}
-    public double Accuracy {get; }
     
+    /// <summary>
+    /// Tipo del ataque.
+    /// </summary>
+    public Type Type {get;}
+    public double Accuracy {get;}
 
 }

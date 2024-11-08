@@ -4,6 +4,523 @@
         <name>Library</name>
     </assembly>
     <members>
+        <member name="T:Library.Attack">
+            <summary>
+            Esta clase representa un ataque básico que puede aprender el pokémon.
+            </summary>
+        </member>
+        <member name="P:Library.Attack.Name">
+            <summary>
+            Nombre del ataque.
+            </summary>
+        </member>
+        <member name="P:Library.Attack.Type">
+            <summary>
+            Tipo del ataque.
+            </summary>
+        </member>
+        <member name="P:Library.Attack.Accuracy">
+            <summary>
+            Precisión del ataque.
+            </summary>
+        </member>
+        <member name="P:Library.Attack.Power">
+            <summary>
+            Potencia del ataque.
+            </summary>
+        </member>
+        <member name="M:Library.Attack.#ctor(System.String,Library.Type,System.Double,System.Int32)">
+            <summary>
+            Asigna el nombre, tipo, precisión y potencia a un ataque a crear.
+            </summary>
+            <param name="name">Nombre del ataque a crear.</param>
+            <param name="type">Tipo del ataque a crear.</param>
+            <param name="accuracy">Precisión del ataque a crear.</param>
+            <param name="power">Potencia del ataque a crear.</param>
+        </member>
+        <member name="T:Library.Game">
+            <summary>
+            Esta clase representa una partida entre dos jugadores.
+            </summary>
+        </member>
+        <member name="P:Library.Game.Players">
+            <summary>
+            Obtiene la lista de los jugadores de la partida.
+            </summary>
+        </member>
+        <member name="P:Library.Game.ActivePlayer">
+            <summary>
+            Obtiene el valor del índice del jugador activo de la partida.
+            </summary>
+        </member>
+        <member name="P:Library.Game.TurnCount">
+            <summary>
+            Obtiene la cantidad de turnos que lleva la partida.
+            </summary>
+        </member>
+        <member name="M:Library.Game.#ctor(Library.Player,Library.Player)">
+            <summary>
+            Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+            </summary>
+            <param name="player1"> Primer jugador.</param>
+            <param name="player2"> Segundo jugador.</param>
+        </member>
+        <member name="M:Library.Game.GetPlayers">
+            <summary>
+            Obtiene la lista de jugadores de la partida.
+            </summary>
+        </member>
+        <member name="M:Library.Game.Random0or1">
+            <summary>
+            Obtiene un valor aleatorio entre 0 y 1.
+            </summary>
+            <returns><c>int</c> Valor entre 0 y 1.</returns>
+        </member>
+        <member name="M:Library.Game.GameStatus">
+            <summary>
+            Verifica si el juego sigue en curso evaluando el nivel de vida de cada Pokemon para ambos jugadores.
+            </summary>
+            <returns> <c>true</c> si al menos un jugador tiene un Pokemon con vida en su equipo.
+            <c>false</c> si ningún jugador tiene ningún Pokemon con vida.</returns>
+        </member>
+        <member name="M:Library.Game.Winner">
+            <summary>
+            Determina el ganador y el perdedor del juego basándose en la cantidad de vida de los Pokemon de cada jugador.
+            </summary>
+            <returns> <c>string</c> indicando al ganador y al perdedor de la partida. </returns>
+        </member>
+        <member name="M:Library.Game.CooldownCheck">
+            <summary>
+            Reduce el tiempo de enfriamiento (cooldown) de todos los ataques especiales de cada Pokemon en los equipos de los jugadores.
+            </summary>
+        </member>
+        <member name="M:Library.Game.NextTurn">
+            <summary>
+            Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
+            y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
+        </member>
+        <member name="M:Library.Game.ExecuteAttack(Library.Attack)">
+            <summary>
+            Ejecuta un ataque por parte del Pokemon activo del jugador actual, siempre y cuando no se encuentre dormido ni paralizado.
+            </summary>
+            <param name="attack">El ataque que se va a ejecutar.</param>
+            <returns>
+            <c>string</c>Un mensaje que indica el daño infligido al Pokemon objetivo o el estado actual que impidió el ataque.
+            Devuelve null si no se proporciona un ataque válido.
+            </returns>
+        </member>
+        <member name="M:Library.Game.UseItem(Library.IItem,Library.Pokemon)">
+            <summary>
+            Permite que un jugador use un item en un Pokemon específico de su equipo, verificando la validez del item y del Pokemon.
+            </summary>
+            <param name="item">El item que se va a usar.</param>
+            <param name="pokemon">El Pokemon sobre el que se usará el item.</param>
+            <returns>
+            Un mensaje indicando el resultado del uso del objeto, o un mensaje de error si el objeto o el Pokemon no son válidos.
+            </returns>
+        </member>
+        <member name="M:Library.Game.ChangePokemon(Library.Pokemon)">
+            <summary>
+            Cambia el Pokemon activo del jugador actual por otro de su equipo, verificando si el cambio es válido.
+            </summary>
+            <param name="pokemon">El nuevo Pokemon que se intentará establecer como activo.</param>
+            <returns>
+            <c>string</c>Un mensaje indicando que el cambio fue exitoso, o un mensaje de error si el Pokemon proporcionado no es válido
+            o si no tiene vida.
+            </returns>
+        </member>
+        <member name="T:Library.GameList">
+            <summary>
+            Esta clase representa la lista de partidas en curso.
+            </summary>
+        </member>
+        <member name="P:Library.GameList.Games">
+            <summary>
+            Lista de partidas.
+            </summary>
+        </member>
+        <member name="M:Library.GameList.AddGame(Library.Player,Library.Player)">
+            <summary>
+            Agrega una partida a la lista de partidas.
+            </summary>
+            <param name="player1"> Jugador 1.</param>
+            <param name="player2"> Jugador 2.</param>
+            <returns>La partida agregada.</returns>
+        </member>
+        <member name="M:Library.GameList.RemoveGame(Library.Game)">
+            <summary>
+            Elimina una partida de la lista de partidas.
+            </summary>
+            <param name="game">Partida a remover.</param>
+            <returns>
+            <c>true</c> si la partida fue eliminada. <c>false</c> si no encontró la partida.
+            </returns>
+        </member>
+        <member name="M:Library.GameList.FindPlayerByName(System.String)">
+            <summary>
+            Devuelve un jugador buscandolo por su nombre
+            </summary>
+            <param name="playerName">Nombre del jugador a buscar.</param>
+            <returns>
+            <c>null</c> si el jugador no está en ninguna partida.
+            </returns>
+        </member>
+        <member name="M:Library.GameList.FindGameByPlayer(Library.Player)">
+            <summary>
+            Devuelve la partida en la que se encuentra un jugador.
+            </summary>
+            <param name="player"> Jugador a buscar. </param>
+            <returns>
+            <c>null</c> si el jugador no está en ninguna partida.
+            </returns>
+        </member>
+        <member name="M:Library.GameList.GetGameList">
+            <summary>
+            Devuelve la lista de partidas.
+            </summary>
+        </member>
+        <member name="T:Library.IAttack">
+            <summary>
+            Interfaz de Ataque. Creada para subir la cohesión y bajar el acoplamiento.
+            </summary>
+        </member>
+        <member name="P:Library.IAttack.Name">
+            <summary>
+            Nombre del ataque.
+            </summary>
+        </member>
+        <member name="P:Library.IAttack.Type">
+            <summary>
+            Tipo del ataque.
+            </summary>
+        </member>
+        <member name="T:Library.IItem">
+            <summary>
+            Interfaz de Item. Creada para subir la cohesión y bajar el acoplamiento.
+            </summary>
+        </member>
+        <member name="P:Library.IItem.Name">
+            <summary>
+            Nombre del item
+            </summary>
+        </member>
+        <member name="M:Library.IItem.Use(Library.Pokemon)">
+            <summary>
+            Utiliza el item sobre un pokemon.
+            </summary>
+            <param name="pokemon">Pokemon en el que se usará el item</param>
+            <returns>Resultado.</returns>
+        </member>
+        <member name="T:Library.Player">
+            <summary>
+            Esta clase representa un jugador.
+            </summary>
+        </member>
+        <member name="P:Library.Player.Name">
+            <summary>
+            Nombre del jugador.
+            </summary>
+        </member>
+        <member name="P:Library.Player.PokemonTeam">
+            <summary>
+            Lista de Pokemon del jugador
+            </summary>
+        </member>
+        <member name="P:Library.Player.Items">
+            <summary>
+            Lista de items del jugador.
+            </summary>
+        </member>
+        <member name="P:Library.Player.ActivePokemon">
+            <summary>
+            Pokemon activo del jugador.
+            </summary>
+        </member>
+        <member name="M:Library.Player.#ctor(System.String)">
+            <summary>
+            Le asigna un nombre al jugador, crea las listas de pokemons e items
+            agregando items iniciales.
+            </summary>
+            <param name="name">Nombre del jugador a crear.</param>
+        </member>
+        <member name="M:Library.Player.AddToTeam(Library.Pokemon)">
+            <summary>
+            Agrega un pokemon a la lista de pokemons del jugador.
+            </summary>
+            <param name="pokemon">Pokemon a agregar</param>
+        </member>
+        <member name="M:Library.Player.SetActivePokemon(Library.Pokemon)">
+             <summary>
+             Cambia el pokemon activo si está vivo.
+             </summary>
+             <param name="pokemon">Nuevo pokemon activo.</param>
+             <returns>
+            <c>true</c> si se cambió el pokemon activo. <c>false</c> si el pokemon elegido no tiene vida.
+             </returns>
+        </member>
+        <member name="M:Library.Player.FindPokemon(System.String)">
+            <summary>
+            Devuelve un pokemon de la lista del jugador buscandolo por el nombre.
+            </summary>
+            <param name="strPokemon">Nombre del pokemon a buscar.</param>
+            <returns>
+            <c>null</c> si el pokemon no está en la lista de pokemons.
+            </returns>
+        </member>
+        <member name="M:Library.Player.FindItem(System.String)">
+             <summary>
+             Devuelve un item de la lista de items buscandolo por su nombre.
+             </summary>
+             <param name="strItem">Nombre del item a buscar.</param>
+             <returns>
+            <c>null</c> si el item no está en la lista items. 
+             </returns>
+        </member>
+        <member name="M:Library.Player.FindAttack(System.String)">
+            <summary>
+            Devuelve un ataque de la lista de ataques del pokemon activo.
+            </summary>
+            <param name="strAttack">Nombre del ataque a buscar.</param>
+            <returns>
+            <c>null</c> si el ataque no se encuentra en la lista de ataques. 
+            </returns>
+        </member>
+        <member name="M:Library.Player.GetPokemonTeam">
+            <summary>
+            Devuelve la lista de pokemons del jugador.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Player.GetItemList">
+            <summary>
+            Devuelve la lista de items del jugador.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Pokemon">
+            <summary>
+            Esta clase representa un Pokemon.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.Name">
+            <summary>
+            Nombre del Pokemon.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.Attacks">
+            <summary>
+            Lista de ataques de un Pokemon.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.Type">
+            <summary>
+            Lista de tipos de un Pokemon
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.CurrentState">
+            <summary>
+            Estado actual de un pokemon.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.AsleepTurns">
+            <summary>
+            Cantidad de turnos que el Pokemon está dormido.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.BaseLife">
+            <summary>
+            Vida base del Pokemon.
+            </summary>
+        </member>
+        <member name="P:Library.Pokemon.CurrentLife">
+            <summary>
+            Vida actual del Pokemon.
+            </summary>
+        </member>
+        <member name="M:Library.Pokemon.#ctor(System.String,System.Double,Library.Type,Library.IAttack,Library.IAttack,Library.IAttack,Library.IAttack)">
+            <summary>
+            Asigna el nombre, la vida base, el tipo y los ataques del Pokemon a la lista de ataques del Pokemon a crear.
+            Inicializa el estado actual en null y los turnos dormido en 0. 
+            
+            </summary>
+            <param name="name">Nombre del pokemon a crear.</param>
+            <param name="life">Vida base del Pokemon a crear.</param>
+            <param name="type">Tipo del pokemon a crear.</param>
+            <param name="attack1">Ataque 1.</param>
+            <param name="attack2">Ataque 2.</param>
+            <param name="attack3">Ataque 3.</param>
+            <param name="attack4">Ataque 4.</param>
+        </member>
+        <member name="M:Library.Pokemon.GainLife(System.Double)">
+            <summary>
+            Suma puntos de vida a la vida actual, considerando que la vida actual no
+            puede ser mayor a la vida base del Pokemon.
+            </summary>
+            <param name="hp">Puntos de vida a recuperar.</param>
+        </member>
+        <member name="M:Library.Pokemon.TakeDamage(System.Double)">
+            <summary>
+            Resta puntos de vida a la vida actual. Convierte double a int para poder hacer la resta.
+            Si la resta es menor a 0, le asigna 0 a la vida actual.
+            </summary>
+            <param name="damage">Puntos de vida a quitar.</param>
+        </member>
+        <member name="M:Library.Pokemon.GetLife">
+            <summary>
+            Devuele la vida del Pokemon en el formato vidaActual/vidaBase
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Pokemon.GetAttacks">
+            <summary>
+            Devuelve la lista de ataques del Pokemon
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.Pokemon.GetTypes">
+            <summary>
+            Devuelve la lista de tipos del Pokemon.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Library.Revive">
+            <summary>
+            Esta clase representa la posión Revivir.
+            </summary>
+        </member>
+        <member name="P:Library.Revive.Name">
+            <summary>
+            Nombre del item.
+            </summary>
+        </member>
+        <member name="M:Library.Revive.Use(Library.Pokemon)">
+            <summary>
+            Revive al Pokemon asignando a su vida actual la mitad de la vida base,
+            si está vivo no se revive.
+            </summary>
+            <param name="pokemon"></param>
+            <returns>Si fue revivido o no.</returns>
+        </member>
+        <member name="T:Library.StateLogic">
+            <summary>
+            Esta clase representa la lógia de los estados del Pokemon.
+            </summary>
+        </member>
+        <member name="M:Library.StateLogic.AsleepEffect(Library.Pokemon)">
+            <summary>
+            Devuelve si el Pokemon está dormido o no.
+            Si está dormido le resta uno a la cantidad de turnos que
+            debe estar dormido.
+            </summary>
+            <param name="pokemon">Pokemon a checkear si está dormido.</param>
+            <returns>
+            <c>true</c> si el Pokemon está dormido. <c>false</c> si no.
+            </returns>
+        </member>
+        <member name="M:Library.StateLogic.ParalizedEffect(Library.Pokemon)">
+            <summary>
+            Devuelve si el Pokemon está paralizado o no.
+            Si lo está tiene 25% de chance de dejar de estar paralizado
+            </summary>
+            <param name="pokemon">Pokemon a checkear si está paralizado.</param>
+            <returns>
+            <c>true</c> si el Pokemon está paralizado. <c>false</c> si no.
+            </returns>
+        </member>
+        <member name="M:Library.StateLogic.PoisonedEffect(Library.Pokemon)">
+            <summary>
+            Devuelve si el Pokemon está envenenado o no.
+            Si está envenenado le resta uno a la cantidad de turnos que
+            debe estar paralizado.
+            </summary>
+            <param name="pokemon">Pokemon a checkear si está paralizado.</param>
+            <returns>
+            <c>true</c> si el Pokemon está paralizado. <c>false</c> si no.
+            </returns>
+        </member>
+        <member name="M:Library.StateLogic.BurnedEffect(Library.Pokemon)">
+            <summary>
+            Si el Pokemon está quemandose recibirá daño.
+            </summary>
+            <param name="pokemon">Nombre del Pokemon</param>
+        </member>
+        <member name="T:Library.SuperPotion">
+            <summary>
+            Esta clase representa la Super Posión
+            </summary>
+        </member>
+        <member name="P:Library.SuperPotion.Name">
+            <summary>
+            Nombre del item.
+            </summary>
+        </member>
+        <member name="M:Library.SuperPotion.Use(Library.Pokemon)">
+            <summary>
+            Suma 70 HP a la vida actual del Pokemon.
+            </summary>
+            <param name="pokemon">Pokemon al que se le aplicará la posión</param>
+            <returns>
+            Devuelve si el Pokemon fue curado o no.
+            </returns>
+        </member>
+        <member name="T:Library.Type">
+            <summary>
+            Representa los tipos.
+            </summary>
+        </member>
+        <member name="T:Library.WaitingList">
+            <summary>
+            Esta clase representa la lista de espera.
+            </summary>
+        </member>
+        <member name="P:Library.WaitingList.Players">
+            <summary>
+            Lista de jugadores en espera.
+            </summary>
+        </member>
+        <member name="P:Library.WaitingList.Count">
+            <summary>
+            Devuelve el número de jugadores en espera.
+            </summary>
+        </member>
+        <member name="M:Library.WaitingList.AddPlayer(System.String)">
+             <summary>
+             Agrega un jugador a la lista de espera.
+             </summary>
+             <param name="playerName"> Nombre del jugaodr a agregar.</param>
+             <returns>
+            <c>true</c> si el jugador fue agregado. <c>false</c> si ya estaba esperando.
+             </returns>
+             <exception cref="T:System.ArgumentException"> si el nombre es nulo o vacío.</exception>
+        </member>
+        <member name="M:Library.WaitingList.RemovePlayer(System.String)">
+             <summary>
+             Elimina un jugador de la lista de espera.
+             </summary>
+             <param name="playerName"> Nombre del jugador a remover.</param>
+             <returns>
+            <c>true</c> si el jugador fue eliminado. <c>false</c> si no estaba esperando.
+             </returns>
+        </member>
+        <member name="M:Library.WaitingList.FindPlayerByName(System.String)">
+            <summary>
+            Devuelve un jugador de la lista de espera buscandolo por su nombre.
+            </summary>
+            <param name="playerName"> Nombre del jugador a agregar.</param>
+            <returns>
+            <c>null</c> si el jugador no está esperando.
+            </returns>
+        </member>
+        <member name="M:Library.WaitingList.GetAnyoneWaiting">
+            <summary>
+            Devuelve un jugador al azar de la lista de espera.
+            </summary>
+        </member>
+        <member name="M:Library.WaitingList.GetWaitingList">
+            <summary>
+            Devuelve la lista de jugadores en espera.
+            </summary>
+        </member>
         <member name="T:ClassLibrary.Train">
             <summary>
             Esta clase representa un tren muy básico.
