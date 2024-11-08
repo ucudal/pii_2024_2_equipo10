@@ -118,17 +118,14 @@ public class Game
     /// <summary>
     /// Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
     /// y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
-    public string NextTurn()
+    public void NextTurn()
     {
         if (GameStatus())
         {
            this.TurnCount++;
            CooldownCheck();          
            this.ActivePlayer = (this.ActivePlayer + 1) % 2;
-           return $"Ahora es el turno de {Players[ActivePlayer].Name}";
         }
-        
-        return Winner();
     }
 
 
