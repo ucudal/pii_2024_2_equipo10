@@ -31,7 +31,7 @@ public class Attack : IAttack
     /// <param name="type">Tipo del ataque a crear.</param>
     /// <param name="accuracy">Precisión del ataque a crear.</param>
     /// <param name="power">Potencia del ataque a crear.</param>
-    public Attack(string name, Type type, int accuracy, int power)
+    public Attack(string name, Type type, double accuracy, int power)
     {
         this.Name = name;
         this.Type = type;

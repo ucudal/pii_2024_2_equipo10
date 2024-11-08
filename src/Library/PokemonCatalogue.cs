@@ -3,12 +3,13 @@ namespace Library;
 
 public static class PokemonCatalogue
 {
-    public static List<Pokemon> PokemonList { get; private set; }
+    private static List<Pokemon> PokemonList { get; set; }
 
     public static string ShowCatalogue()
     {
+        List<Pokemon> pokedex = SetCatalogue();
         string pokemonsAvailable = "";
-        foreach (Pokemon pokemon in PokemonList)
+        foreach (Pokemon pokemon in pokedex)
         {
             pokemonsAvailable += pokemon.Name +"\n";
         }
