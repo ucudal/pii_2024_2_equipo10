@@ -10,9 +10,15 @@ namespace Library;
 // Es una clase abstracta la cual nos permite evitar que el programa tenga interdependencias innecesarias (Aplicando DIP).
 public static class DamageCalculator
 {
+    /// <summary>
+    /// Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
+    /// </summary>
+    /// <returns>
+    /// Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
+    /// y el valor es un factor de efectividad (2.0 para súper efectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
+    /// </returns>
     private static Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase
     {
-        // Izquierda tipo del ataque, derecha tipo del pokemon atacado
         get
         {
             Type fire = Type.Fire;
@@ -117,7 +123,16 @@ public static class DamageCalculator
             return effectivnessDataBase;
         }
     }
-
+    
+    /// <summary>
+    /// Obtiene la efectividad de un ataque de un tipo específico contra el o los tipos de un Pokemon.
+    /// </summary>
+    /// <param name="type">El tipo del ataque.</param>
+    /// <param name="types">Una lista de los tipos del Pokemon objetivo.</param>
+    /// <returns>
+    /// Valor <c>double</c> indicando el factor de efectividad del ataque.
+    /// <c>2.0</c> para súper efectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
+    /// </returns>
     public static double GetEffectivness(Type type, List<Type> types)
     {
         foreach (Type type1 in types)
@@ -137,6 +152,13 @@ public static class DamageCalculator
         return 1.0;
     }
 
+    /// <summary>
+    /// Determina si un ataque resulta en un golpe crítico basado en una probabilidad aleatoria.
+    /// </summary>
+    /// <returns>
+    /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
+    /// o <c>1.0</c> si no es crítico.
+    /// </returns>    
     public static double CriticalCheck()
     {
         Random random = new Random();
@@ -147,7 +169,15 @@ public static class DamageCalculator
         }
         return 1.0;
     }
-
+    /// <summary>
+    /// Aplica un efecto especial al Pokemon objetivo, siempre y cuando el ataque recibido sea especial y el Pokemon no tenga ya otro efecto.
+    /// </summary>
+    /// <param name="attackedPokemon">El Pokemon que recibe el ataque.</param>
+    /// <param name="attack">El ataque ejecutado.</param>
+    /// <remarks>
+    /// Si el ataque es un <see cref="SpecialAttack"/> y el Pokemon objetivo no tiene un estado actual, 
+    /// se aplica el efecto especial del ataque y se setea su cooldown.
+    /// </remarks>
     public static void SpecialCheck(Pokemon attackedPokemon, Attack attack)
     {
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
@@ -157,6 +187,16 @@ public static class DamageCalculator
         }
     }
 
+    /// <summary>
+    /// Calcula el daño infligido a un Pokemon objetivo. Para esto tiene en cuenta el valor de ataque, la efectividad de tipos y
+    /// la probabilidad de golpe crítico, además de revisar si se trata de un ataque especial.
+    /// </summary>
+    /// <param name="attackedPokemon">El Pokemon que recibe el ataque.</param>
+    /// <param name="attack">El ataque que se está ejecutando.</param>
+    /// <returns>
+    /// El daño calculado como un <c>double</c>. 
+    /// Devuelve <c>0.0</c> si el ataque falla.
+    /// </returns>
 public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
     {
         Random random = new Random();
