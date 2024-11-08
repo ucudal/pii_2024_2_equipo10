@@ -1,10 +1,19 @@
 namespace Library;
-// Clase experta encargada de mostrar el catálogo disponible
 
+/// <summary>
+/// Esta clase representa el catalogo de Pokemons.
+/// </summary>
 public static class PokemonCatalogue
 {
+    /// <summary>
+    /// Lista de Pokemons.
+    /// </summary>
     public static List<Pokemon> PokemonList { get; private set; }
 
+    /// <summary>
+    /// Devuelve el nombre de todos los Pokemons en el catalogo. 
+    /// </summary>
+    /// <returns></returns>
     public static string ShowCatalogue()
     {
         string pokemonsAvailable = "";
@@ -15,6 +24,10 @@ public static class PokemonCatalogue
         return pokemonsAvailable;
     }
 
+    /// <summary>
+    /// Inicialia el catalogo.
+    /// </summary>
+    /// <returns>Devuelve la lista con los Pokemons creados.</returns>
     public static List<Pokemon> SetCatalogue()
     {
         Charizard charizard = new Charizard();

@@ -17,7 +17,7 @@ public static class Facade
             return $"El jugador {playerName} no está en ninguna partida.";
         string result = "";
         foreach (IAttack atack in player.ActivePokemon.GetAttacks())
-            result += atack.Name + "\n";
+            result += atack.Name + "\n"; 
         return result;
     }
 
