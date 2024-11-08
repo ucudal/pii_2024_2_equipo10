@@ -51,4 +51,9 @@ public class Attack : IAttack
         this.Power =power;
 
     }
+
+    public string GetAttack()
+    {
+        return $"";
+    }
 }
