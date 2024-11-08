@@ -8,16 +8,17 @@ public static class PokemonCatalogue
     /// <summary>
     /// Lista de Pokemons.
     /// </summary>
-    public static List<Pokemon> PokemonList { get; private set; }
-
+    private static List<Pokemon> PokemonList { get; set; }
+    
     /// <summary>
     /// Devuelve el nombre de todos los Pokemons en el catalogo. 
     /// </summary>
     /// <returns></returns>
     public static string ShowCatalogue()
     {
+        List<Pokemon> pokedex = SetCatalogue();
         string pokemonsAvailable = "";
-        foreach (Pokemon pokemon in PokemonList)
+        foreach (Pokemon pokemon in pokedex)
         {
             pokemonsAvailable += pokemon.Name +"\n";
         }

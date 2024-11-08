@@ -66,10 +66,10 @@ public abstract class Pokemon
         // La lista de IMoves aplica LSP, ya que el Pokemon puede tener movimientos de daño (DamageMove) o
         // movimientos de buffeo (StatChangerMove)
         // y el funcionamiento de la lista es el mismo.
-        this.Attacks.Add(attack1);
-        this.Attacks.Add(attack2);
-        this.Attacks.Add(attack3);
-        this.Attacks.Add(attack4);
+        this.AddAttack(attack1);
+        this.AddAttack(attack2);
+        this.AddAttack(attack3);
+        this.AddAttack(attack4);
 
     }
 
@@ -127,5 +127,32 @@ public abstract class Pokemon
     public List<Type> GetTypes()
     {
         return this.Type;
+    }
+
+    public void EditState(State? state)
+    {
+        this.CurrentState = state;
+    }
+
+    public void AddAttack(IAttack attack)
+    {
+        if (this.Attacks.Count < 4)
+        {
+            this.Attacks.Add(attack);
+        }
+    }
+
+    public Attack FindAttackByName(string attackString)
+    {
+        foreach (IAttack attack in Attacks)
+        {
+            if (attack is Attack attack2 && attack.Name == attackString)
+            {
+                return attack2;
+            }
+
+        }
+
+        return null;
     }
 }

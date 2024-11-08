@@ -23,7 +23,7 @@ public class SpecialAttack : Attack
     /// <param name="accuracy">Precisión del ataque a crear.</param>
     /// <param name="power">Potencia del ataque a crear.</param>
     /// <param name="specialEffect">Efecto del ataque a crear.</param>
-    public SpecialAttack(string name, Type type, int accuracy, int power, State specialEffect): base(name, type, accuracy, power)
+    public SpecialAttack(string name, Type type, double accuracy, int power, State specialEffect): base(name, type, accuracy, power)
     {
         this.Cooldown = 0;
         this.SpecialEffect = specialEffect;

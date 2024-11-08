@@ -66,10 +66,14 @@ public class Player
     /// </returns>
     public bool SetActivePokemon(Pokemon pokemon)
     {
-        if (pokemon.CurrentLife > 0)
+        if (pokemon != null)
         {
-            this.ActivePokemon = pokemon;
-            return true;
+            if (pokemon.CurrentLife > 0)
+            {
+                this.ActivePokemon = pokemon;
+                return true;
+            }
+            return false;
         }
         return false;
     }
@@ -120,13 +124,13 @@ public class Player
     /// <returns>
     /// <c>null</c> si el ataque no se encuentra en la lista de ataques. 
     /// </returns>
-    public IAttack? ChooseAttack(string strAttack)
+    public Attack? ChooseAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {
-            if (attack.Name == strAttack)
+            if (attack.Name == strAttack && attack is Attack attack2)
             {
-                return attack;
+                return attack2;
             }
         }
         return null;
