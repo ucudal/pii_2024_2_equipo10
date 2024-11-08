@@ -13,10 +13,15 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
+<<<<<<< HEAD
+        }
+        return player.GetPokemonAttacks();
+=======
         string result = "";
         foreach (IAttack atack in player.ActivePokemon.GetAttacks())
             result += atack.Name + "\n";
         return result;
+>>>>>>> main
     }
 
     // historia de usuario 3
@@ -61,7 +66,7 @@ public static class Facade
             Player activePlayer = game.GetPlayers()[activePlayerIndex];
             if (activePlayer.Name == playerName)
                 return "Es tu turno:\n" + opciones;
-            return "No es tu turno";
+            return "No es tu turno" + "Las opciones disponibles cuando sea tu turno son:\n" + opciones;
         }
         return null;
     }
@@ -142,7 +147,9 @@ public static class Facade
     public static string AddPlayerToWaitingList(string playerName)
     {
         if (WaitingList.AddPlayer(playerName))
+        {
             return $"{playerName} agregado a la lista de espera";
+        }
         return $"{playerName} ya está en la lista de espera";
     }
     
@@ -238,5 +245,29 @@ public static class Facade
     {
         return PokemonCatalogue.ShowCatalogue();
     }
-    
+
+    public static string ChooseAttack(string playerName, string attackName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "Para poder atacar necesitas estar en una batalla";
+        }
+        IAttack attack = player.ChooseAttack(attackName);
+        if (attack == null)
+        {
+            return $"El ataque {attackName} no pudo ser encontrado";
+        }
+        foreach (Game game in GameList.Games)
+        {
+            if (game.Players.Contains(player))
+            {
+                string gameResult = game.ExecuteAttack(attack);
+                game.NextTurn();
+                return gameResult;
+            }
+        }
+        return "El ataque no pudo ser concretado";
+    }
+
 }

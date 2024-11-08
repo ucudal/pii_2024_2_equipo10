@@ -14,4 +14,8 @@ public interface IAttack: IAction
     /// Tipo del ataque.
     /// </summary>
     public Type Type {get;}
+    public double Accuracy {get;}
+    public int Power {get; }
+
+
 }
