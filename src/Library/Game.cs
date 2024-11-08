@@ -210,5 +210,21 @@ public class Game
 
         return $"{pokemon.Name} no tiene vida. Suerte bro, lo siento :/";
     }
+
+    public bool CheckPlayerInGame(Player checkPlayer)
+    {
+        if (checkPlayer != null)
+        {
+            foreach (Player player in Players)
+            {
+                if (player.Name == checkPlayer.Name)
+                {
+                    return true;
+                }
+            }
+            
+        }
+        return false;
+    }
     
 }

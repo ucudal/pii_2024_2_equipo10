@@ -72,7 +72,7 @@ public static class Facade
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
             string result = "";
             Game game = GameList.FindGameByPlayer(player);
-            if (game != null && game.GetPlayers().Contains(player) && game.GetPlayers().Contains(playerToCheck) &&
+            if (game != null && game.CheckPlayerInGame(player) && game.CheckPlayerInGame(playerToCheck) &&
                 playerToCheck != null)
             {
                 foreach (Pokemon pokemon in playerToCheck.GetPokemonTeam())
