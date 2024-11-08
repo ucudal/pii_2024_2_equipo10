@@ -184,6 +184,6 @@ public class CharizardTest
         Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack1Type.Equals(attack1ExcpectedType));
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower)); 
+        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
 }
