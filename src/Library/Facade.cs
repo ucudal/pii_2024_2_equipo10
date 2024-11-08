@@ -59,7 +59,7 @@ public static class Facade
             Player activePlayer = game.GetPlayers()[activePlayerIndex];
             if (activePlayer.Name == playerName)
                 return "Es tu turno:\n" + opciones;
-            return "No es tu turno" + "Las opciones disponibles cuando sea tu turno son:\n" + opciones;
+            return "No es tu turno";
         }
         return null;
     }
@@ -163,7 +163,7 @@ public static class Facade
         return result;
     }
     //historia de usuario 11
-    private static string CreateGame(string playerName, string opponentName)
+    public static string CreateGame(string playerName, string opponentName)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);

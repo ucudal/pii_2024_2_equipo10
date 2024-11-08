@@ -38,6 +38,56 @@
             <param name="accuracy">Precisión del ataque a crear.</param>
             <param name="power">Potencia del ataque a crear.</param>
         </member>
+        <member name="T:Library.Caterpie">
+            <summary>
+            Esta clase representa el Pokemon Caterpie.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Caterpie.#ctor">
+            <summary>
+            Constructor de Caterpie.
+            </summary>
+        </member>
+        <member name="T:Library.Charizard">
+            <summary>
+            Esta clase representa el Pokemon Charizard.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Charizard.#ctor">
+            <summary>
+            Constructor de Charizard.
+            </summary>
+        </member>
+        <member name="T:Library.Chikorita">
+            <summary>
+            Esta clase representa el Pokemon Chikorita.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Chikorita.#ctor">
+            <summary>
+            Constructor de Chikorita.
+            </summary>
+        </member>
+        <member name="T:Library.FullHealth">
+            <summary>
+            Esta clase representa una curación.
+            </summary>
+        </member>
+        <member name="P:Library.FullHealth.Name">
+            <summary>
+            Nombre de la curación.
+            </summary>
+        </member>
+        <member name="M:Library.FullHealth.Use(Library.Pokemon)">
+            <summary>
+            Le quita cualquier estado negativo al Pokemon.
+            </summary>
+            <param name="pokemon">Pokemón a ser curado.</param>
+            <returns>El pokemon ya no tiene estado negativo.</returns>
+        </member>
         <member name="T:Library.Game">
             <summary>
             Esta clase representa una partida entre dos jugadores.
@@ -132,6 +182,17 @@
             Devuelve la lista de partidas.
             </summary>
         </member>
+        <member name="T:Library.Gengar">
+            <summary>
+            Esta clase representa el Pokemon Gengar.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Gengar.#ctor">
+            <summary>
+            Constructor de Gengar.
+            </summary>
+        </member>
         <member name="T:Library.IAttack">
             <summary>
             Interfaz de Ataque. Creada para subir la cohesión y bajar el acoplamiento.
@@ -191,7 +252,7 @@
         </member>
         <member name="M:Library.Player.#ctor(System.String)">
             <summary>
-            Le asigna un nombre al jugador, crea las listas de pokemons e items
+            Le asigna un nombre al jugador, crea las listas de pokemons y items
             agregando items iniciales.
             </summary>
             <param name="name">Nombre del jugador a crear.</param>
@@ -336,6 +397,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:Library.PokemonCatalogue">
+            <summary>
+            Esta clase representa el catalogo de Pokemons.
+            </summary>
+        </member>
+        <member name="P:Library.PokemonCatalogue.PokemonList">
+            <summary>
+            Lista de Pokemons.
+            </summary>
+        </member>
+        <member name="M:Library.PokemonCatalogue.ShowCatalogue">
+            <summary>
+            Devuelve el nombre de todos los Pokemons en el catalogo. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Library.PokemonCatalogue.SetCatalogue">
+            <summary>
+            Inicialia el catalogo.
+            </summary>
+            <returns>Devuelve la lista con los Pokemons creados.</returns>
+        </member>
         <member name="T:Library.Revive">
             <summary>
             Esta clase representa la posión Revivir.
@@ -353,6 +436,46 @@
             </summary>
             <param name="pokemon"></param>
             <returns>Si fue revivido o no.</returns>
+        </member>
+        <member name="T:Library.SpecialAttack">
+            <summary>
+            Esta clase representa un ataque especial.
+            </summary>
+        </member>
+        <member name="P:Library.SpecialAttack.SpecialEffect">
+            <summary>
+            Efecto del ataque.
+            </summary>
+        </member>
+        <member name="P:Library.SpecialAttack.Cooldown">
+            <summary>
+            Cantidad de turnos que se deben esperar para volver a usar el ataque especial.
+            </summary>
+        </member>
+        <member name="M:Library.SpecialAttack.#ctor(System.String,Library.Type,System.Double,System.Int32,Library.State)">
+            <summary>
+            
+            </summary>
+            <param name="name">Nombre del ataque a crear.</param>
+            <param name="type">Tipo del ataque a crear.</param>
+            <param name="accuracy">Precisión del ataque a crear.</param>
+            <param name="power">Potencia del ataque a crear.</param>
+            <param name="specialEffect">Efecto del ataque a crear.</param>
+        </member>
+        <member name="M:Library.SpecialAttack.LowerCooldown">
+            <summary>
+            Le quita un turno a la cantidad de turnos que se deben esperar para usar el ataque.
+            </summary>
+        </member>
+        <member name="M:Library.SpecialAttack.SetCooldown">
+            <summary>
+            Le asigna 2 a el contador de turnos que se deben esperar para usar el ataque.
+            </summary>
+        </member>
+        <member name="T:Library.State">
+            <summary>
+            Representa los estados negativos que puede tener un Pokemon.
+            </summary>
         </member>
         <member name="T:Library.StateLogic">
             <summary>
@@ -473,33 +596,6 @@
             <summary>
             Devuelve la lista de jugadores en espera.
             </summary>
-        </member>
-        <member name="T:ClassLibrary.Train">
-            <summary>
-            Esta clase representa un tren muy básico.
-            </summary>
-        </member>
-        <member name="P:ClassLibrary.Train.IsEngineStarted">
-            <summary>
-            Obtiene un valor que indica si las maquinas del tren han sido encendidas o no.
-            </summary>
-            <value><c>true</c> si las máquinas fueron encendidas, <c>false</c> en caso contrario.</value>
-        </member>
-        <member name="M:ClassLibrary.Train.StartEngines">
-            <summary>
-            Enciende las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser encendidas, <c>false</c> en caso contrario.
-            </returns>
-        </member>
-        <member name="M:ClassLibrary.Train.StopEngines">
-            <summary>
-            Detiene las máquinas del tren.
-            </summary>
-            <returns>
-            <c>true</c> si las máquinas pueden ser detenidas, <c>false</c> en caso contrario.
-            </returns>
         </member>
     </members>
 </doc>
