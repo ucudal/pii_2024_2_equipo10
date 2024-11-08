@@ -18,6 +18,41 @@ public static class Facade
     public static GameList GameList{ get; } = new GameList();
     
     /// <summary>
+    /// Historia 1:
+    /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador.</param>
+    /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
+    /// <returns>Mensaje indicando si el Pokemon fue añadido o si hubo un error.</returns>
+    public static string ChooseTeam(string playerName, string cPokemon)
+    {
+        PokemonCatalogue.SetCatalogue();
+        Player player = GameList.FindPlayerByName(playerName);
+        
+        if (player == null)
+        {
+            return "Para poder elegir un equipo, primero debes estar en una batalla";
+        }
+        if (player.GetPokemonTeam().Count < 6)
+        {
+            if (cPokemon != null)
+            {
+                foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
+                {
+                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                    {
+                        player.AddToTeam(pokemon);
+                        return $"El pokemon {cPokemon} fue añadido al equipo";
+                    }
+                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                }
+            }
+            return $"El pokemon {cPokemon} no fue encontrado";
+        }
+        return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
+    }
+    
+    /// <summary>
     /// Historia de usuario 2:
     /// Muestra los ataques disponibles del Pokemon activo de un jugador.
     /// </summary>
@@ -70,6 +105,39 @@ public static class Facade
     }
 
     /// <summary>
+    /// Historia de usuario 4:
+    /// Permite a un jugador elegir y ejecutar un ataque durante su turno en una partida.
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador que realiza el ataque.</param>
+    /// <param name="attackName">Nombre del ataque que se desea utilizar.</param>
+    /// <returns>
+    /// Un mensaje que indica el resultado de la acción.
+    /// </returns>
+    public static string ChooseAttack(string playerName, string attackName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "Para poder atacar necesitas estar en una batalla";
+        }
+        Attack attack = player.FindAttack(attackName);
+        if (attack == null)
+        {
+            return $"El ataque {attackName} no pudo ser encontrado";
+        }
+        foreach (Game game in GameList.GetGameList())
+        {
+            if (game.GetPlayers().Contains(player))
+            {
+                string gameResult = game.ExecuteAttack(attack);
+                game.NextTurn();
+                return gameResult;
+            }
+        }
+        return "El ataque no pudo ser concretado";
+    }
+    
+    /// <summary>
     /// Historia de usuario 5:
     /// Comprueba si es el turno de un jugador y muestra las opciones disponibles.
     /// </summary>
@@ -114,8 +182,16 @@ public static class Facade
         return "La partida no pudo ser encontrada";
     }
     
-
-    //Historia de usuario 7
+    
+    /// <summary>
+    /// Historia de usuario 7:
+    /// Permite a un jugador activo cambiar su Pokemon actual durante su turno en una partida.
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador que desea cambiar de Pokemon.</param>
+    /// <param name="pokemonName">Nombre del Pokemon al que se desea cambiar.</param>
+    /// <returns>
+    /// Un mensaje que indica el resultado de la acción.
+    /// </returns>
     public static string ChangePokemon(string playerName, string pokemonName)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -283,75 +359,15 @@ public static class Facade
         }
     }
     
-    /// <summary>
-    /// Historia 1:
-    /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
-    /// </summary>
-    /// <param name="playerName">Nombre del jugador.</param>
-    /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
-    /// <returns>Mensaje indicando si el Pokemon fue añadido o si hubo un error.</returns>
-    public static string ChooseTeam(string playerName, string cPokemon)
-    {
-        PokemonCatalogue.SetCatalogue();
-        Player player = GameList.FindPlayerByName(playerName);
-        
-        if (player == null)
-        {
-            return "Para poder elegir un equipo, primero debes estar en una batalla";
-        }
-        if (player.GetPokemonTeam().Count < 6)
-        {
-            if (cPokemon != null)
-            {
-                foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
-                {
-                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        player.AddToTeam(pokemon);
-                        return $"El pokemon {cPokemon} fue añadido al equipo";
-                    }
-                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-                }
-            }
-            return $"El pokemon {cPokemon} no fue encontrado";
-        }
-        return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
-    }
-
+    
     /// <summary>
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
     /// <returns>Lista de Pokemon en el catálogo.</returns>
-        
-
     public static string ShowCatalogue()
     {
         PokemonCatalogue.SetCatalogue();
         return PokemonCatalogue.ShowCatalogue();
     }
-
-    public static string ChooseAttack(string playerName, string attackName)
-    {
-        Player player = GameList.FindPlayerByName(playerName);
-        if (player == null)
-        {
-            return "Para poder atacar necesitas estar en una batalla";
-        }
-        Attack attack = player.FindAttack(attackName);
-        if (attack == null)
-        {
-            return $"El ataque {attackName} no pudo ser encontrado";
-        }
-        foreach (Game game in GameList.GetGameList())
-        {
-            if (game.GetPlayers().Contains(player))
-            {
-                string gameResult = game.ExecuteAttack(attack);
-                game.NextTurn();
-                return gameResult;
-            }
-        }
-        return "El ataque no pudo ser concretado";
-    }
-
+    
 }
