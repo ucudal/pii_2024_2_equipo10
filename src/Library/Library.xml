@@ -299,7 +299,7 @@
         </member>
         <member name="M:Library.Player.#ctor(System.String)">
             <summary>
-            Le asigna un nombre al jugador, crea las listas de pokemons y items
+            Le asigna un nombre al jugador, crea las listas de pokemons e items
             agregando items iniciales.
             </summary>
             <param name="name">Nombre del jugador a crear.</param>

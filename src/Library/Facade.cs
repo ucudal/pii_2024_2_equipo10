@@ -1,22 +1,17 @@
 namespace Library;
 
-
-/// <summary>
-/// La clase Facade proporciona una interfaz simplificada para interactuar con el sistema de gestión de batallas Pokemon.
-/// Incluye funcionalidades para gestionar listas de espera, partidas en curso, ataques, estados de juego, y mucho más.
-/// </summary>
 public static class Facade
 {
     /// <summary>
     /// Lista de espera para jugadores que aún no están en una partida.
     /// </summary>
     private static WaitingList WaitingList { get; } = new WaitingList();
-    
+
     /// <summary>
     /// Lista de partidas en curso.
     /// </summary>
-    public static GameList GameList{ get; } = new GameList();
-    
+    private static GameList GameList { get; } = new GameList();
+
     /// <summary>
     /// Historia 1:
     /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
@@ -45,6 +40,7 @@ public static class Facade
                         player.AddToTeam(pokemon);
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }
+
                     return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
                 }
             }
@@ -54,8 +50,8 @@ public static class Facade
 
         return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
     }
-    
-    
+
+
     /// <summary>
     /// Historia de usuario 2:
     /// Muestra los ataques disponibles del Pokemon activo de un jugador.
@@ -65,13 +61,14 @@ public static class Facade
     /// caso de que el jugador no exista.</returns>
     public static string ShowAtacks(string playerName)
     {
+
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
-         
+
         return player.GetPokemonAttacks();
     }
-    
+
     /// <summary>
     /// Historia de usuario 3:
     /// Muestra los puntos de vida (HP) de los Pokemon de un jugador.
@@ -154,12 +151,14 @@ public static class Facade
                     string nextTurn = CheckGameStatus(game);
                     return gameResult + nextTurn;
                 }
+
                 return "No eres el jugador activo";
             }
         }
+
         return "Error inesperado";
     }
-    
+
     /// <summary>
     /// Historia de usuario 5:
     /// Comprueba si es el turno de un jugador y muestra las opciones disponibles.
@@ -191,7 +190,7 @@ public static class Facade
 
         return null;
     }
-    
+
     /// <summary>
     /// Historia de usuario 6:
     /// Comprueba el estado de una partida y determina si continúa o hay un ganador.
@@ -214,8 +213,8 @@ public static class Facade
 
         return "La partida no pudo ser encontrada";
     }
-    
-    
+
+
     /// <summary>
     /// Historia de usuario 7:
     /// Permite a un jugador activo cambiar su Pokemon actual durante su turno en una partida.
@@ -291,8 +290,8 @@ public static class Facade
 
         return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
     }
-    
-    
+
+
     /// <summary>
     /// Historia de usuario 9:
     /// Agrega un jugador a la lista de espera.
@@ -308,7 +307,7 @@ public static class Facade
 
         return $"{playerName} ya está en la lista de espera";
     }
-    
+
     /// <summary>
     /// Historia de usuario 9.1:
     /// Remueve un jugador de la lista de espera.
@@ -321,7 +320,7 @@ public static class Facade
             return $"{playerName} removido de la lista de espera";
         return $"{playerName} no está en la lista de espera";
     }
-    
+
     /// <summary>
     /// Historia de usuario 10
     /// Muestra todos los jugadores actualmente en la lista de espera.
@@ -339,10 +338,10 @@ public static class Facade
         {
             result = result + player.Name + "; ";
         }
-        
+
         return result;
     }
-    
+
     //
     /// <summary>
     /// Historia de usuario 11:
@@ -352,7 +351,7 @@ public static class Facade
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
     /// <returns>Mensaje confirmando el inicio de la partida entre ambos jugadores.</returns>
-    private static string CreateGame(string playerName, string opponentName)
+    public static string CreateGame(string playerName, string opponentName)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
@@ -361,7 +360,7 @@ public static class Facade
         GameList.AddGame(player, opponent);
         return $"Comienza {playerName} vs {opponentName}";
     }
-    
+
     /// <summary>
     /// Historia de usuario 11.1:
     /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o con el primer oponente disponible.
@@ -403,8 +402,8 @@ public static class Facade
             return opponent != null;
         }
     }
-    
-    
+
+
     /// <summary>
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
@@ -414,5 +413,4 @@ public static class Facade
         PokemonCatalogue.SetCatalogue();
         return PokemonCatalogue.ShowCatalogue();
     }
-    
 }

@@ -5,6 +5,7 @@
 //--------------------------------------------------------------------------------
 
 using System;
+using Library;
 
 namespace ConsoleApplication
 {
@@ -18,7 +19,7 @@ namespace ConsoleApplication
         /// </summary>
         public static void Main()
         {
-            
+            Console.WriteLine("Hello World!");
         }
     }
 }
