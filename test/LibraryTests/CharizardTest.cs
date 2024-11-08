@@ -153,7 +153,7 @@ public class CharizardTest
         Charizard charizard = new Charizard();
         double actualLife = charizard.CurrentLife;
         string actualLifeText = charizard.GetLife();
-        charizard.RestoreBaseLife(100);
+        charizard.GainLife(100);
         Assert.That(actualLife.Equals(charizard.BaseLife));
         Assert.That(actualLifeText.Equals("360/360", StringComparison.Ordinal));
         charizard.TakeDamage(120);
@@ -161,7 +161,7 @@ public class CharizardTest
         string actualLifeText2 = charizard.GetLife();
         Assert.That(actualLife2.Equals(240));
         Assert.That(actualLifeText2.Equals("240/360", StringComparison.Ordinal));
-        charizard.RestoreBaseLife(100);
+        charizard.GainLife(100);
         double actualLife3 = charizard.CurrentLife;
         string actualLifeText3 = charizard.GetLife();
         Assert.That(actualLife3.Equals(340));
