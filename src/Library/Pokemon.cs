@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace Library;
 
 /// <summary>
@@ -78,10 +80,10 @@ public abstract class Pokemon
     /// puede ser mayor a la vida base del Pokemon.
     /// </summary>
     /// <param name="hp">Puntos de vida a recuperar.</param>
-    public void RestoreBaseLife(double hp)
+    public void GainLife(double hp)
     {
         this.CurrentLife += hp;
-        if (this.CurrentLife > hp)
+        if (this.CurrentLife > this.BaseLife)
         {
             this.CurrentLife = BaseLife;
         }
@@ -124,7 +126,7 @@ public abstract class Pokemon
     /// Devuelve la lista de tipos del Pokemon.
     /// </summary>
     /// <returns></returns>
-    public List<Type> GetTypes()
+    public  List<Type> GetTypes()
     {
         return this.Type;
     }
@@ -144,15 +146,18 @@ public abstract class Pokemon
 
     public Attack FindAttackByName(string attackString)
     {
-        foreach (IAttack attack in Attacks)
+        if (attackString != null)
         {
-            if (attack is Attack attack2 && attack.Name == attackString)
+            foreach (IAttack attack in Attacks)
             {
-                return attack2;
+                if (attack is Attack attack2 && attack.Name == attackString)
+                {
+                    return attack2;
+                }
+
             }
-
         }
-
         return null;
     }
+    
 }

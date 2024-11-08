@@ -19,7 +19,7 @@ public class SuperPotion : IItem
     /// </returns>
     public string Use(Pokemon pokemon)
     { 
-        pokemon.CurrentLife += 70;
+        pokemon.GainLife(70);
         return $"{pokemon} ha ganado 70HP.";
     }
 }

@@ -13,10 +13,8 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
-        string result = "";
-        foreach (IAttack atack in player.ActivePokemon.GetAttacks())
-            result += atack.Name + "\n"; 
-        return result;
+         
+        return player.GetPokemonAttacks();
     }
 
     // historia de usuario 3
@@ -101,7 +99,7 @@ public static class Facade
             {
                 return "Tu equipo pokemon está incompleto, elige hasta tener 6 pokemones en tu equipo";
             }
-            Pokemon choosenPokemon = player.ChoosePokemon(pokemonName);
+            Pokemon choosenPokemon = player.FindPokemon(pokemonName);
             if (choosenPokemon == null)
             {
                 return $"El pokemon {pokemonName} no fue encontrado en tu equipo";
@@ -134,7 +132,7 @@ public static class Facade
             return "Partida inexistente.";   
         }
 
-        return game.UseItem(player.ChooseItem(item), player.ChoosePokemon(pokemon));
+        return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
     }
     
     
@@ -142,7 +140,9 @@ public static class Facade
     public static string AddPlayerToWaitingList(string playerName)
     {
         if (WaitingList.AddPlayer(playerName))
+        {
             return $"{playerName} agregado a la lista de espera";
+        }
         return $"{playerName} ya está en la lista de espera";
     }
     
@@ -238,5 +238,29 @@ public static class Facade
     {
         return PokemonCatalogue.ShowCatalogue();
     }
-    
+
+    public static string ChooseAttack(string playerName, string attackName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "Para poder atacar necesitas estar en una batalla";
+        }
+        Attack attack = player.FindAttack(attackName);
+        if (attack == null)
+        {
+            return $"El ataque {attackName} no pudo ser encontrado";
+        }
+        foreach (Game game in GameList.GetGameList())
+        {
+            if (game.GetPlayers().Contains(player))
+            {
+                string gameResult = game.ExecuteAttack(attack);
+                game.NextTurn();
+                return gameResult;
+            }
+        }
+        return "El ataque no pudo ser concretado";
+    }
+
 }
