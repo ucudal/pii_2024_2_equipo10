@@ -146,7 +146,7 @@ public abstract class Pokemon
     {
         foreach (IAttack attack in Attacks)
         {
-            if (attack is Attack attack2)
+            if (attack is Attack attack2 && attack.Name == attackString)
             {
                 return attack2;
             }
