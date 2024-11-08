@@ -220,13 +220,18 @@ public static class Facade
             {
                 foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
                 {
-                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                    if (pokemon.Name == cPokemon && !player.CheckPokemonInTeam(cPokemon))
                     {
                         player.AddToTeam(pokemon);
+                        if (player.GetPokemonTeam().Count == 1)
+                        {
+                            player.SetActivePokemon(pokemon);
+                        }
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }
-                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                    
                 }
+                return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
             }
             return $"El pokemon {cPokemon} no fue encontrado";
         }

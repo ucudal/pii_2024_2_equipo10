@@ -162,5 +162,21 @@ public class Player
         }
         return result;
     }
+
+    public bool CheckPokemonInTeam(string pokemonName)
+    {
+        if (this.PokemonTeam.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (Pokemon pokemon in this.PokemonTeam)
+        {
+            if (pokemon.Name == pokemonName)
+                return true;
+        }
+
+        return false;
+    }
     
 }
