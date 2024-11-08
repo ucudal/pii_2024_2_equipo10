@@ -1,5 +1,4 @@
 ﻿namespace Library;
-using Library;
 
 /// <summary>
 /// Esta clase representa un jugador.
@@ -27,7 +26,7 @@ public class Player
     public Pokemon ActivePokemon { get; private set; }
 
     /// <summary>
-    /// Le asigna un nombre al jugador, crea las listas de pokemons y items
+    /// Le asigna un nombre al jugador, crea las listas de pokemons e items
     /// agregando items iniciales.
     /// </summary>
     /// <param name="name">Nombre del jugador a crear.</param>
@@ -85,7 +84,7 @@ public class Player
     /// <returns>
     /// <c>null</c> si el pokemon no está en la lista de pokemons.
     /// </returns>
-    public Pokemon? ChoosePokemon(string strPokemon)
+    public Pokemon ChoosePokemon(string strPokemon)
     {
         foreach (Pokemon pokemon in this.PokemonTeam)
         {
@@ -104,7 +103,7 @@ public class Player
     /// <returns>
     ///<c>null</c> si el item no está en la lista items. 
     /// </returns>
-    public IItem? ChooseItem(string strItem)
+    public IItem ChooseItem(string strItem)
     {
         foreach (IItem item in this.Items)
         {
@@ -124,7 +123,7 @@ public class Player
     /// <returns>
     /// <c>null</c> si el ataque no se encuentra en la lista de ataques. 
     /// </returns>
-    public Attack? ChooseAttack(string strAttack)
+    public Attack ChooseAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {
