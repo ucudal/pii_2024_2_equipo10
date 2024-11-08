@@ -221,7 +221,7 @@ public static class Facade
     }
 
     //historia de usuario 11
-    private static string CreateGame(string playerName, string opponentName)
+    public static string CreateGame(string playerName, string opponentName)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
