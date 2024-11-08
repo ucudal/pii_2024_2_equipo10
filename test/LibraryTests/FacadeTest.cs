@@ -19,7 +19,7 @@ public class FacadeTest
         Facade.CreateGame("mateo", "ines");
         Facade.StartBattle("mateo", "ines");
         Facade.ChooseTeam("mateo", "Caterpie");
-        string result = "Bug bite\nTackle\nBug Stomp\nString Shot";
+        string result = "Bug bite\nTackle\nBug stomp\nString shot\n";
         Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo(result));
     }
     /// <summary>
@@ -39,5 +39,4 @@ public class FacadeTest
         string result2 = "Chikorita: 294/294\n";
         Assert.That(Facade.ShowPokemonsHP("facu", "ines"), Is.EqualTo(result2));
     }
-    
 }

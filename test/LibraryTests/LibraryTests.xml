@@ -4,14 +4,9 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="M:LibraryTests.FacadeTest.TestUserStory2">
+        <member name="M:LibraryTests.FacadeTest.TestShowAttacks">
             <summary>
             Test de la historia de usuario 2.
-            </summary>
-        </member>
-        <member name="M:LibraryTests.FacadeTest.TestUserStory3">
-            <summary>
-            Test de la historia de usuario 3.
             </summary>
         </member>
     </members>
