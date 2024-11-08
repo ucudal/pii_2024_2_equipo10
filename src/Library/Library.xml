@@ -108,6 +108,13 @@
             Obtiene la cantidad de turnos que lleva la partida.
             </summary>
         </member>
+        <member name="M:Library.Game.#ctor(Library.Player,Library.Player)">
+            <summary>
+            Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+            </summary>
+            <param name="player1"> Primer jugador.</param>
+            <param name="player2"> Segundo jugador.</param>
+        </member>
         <member name="M:Library.Game.GetPlayers">
             <summary>
             Obtiene la lista de jugadores de la partida.
@@ -131,6 +138,46 @@
             Determina el ganador y el perdedor del juego basándose en la cantidad de vida de los Pokemon de cada jugador.
             </summary>
             <returns> <c>string</c> indicando al ganador y al perdedor de la partida. </returns>
+        </member>
+        <member name="M:Library.Game.CooldownCheck">
+            <summary>
+            Reduce el tiempo de enfriamiento (cooldown) de todos los ataques especiales de cada Pokemon en los equipos de los jugadores.
+            </summary>
+        </member>
+        <member name="M:Library.Game.NextTurn">
+            <summary>
+            Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
+            y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
+        </member>
+        <member name="M:Library.Game.ExecuteAttack(Library.Attack)">
+            <summary>
+            Ejecuta un ataque por parte del Pokemon activo del jugador actual, siempre y cuando no se encuentre dormido ni paralizado.
+            </summary>
+            <param name="attack">El ataque que se va a ejecutar.</param>
+            <returns>
+            <c>string</c>Un mensaje que indica el daño infligido al Pokemon objetivo o el estado actual que impidió el ataque.
+            Devuelve null si no se proporciona un ataque válido.
+            </returns>
+        </member>
+        <member name="M:Library.Game.UseItem(Library.IItem,Library.Pokemon)">
+            <summary>
+            Permite que un jugador use un item en un Pokemon específico de su equipo, verificando la validez del item y del Pokemon.
+            </summary>
+            <param name="item">El item que se va a usar.</param>
+            <param name="pokemon">El Pokemon sobre el que se usará el item.</param>
+            <returns>
+            Un mensaje indicando el resultado del uso del objeto, o un mensaje de error si el objeto o el Pokemon no son válidos.
+            </returns>
+        </member>
+        <member name="M:Library.Game.ChangePokemon(Library.Pokemon)">
+            <summary>
+            Cambia el Pokemon activo del jugador actual por otro de su equipo, verificando si el cambio es válido.
+            </summary>
+            <param name="pokemon">El nuevo Pokemon que se intentará establecer como activo.</param>
+            <returns>
+            <c>string</c>Un mensaje indicando que el cambio fue exitoso, o un mensaje de error si el Pokemon proporcionado no es válido
+            o si no tiene vida.
+            </returns>
         </member>
         <member name="T:Library.GameList">
             <summary>
@@ -272,7 +319,7 @@
             <c>true</c> si se cambió el pokemon activo. <c>false</c> si el pokemon elegido no tiene vida.
              </returns>
         </member>
-        <member name="M:Library.Player.ChoosePokemon(System.String)">
+        <member name="M:Library.Player.FindPokemon(System.String)">
             <summary>
             Devuelve un pokemon de la lista del jugador buscandolo por el nombre.
             </summary>
@@ -281,7 +328,7 @@
             <c>null</c> si el pokemon no está en la lista de pokemons.
             </returns>
         </member>
-        <member name="M:Library.Player.ChooseItem(System.String)">
+        <member name="M:Library.Player.FindItem(System.String)">
              <summary>
              Devuelve un item de la lista de items buscandolo por su nombre.
              </summary>
@@ -290,7 +337,7 @@
             <c>null</c> si el item no está en la lista items. 
              </returns>
         </member>
-        <member name="M:Library.Player.ChooseAttack(System.String)">
+        <member name="M:Library.Player.FindAttack(System.String)">
             <summary>
             Devuelve un ataque de la lista de ataques del pokemon activo.
             </summary>
@@ -365,7 +412,7 @@
             <param name="attack3">Ataque 3.</param>
             <param name="attack4">Ataque 4.</param>
         </member>
-        <member name="M:Library.Pokemon.RestoreBaseLife(System.Double)">
+        <member name="M:Library.Pokemon.GainLife(System.Double)">
             <summary>
             Suma puntos de vida a la vida actual, considerando que la vida actual no
             puede ser mayor a la vida base del Pokemon.
