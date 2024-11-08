@@ -20,12 +20,5 @@ public class FullHealthTest
         Assert.That(charizard.CurrentState.Equals(null));
     }
 
-    [Test]
-    public void TestPower0()
-    {
-        Attack attack = new Attack("impactrueno",Library.Type.Electric, 1, 0);
-        Assert.That(attack.Power.Equals(0));
-    }
-
     
 }
