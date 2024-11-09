@@ -23,6 +23,12 @@ public class Revive : IItem
             return "El pokemon no está debilitado";
         }
         pokemon.CurrentLife = (pokemon.BaseLife / 2);
-        return $"{pokemon} ha revivido.";
+        return $"{pokemon.Name} ha revivido.";
     }
+
+    public Revive()
+    {
+        this.Name = "Revive";
+    }
+    
 }

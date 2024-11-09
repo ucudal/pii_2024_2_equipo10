@@ -1,5 +1,7 @@
 namespace Library;
-
+/// <summary>
+/// Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
+/// </summary>
 public static class Facade
 {
     /// <summary>
@@ -38,13 +40,15 @@ public static class Facade
                     if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
                     {
                         player.AddToTeam(pokemon);
+                        if (player.GetPokemonTeam().Count == 1)
+                        {
+                            player.SetActivePokemon(pokemon);
+                        }
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }
-
-                    return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
                 }
+                return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
             }
-
             return $"El pokemon {cPokemon} no fue encontrado";
         }
 
@@ -65,7 +69,7 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
-
+        
         return player.GetPokemonAttacks();
     }
 
@@ -142,16 +146,15 @@ public static class Facade
 
         foreach (Game game in GameList.GetGameList())
         {
-            if (game.GetPlayers().Contains(player))
+            if (game.CheckPlayerInGame(player))
             {
                 if (game.GetPlayers()[game.ActivePlayer].Name == player.Name)
                 {
                     string gameResult = game.ExecuteAttack(attack);
                     game.NextTurn();
                     string nextTurn = CheckGameStatus(game);
-                    return gameResult + nextTurn;
+                    return gameResult + " " + nextTurn;
                 }
-
                 return "No eres el jugador activo";
             }
         }
@@ -178,13 +181,13 @@ public static class Facade
             $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
         if (game != null)
         {
-            if (game.GetPlayers().Contains(player))
+            if (game.CheckPlayerInGame(player))
             {
                 int activePlayerIndex = game.ActivePlayer;
                 Player activePlayer = game.GetPlayers()[activePlayerIndex];
                 if (activePlayer.Name == playerName)
                     return "Es tu turno:\n" + opciones;
-                return "No es tu turno" + "Las opciones disponibles cuando sea tu turno son:\n" + opciones;
+                return "No es tu turno," + " " + "las opciones disponibles cuando sea tu turno son:\n" + opciones;
             }
         }
 
@@ -204,10 +207,9 @@ public static class Facade
         {
             if (game.GameStatus())
             {
-                return $"Próximo turno, ahora es el turno de {game.GetPlayers()[game.ActivePlayer]}";
+                return $"Próximo turno, ahora es el turno de {game.GetPlayers()[game.ActivePlayer].Name}";
             }
-
-            //eliminar game de la lista de games, ya que este finalizó
+            GameList.RemoveGame(game);
             return game.Winner();
         }
 
@@ -287,7 +289,6 @@ public static class Facade
         {
             return "Partida inexistente.";
         }
-
         return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
     }
 

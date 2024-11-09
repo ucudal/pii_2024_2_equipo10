@@ -109,7 +109,6 @@ public static class DamageCalculator
             effectivnessDataBase.Add(new Tuple<Type, Type>(psychic, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(ground, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(fighting, poison), 2.0);
-            effectivnessDataBase.Add(new Tuple<Type, Type>(ground, poison), 2.0);
             effectivnessDataBase.Add(new Tuple<Type, Type>(grass, poison), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(poison, poison), 0.5);
             effectivnessDataBase.Add(new Tuple<Type, Type>(electric, flying), 2.0);

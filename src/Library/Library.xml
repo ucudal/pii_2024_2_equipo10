@@ -71,6 +71,198 @@
             Constructor de Chikorita.
             </summary>
         </member>
+        <member name="P:Library.DamageCalculator.EffectivnessDataBase">
+            <summary>
+            Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
+            </summary>
+            <returns>
+            Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
+            y el valor es un factor de efectividad (2.0 para súper efectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
+            </returns>
+        </member>
+        <member name="M:Library.DamageCalculator.GetEffectivness(Library.Type,System.Collections.Generic.List{Library.Type})">
+            <summary>
+            Obtiene la efectividad de un ataque de un tipo específico contra el o los tipos de un Pokemon.
+            </summary>
+            <param name="type">El tipo del ataque.</param>
+            <param name="types">Una lista de los tipos del Pokemon objetivo.</param>
+            <returns>
+            Valor <c>double</c> indicando el factor de efectividad del ataque.
+            <c>2.0</c> para súper efectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
+            </returns>
+        </member>
+        <member name="M:Library.DamageCalculator.CriticalCheck">
+            <summary>
+            Determina si un ataque resulta en un golpe crítico basado en una probabilidad aleatoria.
+            </summary>
+            <returns>
+            Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
+            o <c>1.0</c> si no es crítico.
+            </returns>    
+        </member>
+        <member name="M:Library.DamageCalculator.SpecialCheck(Library.Pokemon,Library.Attack)">
+            <summary>
+            Aplica un efecto especial al Pokemon objetivo, siempre y cuando el ataque recibido sea especial y el Pokemon no tenga ya otro efecto.
+            </summary>
+            <param name="attackedPokemon">El Pokemon que recibe el ataque.</param>
+            <param name="attack">El ataque ejecutado.</param>
+            <remarks>
+            Si el ataque es un <see cref="T:Library.SpecialAttack"/> y el Pokemon objetivo no tiene un estado actual, 
+            se aplica el efecto especial del ataque y se setea su cooldown.
+            </remarks>
+        </member>
+        <member name="M:Library.DamageCalculator.CalculateDamage(Library.Pokemon,Library.Attack)">
+            <summary>
+            Calcula el daño infligido a un Pokemon objetivo. Para esto tiene en cuenta el valor de ataque, la efectividad de tipos y
+            la probabilidad de golpe crítico, además de revisar si se trata de un ataque especial.
+            </summary>
+            <param name="attackedPokemon">El Pokemon que recibe el ataque.</param>
+            <param name="attack">El ataque que se está ejecutando.</param>
+            <returns>
+            El daño calculado como un <c>double</c>. 
+            Devuelve <c>0.0</c> si el ataque falla.
+            </returns>
+        </member>
+        <member name="T:Library.Facade">
+            <summary>
+            Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
+            </summary>
+        </member>
+        <member name="P:Library.Facade.WaitingList">
+            <summary>
+            Lista de espera para jugadores que aún no están en una partida.
+            </summary>
+        </member>
+        <member name="P:Library.Facade.GameList">
+            <summary>
+            Lista de partidas en curso.
+            </summary>
+        </member>
+        <member name="M:Library.Facade.ChooseTeam(System.String,System.String)">
+            <summary>
+            Historia 1:
+            Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
+            <returns>Mensaje indicando si el Pokemon fue añadido o si hubo un error.</returns>
+        </member>
+        <member name="M:Library.Facade.ShowAtacks(System.String)">
+            <summary>
+            Historia de usuario 2:
+            Muestra los ataques disponibles del Pokemon activo de un jugador.
+            </summary>
+            <param name="playerName">Nombre del jugador activo.</param>
+            <returns>Una lista de los ataques del Pokémon activo o un mensaje de error en
+            caso de que el jugador no exista.</returns>
+        </member>
+        <member name="M:Library.Facade.ShowPokemonsHP(System.String,System.String)">
+            <summary>
+            Historia de usuario 3:
+            Muestra los puntos de vida (HP) de los Pokemon de un jugador.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
+            <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
+            <returns>Una lista de los Pokemon y sus HP o un mensaje de error.</returns>
+        </member>
+        <member name="M:Library.Facade.ChooseAttack(System.String,System.String)">
+            <summary>
+            Historia de usuario 4:
+            Permite a un jugador elegir y ejecutar un ataque durante su turno en una partida.
+            </summary>
+            <param name="playerName">Nombre del jugador que realiza el ataque.</param>
+            <param name="attackName">Nombre del ataque que se desea utilizar.</param>
+            <returns>
+            Un mensaje que indica el resultado de la acción.
+            </returns>
+        </member>
+        <member name="M:Library.Facade.CheckTurn(System.String)">
+            <summary>
+            Historia de usuario 5:
+            Comprueba si es el turno de un jugador y muestra las opciones disponibles.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <returns>Mensaje indicando si es o no su turno, junto con las opciones.</returns>
+        </member>
+        <member name="M:Library.Facade.CheckGameStatus(Library.Game)">
+            <summary>
+            Historia de usuario 6:
+            Comprueba el estado de una partida y determina si continúa o hay un ganador.
+            </summary>
+            <param name="game">La partida actual.</param>
+            <returns><c>"Próximo turno"</c> en caso de que la partida siga o un <c>string</c> conteniendo el
+            ganador y el perdedor.</returns>
+        </member>
+        <member name="M:Library.Facade.ChangePokemon(System.String,System.String)">
+            <summary>
+            Historia de usuario 7:
+            Permite a un jugador activo cambiar su Pokemon actual durante su turno en una partida.
+            </summary>
+            <param name="playerName">Nombre del jugador que desea cambiar de Pokemon.</param>
+            <param name="pokemonName">Nombre del Pokemon al que se desea cambiar.</param>
+            <returns>
+            Un mensaje que indica el resultado de la acción.
+            </returns>
+        </member>
+        <member name="M:Library.Facade.UseAnItem(System.String,System.String,System.String)">
+            <summary>
+            Historia de usuario 8
+            Permite a un jugador usar un item en un Pokemon.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <param name="item">Nombre del item a usar.</param>
+            <param name="pokemon">Nombre del Pokemon objetivo.</param>
+            <returns>Resultado del uso del item.</returns>
+        </member>
+        <member name="M:Library.Facade.AddPlayerToWaitingList(System.String)">
+            <summary>
+            Historia de usuario 9:
+            Agrega un jugador a la lista de espera.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <returns>Mensaje indicando si el jugador fue agregado o ya estaba en la lista.</returns>
+        </member>
+        <member name="M:Library.Facade.RemovePlayerFromWaitingList(System.String)">
+            <summary>
+            Historia de usuario 9.1:
+            Remueve un jugador de la lista de espera.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <returns>Mensaje indicando si el jugador fue removido o no estaba en la lista.</returns>
+        </member>
+        <member name="M:Library.Facade.GetAllPlayersWaiting">
+            <summary>
+            Historia de usuario 10
+            Muestra todos los jugadores actualmente en la lista de espera.
+            </summary>
+            <returns>Lista de jugadores en espera o un mensaje indicando que no hay nadie esperando.</returns>
+        </member>
+        <member name="M:Library.Facade.CreateGame(System.String,System.String)">
+            <summary>
+            Historia de usuario 11:
+            Crea una nueva partida entre dos jugadores, quitándolos de la lista de espera y agregando la partida a la lista de
+            juegos activos.
+            </summary>
+            <param name="playerName">Nombre del primer jugador.</param>
+            <param name="opponentName">Nombre del oponente.</param>
+            <returns>Mensaje confirmando el inicio de la partida entre ambos jugadores.</returns>
+        </member>
+        <member name="M:Library.Facade.StartBattle(System.String,System.String)">
+            <summary>
+            Historia de usuario 11.1:
+            Inicia una batalla entre dos jugadores, eligiendo un oponente específico o con el primer oponente disponible.
+            </summary>
+            <param name="playerName">Nombre del jugador que inicia la batalla.</param>
+            <param name="opponentName">Nombre del oponente (opcional).</param>
+            <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
+        </member>
+        <member name="M:Library.Facade.ShowCatalogue">
+            <summary>
+            Muestra el catálogo de Pokemon disponibles.
+            </summary>
+            <returns>Lista de Pokemon en el catálogo.</returns>
+        </member>
         <member name="T:Library.FullHealth">
             <summary>
             Esta clase representa una curación.
@@ -446,7 +638,7 @@
         </member>
         <member name="T:Library.PokemonCatalogue">
             <summary>
-            Esta clase representa el catalogo de Pokemons.
+            Esta clase representa el catálogo de Pokemons.
             </summary>
         </member>
         <member name="P:Library.PokemonCatalogue.PokemonList">
@@ -456,7 +648,7 @@
         </member>
         <member name="M:Library.PokemonCatalogue.ShowCatalogue">
             <summary>
-            Devuelve el nombre de todos los Pokemons en el catalogo. 
+            Devuelve el nombre de todos los Pokemons en el catálogo. 
             </summary>
             <returns></returns>
         </member>
