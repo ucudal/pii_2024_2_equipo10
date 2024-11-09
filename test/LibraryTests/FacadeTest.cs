@@ -54,9 +54,9 @@ public class FacadeTest
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
         string result1 = "Charizard: 360/360\n";
-        Assert.That(Facade.ShowPokemonsHP("facu"), Is.EqualTo(result1));
+        Assert.That(Facade.ShowPokemonsHp("facu"), Is.EqualTo(result1));
         string result2 = "Chikorita: 294/294\n";
-        Assert.That(Facade.ShowPokemonsHP("facu", "ines"), Is.EqualTo(result2));
+        Assert.That(Facade.ShowPokemonsHp("facu", "ines"), Is.EqualTo(result2));
     }
     
     /// <summary>

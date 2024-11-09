@@ -2,6 +2,7 @@ namespace Library;
 
 /// <summary>
 /// Esta clase representa un ataque especial.
+/// Como es un ataque hereda de <see cref="Attack"/>
 /// </summary>
 public class SpecialAttack : Attack
 {
@@ -16,7 +17,7 @@ public class SpecialAttack : Attack
     public int Cooldown { get; private set; }
 
     /// <summary>
-    /// 
+    /// Constructor de <see cref="SpecialAttack"/>
     /// </summary>
     /// <param name="name">Nombre del ataque a crear.</param>
     /// <param name="type">Tipo del ataque a crear.</param>

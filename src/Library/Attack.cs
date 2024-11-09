@@ -25,6 +25,7 @@ public class Attack : IAttack
     public int Power {get; private set;}
 
     /// <summary>
+    /// Constructor del ataque.
     /// Asigna el nombre, tipo, precisión y potencia a un ataque a crear.
     /// </summary>
     /// <param name="name">Nombre del ataque a crear.</param>
@@ -50,10 +51,5 @@ public class Attack : IAttack
         this.Accuracy = accuracy;
         this.Power =power;
 
-    }
-
-    public string GetAttack()
-    {
-        return $"";
     }
 }

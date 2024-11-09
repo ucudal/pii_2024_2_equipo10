@@ -3,12 +3,13 @@ using NUnit.Framework;
 using Type = Library.Type;
 
 namespace LibraryTests;
+
 /// <summary>
-/// Test de la clase <see cref="Chikorita"/>
+/// Test de la clase <see cref="Zeraora"/>
 /// </summary>
 [TestFixture]
-[TestOf(typeof(Chikorita))]
-public class ChikoritaTest
+[TestOf(typeof(Zeraora))]
+public class ZeraoraTest
 {
     /// <summary>
     /// Test del atributo name
@@ -16,10 +17,10 @@ public class ChikoritaTest
     [Test]
     public void TestName()
     {
-        Chikorita chikorita = new Chikorita();
-        string chikoritaName = chikorita.Name;
-        string expectedName = "Chikorita";
-        Assert.That(chikoritaName.Equals(expectedName, StringComparison.Ordinal));
+        Zeraora zeraora = new Zeraora();
+        string zeraoraName = zeraora.Name;
+        string expectedName = "Zeraora";
+        Assert.That(zeraoraName.Equals(expectedName, StringComparison.Ordinal));
     }
     
     /// <summary>
@@ -28,10 +29,10 @@ public class ChikoritaTest
     [Test]
     public void TestType()
     {
-        Chikorita chikorita = new Chikorita();
-        Type chikoritaType = chikorita.GetTypes()[0];
-        Type expectedType = Type.Grass;
-        Assert.That(chikoritaType.Equals(expectedType));
+        Zeraora zeraora = new Zeraora();
+        Type zeraoraType = zeraora.GetTypes()[0];
+        Type expectedType = Type.Electric;
+        Assert.That(zeraoraType.Equals(expectedType));
     }
     
     /// <summary>
@@ -40,39 +41,39 @@ public class ChikoritaTest
     [Test]
     public void TestLifeAndCurrentLife()
     {
-        Chikorita chikorita = new Chikorita();
-        double chikoritaBaseLife = chikorita.BaseLife;
-        double expectedBaseLife = 294;
-        Assert.That(chikoritaBaseLife.Equals(expectedBaseLife));
-        double chikoritaCurentLife = chikorita.CurrentLife;
-        double expectedCurrentLife = 294;
-        Assert.That(chikoritaCurentLife.Equals(expectedCurrentLife));
+        Zeraora zeraora = new Zeraora();
+        double zeraoraBaseLife = zeraora.BaseLife;
+        double expectedBaseLife = 380;
+        Assert.That(zeraoraBaseLife.Equals(expectedBaseLife));
+        double zeraoraCurentLife = zeraora.CurrentLife;
+        double expectedCurrentLife = 380;
+        Assert.That(zeraoraCurentLife.Equals(expectedCurrentLife));
     }
     
     /// <summary>
-    /// Test de la cantidad de ataques que tiene Chikorita
+    /// Test de la cantidad de ataques que tiene Zeraora
     /// </summary>
     [Test]
     public void TestIfItHasFourAttacks()
     {
-        Chikorita chikorita = new Chikorita();
-        List<IAttack> chikoritaAttacks = chikorita.GetAttacks();
+        Zeraora zeraora = new Zeraora();
+        List<IAttack> zeraoraAttacks = zeraora.GetAttacks();
         int expectedLenght = 4;
-        Assert.That(chikoritaAttacks.Count.Equals(expectedLenght));
+        Assert.That( zeraoraAttacks.Count.Equals(expectedLenght));
     }
     
     /// <summary>
-    /// Test de la limitación de movimientos que tiene Chikorita
+    /// Test de la limitación de movimientos que tiene Zeraora
     /// </summary>
     [Test]
     public void TestAddAFifthAttack()
     {
-        Chikorita chikorita = new Chikorita();
-        List<IAttack> chikoritaAttacks = chikorita.GetAttacks();
+        Zeraora zeraora = new Zeraora();
+        List<IAttack> zeraoraAttacks = zeraora.GetAttacks();
         Attack attack = new Attack("TestAttack", Type.Fire, 1, 1);
-        chikorita.AddAttack(attack);
+        zeraora.AddAttack(attack);
         int expectedLenght = 4;
-        Assert.That(chikoritaAttacks.Count.Equals(expectedLenght));
+        Assert.That(zeraoraAttacks.Count.Equals(expectedLenght));
     }
     
     /// <summary>
@@ -81,12 +82,12 @@ public class ChikoritaTest
     [Test]
     public void TestCurrentStateAndEditState()
     {
-        Chikorita chikorita = new Chikorita();
-        State? chikoritaCurrentState = chikorita.CurrentState;
-        Assert.That(chikoritaCurrentState.Equals(null));
-        chikorita.EditState(State.Burned);
-        State? chikoritaCurrentState2 = chikorita.CurrentState;
-        Assert.That(chikoritaCurrentState2.Equals(State.Burned));
+        Zeraora zeraora = new Zeraora();
+        State? zeraoraCurrentState = zeraora.CurrentState;
+        Assert.That(zeraoraCurrentState.Equals(null));
+        zeraora.EditState(State.Burned);
+        State? zeraoraCurrentState2 = zeraora.CurrentState;
+        Assert.That(zeraoraCurrentState2.Equals(State.Burned));
     }
 
     /// <summary>
@@ -95,42 +96,42 @@ public class ChikoritaTest
     [Test]
     public void TestAsleepTurns()
     {
-        Chikorita chikorita = new Chikorita();
-        int chikoritaCurrentState = chikorita.AsleepTurns;
+        Zeraora zeraora = new Zeraora();
+        int zeraoraCurrentState = zeraora.AsleepTurns;
         int expectedLenght = 0;
-        Assert.That(chikoritaCurrentState.Equals(expectedLenght));
+        Assert.That(zeraoraCurrentState.Equals(expectedLenght));
     }
 
-    
     /// <summary>
-    /// Test de los ataques que tiene Chikorita, confirmando que fueron creados correctamente
+    /// Test de los ataques que tiene Zeraora, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
     {
-        Chikorita chikorita = new Chikorita();
-        Attack attack1 = chikorita.FindAttackByName("Razor leaf");
+        Zeraora zeraora = new Zeraora();
+        Attack attack1 = zeraora.FindAttackByName("Plasma Fist");
         string attack1Name = attack1.Name;
         Type attack1Type = attack1.Type;
         double attack1Accuracy = attack1.Accuracy;
         int attack1Power = attack1.Power;
-        string attack1ExcpectedName = "Razor leaf";
-        Type attack1ExcpectedType = Type.Grass;
-        double attack1ExcpectedAccuracy = 0.9;
-        int attack1ExcpectedPower = 35;
+        string attack1ExcpectedName = "Plasma Fist";
+        Type attack1ExcpectedType = Type.Electric;
+        double attack1ExcpectedAccuracy = 1;
+        int attack1ExcpectedPower = 65;
         Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack1Type.Equals(attack1ExcpectedType));
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
-        Attack attack2 = chikorita.FindAttackByName("Giga Drain");
+        Attack attack2 = zeraora.FindAttackByName("Thunderbolt");
         string attack2Name = attack2.Name;
         Type attack2Type = attack2.Type;
         double attack2Accuracy = attack2.Accuracy;
         int attack2Power = attack2.Power;
-        string attack2ExcpectedName = "Giga Drain";
-        Type attack2ExcpectedType = Type.Grass;
-        double attack2ExcpectedAccuracy = 0.95;
-        int attack2ExcpectedPower = 70;
+        string attack2ExcpectedName = "Thunderbolt";
+        Type attack2ExcpectedType = Type.Electric;
+        double attack2ExcpectedAccuracy = 1;
+        int attack2ExcpectedPower = 75;
+
         if (attack2 is SpecialAttack specialAttack2)
         {
             State sAttack2SpecialEffect = specialAttack2.SpecialEffect;
@@ -141,79 +142,80 @@ public class ChikoritaTest
             Assert.That(sAttack2Cooldown.Equals(attack2ExcpectedCooldown));
 
         }
+        
         Assert.That(attack2Name.Equals(attack2ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack2Type.Equals(attack2ExcpectedType));
         Assert.That(attack2Accuracy.Equals(attack2ExcpectedAccuracy));
         Assert.That(attack2Power.Equals(attack2ExcpectedPower));
-        Attack attack3 = chikorita.FindAttackByName("Magical leaf");
+        Attack attack3 = zeraora.FindAttackByName("Close Combat");
         string attack3Name = attack3.Name;
         Type attack3Type = attack3.Type;
         double attack3Accuracy = attack3.Accuracy;
         int attack3Power = attack3.Power;
-        string attack3ExcpectedName = "Magical leaf";
-        Type attack3ExcpectedType = Type.Grass;
-        double attack3ExcpectedAccuracy = 1;
-        int attack3ExcpectedPower = 45;
+        string attack3ExcpectedName = "Close Combat";
+        Type attack3ExcpectedType = Type.Fighting;
+        double attack3ExcpectedAccuracy = 0.75;
+        int attack3ExcpectedPower = 120;
         Assert.That(attack3Name.Equals(attack3ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack3Type.Equals(attack3ExcpectedType));
         Assert.That(attack3Accuracy.Equals(attack3ExcpectedAccuracy));
         Assert.That(attack3Power.Equals(attack3ExcpectedPower));
-        Attack attack4 = chikorita.FindAttackByName("Body slam");
+
+        Attack attack4 = zeraora.FindAttackByName("Wild Charge");
         string attack4Name = attack4.Name;
         Type attack4Type = attack4.Type;
         double attack4Accuracy = attack4.Accuracy;
         int attack4Power = attack4.Power;
-        string attack4ExcpectedName = "Body slam";
-        Type attack4ExcpectedType = Type.Normal;
-        double attack4ExcpectedAccuracy = 1;
-        int attack4ExcpectedPower = 55;
+        string attack4ExcpectedName = "Wild Charge";
+        Type attack4ExcpectedType = Type.Electric;
+        double attack4ExcpectedAccuracy = 0.6;
+        int attack4ExcpectedPower = 160;
         Assert.That(attack4Name.Equals(attack4ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack4Type.Equals(attack4ExcpectedType));
         Assert.That(attack4Accuracy.Equals(attack4ExcpectedAccuracy));
         Assert.That(attack4Power.Equals(attack4ExcpectedPower));
     }
   
-    
     /// <summary>
     /// Test de los métodos RestoreBaseLife, TakeDamage y GetLife
     /// </summary>
     [Test]
     public void TestRestoreBaseLifeTakeDamageAndGetLife()
     {
-        Chikorita chikorita = new Chikorita();
-        double actualLife = chikorita.CurrentLife;
-        string actualLifeText = chikorita.GetLife();
-        chikorita.GainLife(100);
-        Assert.That(actualLife.Equals(chikorita.BaseLife));
-        Assert.That(actualLifeText.Equals("294/294", StringComparison.Ordinal));
-        chikorita.TakeDamage(120);
-        double actualLife2 = chikorita.CurrentLife;
-        string actualLifeText2 = chikorita.GetLife();
-        Assert.That(actualLife2.Equals(174));
-        Assert.That(actualLifeText2.Equals("174/294", StringComparison.Ordinal));
-        chikorita.GainLife(100);
-        double actualLife3 = chikorita.CurrentLife;
-        string actualLifeText3 = chikorita.GetLife();
-        Assert.That(actualLife3.Equals(274));
-        Assert.That(actualLifeText3.Equals("274/294", StringComparison.Ordinal));
+        Zeraora zeraora = new Zeraora();
+        double actualLife = zeraora.CurrentLife;
+        string actualLifeText = zeraora.GetLife();
+        zeraora.GainLife(100);
+        Assert.That(actualLife.Equals(zeraora.BaseLife));
+        Assert.That(actualLifeText.Equals("380/380", StringComparison.Ordinal));
+        zeraora.TakeDamage(120);
+        double actualLife2 = zeraora.CurrentLife;
+        string actualLifeText2 = zeraora.GetLife();
+        Assert.That(actualLife2.Equals(260));
+        Assert.That(actualLifeText2.Equals("260/380", StringComparison.Ordinal));
+        zeraora.GainLife(100);
+        double actualLife3 = zeraora.CurrentLife;
+        string actualLifeText3 = zeraora.GetLife();
+        Assert.That(actualLife3.Equals(360));
+        Assert.That(actualLifeText3.Equals("360/380", StringComparison.Ordinal));
     }
-    
+
     /// <summary>
     /// Test del método FindAttackByName
     /// </summary>
     [Test]
     public void TestFindAttackByName()
     {
-        Chikorita chikorita = new Chikorita();
-        Attack attack = chikorita.FindAttackByName("Magical leaf");
+        Zeraora zeraora = new Zeraora();
+        Attack attack = zeraora.FindAttackByName("Plasma Fist");
         string attack1Name = attack.Name;
         Type attack1Type = attack.Type;
         double attack1Accuracy = attack.Accuracy;
         int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Magical leaf";
-        Type attack1ExcpectedType = Type.Grass;
+        string attack1ExcpectedName = "Plasma Fist";
+        Type attack1ExcpectedType = Type.Electric;
         double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 45;
+        int attack1ExcpectedPower = 65;
         Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack1Type.Equals(attack1ExcpectedType));
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));

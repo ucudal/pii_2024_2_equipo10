@@ -130,12 +130,20 @@ public abstract class Pokemon
     {
         return this.Type;
     }
-
+    
+    /// <summary>
+    /// Actualiza el currentState del pokemon.
+    /// </summary>
+    /// <param name="state"> Estado nuevo</param>
     public void EditState(State? state)
     {
         this.CurrentState = state;
     }
 
+    /// <summary>
+    /// Añade un ataque a la lista de ataques del pokemon.
+    /// </summary>
+    /// <param name="attack"> Ataque a añadir </param>
     public void AddAttack(IAttack attack)
     {
         if (this.Attacks.Count < 4)
@@ -143,7 +151,12 @@ public abstract class Pokemon
             this.Attacks.Add(attack);
         }
     }
-
+    
+    /// <summary>
+    /// Busca un ataque dentro de la lista de ataques comparando el nombre
+    /// </summary>
+    /// <param name="attackString"> Nombre del ataque a buscar </param>
+    /// <returns> <c>Attack</c> si lo encontró, <c>null</c> si no </returns>
     public Attack FindAttackByName(string attackString)
     {
         if (attackString != null)

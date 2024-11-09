@@ -14,8 +14,8 @@ public static class DamageCalculator
     /// Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
     /// </summary>
     /// <returns>
-    /// Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
-    /// y el valor es un factor de efectividad (2.0 para súper efectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
+    /// <c>Dictionary</c> Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
+    /// y el valor es un factor de efectividad (2.0 para súperefectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
     /// </returns>
     private static Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase
     {
@@ -130,7 +130,7 @@ public static class DamageCalculator
     /// <param name="types">Una lista de los tipos del Pokemon objetivo.</param>
     /// <returns>
     /// Valor <c>double</c> indicando el factor de efectividad del ataque.
-    /// <c>2.0</c> para súper efectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
+    /// <c>2.0</c> para súperefectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
     /// </returns>
     public static double GetEffectivness(Type type, List<Type> types)
     {

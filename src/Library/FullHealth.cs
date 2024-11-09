@@ -1,7 +1,8 @@
 namespace Library;
 
 /// <summary>
-/// Esta clase representa una curación.
+/// Esta clase representa el item FullHealth.
+/// Al ser un item implementa la interfaz <see cref="IItem"/>.
 /// </summary>
 public class FullHealth : IItem
 {
@@ -25,6 +26,9 @@ public class FullHealth : IItem
         return "Pokemon no válido";
     }
 
+    /// <summary>
+    /// Contructor de <see cref="FullHealth"/>
+    /// </summary>
     public FullHealth()
     {
         this.Name = "Full Health";

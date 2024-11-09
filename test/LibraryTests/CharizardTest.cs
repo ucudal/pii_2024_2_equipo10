@@ -3,12 +3,17 @@ using NUnit.Framework;
 using Type = Library.Type;
 
 namespace LibraryTests;
-
+/// <summary>
+/// Test de la clase <see cref="Charizard"/>
+/// </summary>
 [TestFixture]
 [TestOf(typeof(Charizard))]
 public class CharizardTest
 {
 
+    /// <summary>
+    /// Test del atributo name
+    /// </summary>
     [Test]
     public void TestName()
     {
@@ -18,6 +23,9 @@ public class CharizardTest
         Assert.That(charizardName.Equals(expectedName, StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del atributo type
+    /// </summary>
     [Test]
     public void TestType()
     {
@@ -27,6 +35,10 @@ public class CharizardTest
         Assert.That(charizardType.Equals(expectedType));
     }
     
+    
+    /// <summary>
+    /// Test de los atributos life y currentLife
+    /// </summary>
     [Test]
     public void TestLifeAndCurrentLife()
     {
@@ -39,6 +51,10 @@ public class CharizardTest
         Assert.That(charizardCurentLife.Equals(expectedCurrentLife));
     }
     
+    
+    /// <summary>
+    /// Test de la cantidad de ataques que tiene Charizard
+    /// </summary>
     [Test]
     public void TestIfItHasFourAttacks()
     {
@@ -48,6 +64,10 @@ public class CharizardTest
         Assert.That(charizardAttacks.Count.Equals(expectedLenght));
     }
     
+    
+    /// <summary>
+    /// Test de la limitación de movimientos que tiene Charizard
+    /// </summary>
     [Test]
     public void TestAddAFifthAttack()
     {
@@ -59,6 +79,9 @@ public class CharizardTest
         Assert.That(charizardAttacks.Count.Equals(expectedLenght));
     }
     
+    /// <summary>
+    /// Test del atributo CurrentState y el método EditSate
+    /// </summary>
     [Test]
     public void TestCurrentStateAndEditState()
     {
@@ -70,6 +93,9 @@ public class CharizardTest
         Assert.That(charizardCurrentState2.Equals(State.Burned));
     }
 
+    /// <summary>
+    /// Test del atributo asleepTurns
+    /// </summary>
     [Test]
     public void TestAsleepTurns()
     {
@@ -78,7 +104,10 @@ public class CharizardTest
         int expectedLenght = 0;
         Assert.That(charizardCurrentState.Equals(expectedLenght));
     }
-
+    
+    /// <summary>
+    /// Test de los ataques que tiene Charizard, confirmando que fueron creados correctamente
+    /// </summary>
     [Test]
     public void TestAttacks()
     {
@@ -147,6 +176,9 @@ public class CharizardTest
         Assert.That(attack4Power.Equals(attack4ExcpectedPower));
     }
   
+    /// <summary>
+    /// Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+    /// </summary>
     [Test]
     public void TestRestoreBaseLifeTakeDamageAndGetLife()
     {
@@ -168,6 +200,9 @@ public class CharizardTest
         Assert.That(actualLifeText3.Equals("340/360", StringComparison.Ordinal));
     }
 
+    /// <summary>
+    /// Test del método FindAttackByName
+    /// </summary>
     [Test]
     public void TestFindAttackByName()
     {

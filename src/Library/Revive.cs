@@ -1,7 +1,8 @@
 namespace Library;
 
 /// <summary>
-/// Esta clase representa la posión Revivir.
+/// Esta clase representa el item Revive.
+/// Al ser un item implementa la interfaz <see cref="IItem"/>.
 /// </summary>
 public class Revive : IItem
 {
@@ -25,7 +26,9 @@ public class Revive : IItem
         pokemon.CurrentLife = (pokemon.BaseLife / 2);
         return $"{pokemon.Name} ha revivido.";
     }
-
+    /// <summary>
+    /// Constructor de <see cref="Revive"/>
+    /// </summary>
     public Revive()
     {
         this.Name = "Revive";
