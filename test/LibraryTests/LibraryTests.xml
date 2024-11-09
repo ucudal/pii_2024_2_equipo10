@@ -4,9 +4,34 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
-        <member name="M:LibraryTests.FacadeTest.TestShowAttacks">
+        <member name="T:LibraryTests.FacadeTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Facade"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1">
+            <summary>
+            Test de la historia de usuario 1.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory2">
             <summary>
             Test de la historia de usuario 2.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory3">
+            <summary>
+            Test de la historia de usuario 3.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4">
+            <summary>
+            Test de la historia de usuario 4.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory5">
+            <summary>
+            Test de la historia de usuario 5.
             </summary>
         </member>
     </members>

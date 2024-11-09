@@ -123,6 +123,11 @@
             Devuelve <c>0.0</c> si el ataque falla.
             </returns>
         </member>
+        <member name="T:Library.Facade">
+            <summary>
+            Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
+            </summary>
+        </member>
         <member name="P:Library.Facade.WaitingList">
             <summary>
             Lista de espera para jugadores que aún no están en una partida.
@@ -633,7 +638,7 @@
         </member>
         <member name="T:Library.PokemonCatalogue">
             <summary>
-            Esta clase representa el catalogo de Pokemons.
+            Esta clase representa el catálogo de Pokemons.
             </summary>
         </member>
         <member name="P:Library.PokemonCatalogue.PokemonList">
@@ -643,7 +648,7 @@
         </member>
         <member name="M:Library.PokemonCatalogue.ShowCatalogue">
             <summary>
-            Devuelve el nombre de todos los Pokemons en el catalogo. 
+            Devuelve el nombre de todos los Pokemons en el catálogo. 
             </summary>
             <returns></returns>
         </member>

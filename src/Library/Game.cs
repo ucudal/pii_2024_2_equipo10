@@ -156,7 +156,7 @@ public class Game
                 {
                     return "El ataque falló y no fue exitoso";
                 }
-                return $"{attackedPokemon} recibió {damage} puntos de daño";
+                return $"{attackedPokemon.Name} recibió {damage} puntos de daño";
             }
             else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
         }
@@ -203,12 +203,33 @@ public class Game
             return "Ese Pokemon no está en tu equipo.";
         }
 
+        if (pokemon.Name  == Players[ActivePlayer].ActivePokemon.Name)
+        {
+            return "Ese ya es tu pokemon activo";
+        }
+
         if (this.Players[ActivePlayer].SetActivePokemon(pokemon))
         { 
             return $"{pokemon.Name} es tu nuevo Pokemon activo.";
         }
 
         return $"{pokemon.Name} no tiene vida. Suerte bro, lo siento :/";
+    }
+
+    public bool CheckPlayerInGame(Player checkPlayer)
+    {
+        if (checkPlayer != null)
+        {
+            foreach (Player player in Players)
+            {
+                if (player.Name == checkPlayer.Name)
+                {
+                    return true;
+                }
+            }
+            
+        }
+        return false;
     }
     
 }
