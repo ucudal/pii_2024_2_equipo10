@@ -4,6 +4,10 @@ using Type = Library.Type;
 
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="Chikorita"/>
+/// </summary>
+ 
 [TestFixture]
 [TestOf(typeof(Chikorita))]
 public class ChikoritaTest

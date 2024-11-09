@@ -3,6 +3,10 @@ using NUnit.Framework;
 
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="SpecialAttack"/>
+/// </summary>
+
 [TestFixture]
 [TestOf(typeof(Game))]
 public class SpecialAttackTest
@@ -12,6 +16,9 @@ public class SpecialAttackTest
     {
     }
 
+    /// <summary>
+    /// Test de ataque especial.
+    /// </summary>
     [Test]
     public void TestSpecialAttack()
     {
