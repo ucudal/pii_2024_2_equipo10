@@ -14,7 +14,7 @@ public class FullHealthTest
     }
 
     /// <summary>
-    /// Test de  pocion de curacion.
+    /// Test de pocion de curacion.
     /// </summary>
 
     [Test]
