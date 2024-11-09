@@ -216,6 +216,11 @@ public class Game
         return $"{pokemon.Name} no tiene vida. Suerte bro, lo siento :/";
     }
 
+    /// <summary>
+    /// Busca si hay un jugador con el mismo nombre que el del parámetro en una partida.
+    /// </summary>
+    /// <param name="checkPlayer"> El jugador a buscar</param>
+    /// <returns> <c>true</c> si lo encontró, <c>false</c> en caso contrario </returns>
     public bool CheckPlayerInGame(Player checkPlayer)
     {
         if (checkPlayer != null)

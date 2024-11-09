@@ -31,6 +31,7 @@
         </member>
         <member name="M:Library.Attack.#ctor(System.String,Library.Type,System.Double,System.Int32)">
             <summary>
+            Constructor del ataque.
             Asigna el nombre, tipo, precisión y potencia a un ataque a crear.
             </summary>
             <param name="name">Nombre del ataque a crear.</param>
@@ -46,7 +47,7 @@
         </member>
         <member name="M:Library.Caterpie.#ctor">
             <summary>
-            Constructor de Caterpie.
+            Constructor de Caterpie, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="T:Library.Charizard">
@@ -57,7 +58,7 @@
         </member>
         <member name="M:Library.Charizard.#ctor">
             <summary>
-            Constructor de Charizard.
+            Constructor de Charizard, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="T:Library.Chikorita">
@@ -68,7 +69,7 @@
         </member>
         <member name="M:Library.Chikorita.#ctor">
             <summary>
-            Constructor de Chikorita.
+            Constructor de Chikorita, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="P:Library.DamageCalculator.EffectivnessDataBase">
@@ -76,8 +77,8 @@
             Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
             </summary>
             <returns>
-            Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
-            y el valor es un factor de efectividad (2.0 para súper efectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
+            <c>Dictionary</c> Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
+            y el valor es un factor de efectividad (2.0 para súperefectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
             </returns>
         </member>
         <member name="M:Library.DamageCalculator.GetEffectivness(Library.Type,System.Collections.Generic.List{Library.Type})">
@@ -88,7 +89,7 @@
             <param name="types">Una lista de los tipos del Pokemon objetivo.</param>
             <returns>
             Valor <c>double</c> indicando el factor de efectividad del ataque.
-            <c>2.0</c> para súper efectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
+            <c>2.0</c> para súperefectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
             </returns>
         </member>
         <member name="M:Library.DamageCalculator.CriticalCheck">
@@ -145,7 +146,7 @@
             </summary>
             <param name="playerName">Nombre del jugador.</param>
             <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
-            <returns>Mensaje indicando si el Pokemon fue añadido o si hubo un error.</returns>
+            <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido o si hubo un error.</returns>
         </member>
         <member name="M:Library.Facade.ShowAtacks(System.String)">
             <summary>
@@ -153,7 +154,7 @@
             Muestra los ataques disponibles del Pokemon activo de un jugador.
             </summary>
             <param name="playerName">Nombre del jugador activo.</param>
-            <returns>Una lista de los ataques del Pokémon activo o un mensaje de error en
+            <returns>Un <c>string</c> de los ataques del Pokémon activo o un mensaje de error en
             caso de que el jugador no exista.</returns>
         </member>
         <member name="M:Library.Facade.ShowPokemonsHP(System.String,System.String)">
@@ -164,7 +165,7 @@
             <param name="playerName">Nombre del jugador.</param>
             <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
             <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
-            <returns>Una lista de los Pokemon y sus HP o un mensaje de error.</returns>
+            <returns>Un <c>string</c> de los Pokemon y sus HP o un mensaje de error.</returns>
         </member>
         <member name="M:Library.Facade.ChooseAttack(System.String,System.String)">
             <summary>
@@ -429,7 +430,18 @@
         </member>
         <member name="M:Library.Gengar.#ctor">
             <summary>
-            Constructor de Gengar.
+            Constructor de Gengar, implementa el patron GRASP creator.
+            </summary>
+        </member>
+        <member name="T:Library.Haxorus">
+            <summary>
+            Esta clase representa el Pokemon Haxorus.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Haxorus.#ctor">
+            <summary>
+            Constructor de Haxorus, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="T:Library.IAttack">
@@ -464,6 +476,17 @@
             <param name="pokemon">Pokemon en el que se usará el item</param>
             <returns>Resultado.</returns>
         </member>
+        <member name="T:Library.Mewtwo">
+            <summary>
+            Esta clase representa el Pokemon Mewtwo.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Mewtwo.#ctor">
+            <summary>
+            Constructor de Mewtwo, implementa el patron GRASP creator.
+            </summary>
+        </member>
         <member name="T:Library.Player">
             <summary>
             Esta clase representa un jugador.
@@ -492,7 +515,7 @@
         <member name="M:Library.Player.#ctor(System.String)">
             <summary>
             Le asigna un nombre al jugador, crea las listas de pokemons e items
-            agregando items iniciales.
+            agregando items iniciales. Aplicando el patrón GRASP creator.
             </summary>
             <param name="name">Nombre del jugador a crear.</param>
         </member>
@@ -512,13 +535,14 @@
              </returns>
         </member>
         <member name="M:Library.Player.FindPokemon(System.String)">
-            <summary>
-            Devuelve un pokemon de la lista del jugador buscandolo por el nombre.
-            </summary>
-            <param name="strPokemon">Nombre del pokemon a buscar.</param>
-            <returns>
-            <c>null</c> si el pokemon no está en la lista de pokemons.
-            </returns>
+             <summary>
+             Devuelve un pokemon de la lista del jugador buscandolo por el nombre.
+             </summary>
+             <param name="strPokemon">Nombre del pokemon a buscar.</param>
+             <returns>
+             <c>null</c> si el pokemon no está en la lista de pokemons.
+            <c>Pokemon</c> si lo encontró.
+             </returns>
         </member>
         <member name="M:Library.Player.FindItem(System.String)">
              <summary>
@@ -526,7 +550,8 @@
              </summary>
              <param name="strItem">Nombre del item a buscar.</param>
              <returns>
-            <c>null</c> si el item no está en la lista items. 
+            <c>null</c> si el item no está en la lista items.
+            <c>Iitem</c> si lo encontró.
              </returns>
         </member>
         <member name="M:Library.Player.FindAttack(System.String)">
@@ -535,20 +560,27 @@
             </summary>
             <param name="strAttack">Nombre del ataque a buscar.</param>
             <returns>
-            <c>null</c> si el ataque no se encuentra en la lista de ataques. 
+            <c>null</c> si el ataque no se encuentra en la lista de ataques.
+            <c>Attack</c> si lo encontró.
             </returns>
         </member>
         <member name="M:Library.Player.GetPokemonTeam">
             <summary>
             Devuelve la lista de pokemons del jugador.
             </summary>
-            <returns></returns>
+            <returns><c>List</c></returns>
         </member>
         <member name="M:Library.Player.GetItemList">
             <summary>
             Devuelve la lista de items del jugador.
             </summary>
-            <returns></returns>
+            <returns><c>List</c></returns>
+        </member>
+        <member name="M:Library.Player.GetPokemonAttacks">
+            <summary>
+            Devuelve un <c>string</c> con los nombres de todos los ataques del pokemon activo.
+            </summary>
+            <returns><c>string</c></returns>
         </member>
         <member name="T:Library.Pokemon">
             <summary>
@@ -834,6 +866,17 @@
         <member name="M:Library.WaitingList.GetWaitingList">
             <summary>
             Devuelve la lista de jugadores en espera.
+            </summary>
+        </member>
+        <member name="T:Library.Zeraora">
+            <summary>
+            Esta clase representa el Pokemon Zeraora.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Zeraora.#ctor">
+            <summary>
+            Constructor de Zeraora, implementa el patron GRASP creator.
             </summary>
         </member>
     </members>

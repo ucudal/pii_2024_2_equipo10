@@ -20,7 +20,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
-    /// <returns>Mensaje indicando si el Pokemon fue añadido o si hubo un error.</returns>
+    /// <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
     public static string ChooseTeam(string playerName, string cPokemon)
     {
         PokemonCatalogue.SetCatalogue();
@@ -46,13 +46,16 @@ public static class Facade
                         }
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }
-                }
-                return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-            }
-            return $"El pokemon {cPokemon} no fue encontrado";
-        }
 
-        return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
+                    if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
+                    {
+                        return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
+                    }
+                }
+                return $"El pokemon {cPokemon} no fue encontrado";
+            } 
+        }
+        return "Ya tienes 6 pokemones en el equipo, no puedes elegir más";
     }
 
 
@@ -61,7 +64,7 @@ public static class Facade
     /// Muestra los ataques disponibles del Pokemon activo de un jugador.
     /// </summary>
     /// <param name="playerName">Nombre del jugador activo.</param>
-    /// <returns>Una lista de los ataques del Pokémon activo o un mensaje de error en
+    /// <returns>Un <c>string</c> de los ataques del Pokémon activo o un mensaje de error en
     /// caso de que el jugador no exista.</returns>
     public static string ShowAtacks(string playerName)
     {
@@ -80,8 +83,8 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador.</param>
     /// <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
     /// <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
-    /// <returns>Una lista de los Pokemon y sus HP o un mensaje de error.</returns>
-    public static string ShowPokemonsHP(string playerName, string playerToCheckName = null)
+    /// <returns>Un <c>string</c> de los Pokemon y sus HP o un mensaje de error.</returns>
+    public static string ShowPokemonsHp(string playerName, string playerToCheckName = null)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -117,7 +120,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que realiza el ataque.</param>
     /// <param name="attackName">Nombre del ataque que se desea utilizar.</param>
     /// <returns>
-    /// Un mensaje que indica el resultado de la acción.
+    /// Un mensaje <c>string</c> que indica el resultado de la acción.
     /// </returns>
     public static string ChooseAttack(string playerName, string attackName)
     {
@@ -167,7 +170,7 @@ public static class Facade
     /// Comprueba si es el turno de un jugador y muestra las opciones disponibles.
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
-    /// <returns>Mensaje indicando si es o no su turno, junto con las opciones.</returns>
+    /// <returns>Mensaje <c>string</c> indicando si es o no su turno, junto con las opciones.</returns>
     public static string CheckTurn(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -224,7 +227,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que desea cambiar de Pokemon.</param>
     /// <param name="pokemonName">Nombre del Pokemon al que se desea cambiar.</param>
     /// <returns>
-    /// Un mensaje que indica el resultado de la acción.
+    /// Un mensaje <c>string</c> que indica el resultado de la acción.
     /// </returns>
     public static string ChangePokemon(string playerName, string pokemonName)
     {
@@ -274,7 +277,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador.</param>
     /// <param name="item">Nombre del item a usar.</param>
     /// <param name="pokemon">Nombre del Pokemon objetivo.</param>
-    /// <returns>Resultado del uso del item.</returns>
+    /// <returns>Resultado del uso del item <c>string</c>.</returns>
     public static string UseAnItem(string playerName, string item, string pokemon)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -314,7 +317,7 @@ public static class Facade
     /// Remueve un jugador de la lista de espera.
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
-    /// <returns>Mensaje indicando si el jugador fue removido o no estaba en la lista.</returns>
+    /// <returns>Mensaje <c>string</c> indicando si el jugador fue removido o no estaba en la lista.</returns>
     public static string RemovePlayerFromWaitingList(string playerName)
     {
         if (WaitingList.RemovePlayer(playerName))
@@ -351,7 +354,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
-    /// <returns>Mensaje confirmando el inicio de la partida entre ambos jugadores.</returns>
+    /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
     public static string CreateGame(string playerName, string opponentName)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
@@ -408,7 +411,7 @@ public static class Facade
     /// <summary>
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
-    /// <returns>Lista de Pokemon en el catálogo.</returns>
+    /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
     public static string ShowCatalogue()
     {
         PokemonCatalogue.SetCatalogue();

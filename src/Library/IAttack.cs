@@ -14,6 +14,9 @@ public interface IAttack
     /// Tipo del ataque.
     /// </summary>
     public Type Type {get;}
+    /// <summary>
+    /// Precisión del ataque.
+    /// </summary>
     public double Accuracy {get;}
 
 }

@@ -1,7 +1,8 @@
 namespace Library;
 
 /// <summary>
-/// Esta clase representa la Super Posión
+/// Esta clase representa el item SuperPotion.
+/// Al ser un item implementa la interfaz <see cref="IItem"/>.
 /// </summary>
 public class SuperPotion : IItem
 {
@@ -26,7 +27,9 @@ public class SuperPotion : IItem
         }
         return null;
     }
-
+    /// <summary>
+    /// Constructor de <see cref="SuperPotion"/>
+    /// </summary>
     public SuperPotion()
     {
         this.Name = "SuperPotion";

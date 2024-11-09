@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.JavaScript;
-
-namespace Library;
+﻿namespace Library;
 
 /// <summary>
 /// Esta clase representa un jugador.
@@ -29,7 +27,7 @@ public class Player
 
     /// <summary>
     /// Le asigna un nombre al jugador, crea las listas de pokemons e items
-    /// agregando items iniciales.
+    /// agregando items iniciales. Aplicando el patrón GRASP creator.
     /// </summary>
     /// <param name="name">Nombre del jugador a crear.</param>
     public Player(string name)
@@ -85,6 +83,7 @@ public class Player
     /// <param name="strPokemon">Nombre del pokemon a buscar.</param>
     /// <returns>
     /// <c>null</c> si el pokemon no está en la lista de pokemons.
+    ///<c>Pokemon</c> si lo encontró.
     /// </returns>
     public Pokemon FindPokemon(string strPokemon)
     {
@@ -103,7 +102,8 @@ public class Player
     /// </summary>
     /// <param name="strItem">Nombre del item a buscar.</param>
     /// <returns>
-    ///<c>null</c> si el item no está en la lista items. 
+    ///<c>null</c> si el item no está en la lista items.
+    ///<c>Iitem</c> si lo encontró.
     /// </returns>
     public IItem FindItem(string strItem)
     {
@@ -123,7 +123,8 @@ public class Player
     /// </summary>
     /// <param name="strAttack">Nombre del ataque a buscar.</param>
     /// <returns>
-    /// <c>null</c> si el ataque no se encuentra en la lista de ataques. 
+    /// <c>null</c> si el ataque no se encuentra en la lista de ataques.
+    /// <c>Attack</c> si lo encontró.
     /// </returns>
     public Attack FindAttack(string strAttack)
     {
@@ -140,7 +141,7 @@ public class Player
     /// <summary>
     /// Devuelve la lista de pokemons del jugador.
     /// </summary>
-    /// <returns></returns>
+    /// <returns><c>List</c></returns>
     public List<Pokemon> GetPokemonTeam()
     {
         return this.PokemonTeam;
@@ -149,12 +150,16 @@ public class Player
     /// <summary>
     /// Devuelve la lista de items del jugador.
     /// </summary>
-    /// <returns></returns>
+    /// <returns><c>List</c></returns>
     public List<IItem> GetItemList()
     {
         return this.Items;
     }
 
+    /// <summary>
+    /// Devuelve un <c>string</c> con los nombres de todos los ataques del pokemon activo.
+    /// </summary>
+    /// <returns><c>string</c></returns>
     public string GetPokemonAttacks()
     {
             string result = "";

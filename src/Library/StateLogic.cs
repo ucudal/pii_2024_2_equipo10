@@ -1,5 +1,4 @@
 namespace Library;
-
 /// <summary>
 /// Esta clase representa la lógia de los estados del Pokemon.
 /// </summary>
