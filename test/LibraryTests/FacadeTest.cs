@@ -89,6 +89,10 @@ public class FacadeTest
         Assert.That(Facade.CheckTurn("ines"), Is.EqualTo("No es tu turno, las opciones disponibles cuando sea tu turno son:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
     }
     
+    
+    /// <summary>
+    /// Test de la historia de usuario 6.
+    /// </summary>
     [Test]
     public void TestUserStory6()
     {
@@ -114,7 +118,9 @@ public class FacadeTest
         Assert.That(attack2.Equals(excpected2, StringComparison.Ordinal));
 
     }
-    
+    /// <summary>
+    /// Test de la historia de usuario 7.
+    /// </summary>
     [Test]
     public void TestUserStory7()
     {
@@ -141,6 +147,10 @@ public class FacadeTest
         Assert.That(change1, Is.EqualTo(excpected));
     }
     
+    
+    /// <summary>
+    /// Test de la historia de usuario 8.
+    /// </summary>
     [Test]
     public void TestUserStory8()
     {
@@ -153,6 +163,10 @@ public class FacadeTest
         Assert.That(excpected, Is.EqualTo("Charizard ha ganado 70HP."));
     }
     
+    
+    /// <summary>
+    /// Test de la historia de usuario 9.
+    /// </summary>
     [Test]
     public void TestUserStory9()
     {
@@ -160,6 +174,10 @@ public class FacadeTest
         Assert.That(Facade.AddPlayerToWaitingList("facu"), Is.EqualTo("facu ya está en la lista de espera"));
     }
    
+    
+    /// <summary>
+    /// Test de la historia de usuario 10.
+    /// </summary>
     [Test]
     public void TestUserStory10()
     {
@@ -169,6 +187,10 @@ public class FacadeTest
         Assert.That(Facade.GetAllPlayersWaiting(),Is.EqualTo("Esperan: facu; ines; "));
     }
     
+    
+    /// <summary>
+    /// Test de la historia de usuario 11.
+    /// </summary>
     [Test]
     public void TestUserStory11()
     {
