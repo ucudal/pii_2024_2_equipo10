@@ -17,7 +17,17 @@ public class FullHealth : IItem
     /// <returns>El pokemon ya no tiene estado negativo.</returns>
     public string Use(Pokemon pokemon)
     {
-        pokemon.EditState(null);
-        return $"{pokemon} ya no tiene ningún estado negativo.";
+        if (pokemon != null)
+        {
+            pokemon.EditState(null);
+            return $"{pokemon.Name} ya no tiene ningún estado negativo.";
+        }
+        return "Pokemon no válido";
     }
+
+    public FullHealth()
+    {
+        this.Name = "Full Health";
+    }
+    
 }

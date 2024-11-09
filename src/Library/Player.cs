@@ -1,4 +1,6 @@
-﻿namespace Library;
+﻿using System.Runtime.InteropServices.JavaScript;
+
+namespace Library;
 
 /// <summary>
 /// Esta clase representa un jugador.
@@ -155,28 +157,12 @@ public class Player
 
     public string GetPokemonAttacks()
     {
-        string result = "";
-        foreach (IAttack atack in ActivePokemon.GetAttacks())
-        {
-            result += atack.Name + "\n";
-        }
-        return result;
-    }
-
-    public bool CheckPokemonInTeam(string pokemonName)
-    {
-        if (this.PokemonTeam.Count == 0)
-        {
-            return false;
-        }
-
-        foreach (Pokemon pokemon in this.PokemonTeam)
-        {
-            if (pokemon.Name == pokemonName)
-                return true;
-        }
-
-        return false;
+            string result = "";
+            foreach (IAttack atack in ActivePokemon.GetAttacks())
+            {
+                result += atack.Name + "\n";
+            }
+            return result;
     }
     
 }

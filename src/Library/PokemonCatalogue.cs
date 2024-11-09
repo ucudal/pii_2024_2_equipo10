@@ -1,7 +1,7 @@
 namespace Library;
 
 /// <summary>
-/// Esta clase representa el catalogo de Pokemons.
+/// Esta clase representa el catálogo de Pokemons.
 /// </summary>
 public static class PokemonCatalogue
 {
@@ -11,7 +11,7 @@ public static class PokemonCatalogue
     private static List<Pokemon> PokemonList { get; set; }
     
     /// <summary>
-    /// Devuelve el nombre de todos los Pokemons en el catalogo. 
+    /// Devuelve el nombre de todos los Pokemons en el catálogo. 
     /// </summary>
     /// <returns></returns>
     public static string ShowCatalogue()
@@ -35,12 +35,18 @@ public static class PokemonCatalogue
         Chikorita chikorita = new Chikorita();
         Gengar gengar = new Gengar();
         Caterpie caterpie = new Caterpie();
+        Mewtwo mewtwo = new Mewtwo();
+        Zeraora zeraora = new Zeraora();
+        Haxorus haxorus = new Haxorus();
         List<Pokemon> list = new List<Pokemon>();
         list.Add(charizard);
         list.Add(caterpie);
         list.Add(chikorita);
         list.Add(gengar);
         list.Add(charizard);
+        list.Add(mewtwo);
+        list.Add(zeraora);
+        list.Add(haxorus);
         PokemonList = list;
         return PokemonList;
     }
