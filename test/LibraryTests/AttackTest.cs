@@ -2,6 +2,9 @@ using Library;
 using NUnit.Framework;
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="Attack"/>
+/// </summary>
 
 public class AttackTest
 {
@@ -10,6 +13,9 @@ public class AttackTest
     {
     }
 
+    /// <summary>
+    /// Test del atributo Accuracy en 0.
+    /// </summary>
     [Test]
     public void TestAccuracy0()
     {
@@ -17,6 +23,9 @@ public class AttackTest
         Assert.That(attack.Accuracy.Equals(0));
     }
 
+    /// <summary>
+    /// Test del atributo Power en 0.
+    /// </summary>
     [Test]
     public void TestPower0()
     {
@@ -24,6 +33,9 @@ public class AttackTest
         Assert.That(attack.Power.Equals(0));
     }
 
+    /// <summary>
+    /// Test del nombre nulo
+    /// </summary>
     [Test]
     public void TestNullName()
     {
@@ -31,6 +43,9 @@ public class AttackTest
         Assert.That(new Attack("",Library.Type.Electric, 1, 30).Equals("El nombre ingresado no es válido"));
     }
 
+    /// <summary>
+    /// Test de Accuracy invalido.
+    /// </summary>
     [Test]
     public void TestInvalidAccuracy()
     {
@@ -38,6 +53,9 @@ public class AttackTest
         Assert.That(new Attack("impactrueno",Library.Type.Electric, 70000, 30).Equals("La precision ingresada no es válido"));
     }
 
+    /// <summary>
+    /// Test de Power invalido.
+    /// </summary>
     [Test]
     public void TestInvalidPower()
     {

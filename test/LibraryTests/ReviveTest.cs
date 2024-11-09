@@ -2,6 +2,9 @@ using Library;
 using NUnit.Framework;
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="Revive"/>
+/// </summary>
 
 public class ReviveTest
 {
@@ -10,6 +13,9 @@ public class ReviveTest
     {
     }
 
+    /// <summary>
+    /// Test de pocion de revivir.
+    /// </summary>
     [Test]
     public void ReviveCorrectUse()
     {
