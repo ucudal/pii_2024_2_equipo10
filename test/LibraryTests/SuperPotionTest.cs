@@ -2,6 +2,9 @@ using Library;
 using NUnit.Framework;
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="SuperPotion"/>
+/// </summary>
 
 public class SuperPotionTest
 {
@@ -10,6 +13,9 @@ public class SuperPotionTest
     {
     }
 
+    /// <summary>
+    /// Test de pocion de curacion.
+    /// </summary>
     [Test]
     public void SuperPotionCorrectUse()
     {

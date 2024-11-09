@@ -4,6 +4,71 @@
         <name>LibraryTests</name>
     </assembly>
     <members>
+        <member name="T:LibraryTests.AttackTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Attack"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.AttackTest.TestAccuracy0">
+            <summary>
+            Test del atributo Accuracy en 0.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.AttackTest.TestPower0">
+            <summary>
+            Test del atributo Power en 0.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.AttackTest.TestNullName">
+            <summary>
+            Test del nombre nulo
+            </summary>
+        </member>
+        <member name="M:LibraryTests.AttackTest.TestInvalidAccuracy">
+            <summary>
+            Test de Accuracy invalido.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.AttackTest.TestInvalidPower">
+            <summary>
+            Test de Power invalido.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.CharizardTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Charizard"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestName">
+            <summary>
+            Test de name valido.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestType">
+            <summary>
+            Test de Type.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de atributos de vida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de verificacion de numero de ataques.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestAddAFifthAttack">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="T:LibraryTests.ChikoritaTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Chikorita"/>
+            </summary>
+        </member>
         <member name="T:LibraryTests.FacadeTest">
             <summary>
             Test de la clase <see cref="T:Library.Facade"/>
@@ -32,6 +97,56 @@
         <member name="M:LibraryTests.FacadeTest.TestUserStory5">
             <summary>
             Test de la historia de usuario 5.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory6">
+            <summary>
+            Test de la historia de usuario 6.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory7">
+            <summary>
+            Test de la historia de usuario 7.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory8">
+            <summary>
+            Test de la historia de usuario 8.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory9">
+            <summary>
+            Test de la historia de usuario 9.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory10">
+            <summary>
+            Test de la historia de usuario 10.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory11">
+            <summary>
+            Test de la historia de usuario 11.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.FullHealthTest">
+            <summary>
+            Test de la clase <see cref="T:Library.FullHealth"/>
+            </summary>
+        </member>
+        <member name="T:LibraryTests.ReviveTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Revive"/>
+            </summary>
+        </member>
+        <member name="T:LibraryTests.SpecialAttackTest">
+            <summary>
+            Test de la clase <see cref="T:Library.SpecialAttack"/>
+            </summary>
+        </member>
+        <member name="T:LibraryTests.SuperPotionTest">
+            <summary>
+            Test de la clase <see cref="T:Library.SuperPotion"/>
             </summary>
         </member>
     </members>

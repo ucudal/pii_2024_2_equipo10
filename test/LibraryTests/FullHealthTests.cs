@@ -2,6 +2,9 @@ using Library;
 using NUnit.Framework;
 namespace LibraryTests;
 
+/// <summary>
+/// Test de la clase <see cref="FullHealth"/>
+/// </summary>
 
 public class FullHealthTest
 {
@@ -9,6 +12,10 @@ public class FullHealthTest
     public void Setup()
     {
     }
+
+    /// <summary>
+    /// Test de pocion de curacion.
+    /// </summary>
 
     [Test]
     public void FullHealthCorrectUse()
