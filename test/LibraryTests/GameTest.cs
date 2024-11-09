@@ -38,7 +38,7 @@ public class GameTest
         player2.SetActivePokemon(gengar);
         Attack attack = new Attack("kamehameha", Library.Type.Electric, 1, 1000);
         game.ExecuteAttack(attack);
-        Assert.That(game.Winner(), Is.EqualTo($"Ganador: Player 1. Perdedor: Player 1"));
+        Assert.That(game.Winner(), Is.EqualTo($"Ganador: Player 1. Perdedor: Player 2"));
 
     }
 }

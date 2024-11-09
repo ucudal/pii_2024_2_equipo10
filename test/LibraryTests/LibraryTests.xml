@@ -61,7 +61,32 @@
         </member>
         <member name="M:LibraryTests.CharizardTest.TestAddAFifthAttack">
             <summary>
-            Test del atributo name
+            Test de verificacion de limite de ataques
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestCurrentStateAndEditState">
+            <summary>
+            Test de State y edicion.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestAsleepTurns">
+            <summary>
+            Test de turnos dormidos.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestAttacks">
+            <summary>
+            Test de ataques
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de ataques y vida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestFindAttackByName">
+            <summary>
+            Test de encontrar ataque por nombre.
             </summary>
         </member>
         <member name="T:LibraryTests.ChikoritaTest">
@@ -134,9 +159,19 @@
             Test de la clase <see cref="T:Library.FullHealth"/>
             </summary>
         </member>
+        <member name="M:LibraryTests.FullHealthTest.FullHealthCorrectUse">
+            <summary>
+            Test de pocion de curacion.
+            </summary>
+        </member>
         <member name="T:LibraryTests.ReviveTest">
             <summary>
             Test de la clase <see cref="T:Library.Revive"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.ReviveTest.ReviveCorrectUse">
+            <summary>
+            Test de pocion de revivir.
             </summary>
         </member>
         <member name="T:LibraryTests.SpecialAttackTest">
@@ -144,9 +179,19 @@
             Test de la clase <see cref="T:Library.SpecialAttack"/>
             </summary>
         </member>
+        <member name="M:LibraryTests.SpecialAttackTest.TestSpecialAttack">
+            <summary>
+            Test de ataque especial.
+            </summary>
+        </member>
         <member name="T:LibraryTests.SuperPotionTest">
             <summary>
             Test de la clase <see cref="T:Library.SuperPotion"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse">
+            <summary>
+            Test de pocion de curacion.
             </summary>
         </member>
     </members>
