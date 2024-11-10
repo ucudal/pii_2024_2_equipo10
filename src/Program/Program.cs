@@ -1,25 +1,33 @@
-﻿//--------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="Universidad Católica del Uruguay">
-//     Copyright (c) Programación II. Derechos reservados.
-// </copyright>
-//--------------------------------------------------------------------------------
+﻿using Library;
+using Ucu.Poo.DiscordBot.Services;
 
-using System;
-using Library;
+namespace Program;
 
-namespace ConsoleApplication
+/// <summary>
+/// Un programa que implementa un bot de Discord.
+/// </summary>
+internal static class Program
 {
     /// <summary>
-    /// Programa de consola de demostración.
+    /// Punto de entrada al programa.
     /// </summary>
-    public static class Program
+    private static void Main()
     {
-        /// <summary>
-        /// Punto de entrada al programa principal.
-        /// </summary>
-        public static void Main()
-        {
-            Console.WriteLine("Hello World!");
-        }
+        // DemoFacade();
+        DemoBot();
+    }
+
+    private static void DemoFacade()
+    {
+        Console.WriteLine(Facade.AddPlayerToWaitingList("player"));
+        Console.WriteLine(Facade.AddPlayerToWaitingList("opponent"));
+        Console.WriteLine(Facade.GetAllPlayersWaiting());
+        Console.WriteLine(Facade.StartBattle("player", "opponent"));
+        Console.WriteLine(Facade.GetAllPlayersWaiting());
+    }
+
+    private static void DemoBot()
+    {
+        BotLoader.LoadAsync().GetAwaiter().GetResult();
     }
 }
