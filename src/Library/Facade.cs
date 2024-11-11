@@ -374,12 +374,13 @@ public static class Facade
 
     /// <summary>
     /// Historia de usuario 11.1:
-    /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o con el primer oponente disponible.
+    /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o un jugador
+    /// al azar de la lista de espera.
     /// </summary>
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
-    public static string StartGame(string playerName, string opponentName)
+    public static string StartGame(string playerName, string? opponentName = null)
     {
         Player opponent;
         if (!OpponentProvided() && !SomebodyIsWaiting())
