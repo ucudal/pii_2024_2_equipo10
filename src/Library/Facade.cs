@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace Library;
 /// <summary>
 /// Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
@@ -304,6 +306,11 @@ public static class Facade
     /// <returns>Mensaje indicando si el jugador fue agregado o ya estaba en la lista.</returns>
     public static string AddPlayerToWaitingList(string playerName)
     {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (GameList.FindGameByPlayer(player) != null)
+        {
+            return $"{playerName} ya está en una partida";
+        }
         if (WaitingList.AddPlayer(playerName))
         {
             return $"{playerName} agregado a la lista de espera";
