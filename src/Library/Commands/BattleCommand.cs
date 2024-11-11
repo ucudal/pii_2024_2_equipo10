@@ -18,6 +18,7 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
     /// Implementa el comando 'battle'. Este comando une al jugador que envía el
     /// mensaje a la lista de jugadores esperando para jugar.
     /// </summary>
+    /// <param name="opponentDisplayName">Nombre de oponente, puede ser nulo.</param>
     [Command("battle")]
     [Summary(
         """
