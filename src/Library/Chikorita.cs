@@ -13,4 +13,9 @@ public class Chikorita : Pokemon
     {
         
     }
+    
+    public override Pokemon Instance()
+    {
+        return new Chikorita();
+    }
 }

@@ -13,4 +13,10 @@ public class Gengar : Pokemon
     {
         
     }
+    
+    public override Pokemon Instance()
+    {
+        return new Gengar();
+    }
+    
 }

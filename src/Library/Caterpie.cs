@@ -13,4 +13,9 @@ public class Caterpie: Pokemon
     {
         
     }
+    
+    public override Pokemon Instance()
+    {
+        return new Caterpie();
+    }
 }
