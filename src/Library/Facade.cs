@@ -355,7 +355,7 @@ public static class Facade
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
     /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
-    public static string CreateGame(string playerName, string opponentName)
+    private static string CreateGame(string playerName, string opponentName)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
@@ -372,7 +372,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
-    public static string StartBattle(string playerName, string opponentName)
+    public static string StartGame(string playerName, string opponentName)
     {
         Player opponent;
         if (!OpponentProvided() && !SomebodyIsWaiting())
