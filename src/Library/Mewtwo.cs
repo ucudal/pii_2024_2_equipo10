@@ -14,4 +14,9 @@ public class Mewtwo: Pokemon
         new Attack("Drain Punch", Type.Fighting, 0.95, 80))
     {
     }
+    
+    public override Pokemon Instance()
+    {
+        return new Mewtwo();
+    }
 }

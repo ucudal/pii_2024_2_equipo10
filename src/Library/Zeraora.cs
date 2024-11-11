@@ -16,4 +16,9 @@ public class Zeraora: Pokemon
     {
 
     }
+    
+    public override Pokemon Instance()
+    {
+        return new Zeraora();
+    }
 }

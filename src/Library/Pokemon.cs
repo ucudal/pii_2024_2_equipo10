@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 
 namespace Library;
 
@@ -172,5 +171,7 @@ public abstract class Pokemon
         }
         return null;
     }
-    
+
+    public abstract Pokemon Instance();
+
 }

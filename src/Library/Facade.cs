@@ -32,17 +32,17 @@ public static class Facade
         }
 
         if (player.GetPokemonTeam().Count < 6)
-        {
-            if (cPokemon != null)
+        { 
             {
                 foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
                 {
                     if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
                     {
-                        player.AddToTeam(pokemon);
+                        Pokemon newPokemon = pokemon.Instance();
+                        player.AddToTeam(newPokemon);
                         if (player.GetPokemonTeam().Count == 1)
                         {
-                            player.SetActivePokemon(pokemon);
+                            player.SetActivePokemon(newPokemon);
                         }
                         return $"El pokemon {cPokemon} fue añadido al equipo";
                     }

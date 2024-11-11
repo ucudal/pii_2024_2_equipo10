@@ -929,5 +929,105 @@
             Constructor de Zeraora, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.BattleCommand">
+            <summary>
+            Esta clase implementa el comando 'battle' del bot. Este comando une al
+            jugador que envía el mensaje con el oponente que se recibe como parámetro,
+            si lo hubiera, en una batalla; si no se recibe un oponente, lo une con
+            cualquiera que esté esperando para jugar.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.BattleCommand.ExecuteAsync(System.String)">
+            <summary>
+            Implementa el comando 'battle'. Este comando une al jugador que envía el
+            mensaje a la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.JoinCommand">
+            <summary>
+            Esta clase implementa el comando 'join' del bot. Este comando une al jugador
+            que envía el mensaje a la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.JoinCommand.ExecuteAsync">
+            <summary>
+            Implementa el comando 'join'. Este comando une al jugador que envía el
+            mensaje a la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.LeaveCommand">
+            <summary>
+            Esta clase implementa el comando 'leave' del bot. Este comando remueve el
+            jugador que envía el mensaje de la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.LeaveCommand.ExecuteAsync">
+            <summary>
+            Implementa el comando 'leave' del bot. Este comando remueve el jugador
+            que envía el mensaje de la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.PokemonNameCommand">
+            <summary>
+            Esta clase implementa el comando 'name' del bot. Este comando retorna el
+            nombre de un Pokémon dado su identificador.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.PokemonNameCommand.#ctor(Microsoft.Extensions.Logging.ILogger{Ucu.Poo.DiscordBot.Commands.PokemonNameCommand})">
+            <summary>
+            Inicializa una nueva instancia de la clase
+            <see cref="T:Ucu.Poo.DiscordBot.Commands.PokemonNameCommand"/> con los valores recibidos como
+            argumento.
+            </summary>
+            <param name="logger">El servicio de logging a utilizar.</param>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.PokemonNameCommand.ExecuteAsync(System.Int32)">
+            <summary>
+            Implementa el comando 'name'. Este comando retorna el nombre de un
+            Pokémon dado su identificador.
+            </summary>
+            <param name="id">El identificador del Pokémon a buscar.</param>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.UserInfoCommand">
+            <summary>
+            Esta clase implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            Este comando retorna información sobre el usuario que envía el mensaje o sobre
+            otro usuario si se incluye como parámetro..
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.UserInfoCommand.ExecuteAsync(System.String)">
+            <summary>
+            Implementa el comando 'userinfo', alias 'who' o 'whois' del bot.
+            </summary>
+            <param name="displayName">El nombre de usuario de Discord a buscar.</param>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.WaitingCommand">
+            <summary>
+            Esta clase implementa el comando 'waitinglist' del bot. Este comando muestra
+            la lista de jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.WaitingCommand.ExecuteAsync">
+            <summary>
+            Implementa el comando 'waitinglist'. Este comando muestra la lista de
+            jugadores esperando para jugar.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Services.Bot">
+            <summary>
+            Esta clase implementa el bot de Discord.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Services.BotLoader">
+            <summary>
+            Esta clase ejecuta el bot de Discord hasta que en la terminal donde se
+            ejecuta el bot se oprime la tecla 'Q'.
+            </summary>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Services.IBot">
+            <summary>
+            La interfaz del Bot de Discord para usar con inyección de dependencias.
+            </summary>
+        </member>
     </members>
 </doc>
