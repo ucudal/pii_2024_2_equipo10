@@ -32,8 +32,7 @@ public static class Facade
         }
 
         if (player.GetPokemonTeam().Count < 6)
-        {
-            if (cPokemon != null)
+        { 
             {
                 foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
                 {
