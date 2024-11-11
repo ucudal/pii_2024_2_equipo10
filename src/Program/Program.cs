@@ -22,7 +22,7 @@ internal static class Program
         Console.WriteLine(Facade.AddPlayerToWaitingList("player"));
         Console.WriteLine(Facade.AddPlayerToWaitingList("opponent"));
         Console.WriteLine(Facade.GetAllPlayersWaiting());
-        Console.WriteLine(Facade.StartBattle("player", "opponent"));
+        Console.WriteLine(Facade.StartGame("player", "opponent"));
         Console.WriteLine(Facade.GetAllPlayersWaiting());
     }
 

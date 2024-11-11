@@ -249,7 +249,7 @@
             <param name="opponentName">Nombre del oponente.</param>
             <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
         </member>
-        <member name="M:Library.Facade.StartBattle(System.String,System.String)">
+        <member name="M:Library.Facade.StartGame(System.String,System.String)">
             <summary>
             Historia de usuario 11.1:
             Inicia una batalla entre dos jugadores, eligiendo un oponente específico o con el primer oponente disponible.
