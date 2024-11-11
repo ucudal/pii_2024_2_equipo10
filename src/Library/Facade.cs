@@ -383,20 +383,30 @@ public static class Facade
     public static string StartGame(string playerName, string? opponentName = null)
     {
         Player opponent;
+        Player player = GameList.FindPlayerByName(playerName);
+        if (GameList.FindGameByPlayer(player) != null)
+        {
+            return $"{playerName} ya está en una partida";
+        }
+        
         if (!OpponentProvided() && !SomebodyIsWaiting())
             return "No hay nadie esperando";
+        
         if (!OpponentProvided())
         {
-            opponent = WaitingList.GetAnyoneWaiting();
+            opponent = GameList.FindPlayerByName(opponentName);
+            if (GameList.FindGameByPlayer(opponent) != null)
+                return $"{opponentName} ya está en una partida";
+            opponent = WaitingList.GetAnyoneWaiting(playerName);
             return CreateGame(playerName, opponent!.Name);
         }
-
+        
         opponent = WaitingList.FindPlayerByName(opponentName!);
         if (!OpponentFound())
         {
             return $"{opponentName} no está esperando";
         }
-
+        
         return CreateGame(playerName, opponent!.Name);
 
         bool OpponentProvided()
@@ -414,8 +424,7 @@ public static class Facade
             return opponent != null;
         }
     }
-
-
+    
     /// <summary>
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
