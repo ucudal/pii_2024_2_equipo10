@@ -1,0 +1,24 @@
+digraph "Graphical Class Hierarchy"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node0 [id="Node000000",label="Library.Pokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html",tooltip="Esta clase representa un Pokemon."];
+  Node0 -> Node1 [id="edge6_Node000000_Node000001",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 [id="Node000001",label="Library.Caterpie",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Caterpie.html",tooltip="Esta clase representa el Pokemon Caterpie. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node2 [id="edge7_Node000000_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Charizard",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Charizard.html",tooltip="Esta clase representa el Pokemon Charizard. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node3 [id="edge8_Node000000_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Chikorita",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Chikorita.html",tooltip="Esta clase representa el Pokemon Chikorita. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node4 [id="edge9_Node000000_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.Gengar",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Gengar.html",tooltip="Esta clase representa el Pokemon Gengar. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node5 [id="edge10_Node000000_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Library.Haxorus",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Haxorus.html",tooltip="Esta clase representa el Pokemon Haxorus. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node6 [id="edge11_Node000000_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Library.Mewtwo",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Mewtwo.html",tooltip="Esta clase representa el Pokemon Mewtwo. Al ser un Pokemon hereda de la clase Pokemon."];
+  Node0 -> Node7 [id="edge12_Node000000_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Library.Zeraora",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Zeraora.html",tooltip="Esta clase representa el Pokemon Zeraora. Al ser un Pokemon hereda de la clase Pokemon."];
+}

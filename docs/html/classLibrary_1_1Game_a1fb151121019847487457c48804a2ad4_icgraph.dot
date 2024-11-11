@@ -1,0 +1,14 @@
+digraph "Library.Game.GetPlayers"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Game.GetPlayers",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Obtiene la lista de jugadores de la partida."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.GameList.FindGame\lByPlayer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html#ae4cc442c2a00c3746fd92955ddcb849a",tooltip="Devuelve la partida en la que se encuentra un jugador."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.GameList.FindPlayer\lByName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff",tooltip="Devuelve un jugador buscandolo por su nombre."];
+}
