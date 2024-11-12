@@ -442,4 +442,18 @@ public static class Facade
         PokemonCatalogue.SetCatalogue();
         return PokemonCatalogue.ShowCatalogue();
     }
+
+    /// <summary>
+    /// Devuelve la cantidad de Pokemons del jugador
+    /// </summary>
+    /// <param name="playerName">Nombre del juagodr.</param>
+    /// <returns>Cantidad de Pokemons en el equipo del jugador. Devuelve
+    /// nulll si el jugador no está en una partida.</returns>
+    public static int? TeamCountByName(string playerName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+            return null;
+        return player.TeamCount();
+    }
 }

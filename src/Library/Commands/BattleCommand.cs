@@ -39,21 +39,29 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         if (opponentUser != null)
         {
             result = Facade.StartGame(displayName, opponentUser.DisplayName);
-            if(result.Contains("Vs."))
+            if(result.Contains(" Vs. "))
             {
                 await Context.Message.Author.SendMessageAsync(result);
                 await opponentUser.SendMessageAsync(result);
+                await Context.Message.Author.SendMessageAsync("!choose 'Nombre del Pokemon' para elegir un Pokemon, !help para más comandos.\nElegí uno de estos:");
+                await opponentUser.SendMessageAsync("!choose 'Nombre del Pokemon' para elegir un Pokemon, !help para más comandos.\nElegí uno de estos:");
+                await Context.Message.Author.SendMessageAsync(Facade.ShowCatalogue());
+                await opponentUser.SendMessageAsync(Facade.ShowCatalogue());
             }
         }
         else
         {
             result = Facade.StartGame(displayName, opponentDisplayName);
-            if (result.Contains("Vs."))
+            if (result.Contains(" Vs. "))
             {
                 string[] splitResult = result.Split(" Vs. ");
                 opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
                 await Context.Message.Author.SendMessageAsync(result);
                 await opponentUser.SendMessageAsync(result);
+                await Context.Message.Author.SendMessageAsync("!choose 'Nombre del Pokemon' para elegir un Pokemon, !help para más comandos.\nElegí uno de estos:");
+                await opponentUser.SendMessageAsync("!choose 'Nombre del Pokemon' para elegir un Pokemon, !help para más comandos.\nElegí uno de estos:");
+                await Context.Message.Author.SendMessageAsync(Facade.ShowCatalogue());
+                await opponentUser.SendMessageAsync(Facade.ShowCatalogue());
             }
         }
         await ReplyAsync(result);

@@ -3,7 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'choose' del bot.
@@ -14,7 +14,7 @@ public class ChooseCommand : ModuleBase<SocketCommandContext>
     /// Envía a la fachada un mensaje con el Pokemon seleccionado.
     /// </summary>
     /// <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
-    [Command("attack")]
+    [Command("choose")]
     [Summary(
         """
         Agrega al equipo del jugador el Pokemon seleccionado.
@@ -24,7 +24,18 @@ public class ChooseCommand : ModuleBase<SocketCommandContext>
         [Remainder] [Summary("Nombre del pokemon.")]
         string pokemonName)
     {
+        string displayName = CommandHelper.GetDisplayName(Context);
+        string result;
+        if (Facade.TeamCountByName(displayName) == null)
+            //await Context.Message.Author.SendMessageAsync("Para poder elegir un equipo, primero debes estar en una batalla");
+            await ReplyAsync("Para poder elegir un equipo, primero debes estar en una batalla");
+
+        else
+        {
+            await Context.Message.Author.SendMessageAsync("Elegí uno de estos:");
+            await Context.Message.Author.SendMessageAsync(Facade.ShowCatalogue());
+        }
+        //await ReplyAsync(result)
 
     }
-
 }

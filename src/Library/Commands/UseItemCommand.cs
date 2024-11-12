@@ -25,11 +25,8 @@ public class UseItemCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync(
         [Remainder]
-        [Summary("Nombre de Pokemon a ser beneficiado")]
-        string pokemonName, 
-        [Remainder]
-        [Summary("Nombre del item a utilizar")]
-        string itemName)
+        [Summary("Nombre de Pokemon a ser beneficiado y item a utiliar concatenados.")]
+        string pokemonAndItemName)
     {
         
     }

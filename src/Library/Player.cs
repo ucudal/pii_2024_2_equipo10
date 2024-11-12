@@ -169,5 +169,9 @@ public class Player
             }
             return result;
     }
-    
+
+    public int TeamCount()
+    {
+        return this.PokemonTeam.Count;
+    }
 }
