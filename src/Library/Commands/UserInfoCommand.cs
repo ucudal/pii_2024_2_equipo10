@@ -2,7 +2,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'userinfo', alias 'who' o 'whois' del bot.

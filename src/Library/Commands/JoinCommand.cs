@@ -1,7 +1,7 @@
 using Discord.Commands;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'join' del bot. Este comando une al jugador
