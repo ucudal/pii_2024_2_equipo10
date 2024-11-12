@@ -929,6 +929,17 @@
             Constructor de Zeraora, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.AttackCommand">
+            <summary>
+            Esta clase implementa el comando 'attack' del bot.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.AttackCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el ataque a utilizar.
+            </summary>
+            <param name="attack">Ataque a utilizar.</param>
+        </member>
         <member name="T:Ucu.Poo.DiscordBot.Commands.BattleCommand">
             <summary>
             Esta clase implementa el comando 'battle' del bot. Este comando une al
@@ -942,6 +953,30 @@
             Implementa el comando 'battle'. Este comando une al jugador que envía el
             mensaje a la lista de jugadores esperando para jugar.
             </summary>
+            <param name="opponentDisplayName">Nombre de oponente, puede ser nulo.</param>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.ChangePokemonCommand">
+            <summary>
+            Esta clase implementa el comando 'changepokemon' del bot.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.ChangePokemonCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó
+            para ser su nuevo Pokemon activo.
+            </summary>
+            <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.ChooseCommand">
+            <summary>
+            Esta clase implementa el comando 'attack' del bot.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.ChooseCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el ataque a utilizar.
+            </summary>
+            <param name="attack">Ataque a utilizar.</param>
         </member>
         <member name="T:Ucu.Poo.DiscordBot.Commands.JoinCommand">
             <summary>
@@ -987,6 +1022,18 @@
             Pokémon dado su identificador.
             </summary>
             <param name="id">El identificador del Pokémon a buscar.</param>
+        </member>
+        <member name="T:Ucu.Poo.DiscordBot.Commands.UseItemCommand">
+            <summary>
+            Esta clase implementa el comando 'useitem' del bot.
+            </summary>
+        </member>
+        <member name="M:Ucu.Poo.DiscordBot.Commands.UseItemCommand.ExecuteAsync(System.String,System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
+            </summary>
+            <param name="pokemonName">Pokemon seleccionado.</param>
+            <param name="itemName">Item a utilizar.</param>
         </member>
         <member name="T:Ucu.Poo.DiscordBot.Commands.UserInfoCommand">
             <summary>
