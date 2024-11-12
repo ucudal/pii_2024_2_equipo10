@@ -369,12 +369,13 @@ public static class Facade
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent);
-        return $"Comienza {playerName} vs {opponentName}";
+        return $"Comienza {playerName} Vs. {opponentName}";
     }
 
     /// <summary>
     /// Historia de usuario 11.1:
-    /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o con el primer oponente disponible.
+    /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o un jugador
+    /// al azar de la lista de espera.
     /// </summary>
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
@@ -382,20 +383,38 @@ public static class Facade
     public static string StartGame(string playerName, string opponentName)
     {
         Player opponent;
-        if (!OpponentProvided() && !SomebodyIsWaiting())
-            return "No hay nadie esperando";
-        if (!OpponentProvided())
+        Player player = GameList.FindPlayerByName(playerName);
+        if (GameList.FindGameByPlayer(player) != null)
         {
-            opponent = WaitingList.GetAnyoneWaiting();
-            return CreateGame(playerName, opponent!.Name);
+            return $"{playerName} ya está en una partida";
         }
 
+        if (WaitingList.FindPlayerByName(playerName) == null)
+            return $"{playerName}, no estas en la lista de espera";
+        
+        if (!OpponentProvided() && !SomebodyIsWaiting())
+            return "No hay nadie esperando";
+        
+        if (!OpponentProvided())
+        {
+            opponent = GameList.FindPlayerByName(opponentName);
+            if (GameList.FindGameByPlayer(opponent) != null)
+                return $"{opponentName} ya está en una partida";
+            opponent = WaitingList.GetSomeone(playerName);
+            if(opponent == null)
+                return "No hay nadie más en la lista de espera";
+            return CreateGame(playerName, opponent!.Name);
+        }
+        
         opponent = WaitingList.FindPlayerByName(opponentName!);
         if (!OpponentFound())
         {
             return $"{opponentName} no está esperando";
         }
 
+        if (GameList.FindGameByPlayer(opponent) != null)
+            return $"{opponentName} ya está en una partida";
+        
         return CreateGame(playerName, opponent!.Name);
 
         bool OpponentProvided()
@@ -413,8 +432,7 @@ public static class Facade
             return opponent != null;
         }
     }
-
-
+    
     /// <summary>
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>

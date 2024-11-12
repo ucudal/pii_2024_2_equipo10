@@ -1,9 +1,9 @@
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Library;
+using Library.Commands;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'battle' del bot. Este comando une al
@@ -28,27 +28,34 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         """)]
     // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync(
-        [Remainder]
-        [Summary("Display name del oponente, opcional")]
+        [Remainder] [Summary("Display name del oponente, opcional")]
         string? opponentDisplayName = null)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         
         SocketGuildUser? opponentUser = CommandHelper.GetUser(
             Context, opponentDisplayName);
-
         string result;
         if (opponentUser != null)
         {
             result = Facade.StartGame(displayName, opponentUser.DisplayName);
-            await Context.Message.Author.SendMessageAsync(result);
-            await opponentUser.SendMessageAsync(result);
+            if(result.Contains("Vs."))
+            {
+                await Context.Message.Author.SendMessageAsync(result);
+                await opponentUser.SendMessageAsync(result);
+            }
         }
         else
         {
-            result = $"No hay un usuario {opponentDisplayName}";
+            result = Facade.StartGame(displayName, opponentDisplayName);
+            if (result.Contains("Vs."))
+            {
+                string[] splitResult = result.Split(" Vs. ");
+                opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
+                await Context.Message.Author.SendMessageAsync(result);
+                await opponentUser.SendMessageAsync(result);
+            }
         }
-
         await ReplyAsync(result);
     }
 }

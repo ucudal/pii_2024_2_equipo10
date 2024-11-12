@@ -1,7 +1,7 @@
 using Discord.Commands;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'leave' del bot. Este comando remueve el
@@ -20,7 +20,7 @@ public class LeaveCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync()
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        // string result = Facade.RemoveTrainerFromWaitingList(displayName);
-        await ReplyAsync(displayName);
+        string result = Facade.RemovePlayerFromWaitingList(displayName);
+        await ReplyAsync(result);
     }
 }
