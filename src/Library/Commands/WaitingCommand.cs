@@ -1,7 +1,7 @@
 using Discord.Commands;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'waitinglist' del bot. Este comando muestra

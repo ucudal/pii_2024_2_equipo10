@@ -69,14 +69,16 @@ public class WaitingList
     /// <summary>
     /// Devuelve un jugador al azar de la lista de espera.
     /// </summary>
-    public Player? GetAnyoneWaiting(string playerName)
+    public Player? GetSomeone(string playerName)
     {
         Random random = new Random();
-        int randomNumber = random.Next(0, this.Count);
-        while (this.Players[randomNumber].Name == playerName)
+        if (this.Count <= 1)
+            return null;
+        int randomNumber;
+        do
         {
             randomNumber = random.Next(0, this.Count);
-        }
+        } while (this.Players[randomNumber].Name == playerName);
         return this.Players[randomNumber];
     }
 

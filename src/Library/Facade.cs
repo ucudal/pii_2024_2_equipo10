@@ -369,7 +369,7 @@ public static class Facade
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent);
-        return $"Comienza {playerName} vs {opponentName}";
+        return $"Comienza {playerName} Vs. {opponentName}";
     }
 
     /// <summary>
@@ -380,7 +380,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
-    public static string StartGame(string playerName, string? opponentName = null)
+    public static string StartGame(string playerName, string opponentName)
     {
         Player opponent;
         Player player = GameList.FindPlayerByName(playerName);
@@ -388,6 +388,9 @@ public static class Facade
         {
             return $"{playerName} ya está en una partida";
         }
+
+        if (WaitingList.FindPlayerByName(playerName) == null)
+            return $"{playerName}, no estas en la lista de espera";
         
         if (!OpponentProvided() && !SomebodyIsWaiting())
             return "No hay nadie esperando";
@@ -397,7 +400,9 @@ public static class Facade
             opponent = GameList.FindPlayerByName(opponentName);
             if (GameList.FindGameByPlayer(opponent) != null)
                 return $"{opponentName} ya está en una partida";
-            opponent = WaitingList.GetAnyoneWaiting(playerName);
+            opponent = WaitingList.GetSomeone(playerName);
+            if(opponent == null)
+                return "No hay nadie más en la lista de espera";
             return CreateGame(playerName, opponent!.Name);
         }
         
@@ -406,6 +411,9 @@ public static class Facade
         {
             return $"{opponentName} no está esperando";
         }
+
+        if (GameList.FindGameByPlayer(opponent) != null)
+            return $"{opponentName} ya está en una partida";
         
         return CreateGame(playerName, opponent!.Name);
 

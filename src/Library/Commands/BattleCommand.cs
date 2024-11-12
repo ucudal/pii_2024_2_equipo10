@@ -1,9 +1,9 @@
 using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
-using Library;
+using Library.Commands;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'battle' del bot. Este comando une al
@@ -31,47 +31,30 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         string? opponentDisplayName = null)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
+        
+        SocketGuildUser? opponentUser = CommandHelper.GetUser(
+            Context, opponentDisplayName);
         string result;
-        if (opponentDisplayName != null)
+        if (opponentUser != null)
         {
-            SocketGuildUser? opponentUser = CommandHelper.GetUser(Context, opponentDisplayName);
-            if (opponentUser != null)
+            result = Facade.StartGame(displayName, opponentUser.DisplayName);
+            if(result.Contains("Vs."))
             {
-                result = Facade.StartGame(displayName, opponentUser.DisplayName); 
                 await Context.Message.Author.SendMessageAsync(result);
                 await opponentUser.SendMessageAsync(result);
             }
-            else
-                result = $"No hay un usuario {opponentDisplayName}";
         }
         else
         {
-            result = Facade.StartGame(displayName);
-            string[] splitResult = result.Split(" vs ");
-            SocketGuildUser? opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
-            await Context.Message.Author.SendMessageAsync(result);
-            await opponentUser.SendMessageAsync(result);
+            result = Facade.StartGame(displayName, opponentDisplayName);
+            if (result.Contains("Vs."))
+            {
+                string[] splitResult = result.Split(" Vs. ");
+                opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
+                await Context.Message.Author.SendMessageAsync(result);
+                await opponentUser.SendMessageAsync(result);
+            }
         }
         await ReplyAsync(result);
     }
-    // {
-    //     string displayName = CommandHelper.GetDisplayName(Context);
-    //     
-    //     SocketGuildUser? opponentUser = CommandHelper.GetUser(
-    //         Context, opponentDisplayName);
-    //
-    //     string result;
-    //     if (opponentUser != null)
-    //     {
-    //         result = Facade.StartGame(displayName, opponentUser.DisplayName);
-    //         await Context.Message.Author.SendMessageAsync(result);
-    //         await opponentUser.SendMessageAsync(result);
-    //     }
-    //     else
-    //     {
-    //         result = $"No hay un usuario {opponentDisplayName}";
-    //     }
-    //
-    //     await ReplyAsync(result);
-    // }
 }
