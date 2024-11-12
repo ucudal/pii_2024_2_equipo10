@@ -13,7 +13,7 @@ public class SurrenderCommand : ModuleBase<SocketCommandContext>
     /// <summary>
     /// Termina la partida en curso dandole la victoria al oponente.
     /// </summary>
-    [Command("changepokemon")]
+    [Command("surrender")]
     [Summary(
         """
         Termina la partida en curso dandole la vicotria al oponente.
