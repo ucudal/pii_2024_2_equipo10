@@ -39,7 +39,7 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         if (opponentUser != null)
         {
             result = Facade.StartGame(displayName, opponentUser.DisplayName);
-            if(result.Contains("Vs."))
+            if(result.Contains(" Vs. "))
             {
                 await Context.Message.Author.SendMessageAsync(result);
                 await opponentUser.SendMessageAsync(result);
@@ -48,7 +48,7 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         else
         {
             result = Facade.StartGame(displayName, opponentDisplayName);
-            if (result.Contains("Vs."))
+            if (result.Contains(" Vs. "))
             {
                 string[] splitResult = result.Split(" Vs. ");
                 opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
