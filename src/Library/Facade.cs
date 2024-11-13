@@ -442,9 +442,9 @@ public static class Facade
         return PokemonCatalogue.ShowCatalogue();
     }
 
-    public static string Surrender(string player)
+    public static string Surrender(string playerName)
     {
-        Player? surrenderPlayer = GameList.FindPlayerByName(player);
+        Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
         if (surrenderPlayer == null)
         {
             return "Para rendirte primero debes estar en una batalla";
@@ -455,12 +455,12 @@ public static class Facade
             return"No se pudo encontrar la partida";
         }
         int notActivePlayer = (game.ActivePlayer+1)%2;
-        if (game.GetPlayers()[game.ActivePlayer].Name == player)
+        if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
             GameList.RemoveGame(game);
-            return $"Ganador: {game.GetPlayers()[game.ActivePlayer].Name}. Perdedor: {game.GetPlayers()[notActivePlayer].Name}";
+            return $"El jugador {game.GetPlayers()[game.ActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[notActivePlayer].Name}. \nPerdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
         }
-        return $"Ganador: {game.GetPlayers()[notActivePlayer].Name}. Perdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
+        return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name}. \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
     }
 
 }
