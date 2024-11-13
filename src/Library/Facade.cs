@@ -15,7 +15,12 @@ public static class Facade
     /// Lista de partidas en curso.
     /// </summary>
     private static GameList GameList { get; } = new GameList();
-
+    
+    /// <summary>
+    /// Catalogo de Pokemons.
+    /// </summary>
+    //private static PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
+    
     /// <summary>
     /// Historia 1:
     /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
@@ -30,34 +35,36 @@ public static class Facade
 
         if (player == null)
         {
-            return "Para poder elegir un equipo, primero debes estar en una batalla";
+            return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
         }
 
         if (player.GetPokemonTeam().Count < 6)
         { 
+            foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
             {
-                foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
+                if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
                 {
-                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                    Pokemon newPokemon = pokemon.Instance();
+                    if (!player.AddToTeam(newPokemon))
+                        return $"El pokemon {cPokemon} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
+                    if (player.GetPokemonTeam().Count == 1)
                     {
-                        Pokemon newPokemon = pokemon.Instance();
-                        player.AddToTeam(newPokemon);
-                        if (player.GetPokemonTeam().Count == 1)
-                        {
-                            player.SetActivePokemon(newPokemon);
-                        }
-                        return $"El pokemon {cPokemon} fue añadido al equipo";
+                        player.SetActivePokemon(newPokemon);
                     }
 
-                    if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-                    }
+                    if (player.GetPokemonTeam().Count == 6)
+                        return $"El pokemon {cPokemon} fue añadido al equipo de {playerName}\nTu equipo está completo.";
+                    return $"El pokemon {cPokemon} fue añadido al equipo de {playerName}";
                 }
-                return $"El pokemon {cPokemon} no fue encontrado";
-            } 
+                //
+                // if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
+                // {
+                //     return;
+                // }
+            }
+            return $"{playerName}, el pokemon {cPokemon} no fue encontrado";
         }
-        return "Ya tienes 6 pokemones en el equipo, no puedes elegir más";
+        return $"{playerName} ya tienes 6 pokemones en el equipo, no puedes elegir más";
     }
 
 

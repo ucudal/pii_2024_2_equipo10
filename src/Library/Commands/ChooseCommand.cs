@@ -26,7 +26,9 @@ public class ChooseCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        if (Facade.TeamCountByName(displayName) == null)
+        result = Facade.ChooseTeam(displayName, pokemonName);
+        /*
+        if ( == null)
             //await Context.Message.Author.SendMessageAsync("Para poder elegir un equipo, primero debes estar en una batalla");
             await ReplyAsync("Para poder elegir un equipo, primero debes estar en una batalla");
 
@@ -35,7 +37,8 @@ public class ChooseCommand : ModuleBase<SocketCommandContext>
             await Context.Message.Author.SendMessageAsync("Elegí uno de estos:");
             await Context.Message.Author.SendMessageAsync(Facade.ShowCatalogue());
         }
-        //await ReplyAsync(result)
+        */
+        await ReplyAsync(result);
 
     }
 }

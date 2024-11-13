@@ -48,12 +48,17 @@ public class Player
     /// Agrega un pokemon a la lista de pokemons del jugador.
     /// </summary>
     /// <param name="pokemon">Pokemon a agregar</param>
-    public void AddToTeam(Pokemon pokemon)
+    public bool AddToTeam(Pokemon pokemon)
     {
         if (this.PokemonTeam.Count < 6)
         {
-            this.PokemonTeam.Add(pokemon);
+            if (!this.PokemonTeam.Contains(pokemon))
+            {
+                this.PokemonTeam.Add(pokemon);
+                return true;
+            }
         }
+        return false;
     }
 
     /// <summary>
