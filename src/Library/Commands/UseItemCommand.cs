@@ -3,7 +3,7 @@ using Discord.Commands;
 using Discord.WebSocket;
 using Library;
 
-namespace Ucu.Poo.DiscordBot.Commands;
+namespace Library.Commands;
 
 /// <summary>
 /// Esta clase implementa el comando 'useitem' del bot.
@@ -13,8 +13,7 @@ public class UseItemCommand : ModuleBase<SocketCommandContext>
     /// <summary>
     /// Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
     /// </summary>
-    /// <param name="pokemonName">Pokemon seleccionado.</param>
-    /// <param name="itemName">Item a utilizar.</param>
+    /// <param name="pokemonAndItemName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
     [Command("useitem")]
     [Summary(
         """
@@ -25,8 +24,9 @@ public class UseItemCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync(
         [Remainder]
-        [Summary("Nombre de Pokemon a ser beneficiado y item a utiliar concatenados.")]
-        string pokemonAndItemName)
+        [Summary("Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados")]
+        string pokemonAndItemName
+        )
     {
         
     }
