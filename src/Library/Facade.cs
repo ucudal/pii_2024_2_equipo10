@@ -439,4 +439,26 @@ public static class Facade
     {
         return Pokedex.ShowCatalogue();
     }
+
+    public static string Surrender(string playerName)
+    {
+        Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
+        if (surrenderPlayer == null)
+        {
+            return "Para rendirte primero debes estar en una batalla";
+        }
+        Game? game = GameList.FindGameByPlayer(surrenderPlayer);
+        if (game == null)
+        {
+            return"No se pudo encontrar la partida";
+        }
+        int notActivePlayer = (game.ActivePlayer+1)%2;
+        if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
+        {
+            GameList.RemoveGame(game);
+            return $"El jugador {game.GetPlayers()[game.ActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[notActivePlayer].Name} \nPerdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
+        }
+        return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name} \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
+    }
+
 }
