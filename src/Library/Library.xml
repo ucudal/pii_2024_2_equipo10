@@ -353,7 +353,7 @@
             Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
             </summary>
             <param name="playerName">Nombre del jugador.</param>
-            <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
+            <param name="pokemonName">Nombre del Pokemon que se quiere añadir al equipo.</param>
             <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
         </member>
         <member name="M:Library.Facade.ShowAtacks(System.String)">
