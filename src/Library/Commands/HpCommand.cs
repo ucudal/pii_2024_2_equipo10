@@ -27,7 +27,10 @@ public class HpCommand : ModuleBase<SocketCommandContext>
         [Remainder] [Summary("Display name del oponente, opcional")]
         string? opponentDisplayName = null)
     {
+        string displayName = CommandHelper.GetDisplayName(Context);
+        string result;
+        result = Facade.ShowPokemonsHp(displayName, opponentDisplayName);
         
+        await ReplyAsync(result);
     }
-
 }
