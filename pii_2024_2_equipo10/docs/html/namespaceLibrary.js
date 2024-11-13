@@ -1,0 +1,45 @@
+var namespaceLibrary =
+[
+    [ "Attack", "classLibrary_1_1Attack.html", "classLibrary_1_1Attack" ],
+    [ "Caterpie", "classLibrary_1_1Caterpie.html", "classLibrary_1_1Caterpie" ],
+    [ "Charizard", "classLibrary_1_1Charizard.html", "classLibrary_1_1Charizard" ],
+    [ "Chikorita", "classLibrary_1_1Chikorita.html", "classLibrary_1_1Chikorita" ],
+    [ "FullHealth", "classLibrary_1_1FullHealth.html", "classLibrary_1_1FullHealth" ],
+    [ "Game", "classLibrary_1_1Game.html", "classLibrary_1_1Game" ],
+    [ "GameList", "classLibrary_1_1GameList.html", "classLibrary_1_1GameList" ],
+    [ "Gengar", "classLibrary_1_1Gengar.html", "classLibrary_1_1Gengar" ],
+    [ "Haxorus", "classLibrary_1_1Haxorus.html", "classLibrary_1_1Haxorus" ],
+    [ "IAttack", "interfaceLibrary_1_1IAttack.html", "interfaceLibrary_1_1IAttack" ],
+    [ "IItem", "interfaceLibrary_1_1IItem.html", "interfaceLibrary_1_1IItem" ],
+    [ "Mewtwo", "classLibrary_1_1Mewtwo.html", "classLibrary_1_1Mewtwo" ],
+    [ "Player", "classLibrary_1_1Player.html", "classLibrary_1_1Player" ],
+    [ "Pokemon", "classLibrary_1_1Pokemon.html", "classLibrary_1_1Pokemon" ],
+    [ "Revive", "classLibrary_1_1Revive.html", "classLibrary_1_1Revive" ],
+    [ "SpecialAttack", "classLibrary_1_1SpecialAttack.html", "classLibrary_1_1SpecialAttack" ],
+    [ "SuperPotion", "classLibrary_1_1SuperPotion.html", "classLibrary_1_1SuperPotion" ],
+    [ "WaitingList", "classLibrary_1_1WaitingList.html", "classLibrary_1_1WaitingList" ],
+    [ "Zeraora", "classLibrary_1_1Zeraora.html", "classLibrary_1_1Zeraora" ],
+    [ "State", "namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808", [
+      [ "Asleep", "namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a56a8ddcbbee153b7f751514c8b607b3e", null ],
+      [ "Paralized", "namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a827a0360b271e4dda9b1d9523d6adedb", null ],
+      [ "Poisoned", "namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808aa3bdbf2434870a6548df06309bb536b1", null ],
+      [ "Burned", "namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a26087341433e59614e8a48d71b91f72e", null ]
+    ] ],
+    [ "Type", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977d", [
+      [ "Bug", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977dac83640c604dd5e0eacbf3de0a1181101", null ],
+      [ "Dragon", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da583f4be146b6127f9e4f3f036ce7df43", null ],
+      [ "Electric", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daa74711a0a27d5306d53f17771c2161cb", null ],
+      [ "Fighting", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daef492f571a74192b637adada68fdd94a", null ],
+      [ "Fire", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977dabd2b7e5f85a6ea65065c4ebc6d7c95bb", null ],
+      [ "Flying", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da444733081a578880ba8a563d3c59d22d", null ],
+      [ "Ghost", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da401357e57c765967393ba391a338e89b", null ],
+      [ "Grass", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daaac9a63596f76a62bb9f61a5dd7c0d25", null ],
+      [ "Ground", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da3519d51443d41746a097cd54cd5c11cf", null ],
+      [ "Ice", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da583d6a9fe10d672474e2cdca476113b7", null ],
+      [ "Normal", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da960b44c579bc2f6818d2daaf9e4c16f0", null ],
+      [ "Poison", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da3a9d1818d0d7f5646e63465baf7d366f", null ],
+      [ "Psychic", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da1a0d4dfdb97302cb8ac802fd459ea37a", null ],
+      [ "Rock", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da4cfbb125e9878528bab91d12421134d8", null ],
+      [ "Water", "namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da27634ff8002b12e75d98e07ccd005d18", null ]
+    ] ]
+];

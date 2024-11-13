@@ -1,0 +1,25 @@
+var NAVTREEINDEX2 =
+{
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da583d6a9fe10d672474e2cdca476113b7":[1,0,1,20,9],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da583f4be146b6127f9e4f3f036ce7df43":[1,0,1,20,1],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da960b44c579bc2f6818d2daaf9e4c16f0":[1,0,1,20,10],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daa74711a0a27d5306d53f17771c2161cb":[1,0,1,20,2],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daaac9a63596f76a62bb9f61a5dd7c0d25":[1,0,1,20,7],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977dabd2b7e5f85a6ea65065c4ebc6d7c95bb":[1,0,1,20,4],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977dac83640c604dd5e0eacbf3de0a1181101":[1,0,1,20,0],
+"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daef492f571a74192b637adada68fdd94a":[1,0,1,20,3],
+"namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808":[1,0,1,19],
+"namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a26087341433e59614e8a48d71b91f72e":[1,0,1,19,3],
+"namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a56a8ddcbbee153b7f751514c8b607b3e":[1,0,1,19,0],
+"namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808a827a0360b271e4dda9b1d9523d6adedb":[1,0,1,19,1],
+"namespaceLibrary.html#af3eb5737492f0402a68fa06f7f9df808aa3bdbf2434870a6548df06309bb536b1":[1,0,1,19,2],
+"namespaceLibraryTests.html":[1,0,2],
+"namespaceTests.html":[1,0,3],
+"namespacemembers.html":[1,1,0],
+"namespacemembers_enum.html":[1,1,1],
+"namespaces.html":[1,0],
+"pages.html":[],
+"src_2Library_2obj_2Debug_2net8_80_2_8NETCoreApp_00Version_0av8_80_8AssemblyAttributes_8cs_source.html":[3,0,0,0,0,0,0,0],
+"src_2Program_2obj_2Debug_2net8_80_2_8NETCoreApp_00Version_0av8_80_8AssemblyAttributes_8cs_source.html":[3,0,0,1,0,0,0,0],
+"test_2LibraryTests_2obj_2Debug_2net8_80_2_8NETCoreApp_00Version_0av8_80_8AssemblyAttributes_8cs_source.html":[3,0,1,0,0,0,0,0]
+};

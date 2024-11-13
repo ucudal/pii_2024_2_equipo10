@@ -176,13 +176,15 @@ public static class DamageCalculator
     /// Si el ataque es un <see cref="SpecialAttack"/> y el Pokemon objetivo no tiene un estado actual, 
     /// se aplica el efecto especial del ataque y se setea su cooldown.
     /// </remarks>
-    public static void SpecialCheck(Pokemon attackedPokemon, Attack attack)
+    public static string SpecialCheck(Pokemon attackedPokemon, Attack attack)
     {
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
         {
             attackedPokemon.EditState(specialAttack.SpecialEffect);
             specialAttack.SetCooldown();
+            return $"El pokemon {attackedPokemon.Name} fue afectado con {specialAttack.SpecialEffect}";
         }
+        return"El ataque no era un ataque especial";
     }
 
     /// <summary>
@@ -195,19 +197,47 @@ public static class DamageCalculator
     /// El daño calculado como un <c>double</c>. 
     /// Devuelve <c>0.0</c> si el ataque falla.
     /// </returns>
-public static double CalculateDamage(Pokemon attackedPokemon, Attack attack)
+public static string CalculateDamage(Pokemon attackedPokemon, Attack attack)
     {
         Random random = new Random();
         int randomInt = random.Next(1, 101);
         double randomDouble = randomInt / 100.0;
+        if (attack.Power == 0)
+        {
+            return $"El poder del ataque {attack.Name} era de 0, por lo tanto no hizo daño";
+        }
         if (randomDouble <= attack.Accuracy)
         {
+            string effectivnessCheck = "";
+            string criticalCheck = "";
             double power = attack.Power;
             double effectivness = GetEffectivness(attack.Type, attackedPokemon.GetTypes());
+            if (effectivness == 0.0)
+            {
+                return $"El pokemon {attackedPokemon.Name} es inmune a ataques de tipo {attack.Type}, ya que es de tipo {attackedPokemon.GetTypes()[0]}\n";
+            }
             double critical = CriticalCheck();
-            SpecialCheck(attackedPokemon, attack);
-            return power * effectivness * critical;
+            string specialResult = SpecialCheck(attackedPokemon, attack);
+            double damage = power * effectivness * critical;
+            attackedPokemon.TakeDamage(damage);
+            if (critical == 1.20)
+            {
+                criticalCheck = "Golpe Crítico\n";
+            }
+
+            if (effectivness == 2.0)
+            {
+                effectivnessCheck = "Es super efectivo\n";
+            }
+
+            if (effectivness == 0.5)
+            {
+                effectivnessCheck = "No es muy efectivo\n";
+
+            }
+            
+            return $"{attackedPokemon.Name} recibió {damage} puntos de daño" + effectivnessCheck + criticalCheck + specialResult;
         }
-        return 0.0;
+        return "El ataque falló y no produjo daño";
     }
 }

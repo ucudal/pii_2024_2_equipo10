@@ -137,8 +137,16 @@ public class Game
     /// <c>string</c>Un mensaje que indica el daño infligido al Pokemon objetivo o el estado actual que impidió el ataque.
     /// Devuelve null si no se proporciona un ataque válido.
     /// </returns>
-    public string ExecuteAttack(Attack attack)
+    public string ExecuteAttack(Attack? attack)
     {
+        if (attack is SpecialAttack specialAttack)
+        {
+            if (specialAttack.Cooldown > 0)
+            {
+                return $"El ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos";
+            }
+        }
+        
         if (attack != null)
         {
             bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
@@ -146,17 +154,8 @@ public class Game
             if (!asleep & !paralized)
             {
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
-                double damage = DamageCalculator.CalculateDamage(attackedPokemon, attack);
-                attackedPokemon.TakeDamage(damage);
-                if (attack.Power == 0)
-                {
-                    return $"El poder del ataque {attack} era de 0, por lo tanto no hizo daño";
-                }
-                if (damage == 0.0)
-                {
-                    return "El ataque falló y no fue exitoso";
-                }
-                return $"{attackedPokemon.Name} recibió {damage} puntos de daño";
+                string result = DamageCalculator.CalculateDamage(attackedPokemon, attack);
+                return result;
             }
             else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
         }
@@ -172,7 +171,7 @@ public class Game
     /// <returns>
     /// Un mensaje indicando el resultado del uso del objeto, o un mensaje de error si el objeto o el Pokemon no son válidos.
     /// </returns>
-    public string UseItem(IItem item, Pokemon pokemon)
+    public string UseItem(IItem? item, Pokemon? pokemon)
     {
         if (item == null)
         {
@@ -196,7 +195,7 @@ public class Game
     /// o si no tiene vida.
     /// </returns>
 
-    public string ChangePokemon(Pokemon pokemon)
+    public string ChangePokemon(Pokemon? pokemon)
     {
         if (pokemon == null)
         {
@@ -236,5 +235,10 @@ public class Game
         }
         return false;
     }
-    
+
+    public bool BothPlayersHaveChoosenTeam()
+    {
+        return Players[ActivePlayer].GetPokemonTeam().Count == 6 &&
+               Players[(ActivePlayer + 1) % 2].GetPokemonTeam().Count == 6;
+    }
 }
