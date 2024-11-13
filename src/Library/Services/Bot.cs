@@ -29,10 +29,10 @@ public class Bot : IBot
             AlwaysDownloadUsers = true,
             GatewayIntents = 
                 GatewayIntents.AllUnprivileged
-                | GatewayIntents.MessageContent/*
-                | GatewayIntents.GuildMembers*/
+                | GatewayIntents.MessageContent
+                | GatewayIntents.DirectMessages //modificado
         };
-
+    
         client = new DiscordSocketClient(config);
         commands = new CommandService();
     }
@@ -66,7 +66,6 @@ public class Bot : IBot
         {
             return;
         }
-        
         int position = 0;
         bool messageIsCommand = message.HasCharPrefix('!', ref position);
 

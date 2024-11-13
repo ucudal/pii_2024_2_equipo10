@@ -6,16 +6,16 @@ using Library;
 namespace Library.Commands;
 
 /// <summary>
-/// Esta clase implementa el comando 'changepokemon' del bot.
+/// Esta clase implementa el comando 'change' del bot.
 /// </summary>
-public class ChangePokemonCommand : ModuleBase<SocketCommandContext>
+public class ChangeCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
     /// Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó
     /// para ser su nuevo Pokemon activo.
     /// </summary>
     /// <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
-    [Command("changepokemon")]
+    [Command("change")]
     [Summary(
         """
         Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó

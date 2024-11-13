@@ -8,7 +8,7 @@ public class PokemonCatalogue
     /// <summary>
     /// Lista de Pokemons.
     /// </summary>
-    private List<Pokemon> PokemonList { get; set; } = new List<Pokemon>();
+    public List<Pokemon> PokemonList { get; private set; } = new List<Pokemon>();
 
     private static PokemonCatalogue? _instance;
 
