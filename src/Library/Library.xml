@@ -72,6 +72,17 @@
             Constructor de Chikorita, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="T:Library.Commands.AttackCommand">
+            <summary>
+            Esta clase implementa el comando 'attack' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.AttackCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el ataque a utilizar.
+            </summary>
+            <param name="attack">Ataque a utilizar.</param>
+        </member>
         <member name="T:Library.Commands.BattleCommand">
             <summary>
             Esta clase implementa el comando 'battle' del bot. Este comando une al
@@ -87,6 +98,28 @@
             </summary>
             <param name="opponentDisplayName">Nombre de oponente, puede ser nulo.</param>
         </member>
+        <member name="T:Library.Commands.ChangeCommand">
+            <summary>
+            Esta clase implementa el comando 'change' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.ChangeCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó
+            para ser su nuevo Pokemon activo.
+            </summary>
+            <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
+        </member>
+        <member name="T:Library.Commands.CheckTurnCommand">
+            <summary>
+            Esta clase implementa el comando 'checkturn' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.CheckTurnCommand.ExecuteAsync">
+            <summary>
+            Devuelve de quien es el turno.
+            </summary>
+        </member>
         <member name="T:Library.Commands.ChooseCommand">
             <summary>
             Esta clase implementa el comando 'choose' del bot.
@@ -97,6 +130,29 @@
             Envía a la fachada un mensaje con el Pokemon seleccionado.
             </summary>
             <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
+        </member>
+        <member name="T:Library.Commands.HelpCommand">
+            <summary>
+            Esta clase implementa el comando 'help' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.HelpCommand.ExecuteAsync">
+            <summary>
+            Muestra todos los comandos que el usuario puede utilizar junto a una breve descripcion.
+            </summary>
+        </member>
+        <member name="T:Library.Commands.HpCommand">
+            <summary>
+            Esta clase implementa el comando 'hp' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.HpCommand.ExecuteAsync(System.String)">
+            <summary>
+            Muestra la vida de los Pokemons del jugador que utiliza el comando
+            si no se pasa el nombre del oponente como parámetro.
+            Si se pasa el nombre del oponente muestra la vida de los Pokemons del rival.
+            </summary>
+            <param name="opponentDisplayName">Nombre del Pokemon seleccionado.</param>
         </member>
         <member name="T:Library.Commands.JoinCommand">
             <summary>
@@ -142,6 +198,47 @@
             Pokémon dado su identificador.
             </summary>
             <param name="id">El identificador del Pokémon a buscar.</param>
+        </member>
+        <member name="T:Library.Commands.ShowAttacksCommand">
+            <summary>
+            Esta clase implementa el comando 'showattacks' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.ShowAttacksCommand.ExecuteAsync">
+            <summary>
+            Muestra los ataques disponibles del Pokemon activo del jugador.
+            </summary>
+        </member>
+        <member name="T:Library.Commands.ShowItemsCommand">
+            <summary>
+            Esta clase implementa el comando 'showitems' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.ShowItemsCommand.ExecuteAsync">
+            <summary>
+            Muestra los items disponibles del jugador.
+            </summary>
+        </member>
+        <member name="T:Library.Commands.SurrenderCommand">
+            <summary>
+            Esta clase implementa el comando 'surrender' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.SurrenderCommand.ExecuteAsync">
+            <summary>
+            Termina la partida en curso dandole la victoria al oponente.
+            </summary>
+        </member>
+        <member name="T:Library.Commands.UseCommand">
+            <summary>
+            Esta clase implementa el comando 'use' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.UseCommand.ExecuteAsync(System.String)">
+            <summary>
+            Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
+            </summary>
+            <param name="pokemonAndItemName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
         </member>
         <member name="T:Library.Commands.UserInfoCommand">
             <summary>
@@ -1033,41 +1130,6 @@
             <summary>
             Constructor de Zeraora, implementa el patron GRASP creator.
             </summary>
-        </member>
-        <member name="T:Ucu.Poo.DiscordBot.Commands.AttackCommand">
-            <summary>
-            Esta clase implementa el comando 'attack' del bot.
-            </summary>
-        </member>
-        <member name="M:Ucu.Poo.DiscordBot.Commands.AttackCommand.ExecuteAsync(System.String)">
-            <summary>
-            Envía a la fachada un mensaje con el ataque a utilizar.
-            </summary>
-            <param name="attack">Ataque a utilizar.</param>
-        </member>
-        <member name="T:Ucu.Poo.DiscordBot.Commands.ChangePokemonCommand">
-            <summary>
-            Esta clase implementa el comando 'changepokemon' del bot.
-            </summary>
-        </member>
-        <member name="M:Ucu.Poo.DiscordBot.Commands.ChangePokemonCommand.ExecuteAsync(System.String)">
-            <summary>
-            Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó
-            para ser su nuevo Pokemon activo.
-            </summary>
-            <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
-        </member>
-        <member name="T:Ucu.Poo.DiscordBot.Commands.UseItemCommand">
-            <summary>
-            Esta clase implementa el comando 'useitem' del bot.
-            </summary>
-        </member>
-        <member name="M:Ucu.Poo.DiscordBot.Commands.UseItemCommand.ExecuteAsync(System.String)">
-            <summary>
-            Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
-            </summary>
-            <param name="pokemonName">Pokemon seleccionado.</param>
-            <param name="itemName">Item a utilizar.</param>
         </member>
         <member name="T:Ucu.Poo.DiscordBot.Services.Bot">
             <summary>
