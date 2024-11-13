@@ -1,4 +1,5 @@
-﻿namespace Library;
+﻿
+namespace Library;
 
 /// <summary>
 /// Esta clase representa un jugador.
@@ -24,7 +25,7 @@ public class Player
     /// Pokemon activo del jugador.
     /// </summary>
     public Pokemon ActivePokemon { get; private set; }
-
+    
     /// <summary>
     /// Le asigna un nombre al jugador, crea las listas de pokemons e items
     /// agregando items iniciales. Aplicando el patrón GRASP creator.
@@ -170,7 +171,15 @@ public class Player
             string result = "";
             foreach (IAttack atack in ActivePokemon.GetAttacks())
             {
-                result += atack.Name + "\n";
+                if (atack is SpecialAttack specialAttack)
+                {
+                    result += specialAttack.InfoAttack();
+                }
+
+                if (atack is Attack attack2 && attack2 is not SpecialAttack)
+                {
+                    result += atack.InfoAttack();
+                }
             }
             return result;
     }

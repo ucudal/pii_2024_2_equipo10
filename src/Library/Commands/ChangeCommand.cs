@@ -15,7 +15,7 @@ public class ChangeCommand : ModuleBase<SocketCommandContext>
     /// para ser su nuevo Pokemon activo.
     /// </summary>
     /// <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
-    [Command("changepokemon")]
+    [Command("change")]
     [Summary(
         """
         Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó

@@ -97,6 +97,7 @@
             mensaje a la lista de jugadores esperando para jugar.
             </summary>
             <param name="opponentDisplayName">Nombre de oponente, puede ser nulo.</param>
+            <param name="opponentDisplayName">Nombre de oponente, puede ser nulo.</param>
         </member>
         <member name="T:Library.Commands.ChangeCommand">
             <summary>

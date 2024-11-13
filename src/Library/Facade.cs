@@ -224,7 +224,6 @@ public static class Facade
             GameList.RemoveGame(game);
             return game.Winner();
         }
-
         return "La partida no pudo ser encontrada";
     }
 
@@ -254,9 +253,9 @@ public static class Facade
 
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
-            if (game.GetPlayers()[game.ActivePlayer].GetPokemonTeam().Count < 6)
+            if (!game.BothPlayersHaveChoosenTeam())
             {
-                return "Tu equipo pokemon está incompleto, elige hasta tener 6 pokemones en tu equipo";
+                return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
             }
 
             Pokemon choosenPokemon = player.FindPokemon(pokemonName);
@@ -376,7 +375,7 @@ public static class Facade
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent);
-        return $"Comienza {playerName} Vs. {opponentName}";
+        return $"Comienza @{playerName} Vs. @{opponentName}";
     }
 
     /// <summary>
