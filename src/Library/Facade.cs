@@ -458,9 +458,9 @@ public static class Facade
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
             GameList.RemoveGame(game);
-            return $"El jugador {game.GetPlayers()[game.ActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[notActivePlayer].Name}. \nPerdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
+            return $"El jugador {game.GetPlayers()[game.ActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[notActivePlayer].Name} \nPerdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
         }
-        return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name}. \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
+        return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name} \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
     }
 
 }
