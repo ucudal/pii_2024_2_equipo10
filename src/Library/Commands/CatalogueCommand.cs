@@ -19,8 +19,8 @@ public class CatalogueCommand : ModuleBase<SocketCommandContext>
         Muestra los Pokemons del catálogo.
         """)]
     public async Task ExecuteAsync()
-    {
-        
+    { 
+        await ReplyAsync(Facade.ShowCatalogue());
     }
 
 }
