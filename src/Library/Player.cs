@@ -1,4 +1,6 @@
-﻿namespace Library;
+﻿using Library.Pruebas;
+
+namespace Library;
 
 /// <summary>
 /// Esta clase representa un jugador.
@@ -24,6 +26,8 @@ public class Player
     /// Pokemon activo del jugador.
     /// </summary>
     public Pokemon ActivePokemon { get; private set; }
+
+    private AttackVisitor AttackVisitor { get; set; } = new AttackVisitor();
 
     /// <summary>
     /// Le asigna un nombre al jugador, crea las listas de pokemons e items
@@ -165,7 +169,7 @@ public class Player
             string result = "";
             foreach (IAttack atack in ActivePokemon.GetAttacks())
             {
-                result += atack.Name + "\n";
+                result += AttackVisitor.Visit(atack);
             }
             return result;
     }

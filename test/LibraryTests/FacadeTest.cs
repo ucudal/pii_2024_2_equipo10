@@ -35,7 +35,7 @@ public class FacadeTest
         Facade.AddPlayerToWaitingList("ines");
         Facade.StartGame("mateo", "ines");
         Facade.ChooseTeam("mateo", "Caterpie");
-        string result = "Bug bite\nTackle\nBug stomp\nString shot\n";
+        string result = "Bug bite: tipo Bug, precisión 100, potencia 20\nTackle: tipo Normal, precisión 100, potencia 30\nBug stomp: tipo Bug, precisión 95, potencia 70, efecto especial Paralized, cooldown de uso 0\nString shot: tipo Bug, precisión 100, potencia 15\n";
         string mateo = Facade.ShowAtacks("mateo");
         Assert.That(mateo, Is.EqualTo(result));
     }
