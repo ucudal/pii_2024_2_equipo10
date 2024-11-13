@@ -49,12 +49,17 @@ public class Player
     /// Agrega un pokemon a la lista de pokemons del jugador.
     /// </summary>
     /// <param name="pokemon">Pokemon a agregar</param>
-    public void AddToTeam(Pokemon pokemon)
+    public bool AddToTeam(Pokemon pokemon)
     {
         if (this.PokemonTeam.Count < 6)
         {
-            this.PokemonTeam.Add(pokemon);
+            if (!this.PokemonTeam.Contains(pokemon))
+            {
+                this.PokemonTeam.Add(pokemon);
+                return true;
+            }
         }
+        return false;
     }
 
     /// <summary>
@@ -178,5 +183,21 @@ public class Player
             }
             return result;
     }
-    
+
+    /// <summary>
+    /// Cantidad de Pokemons en el equipo del jugador.
+    /// </summary>
+    /// <returns><c>int</c></returns>
+    public int TeamCount()
+    {
+        return this.PokemonTeam.Count;
+    }
+
+    public bool FindPokemonByName(string pokemonName)
+    {
+        foreach (Pokemon pokemon in this.PokemonTeam)
+            if (pokemon.Name == pokemonName)
+                return true;
+        return false;
+    }
 }

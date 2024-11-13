@@ -6,9 +6,9 @@ using Library;
 namespace Library.Commands;
 
 /// <summary>
-/// Esta clase implementa el comando 'useitem' del bot.
+/// Esta clase implementa el comando 'use' del bot.
 /// </summary>
-public class UseItemCommand : ModuleBase<SocketCommandContext>
+public class UseCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
     /// Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.

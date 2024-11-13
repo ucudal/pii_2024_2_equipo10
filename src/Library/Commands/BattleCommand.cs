@@ -32,30 +32,10 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
         string? opponentDisplayName = null)
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        
-        SocketGuildUser? opponentUser = CommandHelper.GetUser(
-            Context, opponentDisplayName);
         string result;
-        if (opponentUser != null)
-        {
-            result = Facade.StartGame(displayName, opponentUser.DisplayName);
-            if(result.Contains(" Vs. "))
-            {
-                await Context.Message.Author.SendMessageAsync(result);
-                await opponentUser.SendMessageAsync(result);
-            }
-        }
-        else
-        {
-            result = Facade.StartGame(displayName, opponentDisplayName);
-            if (result.Contains(" Vs. "))
-            {
-                string[] splitResult = result.Split(" Vs. ");
-                opponentUser = CommandHelper.GetUser(Context, splitResult[1]);
-                await Context.Message.Author.SendMessageAsync(result);
-                await opponentUser.SendMessageAsync(result);
-            }
-        }
+        result = Facade.StartGame(displayName, opponentDisplayName);
         await ReplyAsync(result);
+        if(result.Contains(" Vs. "))
+            await ReplyAsync("!choose <<Nombre del Pokemon>> para elegir un Pokemon\n!catalogue para ver el catalogo de Pokemones.\n!help para más comandos.");
     }
 }

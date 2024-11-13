@@ -17,47 +17,46 @@ public static class Facade
     private static GameList GameList { get; } = new GameList();
 
     /// <summary>
+    /// Catalogo de Pokemons.
+    /// </summary>
+    //private static PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
+
+    private static PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
+    
+    /// <summary>
     /// Historia 1:
     /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
-    /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
+    /// <param name="pokemonName">Nombre del Pokemon que se quiere añadir al equipo.</param>
     /// <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
-    public static string ChooseTeam(string playerName, string cPokemon)
+    public static string ChooseTeam(string playerName, string pokemonName)
     {
-        PokemonCatalogue.SetCatalogue();
         Player player = GameList.FindPlayerByName(playerName);
 
         if (player == null)
-        {
-            return "Para poder elegir un equipo, primero debes estar en una batalla";
-        }
+            return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
 
-        if (player.GetPokemonTeam().Count < 6)
+        if (player.TeamCount() < 6)
         { 
+            if (player.FindPokemonByName(pokemonName))
+                return $"El pokemon {pokemonName} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
+            foreach (Pokemon pokemon in Pokedex.PokemonList)
             {
-                foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
+                if (pokemon.Name == pokemonName)
                 {
-                    if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        Pokemon newPokemon = pokemon.Instance();
-                        player.AddToTeam(newPokemon);
-                        if (player.GetPokemonTeam().Count == 1)
-                        {
-                            player.SetActivePokemon(newPokemon);
-                        }
-                        return $"El pokemon {cPokemon} fue añadido al equipo";
-                    }
-
-                    if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
-                    {
-                        return $"El pokemon {cPokemon} ya está en el equipo, no puedes volver a añadirlo";
-                    }
+                    Pokemon newPokemon = pokemon.Instance();
+                    player.AddToTeam(newPokemon);
+                    if (player.TeamCount() == 1)
+                        player.SetActivePokemon(newPokemon);
+                    if (player.TeamCount() == 6)
+                        return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}\nTu equipo está completo.";
+                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}.\nElegiste {player.TeamCount()}/6";
                 }
-                return $"El pokemon {cPokemon} no fue encontrado";
-            } 
+            }
+            return $"{playerName}, el pokemon {pokemonName} no fue encontrado";
         }
-        return "Ya tienes 6 pokemones en el equipo, no puedes elegir más";
+        return $"{playerName} ya tienes 6 pokemones en el equipo, no puedes elegir más";
     }
 
 
@@ -438,8 +437,7 @@ public static class Facade
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
     public static string ShowCatalogue()
     {
-        PokemonCatalogue.SetCatalogue();
-        return PokemonCatalogue.ShowCatalogue();
+        return Pokedex.ShowCatalogue();
     }
 
     public static string Surrender(string playerName)

@@ -108,12 +108,12 @@
             Muestra los Pokemons del catálogo.
             </summary>
         </member>
-        <member name="T:Library.Commands.ChangePokemonCommand">
+        <member name="T:Library.Commands.ChangeCommand">
             <summary>
-            Esta clase implementa el comando 'changepokemon' del bot.
+            Esta clase implementa el comando 'change' del bot.
             </summary>
         </member>
-        <member name="M:Library.Commands.ChangePokemonCommand.ExecuteAsync(System.String)">
+        <member name="M:Library.Commands.ChangeCommand.ExecuteAsync(System.String)">
             <summary>
             Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó
             para ser su nuevo Pokemon activo.
@@ -239,12 +239,12 @@
             Termina la partida en curso dandole la victoria al oponente.
             </summary>
         </member>
-        <member name="T:Library.Commands.UseItemCommand">
+        <member name="T:Library.Commands.UseCommand">
             <summary>
-            Esta clase implementa el comando 'useitem' del bot.
+            Esta clase implementa el comando 'use' del bot.
             </summary>
         </member>
-        <member name="M:Library.Commands.UseItemCommand.ExecuteAsync(System.String)">
+        <member name="M:Library.Commands.UseCommand.ExecuteAsync(System.String)">
             <summary>
             Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
             </summary>
@@ -340,6 +340,11 @@
         <member name="P:Library.Facade.GameList">
             <summary>
             Lista de partidas en curso.
+            </summary>
+        </member>
+        <member name="P:Library.Facade.Pokedex">
+            <summary>
+            Catalogo de Pokemons.
             </summary>
         </member>
         <member name="M:Library.Facade.ChooseTeam(System.String,System.String)">
@@ -804,6 +809,12 @@
             </summary>
             <returns><c>string</c></returns>
         </member>
+        <member name="M:Library.Player.TeamCount">
+            <summary>
+            Cantidad de Pokemons en el equipo del jugador.
+            </summary>
+            <returns><c>int</c></returns>
+        </member>
         <member name="T:Library.Pokemon">
             <summary>
             Esta clase representa un Pokemon.
@@ -924,12 +935,6 @@
             Devuelve el nombre de todos los Pokemons en el catálogo. 
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Library.PokemonCatalogue.SetCatalogue">
-            <summary>
-            Inicialia el catalogo.
-            </summary>
-            <returns>Devuelve la lista con los Pokemons creados.</returns>
         </member>
         <member name="T:Library.Revive">
             <summary>
