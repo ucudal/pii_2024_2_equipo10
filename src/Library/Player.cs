@@ -1,5 +1,4 @@
-﻿using Library.Pruebas;
-
+﻿
 namespace Library;
 
 /// <summary>
@@ -26,9 +25,7 @@ public class Player
     /// Pokemon activo del jugador.
     /// </summary>
     public Pokemon ActivePokemon { get; private set; }
-
-    private AttackVisitor AttackVisitor { get; set; } = new AttackVisitor();
-
+    
     /// <summary>
     /// Le asigna un nombre al jugador, crea las listas de pokemons e items
     /// agregando items iniciales. Aplicando el patrón GRASP creator.
@@ -169,7 +166,15 @@ public class Player
             string result = "";
             foreach (IAttack atack in ActivePokemon.GetAttacks())
             {
-                result += AttackVisitor.Visit(atack);
+                if (atack is SpecialAttack specialAttack)
+                {
+                    result += specialAttack.InfoAttack();
+                }
+
+                if (atack is Attack attack2 && attack2 is not SpecialAttack)
+                {
+                    result += atack.InfoAttack();
+                }
             }
             return result;
     }

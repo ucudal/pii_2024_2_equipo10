@@ -13,7 +13,7 @@ public class Charizard : Pokemon
     {
         
     }
-
+    
     public override Pokemon Instance()
     {
         return new Charizard();

@@ -368,7 +368,7 @@ public static class Facade
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent);
-        return $"Comienza {playerName} Vs. {opponentName}";
+        return $"Comienza @{playerName} Vs. @{opponentName}";
     }
 
     /// <summary>
