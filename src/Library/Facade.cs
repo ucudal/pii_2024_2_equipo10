@@ -461,4 +461,29 @@ public static class Facade
         return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name} \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
     }
 
+
+    public static string Help()
+    {
+        return "Comandos disponibles:\n" +
+        "!attack <nombre del ataque>\n" +
+        "!battle\n" +
+        "!catalogue\n" +
+        "!change <nombre del pokemon\n>" +
+        "!checkturn\n" +
+        "!choose <nombre del pokemon>\n" +
+        "!help\n" +
+        "!hp\n" +
+        "!hp <nombre del rival>\n" +
+        "!join\n" +
+        "!leave\n" +
+        "!name <nombre del pokemon>\n" +
+        "!showattacks\n" +
+        "!showitems\n" +
+        "!surrender\n" +
+        "!useitem <item> <pokemon>\n" +
+        "!who\n" +
+        "!who <nombre de un usuario>\n" +
+        "!waitinglist\n";
+    }
+
 }
