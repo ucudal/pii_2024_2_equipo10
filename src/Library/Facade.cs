@@ -28,17 +28,14 @@ public static class Facade
     /// Permite a un jugador agregar un Pokemon al equipo desde el catálogo.
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
-    /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
+    /// <param name="pokemonName">Nombre del Pokemon que se quiere añadir al equipo.</param>
     /// <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
     public static string ChooseTeam(string playerName, string pokemonName)
     {
-        //PokemonCatalogue.SetCatalogue();
         Player player = GameList.FindPlayerByName(playerName);
 
         if (player == null)
-        {
             return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
-        }
 
         if (player.TeamCount() < 6)
         { 
@@ -50,19 +47,12 @@ public static class Facade
                 {
                     Pokemon newPokemon = pokemon.Instance();
                     player.AddToTeam(newPokemon);
-                    //if (!player.AddToTeam(newPokemon))
                     if (player.TeamCount() == 1)
                         player.SetActivePokemon(newPokemon);
-
                     if (player.TeamCount() == 6)
                         return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}\nTu equipo está completo.";
-                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}";
+                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}.\nElegiste {player.TeamCount()}/6";
                 }
-                //
-                // if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
-                // {
-                //     return;
-                // }
             }
             return $"{playerName}, el pokemon {pokemonName} no fue encontrado";
         }
