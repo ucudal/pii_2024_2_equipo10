@@ -184,8 +184,20 @@ public class Player
             return result;
     }
 
+    /// <summary>
+    /// Cantidad de Pokemons en el equipo del jugador.
+    /// </summary>
+    /// <returns><c>int</c></returns>
     public int TeamCount()
     {
         return this.PokemonTeam.Count;
+    }
+
+    public bool FindPokemonByName(string pokemonName)
+    {
+        foreach (Pokemon pokemon in this.PokemonTeam)
+            if (pokemon.Name == pokemonName)
+                return true;
+        return false;
     }
 }

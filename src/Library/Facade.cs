@@ -15,11 +15,13 @@ public static class Facade
     /// Lista de partidas en curso.
     /// </summary>
     private static GameList GameList { get; } = new GameList();
-    
+
     /// <summary>
     /// Catalogo de Pokemons.
     /// </summary>
     //private static PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
+
+    private static PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
     
     /// <summary>
     /// Historia 1:
@@ -28,9 +30,9 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador.</param>
     /// <param name="cPokemon">Nombre del Pokemon que se quiere añadir al equipo.</param>
     /// <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
-    public static string ChooseTeam(string playerName, string cPokemon)
+    public static string ChooseTeam(string playerName, string pokemonName)
     {
-        PokemonCatalogue.SetCatalogue();
+        //PokemonCatalogue.SetCatalogue();
         Player player = GameList.FindPlayerByName(playerName);
 
         if (player == null)
@@ -38,23 +40,23 @@ public static class Facade
             return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
         }
 
-        if (player.GetPokemonTeam().Count < 6)
+        if (player.TeamCount() < 6)
         { 
-            foreach (Pokemon pokemon in PokemonCatalogue.SetCatalogue())
+            if (player.FindPokemonByName(pokemonName))
+                return $"El pokemon {pokemonName} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
+            foreach (Pokemon pokemon in Pokedex.PokemonList)
             {
-                if (pokemon.Name == cPokemon && !player.GetPokemonTeam().Contains(pokemon))
+                if (pokemon.Name == pokemonName)
                 {
                     Pokemon newPokemon = pokemon.Instance();
-                    if (!player.AddToTeam(newPokemon))
-                        return $"El pokemon {cPokemon} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
-                    if (player.GetPokemonTeam().Count == 1)
-                    {
+                    player.AddToTeam(newPokemon);
+                    //if (!player.AddToTeam(newPokemon))
+                    if (player.TeamCount() == 1)
                         player.SetActivePokemon(newPokemon);
-                    }
 
-                    if (player.GetPokemonTeam().Count == 6)
-                        return $"El pokemon {cPokemon} fue añadido al equipo de {playerName}\nTu equipo está completo.";
-                    return $"El pokemon {cPokemon} fue añadido al equipo de {playerName}";
+                    if (player.TeamCount() == 6)
+                        return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}\nTu equipo está completo.";
+                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}";
                 }
                 //
                 // if (pokemon.Name == cPokemon && player.GetPokemonTeam().Contains(pokemon))
@@ -62,7 +64,7 @@ public static class Facade
                 //     return;
                 // }
             }
-            return $"{playerName}, el pokemon {cPokemon} no fue encontrado";
+            return $"{playerName}, el pokemon {pokemonName} no fue encontrado";
         }
         return $"{playerName} ya tienes 6 pokemones en el equipo, no puedes elegir más";
     }
@@ -445,21 +447,6 @@ public static class Facade
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
     public static string ShowCatalogue()
     {
-        PokemonCatalogue.SetCatalogue();
-        return PokemonCatalogue.ShowCatalogue();
-    }
-
-    /// <summary>
-    /// Devuelve la cantidad de Pokemons del jugador
-    /// </summary>
-    /// <param name="playerName">Nombre del juagodr.</param>
-    /// <returns>Cantidad de Pokemons en el equipo del jugador. Devuelve
-    /// nulll si el jugador no está en una partida.</returns>
-    public static int? TeamCountByName(string playerName)
-    {
-        Player player = GameList.FindPlayerByName(playerName);
-        if (player == null)
-            return null;
-        return player.TeamCount();
+        return Pokedex.ShowCatalogue();
     }
 }
