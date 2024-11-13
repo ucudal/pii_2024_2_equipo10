@@ -465,25 +465,25 @@ public static class Facade
     public static string Help()
     {
         return "Comandos disponibles:\n" +
-        "!attack <nombre del ataque>\n" +
-        "!battle\n" +
-        "!catalogue\n" +
-        "!change <nombre del pokemon\n>" +
-        "!checkturn\n" +
-        "!choose <nombre del pokemon>\n" +
-        "!help\n" +
-        "!hp\n" +
-        "!hp <nombre del rival>\n" +
-        "!join\n" +
-        "!leave\n" +
-        "!name <nombre del pokemon>\n" +
-        "!showattacks\n" +
-        "!showitems\n" +
-        "!surrender\n" +
-        "!useitem <item> <pokemon>\n" +
-        "!who\n" +
-        "!who <nombre de un usuario>\n" +
-        "!waitinglist\n";
+        "!attack <nombre del ataque>    ---> (Ataca al rival con el ataque que quieras)\n" + 
+        "!battle                        ---> (Inicia la batalla con un jugador aleatorio)\n" +
+        "!battle <nombre de jugador>    ---> (Inicia la batalla con el jugador que ingreses)\n" +
+        "!catalogue                     ---> (Muestra los pokemon del catalogo)\n" +
+        "!change <nombre del pokemon>   ---> (Cambia el pokemon activo por el que ingreses)\n>" +
+        "!checkturn                     ---> (Verifica de quien es el turno)\n" +
+        "!choose <nombre del pokemon>   ---> (Introduce en tu equipo el pokemon que ingreses)\n" +
+        "!help                          ---> (Muestra los comandos disponibles)\n" +
+        "!hp                            ---> (Muestra la vida de tus pokemon)\n" +
+        "!hp <nombre del rival>         ---> (Muestra la vida de los pokemon del rival)\n" +
+        "!join                          ---> (Te agrega a la lista de espera de partidas)\n" +
+        "!leave                         ---> (Te saca de la lista de espera de partidas)\n" +
+        "!showattacks                   ---> (Muestra los ataques disponibles de tu pokemon activo)\n" +
+        "!showitems                     ---> (Muestra los items disponibles que tenes)\n" +
+        "!surrender                     ---> (Rendirse)\n" +
+        "!useitem <item> <pokemon>      ---> (Usa un item en el pokemon que quieras)\n" +
+        "!who                           ---> (Devuelve informacion de tu usuario)\n" +
+        "!who <nombre de un usuario>    ---> (Devuelve informacion del usuario que ingreses)\n" +
+        "!waitinglist                   ---> (Muestra los usuarios en la lista de espera)\n";
     }
 
 }
