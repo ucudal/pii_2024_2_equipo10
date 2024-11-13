@@ -193,4 +193,15 @@ public class FacadeTest
         Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("Comienza facu vs ines"));
     }
     
+    [Test]
+    public void TestSurrender()
+    {
+        Facade.AddPlayerToWaitingList("Facu");
+        string result1 = Facade.Surrender("Facu");
+        Assert.That(result1, Is.EqualTo("Para rendirte primero debes estar en una batalla"));
+        Facade.AddPlayerToWaitingList("Mati");
+        Facade.StartGame("Facu","Mati");
+        string result2 = Facade.Surrender("Facu");
+        Assert.That(result1, Is.EqualTo("Ganador: Mati. Perdedor: Facu"));
+    }
 }

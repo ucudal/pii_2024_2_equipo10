@@ -441,4 +441,26 @@ public static class Facade
         PokemonCatalogue.SetCatalogue();
         return PokemonCatalogue.ShowCatalogue();
     }
+
+    public static string Surrender(string player)
+    {
+        Player? surrenderPlayer = GameList.FindPlayerByName(player);
+        if (surrenderPlayer == null)
+        {
+            return "Para rendirte primero debes estar en una batalla";
+        }
+        Game? game = GameList.FindGameByPlayer(surrenderPlayer);
+        if (game == null)
+        {
+            return"No se pudo encontrar la partida";
+        }
+        int notActivePlayer = (game.ActivePlayer+1)%2;
+        if (game.GetPlayers()[game.ActivePlayer].Name == player)
+        {
+            GameList.RemoveGame(game);
+            return $"Ganador: {game.GetPlayers()[game.ActivePlayer].Name}. Perdedor: {game.GetPlayers()[notActivePlayer].Name}";
+        }
+        return $"Ganador: {game.GetPlayers()[notActivePlayer].Name}. Perdedor: {game.GetPlayers()[game.ActivePlayer].Name}";
+    }
+
 }
