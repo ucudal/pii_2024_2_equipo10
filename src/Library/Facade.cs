@@ -512,23 +512,25 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"{playerName}, no estás en una partida.";
-        List<int> pokemonIndexes = new List<int>();
-        for (int i = 0; i < Pokedex.PokemonCount; i++)
-        {
-            pokemonIndexes.Add(i);
-        }
-        string result = $"{playerName}, este es tu equipo Pokemon:\n";
+        if (player.TeamCount >= 6)
+            return $"{playerName}, ya tienes un equipo completo de Pokémon.";
+        List<int> availablePokemonIndexes = Enumerable.Range(0, Pokedex.PokemonCount).ToList();
+        Random random = new Random();
+        string result = $"{playerName}, estos son los Pokemons elegidos aleatoriamente:\n";
+
         while (player.TeamCount < 6)
         {
-            Random random = new Random();
-            int randomIndex = random.Next(0, pokemonIndexes.Count);
-            if (!player.FindPokemonByName(Pokedex.PokemonList[randomIndex].Name))
+            int randomIndex = random.Next(availablePokemonIndexes.Count);
+            Pokemon chosenPokemon = Pokedex.PokemonList[availablePokemonIndexes[randomIndex]];
+
+            if (!player.FindPokemonByName(chosenPokemon.Name))
             {
-                player.AddToTeam(Pokedex.PokemonList[randomIndex].Instance());
-                result += Pokedex.PokemonList[randomIndex].Name + "\n";
-                pokemonIndexes.Remove(pokemonIndexes[randomIndex]);
+                player.AddToTeam(chosenPokemon.Instance());
+                result += $"{chosenPokemon.Name}\n";
+                availablePokemonIndexes.RemoveAt(randomIndex); // Remover para no repetir
             }
         }
+
         return result;
     }
 }
