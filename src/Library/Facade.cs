@@ -69,10 +69,11 @@ public static class Facade
     /// caso de que el jugador no exista.</returns>
     public static string ShowAtacks(string playerName)
     {
-
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
-            return $"El jugador {playerName} no está en ninguna partida.";
+            return $"{playerName}, no estás en ninguna partida.";
+        if (player.TeamCount() == 0)
+            return $"{playerName}, no tienes ningun Pokemon.";
         
         return player.GetPokemonAttacks();
     }
@@ -214,8 +215,6 @@ public static class Facade
         }
 
         Game game = GameList.FindGameByPlayer(player);
-        string opciones =
-            $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
         if (game != null)
         {
             if (game.CheckPlayerInGame(player))
@@ -223,8 +222,8 @@ public static class Facade
                 int activePlayerIndex = game.ActivePlayer;
                 Player activePlayer = game.GetPlayers()[activePlayerIndex];
                 if (activePlayer.Name == playerName)
-                    return "Es tu turno:\n" + opciones;
-                return "No es tu turno," + " " + "las opciones disponibles cuando sea tu turno son:\n" + opciones;
+                    return $"{playerName}, es tu turno";
+                return $"{playerName}, no es tu turno";
             }
         }
 
