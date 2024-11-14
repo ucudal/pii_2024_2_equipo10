@@ -21,7 +21,9 @@ public class CheckTurnCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync()
     {
-        
+        string playerName = CommandHelper.GetDisplayName(Context);
+        string result = Facade.CheckTurn(playerName);
+        await ReplyAsync(result);
     }
 
 }
