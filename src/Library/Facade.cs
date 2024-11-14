@@ -37,7 +37,7 @@ public static class Facade
         if (player == null)
             return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
 
-        if (player.TeamCount() < 6)
+        if (player.TeamCount < 6)
         { 
             if (player.FindPokemonByName(pokemonName))
                 return $"El pokemon {pokemonName} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
@@ -47,11 +47,9 @@ public static class Facade
                 {
                     Pokemon newPokemon = pokemon.Instance();
                     player.AddToTeam(newPokemon);
-                    if (player.TeamCount() == 1)
-                        player.SetActivePokemon(newPokemon);
-                    if (player.TeamCount() == 6)
+                    if (player.TeamCount == 6)
                         return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}\nTu equipo está completo.";
-                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}.\nElegiste {player.TeamCount()}/6";
+                    return $"El pokemon {pokemonName} fue añadido al equipo de {playerName}.\nElegiste {player.TeamCount}/6";
                 }
             }
             return $"{playerName}, el pokemon {pokemonName} no fue encontrado";
@@ -72,7 +70,7 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"{playerName}, no estás en ninguna partida.";
-        if (player.TeamCount() == 0)
+        if (player.TeamCount == 0)
             return $"{playerName}, no tienes ningun Pokemon.";
         
         return $"{playerName}, estos son los ataques de tu Pokemon activo:\n" + player.GetPokemonAttacks();
@@ -86,7 +84,7 @@ public static class Facade
     /// <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
     /// <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
     /// <returns>Un <c>string</c> de los Pokemon y sus HP o un mensaje de error.</returns>
-    public static string ShowPokemonsHp(string playerName, string? playerToCheckName)
+    public static string ShowPokemonsHp(string playerName, string? playerToCheckName = null)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -126,7 +124,7 @@ public static class Facade
             if (game != null && game.CheckPlayerInGame(player) && game.CheckPlayerInGame(playerToCheck) &&
                 playerToCheck != null)
             {
-                if (playerToCheck.TeamCount() < 6)
+                if (playerToCheck.TeamCount < 6)
                 {
                     return $"{playerToCheckName} aún no tiene su equipo completo.";
                 }
@@ -491,63 +489,6 @@ public static class Facade
         return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name} \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
     }
 
-
-    public static string Help()
-    {
-        return "**Comandos disponibles:**\n" +
-               "\n" +
-               "**!attack** <**nombre del ataque**>\n(Ataca al rival con el ataque que quieras)\n" +
-               "\n" +
-               "**!battle**\n" +
-               "(Inicia la batalla con un jugador aleatorio)\n" +
-               "\n" +
-               "**!battle** <**nombre de jugador**>\n" +
-               "(Inicia la batalla con el jugador que ingreses)\n" +
-               "\n" +
-               "**!catalogue**\n" +
-               "(Muestra los pokemon del catalogo)\n" +
-               "\n" +
-               "**!change** <**nombre del pokemon**>\n" +
-               "(Cambia el pokemon activo por el que ingreses)\n" +
-               "\n" +
-               "**!checkturn**\n" +
-               "(Verifica de quien es el turno)\n" +
-               "\n" +
-               "**!choose** <**nombre del pokemon**>\n" +
-               "(Introduce en tu equipo el pokemon que ingreses)\n" +
-               "\n" +
-               "**!help**\n" +
-               "(Muestra los comandos disponibles)\n" +
-               "\n" +
-               "**!hp**\n" +
-               "(Muestra la vida de tus pokemon)\n" +
-               "\n" +
-               "**!hp** <**nombre del rival**>\n" +
-               "(Muestra la vida de los pokemon del rival)\n" +
-               "\n" +
-               "**!join**\n" +
-               "(Te agrega a la lista de espera)\n" +
-               "\n" +
-               "**!leave**\n" +
-               "(Te saca de la lista de espera)\n" +
-               "\n" +
-               "**!showattacks**\n" +
-               "(Muestra los ataques disponibles de tu pokemon activo)\n" +
-               "\n" +
-               "**!showitems**\n" +
-               "(Muestra los items disponibles que tenes)\n" +
-               "\n" +
-               "**!surrender**\n" +
-               "(Rendirse)\n" +
-               "\n" +
-               "**!useitem** <**item**> <**pokemon**>\n" +
-               "(Usa un item en el pokemon que quieras)\n" +
-               "\n" +
-               "**!waitinglist**\n" +
-               "(Muestra los usuarios en la lista de espera)\n" +
-               "\n";
-    }
-
     public static string ShowItems(string playerName)
     {
         Player? player = GameList.FindPlayerByName(playerName);
@@ -561,6 +502,31 @@ public static class Facade
             {
                 result += player.itemCount(item.Name) + " " + item.Name + "\n";
                 repeatedItems.Add(item.Name);
+            }
+        }
+        return result;
+    }
+
+    public static string ChooseRandom(string playerName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+            return $"{playerName}, no estás en una partida.";
+        List<int> pokemonIndexes = new List<int>();
+        for (int i = 0; i < Pokedex.PokemonCount; i++)
+        {
+            pokemonIndexes.Add(i);
+        }
+        string result = $"{playerName}, este es tu equipo Pokemon:\n";
+        while (player.TeamCount < 6)
+        {
+            Random random = new Random();
+            int randomIndex = random.Next(0, pokemonIndexes.Count);
+            if (!player.FindPokemonByName(Pokedex.PokemonList[randomIndex].Name))
+            {
+                player.AddToTeam(Pokedex.PokemonList[randomIndex].Instance());
+                result += Pokedex.PokemonList[randomIndex].Name + "\n";
+                pokemonIndexes.Remove(pokemonIndexes[randomIndex]);
             }
         }
         return result;

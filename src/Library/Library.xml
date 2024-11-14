@@ -141,6 +141,16 @@
             </summary>
             <param name="pokemonName">Nombre del Pokemon seleccionado.</param>
         </member>
+        <member name="T:Library.Commands.ChooseRandomCommand">
+            <summary>
+            Esta clase implementa el comando 'chooserandom' del bot.
+            </summary>
+        </member>
+        <member name="M:Library.Commands.ChooseRandomCommand.ExecuteAsync">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Library.Commands.HelpCommand">
             <summary>
             Esta clase implementa el comando 'help' del bot.
@@ -739,6 +749,11 @@
             Pokemon activo del jugador.
             </summary>
         </member>
+        <member name="P:Library.Player.TeamCount">
+            <summary>
+            Cantidad de Pokemons en el equipo del jugador.
+            </summary>
+        </member>
         <member name="M:Library.Player.#ctor(System.String)">
             <summary>
             Le asigna un nombre al jugador, crea las listas de pokemons e items
@@ -809,10 +824,19 @@
             </summary>
             <returns><c>string</c></returns>
         </member>
-        <member name="M:Library.Player.TeamCount">
+        <member name="M:Library.Player.FindPokemonByName(System.String)">
             <summary>
-            Cantidad de Pokemons en el equipo del jugador.
+            Busca un Pokemon en el equipo de Pokemons de un jugador.
             </summary>
+            <param name="pokemonName">Nombre del Pokemon.</param>
+            <returns>Devuelve <c>True</c> si lo encuentra, <c>False</c> si no.</returns>
+        </member>
+        <member name="M:Library.Player.itemCount(System.String)">
+            <summary>
+            Se encarga de determinar la cantidad de instancias de un item
+            que tiene el jugador en su lista de items.
+            </summary>
+            <param name="itemName">Nombre del item</param>
             <returns><c>int</c></returns>
         </member>
         <member name="T:Library.Pokemon">
@@ -930,11 +954,31 @@
             Lista de Pokemons.
             </summary>
         </member>
+        <member name="P:Library.PokemonCatalogue.PokemonCount">
+            <summary>
+            Cantidad de Pokemons en el catálogo
+            </summary>
+        </member>
+        <member name="F:Library.PokemonCatalogue._instance">
+            <summary>
+            Instancia del catálogo.
+            </summary>
+        </member>
+        <member name="M:Library.PokemonCatalogue.#ctor">
+            <summary>
+            Crea las instancias de los Pokemons y los agrega a la lista.
+            </summary>
+        </member>
+        <member name="P:Library.PokemonCatalogue.Instance">
+            <summary>
+            Crea una instancia del catálogo si no existe una.
+            </summary>
+        </member>
         <member name="M:Library.PokemonCatalogue.ShowCatalogue">
             <summary>
             Devuelve el nombre de todos los Pokemons en el catálogo. 
             </summary>
-            <returns></returns>
+            <returns><c>string</c></returns>
         </member>
         <member name="T:Library.Revive">
             <summary>
