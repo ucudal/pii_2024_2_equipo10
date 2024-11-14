@@ -69,12 +69,13 @@ public static class Facade
     /// caso de que el jugador no exista.</returns>
     public static string ShowAtacks(string playerName)
     {
-
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
-            return $"El jugador {playerName} no está en ninguna partida.";
+            return $"{playerName}, no estás en ninguna partida.";
+        if (player.TeamCount() == 0)
+            return $"{playerName}, no tienes ningun Pokemon.";
         
-        return player.GetPokemonAttacks();
+        return $"{playerName}, estos son los ataques de tu Pokemon activo:\n" + player.GetPokemonAttacks();
     }
 
     /// <summary>
@@ -214,8 +215,6 @@ public static class Facade
         }
 
         Game game = GameList.FindGameByPlayer(player);
-        string opciones =
-            $"1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)";
         if (game != null)
         {
             if (game.CheckPlayerInGame(player))
@@ -223,8 +222,8 @@ public static class Facade
                 int activePlayerIndex = game.ActivePlayer;
                 Player activePlayer = game.GetPlayers()[activePlayerIndex];
                 if (activePlayer.Name == playerName)
-                    return "Es tu turno:\n" + opciones;
-                return "No es tu turno," + " " + "las opciones disponibles cuando sea tu turno son:\n" + opciones;
+                    return $"{playerName}, es tu turno";
+                return $"{playerName}, no es tu turno";
             }
         }
 
@@ -472,7 +471,7 @@ public static class Facade
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
     public static string ShowCatalogue()
     {
-        return Pokedex.ShowCatalogue();
+        return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
     }
 
     public static string Surrender(string playerName)
@@ -480,13 +479,9 @@ public static class Facade
         Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
         if (surrenderPlayer == null)
         {
-            return "Para rendirte primero debes estar en una batalla";
+            return $"{playerName}, ara rendirte primero debes estar en una batalla";
         }
         Game? game = GameList.FindGameByPlayer(surrenderPlayer);
-        if (game == null)
-        {
-            return"No se pudo encontrar la partida";
-        }
         int notActivePlayer = (game.ActivePlayer+1)%2;
         GameList.RemoveGame(game);
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
@@ -499,26 +494,75 @@ public static class Facade
 
     public static string Help()
     {
-        return "Comandos disponibles:\n" +
-        "**!attack** <nombre del ataque>    ---> (Ataca al rival con el ataque que quieras)\n" + 
-        "_!battle_                        ---> (Inicia la batalla con un jugador aleatorio)\n" +
-        "~~!battle~~ <nombre de jugador>    ---> (Inicia la batalla con el jugador que ingreses)\n" +
-        "!catalogue                     ---> (Muestra los pokemon del catalogo)\n" +
-        "!change <nombre del pokemon>   ---> (Cambia el pokemon activo por el que ingreses)\n>" +
-        "!checkturn                     ---> (Verifica de quien es el turno)\n" +
-        "!choose <nombre del pokemon>   ---> (Introduce en tu equipo el pokemon que ingreses)\n" +
-        "!help                          ---> (Muestra los comandos disponibles)\n" +
-        "!hp                            ---> (Muestra la vida de tus pokemon)\n" +
-        "!hp <nombre del rival>         ---> (Muestra la vida de los pokemon del rival)\n" +
-        "!join                          ---> (Te agrega a la lista de espera de partidas)\n" +
-        "!leave                         ---> (Te saca de la lista de espera de partidas)\n" +
-        "!showattacks                   ---> (Muestra los ataques disponibles de tu pokemon activo)\n" +
-        "!showitems                     ---> (Muestra los items disponibles que tenes)\n" +
-        "!surrender                     ---> (Rendirse)\n" +
-        "!useitem <item> <pokemon>      ---> (Usa un item en el pokemon que quieras)\n" +
-        "!who                           ---> (Devuelve informacion de tu usuario)\n" +
-        "!who <nombre de un usuario>    ---> (Devuelve informacion del usuario que ingreses)\n" +
-        "!waitinglist                   ---> (Muestra los usuarios en la lista de espera)\n";
+        return "**Comandos disponibles:**\n" +
+               "\n" +
+               "**!attack** <**nombre del ataque**>\n(Ataca al rival con el ataque que quieras)\n" +
+               "\n" +
+               "**!battle**\n" +
+               "(Inicia la batalla con un jugador aleatorio)\n" +
+               "\n" +
+               "**!battle** <**nombre de jugador**>\n" +
+               "(Inicia la batalla con el jugador que ingreses)\n" +
+               "\n" +
+               "**!catalogue**\n" +
+               "(Muestra los pokemon del catalogo)\n" +
+               "\n" +
+               "**!change** <**nombre del pokemon**>\n" +
+               "(Cambia el pokemon activo por el que ingreses)\n" +
+               "\n" +
+               "**!checkturn**\n" +
+               "(Verifica de quien es el turno)\n" +
+               "\n" +
+               "**!choose** <**nombre del pokemon**>\n" +
+               "(Introduce en tu equipo el pokemon que ingreses)\n" +
+               "\n" +
+               "**!help**\n" +
+               "(Muestra los comandos disponibles)\n" +
+               "\n" +
+               "**!hp**\n" +
+               "(Muestra la vida de tus pokemon)\n" +
+               "\n" +
+               "**!hp** <**nombre del rival**>\n" +
+               "(Muestra la vida de los pokemon del rival)\n" +
+               "\n" +
+               "**!join**\n" +
+               "(Te agrega a la lista de espera)\n" +
+               "\n" +
+               "**!leave**\n" +
+               "(Te saca de la lista de espera)\n" +
+               "\n" +
+               "**!showattacks**\n" +
+               "(Muestra los ataques disponibles de tu pokemon activo)\n" +
+               "\n" +
+               "**!showitems**\n" +
+               "(Muestra los items disponibles que tenes)\n" +
+               "\n" +
+               "**!surrender**\n" +
+               "(Rendirse)\n" +
+               "\n" +
+               "**!useitem** <**item**> <**pokemon**>\n" +
+               "(Usa un item en el pokemon que quieras)\n" +
+               "\n" +
+               "**!waitinglist**\n" +
+               "(Muestra los usuarios en la lista de espera)\n" +
+               "\n";
     }
 
+    public static string ShowItems(string playerName)
+    {
+        Player? player = GameList.FindPlayerByName(playerName);
+        if (GameList.FindGameByPlayer(player) == null)
+            return $"{playerName}, no estás en una partida.";
+        string result = $"{playerName}, estos son tus items disponibles:\n";
+        List<string> repeatedItems = new List<string>();
+        foreach (IItem item in player.GetItemList() )
+        {
+            if (!repeatedItems.Contains(item.Name))
+            {
+                result += player.itemCount(item.Name) + " " + item.Name + "\n";
+                repeatedItems.Add(item.Name);
+            }
+        }
+        return result;
+    }
 }

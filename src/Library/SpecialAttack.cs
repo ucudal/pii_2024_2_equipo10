@@ -51,7 +51,7 @@ public class SpecialAttack : Attack
     
     public string InfoAttack()
     {
-        return $"{this.Name}: tipo {this.Type}, precisión {this.Accuracy*100}, potencia {this.Power}, efecto especial {this.SpecialEffect}, cooldown de uso {this.Cooldown}\n";
+        return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia {this.Power}, efecto especial *{this.SpecialEffect}*, cooldown de uso *{this.Cooldown}*\n";
     }
     
 }

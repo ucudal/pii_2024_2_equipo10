@@ -54,7 +54,7 @@ public class Attack : IAttack
 
     public string InfoAttack()
     {
-        return $"{this.Name}: tipo {this.Type}, precisión {this.Accuracy*100}, potencia {this.Power}\n";
+        return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia *{this.Power}*\n";
     }
     
 }

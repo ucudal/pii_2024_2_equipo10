@@ -200,4 +200,17 @@ public class Player
                 return true;
         return false;
     }
+
+    public int itemCount(string itemName)
+    {
+        int result = 0;
+        foreach (IItem item in this.Items)
+        {
+            if (item.Name == itemName)
+            {
+                result++;
+            }
+        }
+        return result;
+    }
 }
