@@ -201,7 +201,7 @@ public class Player
         return false;
     }
 
-    public int itemCount(string itemName)
+    public int ItemCount(string itemName)
     {
         int result = 0;
         foreach (IItem item in this.Items)
