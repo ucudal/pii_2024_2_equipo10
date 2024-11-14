@@ -18,13 +18,13 @@ public class SuperPotion : IItem
     /// <returns>
     /// Devuelve si el Pokemon fue curado o no.
     /// </returns>
-    public string Use(Pokemon pokemon)
+    public string? Use(Pokemon? pokemon)
     {
         if (pokemon != null)
         {
             if (pokemon.CurrentLife == pokemon.BaseLife)
             {
-                return $"{pokemon.Name} ya tiene su vida completa.";
+                return $"{pokemon.Name} ya tiene su vida completa.\n";
             }
             pokemon.GainLife(70);
             return $"{pokemon.Name} ha ganado 70HP."; 

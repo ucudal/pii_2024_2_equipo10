@@ -21,7 +21,7 @@ public class Revive : IItem
     {
         if (pokemon.CurrentLife > 0)
         {
-            return "El pokemon no está debilitado";
+            return $"{pokemon.Name} no está debilitado.\n";
         }
         pokemon.CurrentLife = (pokemon.BaseLife / 2);
         return $"{pokemon.Name} ha revivido.";
