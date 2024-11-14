@@ -63,8 +63,6 @@ public class Player
         {
             if (!this.PokemonTeam.Contains(pokemon))
             {
-                if (this.TeamCount == 0)
-                    this.SetActivePokemon(pokemon);
                 this.PokemonTeam.Add(pokemon);
                 return true;
             }
@@ -207,13 +205,14 @@ public class Player
         return false;
     }
 
+    
     /// <summary>
     /// Se encarga de determinar la cantidad de instancias de un item
     /// que tiene el jugador en su lista de items.
     /// </summary>
     /// <param name="itemName">Nombre del item</param>
     /// <returns><c>int</c></returns>
-    public int itemCount(string itemName)
+    public int ItemCount(string itemName)
     {
         int result = 0;
         foreach (IItem item in this.Items)
