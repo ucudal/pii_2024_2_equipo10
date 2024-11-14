@@ -11,12 +11,13 @@ namespace Library.Commands;
 public class ChooseRandomCommand : ModuleBase<SocketCommandContext>
 {
     /// <summary>
-    /// 
+    /// Completa el equipo del jugador aleatoriamnte.
     /// </summary>
     [Command("chooserandom")]
     [Summary(
         """
-        Muestra los Pokemons del catálogo.
+        Completa el equipo del jugador aleatoriamnte.
+        El jugador debe estar en una partida para usar este comando.
         """)]
     public async Task ExecuteAsync()
     {

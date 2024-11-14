@@ -41,8 +41,8 @@ public class Bot : IBot
     {
         string discordToken = configuration["DiscordToken"] ?? throw new Exception("Falta el token");
 
-        logger.LogInformation("Iniciando el con token {Token}", discordToken);
-        
+        logger.LogInformation("Iniciando con token {Token}", discordToken);
+    
         serviceProvider = services;
 
         await commands.AddModulesAsync(Assembly.GetExecutingAssembly(), serviceProvider);
@@ -50,8 +50,26 @@ public class Bot : IBot
         await client.LoginAsync(TokenType.Bot, discordToken);
         await client.StartAsync();
 
+        // Suscribirse al evento Ready
+        client.Ready += OnReadyAsync;
+
         client.MessageReceived += HandleCommandAsync;
     }
+
+    private async Task OnReadyAsync()
+    {
+        logger.LogInformation("Bot conectado y listo para usar.");
+
+        // Obtén el canal por su ID (reemplaza "TU_CANAL_ID" con el ID real)
+        var channel = client.GetChannel(1301187987991695370) as IMessageChannel;
+    
+        if (channel != null)
+        {
+            // Envía un mensaje cuando el bot se enciende
+            await channel.SendMessageAsync("¡El bot está en línea y listo para funcionar\n!help para ver los comandos disponibles :)");
+        }
+    }
+
 
     public async Task StopAsync()
     {

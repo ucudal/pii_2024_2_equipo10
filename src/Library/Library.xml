@@ -148,7 +148,7 @@
         </member>
         <member name="M:Library.Commands.ChooseRandomCommand.ExecuteAsync">
             <summary>
-            
+            Completa el equipo del jugador aleatoriamnte.
             </summary>
         </member>
         <member name="T:Library.Commands.HelpCommand">
@@ -852,7 +852,7 @@
             <param name="pokemonName">Nombre del Pokemon.</param>
             <returns>Devuelve <c>True</c> si lo encuentra, <c>False</c> si no.</returns>
         </member>
-        <member name="M:Library.Player.itemCount(System.String)">
+        <member name="M:Library.Player.ItemCount(System.String)">
             <summary>
             Se encarga de determinar la cantidad de instancias de un item
             que tiene el jugador en su lista de items.

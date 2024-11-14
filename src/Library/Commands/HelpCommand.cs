@@ -42,6 +42,9 @@ public class HelpCommand : ModuleBase<SocketCommandContext>
                       "**!choose** <**nombre del pokemon**>\n" +
                       "(Introduce en tu equipo el pokemon que ingreses)\n" +
                       "\n" +
+                      "**!chooserandom** \n" +
+                      "(Completa tu equipo Pokemon aleatoriamente)\n" +
+                      "\n" +
                       "**!help**\n" +
                       "(Muestra los comandos disponibles)\n" +
                       "\n" +
