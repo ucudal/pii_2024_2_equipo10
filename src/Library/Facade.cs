@@ -85,16 +85,28 @@ public static class Facade
     /// <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
     /// <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
     /// <returns>Un <c>string</c> de los Pokemon y sus HP o un mensaje de error.</returns>
-    public static string ShowPokemonsHp(string playerName, string playerToCheckName = null)
+    public static string ShowPokemonsHp(string playerName, string? playerToCheckName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
             return $"El jugador {playerName} no está en ninguna partida.";
         if (playerToCheckName == null)
         {
+            if (player.TeamCount() != 6)
+            {
+                return $"{playerName}, antes de conocer la vida de tus Pokemons, debes terminar de elegirlos";
+            }
             string result = "";
+           
             foreach (Pokemon pokemon in player.GetPokemonTeam())
-                result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
+            {
+                string types = "";
+                foreach (Type type in pokemon.GetTypes())
+                {
+                    types += $"{type}";
+                }
+                result += $"{pokemon.Name}:{pokemon.GetLife()} ({types})\n";
+            }
             return result;
         }
         else
@@ -105,8 +117,21 @@ public static class Facade
             if (game != null && game.CheckPlayerInGame(player) && game.CheckPlayerInGame(playerToCheck) &&
                 playerToCheck != null)
             {
+                if (playerToCheck.TeamCount() < 6)
+                {
+                    return $"{playerToCheckName} aún no tiene su equipo completo.";
+                }
+
                 foreach (Pokemon pokemon in playerToCheck.GetPokemonTeam())
-                    result += pokemon.Name + ": " + pokemon.GetLife() + "\n";
+                {
+                    string types = "";
+                    foreach (Type type in pokemon.GetTypes())
+                    {
+                        types += $"{type}";
+                    }
+                    result += $"{pokemon.Name}:{pokemon.GetLife()} ({types})\n";
+                }
+
                 return result;
             }
 
@@ -367,7 +392,9 @@ public static class Facade
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent);
-        return $"Comienza @{playerName} Vs. @{opponentName}";
+        Game game = GameList.FindGameByPlayer(player);
+        string ActivePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
+        return $"¡Comienza @{playerName} Vs. @{opponentName}!\nComienza atacando {ActivePlayerName}\n";
     }
 
     /// <summary>

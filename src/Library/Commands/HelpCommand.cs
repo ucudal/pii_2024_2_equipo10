@@ -20,7 +20,7 @@ public class HelpCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync()
     {
-        
+        await ReplyAsync(Facade.Help());
     }
 
 }
