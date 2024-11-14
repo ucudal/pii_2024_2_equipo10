@@ -174,17 +174,25 @@ public class Game
     /// </returns>
     public string UseItem(IItem? item, Pokemon? pokemon)
     {
+        Player player = this.Players[ActivePlayer];
         if (item == null)
         {
-            return "Ese item no está en tu inventario.";
+            return $"{this.Players[this.ActivePlayer].Name}, ese item no está en tu inventario.\n Inténtalo con otro.\n";
         }
 
         if (pokemon == null)
         {
-            return "Ese Pokemon no está en tu equipo.";
+            return $" {this.Players[this.ActivePlayer].Name}, ese Pokemon no está en tu equipo.\n Inténtalo con otro.\n";
         }
 
-        return item.Use(pokemon);
+        string message = item.Use(pokemon);
+        if (message.Contains("éxito"))
+        {
+            player.GetItemList().Remove(item);
+        }
+        message = $"{player.Name}, tu {message}";
+
+        return message;
     }
 
     /// <summary>

@@ -13,8 +13,8 @@ public class UseCommand : ModuleBase<SocketCommandContext>
     /// <summary>
     /// Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
     /// </summary>
-    /// <param name="pokemonAndItemName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
-    [Command("useitem")]
+    /// <param name="itemAndPokemonName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
+    [Command("use")]
     [Summary(
         """
         Usa el item seleccionado para beneficiar al Pokemon especificado.
@@ -24,10 +24,34 @@ public class UseCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync(
         [Remainder]
-        [Summary("Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados")]
-        string pokemonAndItemName
+        [Summary("Nombre del item a usar y del Pokemon a ser beneficiado concatenados")]
+        string itemAndPokemonName
         )
     {
+        string itemName = null;
+        string pokemonName = null;
+        string result;
         
+        string[] itemAndPokemonSplit = itemAndPokemonName.Split(" ");
+        if (itemAndPokemonSplit.Length > 2)
+        {
+            itemName = String.Join(" ", itemAndPokemonSplit, 0, itemAndPokemonSplit.Length-2);
+            pokemonName = itemAndPokemonSplit[^1];
+        }
+        else if (itemAndPokemonSplit.Length == 2)
+        {
+            itemName = itemAndPokemonSplit[0];          
+            pokemonName = itemAndPokemonSplit[1];
+        }
+        else
+        {
+            result = "Para usar un item debes usar el siguiente formato:\n**!use** <**item**> <**pokemon**>";
+            await ReplyAsync(result);
+            return;
+        }
+
+        string displayName = CommandHelper.GetDisplayName(Context);
+        result = Facade.UseAnItem(displayName, itemName, pokemonName);
+        await ReplyAsync(result);
     }
 }
