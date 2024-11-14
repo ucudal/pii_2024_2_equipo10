@@ -315,7 +315,7 @@
             se aplica el efecto especial del ataque y se setea su cooldown.
             </remarks>
         </member>
-        <member name="M:Library.DamageCalculator.CalculateDamage(Library.Pokemon,Library.Attack)">
+        <member name="M:Library.DamageCalculator.CalculateDamage(Library.Pokemon,Library.Attack,Library.Player)">
             <summary>
             Calcula el daño infligido a un Pokemon objetivo. Para esto tiene en cuenta el valor de ataque, la efectividad de tipos y
             la probabilidad de golpe crítico, además de revisar si se trata de un ataque especial.

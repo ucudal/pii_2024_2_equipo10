@@ -182,9 +182,9 @@ public static class DamageCalculator
         {
             attackedPokemon.EditState(specialAttack.SpecialEffect);
             specialAttack.SetCooldown();
-            return $"El pokemon {attackedPokemon.Name} fue afectado con {specialAttack.SpecialEffect}";
+            return $"{attackedPokemon.Name} fue afectado con {specialAttack.SpecialEffect}\n";
         }
-        return"El ataque no era un ataque especial";
+        return"";
     }
 
     /// <summary>
@@ -197,14 +197,14 @@ public static class DamageCalculator
     /// El daño calculado como un <c>double</c>. 
     /// Devuelve <c>0.0</c> si el ataque falla.
     /// </returns>
-public static string CalculateDamage(Pokemon attackedPokemon, Attack attack)
+public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Player attackedPlayer)
     {
         Random random = new Random();
         int randomInt = random.Next(1, 101);
         double randomDouble = randomInt / 100.0;
         if (attack.Power == 0)
         {
-            return $"El poder del ataque {attack.Name} era de 0, por lo tanto no hizo daño";
+            return $"El poder del ataque {attack.Name} era de 0, por lo tanto no hizo daño\n";
         }
         if (randomDouble <= attack.Accuracy)
         {
@@ -222,22 +222,22 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack)
             attackedPokemon.TakeDamage(damage);
             if (critical == 1.20)
             {
-                criticalCheck = "Golpe Crítico\n";
+                criticalCheck = "¡Golpe Crítico!\n";
             }
 
             if (effectivness == 2.0)
             {
-                effectivnessCheck = "Es super efectivo\n";
+                effectivnessCheck = "¡Es super efectivo!\n";
             }
 
             if (effectivness == 0.5)
             {
-                effectivnessCheck = "No es muy efectivo\n";
+                effectivnessCheck = "No es muy efectivo...\n";
 
             }
             
-            return $"{attackedPokemon.Name} recibió {damage} puntos de daño" + effectivnessCheck + criticalCheck + specialResult;
+            return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
         }
-        return "El ataque falló y no produjo daño";
+        return "El ataque falló y no produjo daño\n";
     }
 }

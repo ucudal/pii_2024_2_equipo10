@@ -26,9 +26,12 @@ public class AttackCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync(
         [Remainder]
         [Summary("Ataque que desea utilizar.")]
-        string attack)
+        string? attack = null)
     {
-        
+        string displayName = CommandHelper.GetDisplayName(Context);
+        string result;
+        result = Facade.ChooseAttack(displayName, attack);
+        await ReplyAsync(result);
     }
 
 }

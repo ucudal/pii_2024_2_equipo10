@@ -143,7 +143,7 @@ public class Game
         {
             if (specialAttack.Cooldown > 0)
             {
-                return $"El ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos";
+                return $"{this.ActivePlayer}, el ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos\n";
             }
         }
         
@@ -154,10 +154,11 @@ public class Game
             if (!asleep & !paralized)
             {
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
-                string result = DamageCalculator.CalculateDamage(attackedPokemon, attack);
+                Player attackedPlayer = this.Players[(ActivePlayer+1)%2];
+                string result = DamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
                 return result;
             }
-            else return $"{this.Players[ActivePlayer].ActivePokemon} está {this.Players[ActivePlayer].ActivePokemon.CurrentState}";
+            else return $"El {this.Players[ActivePlayer].ActivePokemon} de {this.ActivePlayer} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
         }
         return null;
     }
