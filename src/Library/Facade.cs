@@ -75,7 +75,7 @@ public static class Facade
         if (player.TeamCount() == 0)
             return $"{playerName}, no tienes ningun Pokemon.";
         
-        return player.GetPokemonAttacks();
+        return $"{playerName}, estos son los ataques de tu Pokemon activo:\n" + player.GetPokemonAttacks();
     }
 
     /// <summary>
