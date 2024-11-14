@@ -9,9 +9,23 @@ public class PokemonCatalogue
     /// Lista de Pokemons.
     /// </summary>
     public List<Pokemon> PokemonList { get; private set; } = new List<Pokemon>();
+    
+    /// <summary>
+    /// Cantidad de Pokemons en el catálogo
+    /// </summary>
+    public int PokemonCount
+    {
+        get { return this.PokemonList.Count; }
+    }
 
+    /// <summary>
+    /// Instancia del catálogo.
+    /// </summary>
     private static PokemonCatalogue? _instance;
 
+    /// <summary>
+    /// Crea las instancias de los Pokemons y los agrega a la lista.
+    /// </summary>
     private PokemonCatalogue()
     {
         Charizard charizard = new Charizard();
@@ -21,6 +35,8 @@ public class PokemonCatalogue
         Mewtwo mewtwo = new Mewtwo();
         Zeraora zeraora = new Zeraora();
         Haxorus haxorus = new Haxorus();
+        Hydreigon hydreigon = new Hydreigon();
+        Gastrodon gastrodon = new Gastrodon();
         PokemonList.Add(caterpie);
         PokemonList.Add(chikorita);
         PokemonList.Add(gengar);
@@ -28,8 +44,13 @@ public class PokemonCatalogue
         PokemonList.Add(mewtwo);
         PokemonList.Add(zeraora);
         PokemonList.Add(haxorus);
+        PokemonList.Add(hydreigon);
+        PokemonList.Add(gastrodon);
     }
-
+    
+    /// <summary>
+    /// Crea una instancia del catálogo si no existe una.
+    /// </summary>
     public static PokemonCatalogue Instance
     {
         get
@@ -46,7 +67,7 @@ public class PokemonCatalogue
     /// <summary>
     /// Devuelve el nombre de todos los Pokemons en el catálogo. 
     /// </summary>
-    /// <returns></returns>
+    /// <returns><c>string</c></returns>
     public string ShowCatalogue()
     {
         string pokemonsAvailable = "";
@@ -56,5 +77,6 @@ public class PokemonCatalogue
         }
         return pokemonsAvailable;
     }
+
     
 }

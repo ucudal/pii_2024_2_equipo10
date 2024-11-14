@@ -30,7 +30,7 @@ public class Bot : IBot
             GatewayIntents = 
                 GatewayIntents.AllUnprivileged
                 | GatewayIntents.MessageContent
-                | GatewayIntents.DirectMessages //modificado
+                //| GatewayIntents.DirectMessages //modificado
         };
     
         client = new DiscordSocketClient(config);

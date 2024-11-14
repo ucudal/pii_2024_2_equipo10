@@ -22,10 +22,11 @@ public class SpecialAttackTest
     [Test]
     public void TestSpecialAttack()
     {
-        Charizard charizard = new Charizard();
+        Player player = new Player("mateo");
         SpecialAttack lanzallamas = new SpecialAttack("lanzallamas", Library.Type.Fire, 1, 40, Library.State.Burned);
         Gengar gengar = new Gengar();
-        DamageCalculator.CalculateDamage(gengar,lanzallamas);
+        player.AddToTeam(gengar);
+        DamageCalculator.CalculateDamage(gengar,lanzallamas, player);
         Assert.That(lanzallamas.SpecialEffect.Equals(gengar.CurrentState));
 
     }
