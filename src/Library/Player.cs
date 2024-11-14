@@ -63,6 +63,8 @@ public class Player
         {
             if (!this.PokemonTeam.Contains(pokemon))
             {
+                if (this.PokemonTeam.Count == 0)
+                    this.SetActivePokemon(pokemon);
                 this.PokemonTeam.Add(pokemon);
                 return true;
             }

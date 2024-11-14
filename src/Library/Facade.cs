@@ -399,7 +399,7 @@ public static class Facade
         GameList.AddGame(player, opponent);
         Game game = GameList.FindGameByPlayer(player);
         string ActivePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
-        return $"¡Comienza @{playerName} Vs. @{opponentName}!\nComienza atacando {ActivePlayerName}\n";
+        return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {ActivePlayerName}\n";
     }
 
     /// <summary>
