@@ -176,12 +176,12 @@ public class Game
     {
         if (item == null)
         {
-            return "Ese item no está en tu inventario.";
+            return $"{this.Players[this.ActivePlayer].Name}, ese item no está en tu inventario.\n Inténtalo con otro.\n";
         }
 
         if (pokemon == null)
         {
-            return "Ese Pokemon no está en tu equipo.";
+            return $" {this.Players[this.ActivePlayer].Name}, ese Pokemon no está en tu equipo.\n Inténtalo con otro.\n";
         }
 
         return item.Use(pokemon);

@@ -248,7 +248,7 @@
             <summary>
             Envía a la fachada un mensaje con el item a usar y el Pokemons que se verá beneficiado.
             </summary>
-            <param name="pokemonAndItemName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
+            <param name="itemAndPokemonName">Nombre de Pokemon a ser beneficiado y del item a utilizar concatenados.</param>
         </member>
         <member name="T:Library.Commands.UserInfoCommand">
             <summary>
