@@ -472,6 +472,11 @@ public static class Facade
         return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
     }
 
+    /// <summary>
+    /// Elimina la partida de la lista de partidas em curso.
+    /// </summary>
+    /// <param name="playerName">Nombre de quien se rinde.</param>
+    /// <returns><c>string</c> informando quien se rindió o si no está en partida.</returns>
     public static string Surrender(string playerName)
     {
         Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
@@ -489,6 +494,11 @@ public static class Facade
         return $"El jugador {game.GetPlayers()[notActivePlayer].Name} se ha rendido.\nGanador: {game.GetPlayers()[game.ActivePlayer].Name} \nPerdedor: {game.GetPlayers()[notActivePlayer].Name}";
     }
 
+    /// <summary>
+    /// Muestra los items del jugador.
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador.</param>
+    /// <returns><c>string</c> con el nombre y la cantidad de items disponibles.</returns>
     public static string ShowItems(string playerName)
     {
         Player? player = GameList.FindPlayerByName(playerName);
@@ -507,6 +517,11 @@ public static class Facade
         return result;
     }
 
+    /// <summary>
+    /// Completa aleatoriamente el equipo de Pokemons
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador.</param>
+    /// <returns><c>string</c> con el nombre de los Pokemons agregados.</returns>
     public static string ChooseRandom(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
@@ -530,7 +545,6 @@ public static class Facade
                 availablePokemonIndexes.RemoveAt(randomIndex); // Remover para no repetir
             }
         }
-
         return result;
     }
 }

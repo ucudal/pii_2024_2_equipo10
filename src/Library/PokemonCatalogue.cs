@@ -35,6 +35,8 @@ public class PokemonCatalogue
         Mewtwo mewtwo = new Mewtwo();
         Zeraora zeraora = new Zeraora();
         Haxorus haxorus = new Haxorus();
+        Hydreigon hydreigon = new Hydreigon();
+        Gastrodon gastrodon = new Gastrodon();
         PokemonList.Add(caterpie);
         PokemonList.Add(chikorita);
         PokemonList.Add(gengar);
@@ -42,6 +44,8 @@ public class PokemonCatalogue
         PokemonList.Add(mewtwo);
         PokemonList.Add(zeraora);
         PokemonList.Add(haxorus);
+        PokemonList.Add(hydreigon);
+        PokemonList.Add(gastrodon);
     }
     
     /// <summary>

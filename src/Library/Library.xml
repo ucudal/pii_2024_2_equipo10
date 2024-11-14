@@ -483,6 +483,27 @@
             </summary>
             <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
         </member>
+        <member name="M:Library.Facade.Surrender(System.String)">
+            <summary>
+            Elimina la partida de la lista de partidas em curso.
+            </summary>
+            <param name="playerName">Nombre de quien se rinde.</param>
+            <returns><c>string</c> informando quien se rindió o si no está en partida.</returns>
+        </member>
+        <member name="M:Library.Facade.ShowItems(System.String)">
+            <summary>
+            Muestra los items del jugador.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <returns><c>string</c> con el nombre y la cantidad de items disponibles.</returns>
+        </member>
+        <member name="M:Library.Facade.ChooseRandom(System.String)">
+            <summary>
+            Completa aleatoriamente el equipo de Pokemons
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <returns><c>string</c> con el nombre de los Pokemons agregados.</returns>
+        </member>
         <member name="T:Library.FullHealth">
             <summary>
             Esta clase representa el item FullHealth.
