@@ -22,6 +22,10 @@ public class SuperPotion : IItem
     {
         if (pokemon != null)
         {
+            if (pokemon.CurrentLife == pokemon.BaseLife)
+            {
+                return $"{pokemon.Name} ya tiene su vida completa.";
+            }
             pokemon.GainLife(70);
             return $"{pokemon.Name} ha ganado 70HP."; 
         }
@@ -32,6 +36,6 @@ public class SuperPotion : IItem
     /// </summary>
     public SuperPotion()
     {
-        this.Name = "SuperPotion";
+        this.Name = "Super Potion";
     }
 }
