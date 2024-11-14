@@ -24,7 +24,7 @@ public class Revive : IItem
             return $"{pokemon.Name} no está debilitado.\n";
         }
         pokemon.CurrentLife = (pokemon.BaseLife / 2);
-        return $"{pokemon.Name} ha revivido.";
+        return $"{pokemon.Name} ha revivido. \n¡{this.Name} utilizada con éxito!";
     }
     /// <summary>
     /// Constructor de <see cref="Revive"/>

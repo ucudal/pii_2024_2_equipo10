@@ -25,7 +25,7 @@ public class FullHealth : IItem
                 return $"{pokemon.Name} no tiene ningún estado negativo";
             }
             pokemon.EditState(null);
-            return $"{pokemon.Name} ya no tiene ningún estado negativo.";
+            return $"{pokemon.Name} ya no tiene ningún estado negativo.\n¡{this.Name} utilizada con éxito!";
         }
         return null;
     }
