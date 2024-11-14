@@ -27,6 +27,14 @@ public class Player
     public Pokemon ActivePokemon { get; private set; }
     
     /// <summary>
+    /// Cantidad de Pokemons en el equipo del jugador.
+    /// </summary>
+    public int TeamCount
+    {
+        get { return this.PokemonTeam.Count; }
+    }
+    
+    /// <summary>
     /// Le asigna un nombre al jugador, crea las listas de pokemons e items
     /// agregando items iniciales. Aplicando el patrón GRASP creator.
     /// </summary>
@@ -55,6 +63,8 @@ public class Player
         {
             if (!this.PokemonTeam.Contains(pokemon))
             {
+                if (this.TeamCount == 0)
+                    this.SetActivePokemon(pokemon);
                 this.PokemonTeam.Add(pokemon);
                 return true;
             }
@@ -185,14 +195,10 @@ public class Player
     }
 
     /// <summary>
-    /// Cantidad de Pokemons en el equipo del jugador.
+    /// Busca un Pokemon en el equipo de Pokemons de un jugador.
     /// </summary>
-    /// <returns><c>int</c></returns>
-    public int TeamCount()
-    {
-        return this.PokemonTeam.Count;
-    }
-
+    /// <param name="pokemonName">Nombre del Pokemon.</param>
+    /// <returns>Devuelve <c>True</c> si lo encuentra, <c>False</c> si no.</returns>
     public bool FindPokemonByName(string pokemonName)
     {
         foreach (Pokemon pokemon in this.PokemonTeam)
@@ -201,6 +207,12 @@ public class Player
         return false;
     }
 
+    /// <summary>
+    /// Se encarga de determinar la cantidad de instancias de un item
+    /// que tiene el jugador en su lista de items.
+    /// </summary>
+    /// <param name="itemName">Nombre del item</param>
+    /// <returns><c>int</c></returns>
     public int itemCount(string itemName)
     {
         int result = 0;
