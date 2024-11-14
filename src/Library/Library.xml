@@ -745,6 +745,17 @@
             Constructor de Mewtwo, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="T:Library.Pikachu">
+            <summary>
+            Esta clase representa el Pokemon Chikorita.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Pikachu.#ctor">
+            <summary>
+            Constructor de Chikorita, implementa el patron GRASP creator.
+            </summary>
+        </member>
         <member name="T:Library.Player">
             <summary>
             Esta clase representa un jugador.
