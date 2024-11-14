@@ -471,7 +471,7 @@ public static class Facade
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
     public static string ShowCatalogue()
     {
-        return Pokedex.ShowCatalogue();
+        return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
     }
 
     public static string Surrender(string playerName)
@@ -479,13 +479,9 @@ public static class Facade
         Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
         if (surrenderPlayer == null)
         {
-            return "Para rendirte primero debes estar en una batalla";
+            return $"{playerName}, ara rendirte primero debes estar en una batalla";
         }
         Game? game = GameList.FindGameByPlayer(surrenderPlayer);
-        if (game == null)
-        {
-            return"No se pudo encontrar la partida";
-        }
         int notActivePlayer = (game.ActivePlayer+1)%2;
         GameList.RemoveGame(game);
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
@@ -552,4 +548,21 @@ public static class Facade
                "\n";
     }
 
+    public static string ShowItems(string playerName)
+    {
+        Player? player = GameList.FindPlayerByName(playerName);
+        if (GameList.FindGameByPlayer(player) == null)
+            return $"{playerName}, no estás en una partida.";
+        string result = $"{playerName}, estos son tus items disponibles:\n";
+        List<string> repeatedItems = new List<string>();
+        foreach (IItem item in player.GetItemList() )
+        {
+            if (!repeatedItems.Contains(item.Name))
+            {
+                result += player.itemCount(item.Name) + " " + item.Name + "\n";
+                repeatedItems.Add(item.Name);
+            }
+        }
+        return result;
+    }
 }
