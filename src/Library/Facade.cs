@@ -508,7 +508,7 @@ public static class Facade
         List<string> repeatedItems = new List<string>();
         foreach (IItem item in player.GetItemList() )
             if (!repeatedItems.Contains(item.Name))
-                if (player.ItemCount(item.Name) == 0)
+                if (player.ItemCount(item.Name) != 0)
                 {
                     result += player.ItemCount(item.Name) + " " + item.Name + "\n";
                     repeatedItems.Add(item.Name);
