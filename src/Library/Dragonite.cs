@@ -1,13 +1,13 @@
 namespace Library;
 
 /// <summary>
-/// Esta clase representa el Pokemon Chikorita.
+/// Esta clase representa el Pokemon Dragonite.
 /// Al ser un Pokemon hereda de la clase  <see cref="Pokemon"/>.
 /// </summary>
 public class Dragonite : Pokemon
 {
     /// <summary>
-    /// Constructor de Chikorita, implementa el patron GRASP creator.
+    /// Constructor de Dragonite, implementa el patron GRASP creator.
     /// </summary>
     public Dragonite():base(name: "Dragonite", life: 460, type: Type.Dragon,new Attack("Wing Attack",Type.Flying,
         1.00,60),new Attack("Slam", Type.Normal,0.75,80),new SpecialAttack
