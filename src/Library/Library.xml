@@ -337,6 +337,28 @@
             Devuelve <c>0.0</c> si el ataque falla.
             </returns>
         </member>
+        <member name="T:Library.Dragonite">
+            <summary>
+            Esta clase representa el Pokemon Dragonite.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Dragonite.#ctor">
+            <summary>
+            Constructor de Dragonite, implementa el patron GRASP creator.
+            </summary>
+        </member>
+        <member name="T:Library.Entei">
+            <summary>
+            Esta clase representa el Pokemon Entei.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Entei.#ctor">
+            <summary>
+            Constructor de Entei, implementa el patron GRASP creator.
+            </summary>
+        </member>
         <member name="T:Library.Facade">
             <summary>
             Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
@@ -734,6 +756,17 @@
             <param name="pokemon">Pokemon en el que se usará el item</param>
             <returns>Resultado.</returns>
         </member>
+        <member name="T:Library.Jigglypuff">
+            <summary>
+            Esta clase representa el Pokemon Jigglypuff.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Jigglypuff.#ctor">
+            <summary>
+            Constructor de Jigglypuff, implementa el patron GRASP creator.
+            </summary>
+        </member>
         <member name="T:Library.Mewtwo">
             <summary>
             Esta clase representa el Pokemon Mewtwo.
@@ -747,13 +780,13 @@
         </member>
         <member name="T:Library.Pikachu">
             <summary>
-            Esta clase representa el Pokemon Chikorita.
+            Esta clase representa el Pokemon Pikachu.
             Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
             </summary>
         </member>
         <member name="M:Library.Pikachu.#ctor">
             <summary>
-            Constructor de Chikorita, implementa el patron GRASP creator.
+            Constructor de Pikachu, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="T:Library.Player">
@@ -1034,6 +1067,17 @@
         <member name="M:Library.Revive.#ctor">
             <summary>
             Constructor de <see cref="T:Library.Revive"/>
+            </summary>
+        </member>
+        <member name="T:Library.Scyther">
+            <summary>
+            Esta clase representa el Pokemon Scyther.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Scyther.#ctor">
+            <summary>
+            Constructor de Scyther, implementa el patron GRASP creator.
             </summary>
         </member>
         <member name="T:Library.SpecialAttack">
