@@ -143,7 +143,7 @@ public class FacadeTest
         Facade.ChooseTeam("ines", "Gengar");
         Facade.ChooseTeam("ines", "Haxorus");
         string change2 = Facade.ChangePokemon("ines", "Mewtwo");
-        string excpected = "Mewtwo es tu nuevo pokemon activo. Proximo turno ahora es el turno de facu";
+        string excpected = "Mewtwo es tu nuevo pokemon activo. Próximo turno ahora es el turno de facu";
         Assert.That(change1, Is.EqualTo(excpected));
     }
 

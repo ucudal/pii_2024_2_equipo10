@@ -91,7 +91,7 @@ public static class Facade
             return $"El jugador {playerName} no está en ninguna partida.";
         if (playerToCheckName == null)
         {
-            string result = "";
+            string result = $"{playerName} esta es la vida de tus Pokemons: \n";
            
             foreach (Pokemon pokemon in player.GetPokemonTeam())
             {
@@ -103,6 +103,10 @@ public static class Facade
 
                 if (pokemon == player.ActivePokemon)
                 {
+                    if (pokemon.CurrentState != null)
+                    {
+                        result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**" + $" **({pokemon.CurrentState})**\n";
+                    }
                     result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
                 }
                 else if (pokemon.CurrentLife == 0)
@@ -111,6 +115,10 @@ public static class Facade
                 }
                 else
                 {
+                    if (pokemon.CurrentState != null)
+                    {
+                        result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})" + $" **({pokemon.CurrentState})**\n";
+                    }
                     result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
                 }
             }
@@ -119,7 +127,7 @@ public static class Facade
         else
         {
             Player playerToCheck = GameList.FindPlayerByName(playerToCheckName);
-            string result = "";
+            string result = $"Esta es la vida de los Pokemons de {playerToCheckName}: \n";
             Game game = GameList.FindGameByPlayer(player);
             if (game != null && game.CheckPlayerInGame(player) && game.CheckPlayerInGame(playerToCheck) &&
                 playerToCheck != null)
@@ -136,7 +144,26 @@ public static class Facade
                     {
                         types += $"{type}";
                     }
-                    result += $"{pokemon.Name}:{pokemon.GetLife()} ({types})\n";
+                    if (pokemon == playerToCheck.ActivePokemon)
+                    {
+                        if (pokemon.CurrentState != null)
+                        {
+                            result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**" + $" **({pokemon.CurrentState})**\n";
+                        }
+                        result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
+                    }
+                    else if (pokemon.CurrentLife == 0)
+                    {
+                        result += $"~~{pokemon.Name}: {pokemon.GetLife()} ({types})~~\n";
+                    }
+                    else
+                    {
+                        if (pokemon.CurrentState != null)
+                        {
+                            result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})" + $" **({pokemon.CurrentState})**\n";
+                        }
+                        result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
+                    }
                 }
 
                 return result;
