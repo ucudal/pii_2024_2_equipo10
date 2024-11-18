@@ -121,7 +121,7 @@ public class Player
     ///<c>null</c> si el item no está en la lista items.
     ///<c>Iitem</c> si lo encontró.
     /// </returns>
-    public IItem FindItem(string strItem)
+    public IItem? FindItem(string strItem)
     {
         foreach (IItem item in this.Items)
         {
@@ -130,7 +130,6 @@ public class Player
                 return item;
             }
         }
-
         return null;
     }
 

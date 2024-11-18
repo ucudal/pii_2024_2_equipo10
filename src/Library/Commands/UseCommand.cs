@@ -35,8 +35,8 @@ public class UseCommand : ModuleBase<SocketCommandContext>
         string[] itemAndPokemonSplit = itemAndPokemonName.Split(" ");
         if (itemAndPokemonSplit.Length > 2)
         {
-            itemName = String.Join(" ", itemAndPokemonSplit, 0, itemAndPokemonSplit.Length-2);
-            pokemonName = itemAndPokemonSplit[^1];
+            itemName = String.Join(" ", itemAndPokemonSplit, 0, itemAndPokemonSplit.Length-1);
+            pokemonName = itemAndPokemonSplit[itemAndPokemonSplit.Length-1];
         }
         else if (itemAndPokemonSplit.Length == 2)
         {
