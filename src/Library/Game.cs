@@ -115,6 +115,26 @@ public class Game
         }
     }
 
+    public void SpecialEffectExecute()
+    {
+        foreach (Player player in this.Players)
+        {
+            foreach (Pokemon pokemon in player.GetPokemonTeam())
+            {
+                if (pokemon.CurrentState == State.Burned)
+                {
+                    StateLogic.BurnedEffect(pokemon);
+                }
+
+                if (pokemon.CurrentState == State.Poisoned)
+                {
+                    StateLogic.PoisonedEffect(pokemon);
+                }
+            }
+        }
+
+    }
+
     /// <summary>
     /// Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
     /// y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
@@ -122,9 +142,10 @@ public class Game
     {
         if (GameStatus())
         {
+           CooldownCheck();
+           SpecialEffectExecute();
+           this.ActivePlayer = (this.ActivePlayer + 1) % 2;           
            this.TurnCount++;
-           CooldownCheck();          
-           this.ActivePlayer = (this.ActivePlayer + 1) % 2;
         }
     }
 
@@ -139,20 +160,19 @@ public class Game
     /// </returns>
     public string ExecuteAttack(Attack? attack)
     {
-        if (attack is SpecialAttack specialAttack)
-        {
-            if (specialAttack.Cooldown > 0)
-            {
-                return $"{this.ActivePlayer}, el ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos\n";
-            }
-        }
-        
         if (attack != null)
         {
             bool asleep = StateLogic.AsleepEffect(Players[ActivePlayer].ActivePokemon);
             bool paralized = StateLogic.ParalizedEffect(Players[ActivePlayer].ActivePokemon);
             if (!asleep & !paralized)
             {
+                if (attack is SpecialAttack specialAttack)
+                {
+                    if (specialAttack.Cooldown > 0)
+                    {
+                        return $"{this.ActivePlayer}, el ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos más.\n";
+                    }
+                }
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
                 Player attackedPlayer = this.Players[(ActivePlayer+1)%2];
                 string result = DamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
