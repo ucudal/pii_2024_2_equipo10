@@ -115,8 +115,9 @@ public class Game
         }
     }
 
-    public void SpecialEffectExecute()
+    public string SpecialEffectExecute()
     {
+        string result = "";
         foreach (Player player in this.Players)
         {
             foreach (Pokemon pokemon in player.GetPokemonTeam())
@@ -124,29 +125,34 @@ public class Game
                 if (pokemon.CurrentState == State.Burned)
                 {
                     StateLogic.BurnedEffect(pokemon);
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.1)}HP por estar {pokemon.CurrentState}.\n";
                 }
 
                 if (pokemon.CurrentState == State.Poisoned)
                 {
                     StateLogic.PoisonedEffect(pokemon);
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.05)}HP por estar {pokemon.CurrentState}.\n";
                 }
             }
         }
-
+        return result;
     }
 
     /// <summary>
     /// Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataques especiales
     /// y cambia al siguiente jugador activo, siempre que el juego esté en curso.</summary>
-    public void NextTurn()
+    public string NextTurn()
     {
+        string result = "";
         if (GameStatus())
         {
            CooldownCheck();
-           SpecialEffectExecute();
+           result += SpecialEffectExecute();
            this.ActivePlayer = (this.ActivePlayer + 1) % 2;           
            this.TurnCount++;
         }
+
+        return result;
     }
 
 
@@ -178,7 +184,7 @@ public class Game
                 string result = DamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
                 return result;
             }
-            else return $"El {this.Players[ActivePlayer].ActivePokemon} de {this.ActivePlayer} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
+            else return $"El {this.Players[ActivePlayer].ActivePokemon.Name} de {this.Players[ActivePlayer]} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
         }
         return null;
     }

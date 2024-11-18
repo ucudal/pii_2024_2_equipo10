@@ -186,10 +186,11 @@ public static class Facade
             {
                 if (game.GetPlayers()[game.ActivePlayer].Name == player.Name)
                 {
-                    string gameResult = game.ExecuteAttack(attack);
-                    game.NextTurn();
-                    string nextTurn = CheckGameStatus(game);
-                    return gameResult + " " + nextTurn;
+                    string result = "";
+                    result += game.ExecuteAttack(attack);
+                    result += game.NextTurn();
+                    result += CheckGameStatus(game);
+                    return result;
                 }
                 return "No eres el jugador activo";
             }
