@@ -79,7 +79,7 @@ public class Player
     /// <returns>
     ///<c>true</c> si se cambió el pokemon activo. <c>false</c> si el pokemon elegido no tiene vida.
     /// </returns>
-    public bool SetActivePokemon(Pokemon pokemon)
+    public bool SetActivePokemon(Pokemon? pokemon = null)
     {
         if (pokemon != null)
         {
@@ -89,6 +89,17 @@ public class Player
                 return true;
             }
             return false;
+        }
+        else
+        {
+            foreach (Pokemon poke in this.PokemonTeam)
+            {
+                if (poke.CurrentLife > 0)
+                {
+                    this.ActivePokemon = poke;
+                    return true;
+                }
+            }
         }
         return false;
     }
