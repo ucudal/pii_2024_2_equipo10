@@ -37,6 +37,11 @@ public class PokemonCatalogue
         Haxorus haxorus = new Haxorus();
         Hydreigon hydreigon = new Hydreigon();
         Gastrodon gastrodon = new Gastrodon();
+        Entei entei = new Entei();
+        Dragonite dragonite = new Dragonite();
+        Jigglypuff jigglypuff = new Jigglypuff();
+        Pikachu pikachu = new Pikachu();
+        Scyther scyther = new Scyther();
         PokemonList.Add(caterpie);
         PokemonList.Add(chikorita);
         PokemonList.Add(gengar);
@@ -46,6 +51,12 @@ public class PokemonCatalogue
         PokemonList.Add(haxorus);
         PokemonList.Add(hydreigon);
         PokemonList.Add(gastrodon);
+        PokemonList.Add(entei);
+        PokemonList.Add(dragonite);
+        PokemonList.Add(jigglypuff);
+        PokemonList.Add(pikachu);
+        PokemonList.Add(scyther);
+
     }
     
     /// <summary>
