@@ -312,7 +312,7 @@ public static class Facade
     {
         Player player = GameList.FindPlayerByName(playerName);
         Game game = GameList.FindGameByPlayer(player);
-
+        
         if (player == null)
         {
             return $"El jugador {playerName} no está en ninguna partida.";
@@ -322,6 +322,7 @@ public static class Facade
         {
             return "Partida inexistente.";
         }
+        
         return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
     }
 
