@@ -235,7 +235,14 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
                 effectivnessCheck = "No es muy efectivo...\n";
 
             }
-            
+
+            if (attackedPokemon.CurrentLife == 0)
+            {
+                attackedPlayer.SetActivePokemon();
+                return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño y pereció.\n" + effectivnessCheck + criticalCheck + specialResult +
+                       $"\n{attackedPlayer.ActivePokemon} es el nuevo Pokemon activo de {attackedPokemon.Name}";
+            }
+                
             return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
         }
         return "El ataque falló y no produjo daño\n";
