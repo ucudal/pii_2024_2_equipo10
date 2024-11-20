@@ -269,6 +269,11 @@
             Test de pocion de curacion.
             </summary>
         </member>
+        <member name="M:LibraryTests.GameListTest.TestAddGame">
+            <summary>
+            Test del método AddGame
+            </summary>
+        </member>
         <member name="T:LibraryTests.GengarTest">
             <summary>
             Test de la clase <see cref="T:Library.Gengar"/>
