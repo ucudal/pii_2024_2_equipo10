@@ -46,12 +46,12 @@ public class SpecialAttack : Attack
     /// </summary>
     public void SetCooldown()
     {
-        Cooldown = 2;
+        Cooldown = 4;
     }
     
     public string InfoAttack()
     {
-        return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia *{this.Power}*, efecto especial *{this.SpecialEffect}*, cooldown de uso *{this.Cooldown}*\n";
+        return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia *{this.Power}*, efecto especial *{this.SpecialEffect}*, cooldown de uso actual *{this.Cooldown}*\n";
     }
     
 }
