@@ -6,15 +6,10 @@ namespace LibraryTests;
 [TestFixture]
 public class StateLogicTest
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-    
     [Test]
     public void AsleepEffectDecreasesTurnsAndReturnsTrue()
     {
-        Pokemon dragonite = new Dragonite()
+        Dragonite dragonite = new Dragonite()
         {
             CurrentState = State.Asleep,
             AsleepTurns = 2
@@ -29,7 +24,7 @@ public class StateLogicTest
     [Test]
     public void AsleepEffectWakesPokemonWhenTurnsAreZero()
     {
-        Pokemon dragonite = new Dragonite()
+        Dragonite dragonite = new Dragonite()
         {
             CurrentState = State.Asleep,
             AsleepTurns = 0
@@ -44,14 +39,50 @@ public class StateLogicTest
     [Test]
     public void AsleepEffectIsNotSet()
     {
-        Pokemon dragonite = new Dragonite();
+        Dragonite dragonite = new Dragonite();
 
         bool result = StateLogic.AsleepEffect(dragonite);
         
         Assert.That(result, Is.EqualTo(false));
     }
-    
+
     [Test]
-    public void 
-    
+    public void ParalizedEffectRandomness()
+    {
+        Jigglypuff jigglypuff = new Jigglypuff()
+        {
+            CurrentState = State.Paralized
+        };
+
+        int trueCount = 0;
+        int iterations = 1000;
+
+        for (int i = 0; i < iterations; i++)
+        {
+            if (StateLogic.ParalizedEffect(jigglypuff))
+            {
+                trueCount++;
+            }
+        }
+
+        double probability = trueCount / (double)iterations;
+        Assert.That(probability, Is.InRange(0.20, 0.30));
+    }
+
+    [Test]
+    public void PoisonedEffectDecreasesLife()
+    {
+        Pikachu pikachu = new Pikachu()
+        {
+            CurrentState = State.Poisoned,
+            CurrentLife = 100.0
+        };
+        
+        double poisonDamage = (int)(pikachu.BaseLife * 0.05);
+        double result = pikachu.CurrentLife - poisonDamage;
+        
+        StateLogic.PoisonedEffect(pikachu);
+        Assert.That(pikachu.CurrentLife, Is.EqualTo(result));
+    }
+
 }
