@@ -200,6 +200,8 @@ public static class Facade
                 {
                     string result = "";
                     result += game.ExecuteAttack(attack);
+                    if (result.Contains("no se puede usar hasta que pasen"))
+                        {return result;}
                     result += game.NextTurn();
                     result += CheckGameStatus(game);
                     return result;
