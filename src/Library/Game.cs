@@ -186,7 +186,7 @@ public class Game
             }
             else return $"El {this.Players[ActivePlayer].ActivePokemon.Name} de {this.Players[ActivePlayer]} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
         }
-        return null;
+        return "El ataque no pudo ser encontrado";
     }
 
 
