@@ -85,4 +85,20 @@ public class StateLogicTest
         Assert.That(pikachu.CurrentLife, Is.EqualTo(result));
     }
 
+    [Test]
+    public void BurnedEffectDecreaseLife()
+    {
+        Pikachu pikachu = new Pikachu()
+        {
+            CurrentState = State.Burned,
+            CurrentLife = 100.0
+        };
+        
+        double burnDamage = (int)(pikachu.BaseLife * 0.10);
+        double result = pikachu.CurrentLife - burnDamage;
+        
+        StateLogic.BurnedEffect(pikachu);
+        Assert.That(pikachu.CurrentLife, Is.EqualTo(result));
+    }
+
 }
