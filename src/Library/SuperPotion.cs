@@ -27,7 +27,7 @@ public class SuperPotion : IItem
                 return $"{pokemon.Name} ya tiene su vida completa.\n";
             }
             pokemon.GainLife(70);
-            return $"{pokemon.Name} ha ganado 70HP.\n¡{this.Name} utilizada con é $xito!"; 
+            return $"{pokemon.Name} ha ganado 70HP.\n¡{this.Name} utilizada con éxito!"; 
         }
         return null;
     }
