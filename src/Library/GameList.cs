@@ -7,7 +7,7 @@ public class GameList
     /// <summary>
     /// Lista de partidas.
     /// </summary>
-    private List<Game> Games { get; set; } = new List<Game>();
+    private List<Game> Games { get; } = new List<Game>();
     
     /// <summary>
     /// Agrega una partida a la lista de partidas.
