@@ -337,8 +337,15 @@ public static class Facade
         {
             return "Partida inexistente.";
         }
-        
-        return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+
+        string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+        if (result.Contains("éxito"))
+        {
+            game.NextTurn();
+            string nextTurn = CheckGameStatus(game);
+            return result + "\n" + nextTurn;
+        }
+        return result;
     }
 
 
