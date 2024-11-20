@@ -13,17 +13,7 @@ internal static class Program
     /// </summary>
     private static void Main()
     {
-        // DemoFacade();
         DemoBot();
-    }
-
-    private static void DemoFacade()
-    {
-        Console.WriteLine(Facade.AddPlayerToWaitingList("player"));
-        Console.WriteLine(Facade.AddPlayerToWaitingList("opponent"));
-        Console.WriteLine(Facade.GetAllPlayersWaiting());
-        Console.WriteLine(Facade.StartGame("player", "opponent"));
-        Console.WriteLine(Facade.GetAllPlayersWaiting());
     }
 
     private static void DemoBot()
