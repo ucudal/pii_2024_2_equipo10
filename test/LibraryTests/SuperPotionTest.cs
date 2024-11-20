@@ -8,11 +8,6 @@ namespace LibraryTests;
 
 public class SuperPotionTest
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     /// <summary>
     /// Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 60 puntos de daño,
     /// llevando su vida a su valor inicial.

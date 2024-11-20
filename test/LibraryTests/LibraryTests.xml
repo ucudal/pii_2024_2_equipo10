@@ -454,38 +454,6 @@
             Test de ataque especial.
             </summary>
         </member>
-        <member name="M:LibraryTests.StateLogicTest.AsleepEffectDecreasesTurnsAndReturnsTrue">
-            <summary>
-            Verifica que la lógica de AsleepEffect disminuya correctamente los AsleepTurn
-            del Pokemon y devuelva true si aún está dormido.
-            /// </summary>
-        </member>
-        <member name="M:LibraryTests.StateLogicTest.AsleepEffectWakesPokemonAndReturnsFalse">
-            <summary>
-            Verifica que la lógica de AsleepEffect despierte al Pokemon 
-            (estableciendo su estado en null) y devuelva false si su AsleepTurns llega a 0.    /// </summary>
-        </member>
-        <member name="M:LibraryTests.StateLogicTest.AsleepEffectIsNotSet">
-            Verifica que AsleepEffect devuelva false si el Pokemon no está dormido.
-        </member>
-        <member name="M:LibraryTests.StateLogicTest.ParalizedEffectRandomness">
-            <summary>
-            Verifica que la probabilidad de que ParalizedEffect devuelva true 
-            se mantenga  dentro del rango esperado (25% con tolerancia).
-            </summary>
-        </member>
-        <member name="M:LibraryTests.StateLogicTest.PoisonedEffectDecreasesLife">
-            <summary>
-            Verifica que PoisonedEffect reduzca correctamente la vida actual de un Pokemon envenenado,
-            basado en su vida base.
-            </summary>
-        </member>
-        <member name="M:LibraryTests.StateLogicTest.BurnedEffectDecreaseLife">
-            <summary>
-            Verifica que BurnedEffect reduzca correctamente la vida actual de un Pokemon quemado,
-            basado en su vida base.
-            </summary>
-        </member>
         <member name="T:LibraryTests.SuperPotionTest">
             <summary>
             Test de la clase <see cref="T:Library.SuperPotion"/>
@@ -493,7 +461,24 @@
         </member>
         <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse1">
             <summary>
-            Test de pocion de curacion.
+            Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 60 puntos de daño,
+            llevando su vida a su valor inicial.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse2">
+            <summary>
+            Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 80 puntos de daño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionHealthyPokemonUse">
+            <summary>
+            Verifica que SuperPotion no tenga efecto si el Pokemon ya tiene su vida completa,
+            y que la vida del Pokemon no haya cambiado.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.NullPokemonTest">
+            <summary>
+            Verifica que al intentar usar SuperPotion con un Pokemon nulo, el resultado sea nulo.
             </summary>
         </member>
         <member name="T:LibraryTests.ZeraoraTest">
