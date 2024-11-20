@@ -97,30 +97,24 @@ public static class Facade
             {
                 string types = "";
                 foreach (Type type in pokemon.GetTypes())
-                {
                     types += $"{type}";
-                }
 
                 if (pokemon == player.ActivePokemon)
                 {
                     if (pokemon.CurrentState != null)
-                    {
                         result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**" + $" **({pokemon.CurrentState})**\n";
-                    }
-                    result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
+                    else
+                        result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
                 }
                 else if (pokemon.CurrentLife == 0)
                 {
                     result += $"~~{pokemon.Name}: {pokemon.GetLife()} ({types})~~\n";
                 }
                 else
-                {
                     if (pokemon.CurrentState != null)
-                    {
                         result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})" + $" **({pokemon.CurrentState})**\n";
-                    }
-                    result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
-                }
+                    else 
+                        result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
             }
             return result;
         }
@@ -133,39 +127,27 @@ public static class Facade
                 playerToCheck != null)
             {
                 if (playerToCheck.TeamCount < 6)
-                {
                     return $"{playerToCheckName} aún no tiene su equipo completo.";
-                }
-
                 foreach (Pokemon pokemon in playerToCheck.GetPokemonTeam())
                 {
                     string types = "";
                     foreach (Type type in pokemon.GetTypes())
-                    {
                         types += $"{type}";
-                    }
                     if (pokemon == playerToCheck.ActivePokemon)
                     {
                         if (pokemon.CurrentState != null)
-                        {
                             result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**" + $" **({pokemon.CurrentState})**\n";
-                        }
-                        result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
+                        else 
+                            result += $"**{pokemon.Name}: {pokemon.GetLife()} ({types})**\n";
                     }
                     else if (pokemon.CurrentLife == 0)
-                    {
                         result += $"~~{pokemon.Name}: {pokemon.GetLife()} ({types})~~\n";
-                    }
                     else
-                    {
                         if (pokemon.CurrentState != null)
-                        {
                             result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})" + $" **({pokemon.CurrentState})**\n";
-                        }
-                        result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
-                    }
+                        else 
+                            result += $"{pokemon.Name}: {pokemon.GetLife()} ({types})\n";
                 }
-
                 return result;
             }
 
@@ -187,14 +169,17 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
         {
-            return "Para poder atacar necesitas estar en una batalla";
+            return $"{playerName} poder atacar necesitas estar en una batalla";
         }
 
-        if (player.GetPokemonTeam().Count < 6)
+        Game playerGame = GameList.FindGameByPlayer(player);
+
+        if (!playerGame.BothPlayersHaveChoosenTeam())
         {
-            return "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
+            return $"{playerName}, alguno de los jugadores no ha completado el equipo";
         }
-
+        
+        
         Attack attack = player.FindAttack(attackName);
         if (attack == null)
         {
@@ -215,11 +200,13 @@ public static class Facade
                 {
                     string result = "";
                     result += game.ExecuteAttack(attack);
+                    if (result.Contains("no se puede usar hasta que pasen"))
+                        {return result;}
                     result += game.NextTurn();
                     result += CheckGameStatus(game);
                     return result;
                 }
-                return "No eres el jugador activo";
+                return $"{playerName}, no eres el jugador activo";
             }
         }
 
@@ -350,8 +337,15 @@ public static class Facade
         {
             return "Partida inexistente.";
         }
-        
-        return game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+
+        string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+        if (result.Contains("éxito"))
+        {
+            game.NextTurn();
+            string nextTurn = CheckGameStatus(game);
+            return result + "\n" + nextTurn;
+        }
+        return result;
     }
 
 
@@ -560,7 +554,6 @@ public static class Facade
         List<int> availablePokemonIndexes = Enumerable.Range(0, Pokedex.PokemonCount).ToList();
         Random random = new Random();
         string result = $"{playerName}, estos son los Pokemons elegidos aleatoriamente:\n";
-
         while (player.TeamCount < 6)
         {
             int randomIndex = random.Next(availablePokemonIndexes.Count);

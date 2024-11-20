@@ -1,4 +1,6 @@
 
+using System.Runtime.InteropServices.ComTypes;
+
 namespace Library;
 
 /// <summary>
@@ -87,6 +89,12 @@ public abstract class Pokemon
             this.CurrentLife = BaseLife;
         }
         
+    }
+
+    public void SetAsleepTurns()
+    {
+        Random random = new Random();
+        this.AsleepTurns = random.Next(1,5);
     }
 
     /// <summary>
