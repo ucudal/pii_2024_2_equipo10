@@ -182,6 +182,10 @@ public static class DamageCalculator
         {
             attackedPokemon.EditState(specialAttack.SpecialEffect);
             specialAttack.SetCooldown();
+            if (specialAttack.SpecialEffect == State.Asleep)
+            {
+                attackedPokemon.SetAsleepTurns();
+            }
             return $"{attackedPokemon.Name} fue afectado con {specialAttack.SpecialEffect}\n";
         }
         return"";
@@ -202,10 +206,6 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
         Random random = new Random();
         int randomInt = random.Next(1, 101);
         double randomDouble = randomInt / 100.0;
-        if (attack.Power == 0)
-        {
-            return $"El poder del ataque {attack.Name} era de 0, por lo tanto no hizo daño\n";
-        }
         if (randomDouble <= attack.Accuracy)
         {
             string effectivnessCheck = "";
@@ -240,7 +240,7 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
             {
                 attackedPlayer.SetActivePokemon();
                 return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" + effectivnessCheck + criticalCheck + specialResult +
-                       $"PERECIÓ\n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPokemon.Name}";
+                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPokemon.Name}";
             }
                 
             return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
