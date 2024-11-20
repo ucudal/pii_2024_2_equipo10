@@ -454,12 +454,44 @@
             Test de ataque especial.
             </summary>
         </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectDecreasesTurnsAndReturnsTrue">
+            <summary>
+            Verifica que la lógica de AsleepEffect disminuya correctamente los AsleepTurn
+            del Pokemon y devuelva true si aún está dormido.
+            /// </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectWakesPokemonAndReturnsFalse">
+            <summary>
+            Verifica que la lógica de AsleepEffect despierte al Pokemon 
+            (estableciendo su estado en null) y devuelva false si su AsleepTurns llega a 0.    /// </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectIsNotSet">
+            Verifica que AsleepEffect devuelva false si el Pokemon no está dormido.
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.ParalizedEffectRandomness">
+            <summary>
+            Verifica que la probabilidad de que ParalizedEffect devuelva true 
+            se mantenga  dentro del rango esperado (25% con tolerancia).
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.PoisonedEffectDecreasesLife">
+            <summary>
+            Verifica que PoisonedEffect reduzca correctamente la vida actual de un Pokemon envenenado,
+            basado en su vida base.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.BurnedEffectDecreaseLife">
+            <summary>
+            Verifica que BurnedEffect reduzca correctamente la vida actual de un Pokemon quemado,
+            basado en su vida base.
+            </summary>
+        </member>
         <member name="T:LibraryTests.SuperPotionTest">
             <summary>
             Test de la clase <see cref="T:Library.SuperPotion"/>
             </summary>
         </member>
-        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse">
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse1">
             <summary>
             Test de pocion de curacion.
             </summary>
