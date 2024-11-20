@@ -6,6 +6,10 @@ namespace LibraryTests;
 [TestFixture]
 public class StateLogicTest
 {
+    /// <summary>
+    /// Verifica que la lógica de AsleepEffect disminuya correctamente los AsleepTurn
+    /// del Pokemon y devuelva true si aún está dormido.
+    /// /// </summary>
     [Test]
     public void AsleepEffectDecreasesTurnsAndReturnsTrue()
     {
@@ -21,8 +25,11 @@ public class StateLogicTest
         Assert.That(dragonite.AsleepTurns, Is.EqualTo(1));
     }
 
+    /// <summary>
+    /// Verifica que la lógica de AsleepEffect despierte al Pokemon 
+    /// (estableciendo su estado en null) y devuelva false si su AsleepTurns llega a 0.    /// </summary>
     [Test]
-    public void AsleepEffectWakesPokemonWhenTurnsAreZero()
+    public void AsleepEffectWakesPokemonAndReturnsFalse()
     {
         Dragonite dragonite = new Dragonite()
         {
@@ -36,6 +43,7 @@ public class StateLogicTest
         Assert.That(dragonite.CurrentState, Is.EqualTo(null));
     }
 
+    /// Verifica que AsleepEffect devuelva false si el Pokemon no está dormido.
     [Test]
     public void AsleepEffectIsNotSet()
     {
@@ -46,6 +54,10 @@ public class StateLogicTest
         Assert.That(result, Is.EqualTo(false));
     }
 
+    /// <summary>
+    /// Verifica que la probabilidad de que ParalizedEffect devuelva true 
+    /// se mantenga  dentro del rango esperado (25% con tolerancia).
+    /// </summary>
     [Test]
     public void ParalizedEffectRandomness()
     {
@@ -69,6 +81,10 @@ public class StateLogicTest
         Assert.That(probability, Is.InRange(0.20, 0.30));
     }
 
+    /// <summary>
+    /// Verifica que PoisonedEffect reduzca correctamente la vida actual de un Pokemon envenenado,
+    /// basado en su vida base.
+    /// </summary>
     [Test]
     public void PoisonedEffectDecreasesLife()
     {
@@ -85,6 +101,10 @@ public class StateLogicTest
         Assert.That(pikachu.CurrentLife, Is.EqualTo(result));
     }
 
+    /// <summary>
+    /// Verifica que BurnedEffect reduzca correctamente la vida actual de un Pokemon quemado,
+    /// basado en su vida base.
+    /// </summary>
     [Test]
     public void BurnedEffectDecreaseLife()
     {
