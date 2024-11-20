@@ -216,6 +216,10 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
             {
                 return $"El pokemon {attackedPokemon.Name} es inmune a ataques de tipo {attack.Type}, ya que es de tipo {attackedPokemon.GetTypes()[0]}\n";
             }
+            if (attack.Power == 0)
+            {
+                return $"El {attackedPokemon.Name} de {attackedPlayer.Name} no recibió daño. {SpecialCheck(attackedPokemon, attack)}";
+            }
             double critical = CriticalCheck();
             string specialResult = SpecialCheck(attackedPokemon, attack);
             double damage = power * effectivness * critical;
