@@ -222,7 +222,7 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
             }
             double critical = CriticalCheck();
             string specialResult = SpecialCheck(attackedPokemon, attack);
-            double damage = power * effectivness * critical;
+            double damage = (int)(power * effectivness * critical);
             attackedPokemon.TakeDamage(damage);
             if (critical == 1.20)
             {
