@@ -176,7 +176,7 @@ public class Game
                 {
                     if (specialAttack.Cooldown > 0)
                     {
-                        return $"{this.ActivePlayer}, el ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos más.\n";
+                        return $"{this.Players[ActivePlayer].Name}, el ataque {attack.Name} no se puede usar hasta que pasen {specialAttack.Cooldown} turnos más.\n";
                     }
                 }
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
