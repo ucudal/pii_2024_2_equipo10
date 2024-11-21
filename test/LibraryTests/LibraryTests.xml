@@ -269,9 +269,34 @@
             Test de pocion de curacion.
             </summary>
         </member>
+        <member name="T:LibraryTests.GameListTest">
+            <summary>
+            Tests de la clase GameList
+            </summary>
+        </member>
         <member name="M:LibraryTests.GameListTest.TestAddGame">
             <summary>
             Test del método AddGame
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestRemoveGame">
+             <summary>
+            Test del método RemoveGame
+             </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestFindPlayerByName">
+            <summary>
+            Test del método FindPlayerBYName
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestFindGameByPlayer">
+            <summary>
+            Test del método FindGameByPlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestGetGameList">
+            <summary>
+            Test del método GetGameList
             </summary>
         </member>
         <member name="T:LibraryTests.GengarTest">
@@ -467,6 +492,36 @@
         <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse">
             <summary>
             Test de pocion de curacion.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.WaitingListTest">
+            <summary>
+            Tests de la clase WaitingList
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestAddPlayer">
+            <summary>
+            Test del método AddPlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestRemovePlayer">
+            <summary>
+            Test del método RemovePlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestFindPlayerByName">
+            <summary>
+            Test del método FindPlayerByName
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestGetSomeone">
+            <summary>
+            Test del método GetSomeone
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestGetWaitingList">
+            <summary>
+            Test del método GetWaitingList
             </summary>
         </member>
         <member name="T:LibraryTests.ZeraoraTest">
