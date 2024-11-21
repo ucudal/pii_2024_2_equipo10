@@ -7,7 +7,7 @@ public class WaitingList
     /// <summary>
     /// Lista de jugadores en espera.
     /// </summary>
-    private List<Player> Players { get; set; }= new List<Player>();
+    private List<Player> Players { get; }= new List<Player>();
 
     /// <summary>
     /// Devuelve el número de jugadores en espera.
