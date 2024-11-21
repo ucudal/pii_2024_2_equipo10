@@ -31,12 +31,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory2()
     {
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no estás en ninguna partida."));
+        
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
         Facade.StartGame("mateo", "ines");
+        
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no tienes ningun Pokemon."));
+        
         Facade.ChooseTeam("mateo", "Caterpie");
         string result =
-            "Bug bite: tipo Bug, precisión 100, potencia 20\nTackle: tipo Normal, precisión 100, potencia 30\nBug stomp: tipo Bug, precisión 95, potencia 70, efecto especial Paralized, cooldown de uso 0\nString shot: tipo Bug, precisión 100, potencia 15\n";
+            "mateo, estos son los ataques de tu Pokemon activo:\n**Bug bite**: tipo *Bug*, precisión *100*, potencia *20*\n**Tackle**: tipo *Normal*, precisión *100*, potencia *30*\n**Bug stomp**: tipo *Bug*, precisión *95*, potencia *70*, efecto especial *Paralized*, cooldown de uso actual *0*\n**String shot**: tipo *Bug*, precisión *100*, potencia *15*\n";
         string mateo = Facade.ShowAtacks("mateo");
         Assert.That(mateo, Is.EqualTo(result));
     }
