@@ -146,7 +146,6 @@ public static class DamageCalculator
                 return 1.0;
             }
         }
-
         return 1.0;
     }
 
