@@ -67,7 +67,7 @@ public static class StateLogic
     /// </returns>
     public static void PoisonedEffect(Pokemon pokemon)
     {
-        pokemon.CurrentLife -= (int)(pokemon.BaseLife * 0.05);
+        pokemon.TakeDamage((int)(pokemon.BaseLife * 0.05));
     }
     
     /// <summary>
@@ -76,6 +76,6 @@ public static class StateLogic
     /// <param name="pokemon">Nombre del Pokemon</param>
     public static void BurnedEffect(Pokemon pokemon)
     {
-        pokemon.CurrentLife -= (int)(pokemon.BaseLife * 0.10);
+        pokemon.TakeDamage((int)(pokemon.BaseLife * 0.10));
     }
 }
