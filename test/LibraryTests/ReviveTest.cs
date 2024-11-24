@@ -22,8 +22,19 @@ public class ReviveTest
         Revive ReviveItem = new Revive();
         Charizard charizard = new Charizard();
         charizard.TakeDamage(1000000);
-        ReviveItem.Use(charizard);
+        string result = ReviveItem.Use(charizard);
         Assert.That(charizard.CurrentLife.Equals(180));
+        Assert.That(result, Is.EqualTo("Charizard ha revivido. \n¡Revive utilizada con éxito!"));
+    }
+
+    [Test]
+    public void ReviveWrongUse()
+    {
+        Revive ReviveItem = new Revive();
+        Charizard charizard = new Charizard();
+        string result = ReviveItem.Use(charizard);
+        Assert.That(result, Is.EqualTo("Charizard no está debilitado.\n"));
+
     }
 
     

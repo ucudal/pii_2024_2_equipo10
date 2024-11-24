@@ -337,15 +337,25 @@ public static class Facade
         {
             return "Partida inexistente.";
         }
-
-        string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
-        if (result.Contains("éxito"))
+        
+        if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
-            game.NextTurn();
-            string nextTurn = CheckGameStatus(game);
-            return result + "\n" + nextTurn;
+            if (!game.BothPlayersHaveChoosenTeam())
+            {
+                return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
+            }
+
+            string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+            if (result.Contains("éxito"))
+            {
+                game.NextTurn();
+                string nextTurn = CheckGameStatus(game);
+                return result + "\n" + nextTurn;
+            }
+            return result;
         }
-        return result;
+
+        return "No eres el jugador activo, no puedes realizar acciones";
     }
 
 
@@ -366,7 +376,6 @@ public static class Facade
         {
             return $"{playerName} agregado a la lista de espera";
         }
-
         return $"{playerName} ya está en la lista de espera";
     }
 
@@ -529,7 +538,7 @@ public static class Facade
             return $"{playerName}, no estás en una partida.";
         string result = $"{playerName}, estos son tus items disponibles:\n";
         List<string> repeatedItems = new List<string>();
-        foreach (IItem item in player.GetItemList() )
+        foreach (IItem item in player.GetItemList())
             if (!repeatedItems.Contains(item.Name))
                 if (player.ItemCount(item.Name) != 0)
                 {
