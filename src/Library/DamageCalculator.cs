@@ -241,9 +241,11 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
 
             if (attackedPokemon.CurrentLife == 0)
             {
-                attackedPlayer.SetActivePokemon();
-                return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" + effectivnessCheck + criticalCheck + specialResult +
-                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPokemon.Name}";
+                if(attackedPlayer.SetActivePokemon())
+                    return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" + effectivnessCheck + criticalCheck + specialResult +
+                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPlayer.Name}";
+                return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" +
+                       effectivnessCheck + criticalCheck + specialResult + "PERECIÓ :'( ";
             }
                 
             return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
