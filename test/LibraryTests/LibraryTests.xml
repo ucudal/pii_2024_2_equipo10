@@ -204,7 +204,7 @@
             Test de la clase <see cref="T:Library.Facade"/>
             </summary>
         </member>
-        <member name="M:LibraryTests.FacadeTest.TestUserStory1">
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1Add1Pokemon">
             <summary>
             Test de la historia de usuario 1.
             </summary>

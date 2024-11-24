@@ -16,14 +16,76 @@ public class FacadeTest
     /// Test de la historia de usuario 1.
     /// </summary>
     [Test]
-    public void TestUserStory1()
+    public void TestUserStory1Add1Pokemon()
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
         Facade.StartGame("mateo", "ines");
-        string result = "El pokemon Caterpie fue añadido al equipo";
+        string result = "El pokemon Caterpie fue añadido al equipo de mateo.\nElegiste 1/6";
         Assert.That(Facade.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
     }
+
+    [Test]
+    public void TestUserStory1RepeatedPokemon()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines");
+        Facade.ChooseTeam("mateo", "Caterpie");
+        string result = "El pokemon Caterpie ya está en el equipo de mateo, no puedes volver a añadirlo";
+        Assert.That(Facade.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
+    }
+
+    [Test]
+    public void TestUserStory1LastPokemon()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines");
+        Facade.ChooseTeam("mateo", "Caterpie");
+        Facade.ChooseTeam("mateo", "Charizard");
+        Facade.ChooseTeam("mateo", "Gengar");
+        Facade.ChooseTeam("mateo", "Dragonite");
+        Facade.ChooseTeam("mateo", "Haxorus");
+
+        string result = $"El pokemon Pikachu fue añadido al equipo de mateo\nTu equipo está completo.";
+        Assert.That(Facade.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
+    }
+
+    [Test]
+    public void TestUserStory1FullTeam()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines");
+        Facade.ChooseTeam("mateo", "Caterpie");
+        Facade.ChooseTeam("mateo", "Charizard");
+        Facade.ChooseTeam("mateo", "Gengar");
+        Facade.ChooseTeam("mateo", "Dragonite");
+        Facade.ChooseTeam("mateo", "Haxorus");
+        Facade.ChooseTeam("mateo", "Pikachu");
+
+        string result = "mateo, ya tienes 6 pokemones en el equipo, no puedes elegir más";
+        Assert.That(Facade.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
+    }
+
+    [Test]
+    public void TestUserStory1PlayerNotInGame()
+    {
+        string result = "mateo, para poder elegir un equipo, primero debes estar en una batalla";
+        Assert.That(Facade.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
+    }
+
+    [Test]
+    public void TestUserStory1UnknownPokemon()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines");
+        string result = "mateo, el pokemon Chocolate no fue encontrado";
+        Assert.That(Facade.ChooseTeam("mateo", "Chocolate"), Is.EqualTo(result));
+    }
+    
 
     /// <summary>
     /// Test de la historia de usuario 2.

@@ -54,7 +54,7 @@ public static class Facade
             }
             return $"{playerName}, el pokemon {pokemonName} no fue encontrado";
         }
-        return $"{playerName} ya tienes 6 pokemones en el equipo, no puedes elegir más";
+        return $"{playerName}, ya tienes 6 pokemones en el equipo, no puedes elegir más";
     }
 
 
