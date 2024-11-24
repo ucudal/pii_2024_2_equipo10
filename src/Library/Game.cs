@@ -130,14 +130,24 @@ public class Game
             {
                 if (pokemon.CurrentState == State.Burned)
                 {
+                    double lifeBeforeBurnedEffect = pokemon.CurrentLife;
                     StateLogic.BurnedEffect(pokemon);
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.1)}HP por estar {pokemon.CurrentState}.\n";
+                    if (pokemon.CurrentLife == 0)
+                    {
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}";;
+                    }
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
 
                 if (pokemon.CurrentState == State.Poisoned)
                 {
+                    double lifeBeforePoisonedEffect = pokemon.CurrentLife;
                     StateLogic.PoisonedEffect(pokemon);
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.05)}HP por estar {pokemon.CurrentState}.\n";
+                    if (pokemon.CurrentLife == 0)
+                    {
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}";;
+                    }
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
             }
         }

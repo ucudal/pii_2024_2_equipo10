@@ -521,9 +521,26 @@
             Test de la clase <see cref="T:Library.SuperPotion"/>
             </summary>
         </member>
-        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse">
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse1">
             <summary>
-            Test de pocion de curacion.
+            Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 60 puntos de daño,
+            llevando su vida a su valor inicial.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionCorrectUse2">
+            <summary>
+            Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 80 puntos de daño.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.SuperPotionHealthyPokemonUse">
+            <summary>
+            Verifica que SuperPotion no tenga efecto si el Pokemon ya tiene su vida completa,
+            y que la vida del Pokemon no haya cambiado.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SuperPotionTest.NullPokemonTest">
+            <summary>
+            Verifica que al intentar usar SuperPotion con un Pokemon nulo, el resultado sea nulo.
             </summary>
         </member>
         <member name="T:LibraryTests.WaitingListTest">
