@@ -269,6 +269,36 @@
             Test de pocion de curacion.
             </summary>
         </member>
+        <member name="T:LibraryTests.GameListTest">
+            <summary>
+            Tests de la clase GameList
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestAddGame">
+            <summary>
+            Test del método AddGame
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestRemoveGame">
+             <summary>
+            Test del método RemoveGame
+             </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestFindPlayerByName">
+            <summary>
+            Test del método FindPlayerBYName
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestFindGameByPlayer">
+            <summary>
+            Test del método FindGameByPlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameListTest.TestGetGameList">
+            <summary>
+            Test del método GetGameList
+            </summary>
+        </member>
         <member name="T:LibraryTests.GengarTest">
             <summary>
             Test de la clase <see cref="T:Library.Gengar"/>
@@ -454,6 +484,38 @@
             Test de ataque especial.
             </summary>
         </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectDecreasesTurnsAndReturnsTrue">
+            <summary>
+            Verifica que la lógica de AsleepEffect disminuya correctamente los AsleepTurn
+            del Pokemon y devuelva true si aún está dormido.
+            /// </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectWakesPokemonAndReturnsFalse">
+            <summary>
+            Verifica que la lógica de AsleepEffect despierte al Pokemon 
+            (estableciendo su estado en null) y devuelva false si su AsleepTurns llega a 0.    /// </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.AsleepEffectIsNotSet">
+            Verifica que AsleepEffect devuelva false si el Pokemon no está dormido.
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.ParalizedEffectRandomness">
+            <summary>
+            Verifica que la probabilidad de que ParalizedEffect devuelva true 
+            se mantenga  dentro del rango esperado (25% con tolerancia).
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.PoisonedEffectDecreasesLife">
+            <summary>
+            Verifica que PoisonedEffect reduzca correctamente la vida actual de un Pokemon envenenado,
+            basado en su vida base.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.StateLogicTest.BurnedEffectDecreaseLife">
+            <summary>
+            Verifica que BurnedEffect reduzca correctamente la vida actual de un Pokemon quemado,
+            basado en su vida base.
+            </summary>
+        </member>
         <member name="T:LibraryTests.SuperPotionTest">
             <summary>
             Test de la clase <see cref="T:Library.SuperPotion"/>
@@ -479,6 +541,36 @@
         <member name="M:LibraryTests.SuperPotionTest.NullPokemonTest">
             <summary>
             Verifica que al intentar usar SuperPotion con un Pokemon nulo, el resultado sea nulo.
+            </summary>
+        </member>
+        <member name="T:LibraryTests.WaitingListTest">
+            <summary>
+            Tests de la clase WaitingList
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestAddPlayer">
+            <summary>
+            Test del método AddPlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestRemovePlayer">
+            <summary>
+            Test del método RemovePlayer
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestFindPlayerByName">
+            <summary>
+            Test del método FindPlayerByName
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestGetSomeone">
+            <summary>
+            Test del método GetSomeone
+            </summary>
+        </member>
+        <member name="M:LibraryTests.WaitingListTest.TestGetWaitingList">
+            <summary>
+            Test del método GetWaitingList
             </summary>
         </member>
         <member name="T:LibraryTests.ZeraoraTest">

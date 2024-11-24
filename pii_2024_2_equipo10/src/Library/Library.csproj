@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
     <UserSecretsId>PII_DiscordBot_Demo</UserSecretsId>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
 
  <PropertyGroup>
