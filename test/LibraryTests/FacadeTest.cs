@@ -107,19 +107,59 @@ public class FacadeTest
     /// Test de la historia de usuario 3.
     /// </summary>
     [Test]
-    public void TestUserStory3()
+    public void TestUserStory3NullPlayer()
+    {
+        string result = "El jugador facu no está en ninguna partida.";
+        Assert.That(Facade.ShowPokemonsHp("facu", null), Is.EqualTo(result));
+    }
+    
+    [Test]
+    public void TestUserStory31Pokemon()
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
         Facade.StartGame("facu", "ines");
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
-        string result1 = "Charizard: 360/360\n";
+        string result1 = $"facu esta es la vida de tus Pokemons: \n**Charizard: 360/360 (Fire)**\n";
         Assert.That(Facade.ShowPokemonsHp("facu", null), Is.EqualTo(result1));
-        string result2 = "Chikorita: 294/294\n";
+        string result2 = "ines aún no tiene su equipo completo.";
         Assert.That(Facade.ShowPokemonsHp("facu", "ines"), Is.EqualTo(result2));
     }
 
+    [Test]
+
+    public void TestUserStory3FullTeams()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines");
+        Facade.ChooseTeam("mateo", "Caterpie");
+        Facade.ChooseTeam("mateo", "Chikorita");
+        Facade.ChooseTeam("mateo", "Gengar");
+        Facade.ChooseTeam("mateo", "Dragonite");
+        Facade.ChooseTeam("mateo", "Haxorus");
+        Facade.ChooseTeam("mateo", "Pikachu");
+        Facade.ChooseTeam("ines", "Caterpie");
+        Facade.ChooseTeam("ines", "Chikorita");
+        Facade.ChooseTeam("ines", "Gengar");
+        Facade.ChooseTeam("ines", "Dragonite");
+        Facade.ChooseTeam("ines", "Haxorus");
+        Facade.ChooseTeam("ines", "Pikachu");
+        
+        string result1 =
+            "mateo esta es la vida de tus Pokemons: \n**Caterpie: 294/294 (Bug)**\nChikorita: 294/294 (Grass)\n" +
+            "Gengar: 324/324 (Ghost)\nDragonite: 460/460 (Dragon)\nHaxorus: 356/356 (Dragon)\nPikachu: 295/295 (Electric)\n";
+        
+        string result2 =
+            "Esta es la vida de los Pokemons de ines: \n**Caterpie: 294/294 (Bug)**\nChikorita: 294/294 (Grass)\n" +
+            "Gengar: 324/324 (Ghost)\nDragonite: 460/460 (Dragon)\nHaxorus: 356/356 (Dragon)\nPikachu: 295/295 (Electric)\n";
+        
+        Assert.That(Facade.ShowPokemonsHp("mateo", null), Is.EqualTo(result1));
+        Assert.That(Facade.ShowPokemonsHp("mateo", "ines"), Is.EqualTo(result2));
+    }
+    
+    
     /// <summary>
     /// Test de la historia de usuario 4.
     /// </summary>

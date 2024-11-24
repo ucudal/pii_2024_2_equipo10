@@ -214,7 +214,7 @@
             Test de la historia de usuario 2.
             </summary>
         </member>
-        <member name="M:LibraryTests.FacadeTest.TestUserStory3">
+        <member name="M:LibraryTests.FacadeTest.TestUserStory3NullPlayer">
             <summary>
             Test de la historia de usuario 3.
             </summary>
