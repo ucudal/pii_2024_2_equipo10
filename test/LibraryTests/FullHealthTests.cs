@@ -27,5 +27,21 @@ public class FullHealthTest
         Assert.That(charizard.CurrentState.Equals(null));
     }
 
+    [Test]
+    public void FullHealthUseOnHealthyPokemon()
+    {
+        FullHealth fullHealthItem = new FullHealth();
+        Charizard charizard = new Charizard();
+        string result = fullHealthItem.Use(charizard);
+        Assert.That(result.Equals("Charizard no tiene ningún estado negativo"));
+    }
+
+    [Test]
+    public void FullHealthNullPokemon()
+    {
+        FullHealth fullHealthItem = new FullHealth();
+        string result = fullHealthItem.Use(null);
+        Assert.That(fullHealthItem.Use(null), Is.Null);
+    }
     
 }
