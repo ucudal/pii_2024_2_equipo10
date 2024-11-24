@@ -40,7 +40,7 @@ public class AttackTest
     public void TestNullName()
     {
         Attack attack;
-        Assert.That(new Attack("",Library.Type.Electric, 1, 30).Equals("El nombre ingresado no es válido"));
+        Assert.That(new Attack("",Library.Type.Electric, 1, 30), Is.EqualTo("El nombre ingresado no es válido"));
     }
 
     /// <summary>
