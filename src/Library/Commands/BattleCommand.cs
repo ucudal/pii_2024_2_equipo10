@@ -2,6 +2,7 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Library.Commands;
+using Library.Strategies;
 
 namespace Library.Commands;
 
@@ -33,7 +34,7 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        result = Facade.StartGame(displayName, opponentDisplayName);
+        result = Facade.StartGame(displayName, opponentDisplayName, new StrategyRandomStartingPlayer());
         await ReplyAsync(result);
         if(result.Contains(" Vs. "))
             await ReplyAsync("!choose <<Nombre del Pokemon>> para elegir un Pokemon\n!catalogue para ver el catalogo de Pokemones.\n!help para más comandos.");

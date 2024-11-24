@@ -479,7 +479,7 @@
             </summary>
             <returns>Lista de jugadores en espera o un mensaje indicando que no hay nadie esperando.</returns>
         </member>
-        <member name="M:Library.Facade.CreateGame(System.String,System.String)">
+        <member name="M:Library.Facade.CreateGame(System.String,System.String,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
             Historia de usuario 11:
             Crea una nueva partida entre dos jugadores, quitándolos de la lista de espera y agregando la partida a la lista de
@@ -489,7 +489,7 @@
             <param name="opponentName">Nombre del oponente.</param>
             <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
         </member>
-        <member name="M:Library.Facade.StartGame(System.String,System.String)">
+        <member name="M:Library.Facade.StartGame(System.String,System.String,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
             Historia de usuario 11.1:
             Inicia una batalla entre dos jugadores, eligiendo un oponente específico o un jugador
@@ -569,7 +569,7 @@
             Obtiene la cantidad de turnos que lleva la partida.
             </summary>
         </member>
-        <member name="M:Library.Game.#ctor(Library.Player,Library.Player)">
+        <member name="M:Library.Game.#ctor(Library.Player,Library.Player,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
             Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
             </summary>
@@ -581,7 +581,7 @@
             Obtiene la lista de jugadores de la partida.
             </summary>
         </member>
-        <member name="M:Library.Game.Random0or1">
+        <member name="M:Library.Game.StartingPlayer">
             <summary>
             Obtiene un valor aleatorio entre 0 y 1.
             </summary>
@@ -657,7 +657,7 @@
             Lista de partidas.
             </summary>
         </member>
-        <member name="M:Library.GameList.AddGame(Library.Player,Library.Player)">
+        <member name="M:Library.GameList.AddGame(Library.Player,Library.Player,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
             Agrega una partida a la lista de partidas.
             </summary>

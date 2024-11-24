@@ -1,4 +1,5 @@
 using Library;
+using Library.Strategies;
 using NUnit.Framework;
 
 namespace LibraryTests;
@@ -14,7 +15,7 @@ public class GameListTest
     private Player player2;
     private Player player3;
     private Player player4;
-    
+    private IStrategyStartingPlayer StrategyStartingPlayer { get; set; } = new StrategyRandomStartingPlayer();
     [SetUp]
     public void SetUp()
     {
@@ -31,10 +32,10 @@ public class GameListTest
     [Test]
     public void TestAddGame()
     {
-        Game game1 = gameList.AddGame(player1, player2);
+        Game game1 = gameList.AddGame(player1, player2,StrategyStartingPlayer);
         Assert.That(gameList.GetGameList().Count, Is.EqualTo(1));
         Assert.That(gameList.GetGameList().Contains(game1));
-        Game game2 = gameList.AddGame(player3, player4);
+        Game game2 = gameList.AddGame(player3, player4, StrategyStartingPlayer);
         Assert.That(gameList.GetGameList().Count, Is.EqualTo(2));
         Assert.That(gameList.GetGameList().Contains(game2));
     }
@@ -44,9 +45,9 @@ public class GameListTest
     [Test]
     public void TestRemoveGame()
     {
-        Game game1 = gameList.AddGame(player1, player2);
+        Game game1 = gameList.AddGame(player1, player2, StrategyStartingPlayer);
         Assert.That(gameList.RemoveGame(game1));
-        Game game2 = new Game(player3, player4);
+        Game game2 = new Game(player3, player4, StrategyStartingPlayer);
         Assert.That(!gameList.RemoveGame(game2));
     }
     /// <summary>
@@ -55,7 +56,7 @@ public class GameListTest
     [Test]
     public void TestFindPlayerByName()
     {
-        gameList.AddGame(player1, player2);
+        gameList.AddGame(player1, player2, StrategyStartingPlayer);
         Assert.That(gameList.FindPlayerByName("jugador1"), Is.EqualTo(player1));
         Assert.That(gameList.FindPlayerByName(" "), Is.Null);
     }
@@ -65,7 +66,7 @@ public class GameListTest
     [Test]
     public void TestFindGameByPlayer()
     {
-        Game game1 = gameList.AddGame(player1, player2);
+        Game game1 = gameList.AddGame(player1, player2, StrategyStartingPlayer);
         Assert.That(gameList.FindGameByPlayer(player1),Is.EqualTo(game1));
         Assert.That(gameList.FindGameByPlayer(player3), Is.Null);
     }
@@ -77,7 +78,7 @@ public class GameListTest
     {
         Assert.That(gameList.GetGameList().Count, Is.EqualTo(0));
         
-        Game game1 = gameList.AddGame(player1, player2);
+        Game game1 = gameList.AddGame(player1, player2, StrategyStartingPlayer);
         Assert.That(gameList.GetGameList().Contains(game1));
         Assert.That(gameList.GetGameList().Count, Is.EqualTo(1));
     }

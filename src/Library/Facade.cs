@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using Library.Strategies;
 
 namespace Library;
 /// <summary>
@@ -201,7 +202,7 @@ public static class Facade
                     string result = "";
                     result += game.ExecuteAttack(attack);
                     if (result.Contains("no se puede usar hasta que pasen"))
-                        {return result;}
+                    {return result;}
                     result += game.NextTurn();
                     result += CheckGameStatus(game);
                     return result;
@@ -422,13 +423,13 @@ public static class Facade
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
     /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
-    private static string CreateGame(string playerName, string opponentName)
+    private static string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
         WaitingList.RemovePlayer(playerName);
         WaitingList.RemovePlayer(opponentName);
-        GameList.AddGame(player, opponent);
+        GameList.AddGame(player, opponent, strategyStartingPlayer);
         Game game = GameList.FindGameByPlayer(player);
         string ActivePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
         return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {ActivePlayerName}\n";
@@ -442,7 +443,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
-    public static string StartGame(string playerName, string opponentName)
+    public static string StartGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
         Player opponent;
         Player player = GameList.FindPlayerByName(playerName);
@@ -465,7 +466,7 @@ public static class Facade
             opponent = WaitingList.GetSomeone(playerName);
             if(opponent == null)
                 return "No hay nadie más en la lista de espera";
-            return CreateGame(playerName, opponent!.Name);
+            return CreateGame(playerName, opponent!.Name, strategyStartingPlayer);
         }
         
         opponent = WaitingList.FindPlayerByName(opponentName!);
@@ -477,7 +478,7 @@ public static class Facade
         if (GameList.FindGameByPlayer(opponent) != null)
             return $"{opponentName} ya está en una partida";
         
-        return CreateGame(playerName, opponent!.Name);
+        return CreateGame(playerName, opponent!.Name, strategyStartingPlayer);
 
         bool OpponentProvided()
         {
@@ -576,5 +577,23 @@ public static class Facade
             }
         }
         return result;
+    }
+
+    public static string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
+    {
+        Player? player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return $"{playerName}, no estás en una partida.";
+        }
+        Game? game = GameList.FindGameByPlayer(player);
+        if (game == null)
+        {
+            return "Esa partida no está en curso";
+        }
+        game.SetDamageCalculatorStrategy(strategyCritCheck);
+        GameList.RemoveGame(game);
+        GameList.GetGameList().Add(game);
+        return "Estrategia de daño crítico ha sido modificada";
     }
 }
