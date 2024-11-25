@@ -218,11 +218,11 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("Facu");
         string result1 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Para rendirte primero debes estar en una batalla"));
+        Assert.That(result1, Is.EqualTo("Facu, Para rendirte primero debes estar en una batalla"));
         Facade.AddPlayerToWaitingList("Mati");
         Facade.StartGame("Facu", "Mati", new StrategyRandomStartingPlayer());
         string result2 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Ganador: Mati. Perdedor: Facu"));
+        Assert.That(result2, Is.EqualTo("El jugador Facu se ha rendido.\nGanador: Mati \nPerdedor: Facu"));
     }
 
     [Test]

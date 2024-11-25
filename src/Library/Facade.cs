@@ -502,7 +502,7 @@ public static class Facade
         Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
         if (surrenderPlayer == null)
         {
-            return $"{playerName}, ara rendirte primero debes estar en una batalla";
+            return $"{playerName}, Para rendirte primero debes estar en una batalla";
         }
         Game? game = GameList.FindGameByPlayer(surrenderPlayer);
         int notActivePlayer = (game.ActivePlayer+1)%2;
