@@ -2,6 +2,7 @@ using System.Security.AccessControl;
 using Library;
 using Library.Strategies;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 using Type = System.Type;
 
 namespace LibraryTests;
@@ -222,6 +223,23 @@ public class FacadeTest
         Facade.StartGame("Facu", "Mati", new StrategyRandomStartingPlayer());
         string result2 = Facade.Surrender("Facu");
         Assert.That(result1, Is.EqualTo("Ganador: Mati. Perdedor: Facu"));
+    }
+
+    [Test]
+    public void TestShowItems()
+    {
+        Assert.That(Facade.ShowItems("mateo"), Is.EqualTo(("mateo, no estás en una partida.")));
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("pepe");
+        Facade.StartGame("mateo", "pepe", new StrategyPlayerOneStart());
+        Assert.That(Facade.ShowItems("mateo"), Is.EqualTo("mateo, estos son tus items disponibles:\n1 Revive\n4 Super Potion\n2 Full Health\n"));
+        Facade.ChooseTeam("mateo", "Pikachu");
+        Facade.ChooseTeam("pepe", "Charizard");
+        Facade.ChooseRandom("mateo");
+        Facade.ChooseRandom("pepe");
+        Facade.ChooseAttack("mateo", "Thunder Shock");
+        Facade.UseAnItem("pepe", "Super Potion", "Charizard");
+        Assert.That(Facade.ShowItems("pepe"), Is.EqualTo("pepe, estos son tus items disponibles:\n1 Revive\n3 Super Potion\n2 Full Health\n"));
     }
 
 }
