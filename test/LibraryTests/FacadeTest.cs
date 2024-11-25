@@ -1,6 +1,8 @@
 using System.Security.AccessControl;
 using Library;
+using Library.Strategies;
 using NUnit.Framework;
+using NUnit.Framework.Internal.Execution;
 using Type = System.Type;
 
 namespace LibraryTests;
@@ -20,7 +22,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         string result = "El pokemon Caterpie fue añadido al equipo de mateo.\nElegiste 1/6";
         Assert.That(Facade.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
     }
@@ -93,12 +95,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory2()
     {
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no estás en ninguna partida."));
+        
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines",  new StrategyRandomStartingPlayer());
+        
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no tienes ningun Pokemon."));
+        
         Facade.ChooseTeam("mateo", "Caterpie");
         string result =
-            "Bug bite: tipo Bug, precisión 100, potencia 20\nTackle: tipo Normal, precisión 100, potencia 30\nBug stomp: tipo Bug, precisión 95, potencia 70, efecto especial Paralized, cooldown de uso 0\nString shot: tipo Bug, precisión 100, potencia 15\n";
+            "mateo, estos son los ataques de tu Pokemon activo:\n**Bug bite**: tipo *Bug*, precisión *100*, potencia *20*\n**Tackle**: tipo *Normal*, precisión *100*, potencia *30*\n**Bug stomp**: tipo *Bug*, precisión *95*, potencia *70*, efecto especial *Paralized*, cooldown de uso actual *0*\n**String shot**: tipo *Bug*, precisión *100*, potencia *15*\n";
         string mateo = Facade.ShowAtacks("mateo");
         Assert.That(mateo, Is.EqualTo(result));
     }
@@ -118,7 +125,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
         string result1 = $"facu esta es la vida de tus Pokemons: \n**Charizard: 360/360 (Fire)**\n";
@@ -133,7 +140,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("mateo", "Caterpie");
         Facade.ChooseTeam("mateo", "Chikorita");
         Facade.ChooseTeam("mateo", "Gengar");
@@ -168,7 +175,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
         Facade.ChooseAttack("facu", "Flamethrower");
@@ -183,7 +190,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Assert.That(Facade.CheckTurn("facu"),
             Is.EqualTo(
                 "Es tu turno:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
@@ -201,7 +208,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
         string attack = Facade.ChooseAttack("facu", "Flamethrower");
@@ -229,7 +236,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("facu", "Gengar");
         Facade.ChooseTeam("ines", "Chikorita");
@@ -258,7 +265,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines");
+        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("facu", "Charizard");
         string excpected = Facade.UseAnItem("facu", "Super Potion", "Charizard");
         Assert.That(excpected, Is.EqualTo("Charizard ha ganado 70HP."));
@@ -295,11 +302,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory11()
     {
-        Assert.That(Facade.StartGame("facu", null), Is.EqualTo("No hay nadie esperando"));
-        Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("ines no está esperando"));
+        Assert.That(Facade.StartGame("facu", null,  new StrategyRandomStartingPlayer()), Is.EqualTo("facu, no estás en la lista de espera"));
+        Assert.That(Facade.StartGame("facu", "ines",  new StrategyRandomStartingPlayer()), Is.EqualTo("facu, no estás en la lista de espera"));
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("Comienza facu vs ines"));
+        Assert.That(Facade.StartGame("facu", "ines",  new StrategyRandomStartingPlayer()).Contains("Comienza facu Vs. ines"));
+        Facade.AddPlayerToWaitingList("mateo");
+        Assert.That(Facade.StartGame("facu", null, new StrategyRandomStartingPlayer()), Is.EqualTo("facu ya está en una partida"));
+        Assert.That(Facade.StartGame("mateo", "facu", new StrategyRandomStartingPlayer()), Is.EqualTo("facu no está esperando"));
+        Assert.That(Facade.StartGame("mateo", null, new StrategyRandomStartingPlayer()), Is.EqualTo("No hay nadie más en la lista de espera"));
+        Facade.AddPlayerToWaitingList("mati");
+        Assert.That(Facade.StartGame("mateo", null, new StrategyRandomStartingPlayer()).Contains("Comienza mateo Vs. mati"));
     }
 
     [Test]
@@ -307,11 +320,28 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("Facu");
         string result1 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Para rendirte primero debes estar en una batalla"));
+        Assert.That(result1, Is.EqualTo("Facu, Para rendirte primero debes estar en una batalla"));
         Facade.AddPlayerToWaitingList("Mati");
-        Facade.StartGame("Facu", "Mati");
+        Facade.StartGame("Facu", "Mati", new StrategyRandomStartingPlayer());
         string result2 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Ganador: Mati. Perdedor: Facu"));
+        Assert.That(result2, Is.EqualTo("El jugador Facu se ha rendido.\nGanador: Mati \nPerdedor: Facu"));
+    }
+
+    [Test]
+    public void TestShowItems()
+    {
+        Assert.That(Facade.ShowItems("mateo"), Is.EqualTo(("mateo, no estás en una partida.")));
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("pepe");
+        Facade.StartGame("mateo", "pepe", new StrategyPlayerOneStart());
+        Assert.That(Facade.ShowItems("mateo"), Is.EqualTo("mateo, estos son tus items disponibles:\n1 Revive\n4 Super Potion\n2 Full Health\n"));
+        Facade.ChooseTeam("mateo", "Pikachu");
+        Facade.ChooseTeam("pepe", "Charizard");
+        Facade.ChooseRandom("mateo");
+        Facade.ChooseRandom("pepe");
+        Facade.ChooseAttack("mateo", "Thunder Shock");
+        Facade.UseAnItem("pepe", "Super Potion", "Charizard");
+        Assert.That(Facade.ShowItems("pepe"), Is.EqualTo("pepe, estos son tus items disponibles:\n1 Revive\n3 Super Potion\n2 Full Health\n"));
     }
 
 }

@@ -1,3 +1,5 @@
+using Library.Strategies;
+
 namespace Library;
 
 /// <summary>
@@ -20,17 +22,22 @@ public class Game
     /// </summary>
     public int TurnCount { get; private set; }
 
+    public IStrategyStartingPlayer StrategyStartingPlayer { get; set; }
+    
+    private DamageCalculator GameDamageCalculator { get; set; } = new DamageCalculator();
+
     /// <summary>
     /// Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
     /// </summary>
     /// <param name="player1"> Primer jugador.</param>
     /// <param name="player2"> Segundo jugador.</param>
-    public Game(Player player1, Player player2)
+    public Game(Player player1, Player player2, IStrategyStartingPlayer strategyStartingPlayer)
     {
         this.Players.Add(player1);
         this.Players.Add(player2);
-        this.ActivePlayer = Random0or1();
         this.TurnCount = 0;
+        this.StrategyStartingPlayer = strategyStartingPlayer;
+        this.ActivePlayer = StartingPlayer();
     }
 
     /// <summary>
@@ -45,10 +52,9 @@ public class Game
     /// Obtiene un valor aleatorio entre 0 y 1.
     /// </summary>
     /// <returns><c>int</c> Valor entre 0 y 1.</returns>
-    public int Random0or1()
+    public int StartingPlayer()
     {
-        Random random = new Random();
-        return random.Next(0, 2);
+        return StrategyStartingPlayer.StartingPlayer();
     }
     
     /// <summary>
@@ -92,7 +98,7 @@ public class Game
         }
 
         int loser = (winner + 1) % 2;
-        return $"Ganador: {Players[winner].Name}. Perdedor: {Players[loser].Name}";
+        return $"\nGanador: {Players[winner].Name}. Perdedor: {Players[loser].Name}";
 
     }
     /// <summary>
@@ -124,14 +130,26 @@ public class Game
             {
                 if (pokemon.CurrentState == State.Burned)
                 {
+                    double lifeBeforeBurnedEffect = pokemon.CurrentLife;
                     StateLogic.BurnedEffect(pokemon);
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.1)}HP por estar {pokemon.CurrentState}.\n";
+                    if (pokemon.CurrentLife == 0)
+                    {
+                        Players[ActivePlayer].SetActivePokemon();
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                    }
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
 
                 if (pokemon.CurrentState == State.Poisoned)
                 {
+                    double lifeBeforePoisonedEffect = pokemon.CurrentLife;
                     StateLogic.PoisonedEffect(pokemon);
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(pokemon.BaseLife * 0.05)}HP por estar {pokemon.CurrentState}.\n";
+                    if (pokemon.CurrentLife == 0)
+                    {
+                        Players[ActivePlayer].SetActivePokemon();
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                    }
+                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
             }
         }
@@ -181,10 +199,10 @@ public class Game
                 }
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
                 Player attackedPlayer = this.Players[(ActivePlayer+1)%2];
-                string result = DamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
+                string result = GameDamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
                 return result;
             }
-            else return $"El {this.Players[ActivePlayer].ActivePokemon.Name} de {this.Players[ActivePlayer]} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
+            else return $"El {this.Players[ActivePlayer].ActivePokemon.Name} de {this.Players[ActivePlayer].Name} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
         }
         return "El ataque no pudo ser encontrado";
     }
@@ -275,5 +293,10 @@ public class Game
     {
         return Players[ActivePlayer].GetPokemonTeam().Count == 6 &&
                Players[(ActivePlayer + 1) % 2].GetPokemonTeam().Count == 6;
+    }
+    
+    public void SetDamageCalculatorStrategy(IStrategyCritCheck strategyCritCheck)
+    {
+        GameDamageCalculator.SetCritCheckStategy(strategyCritCheck);
     }
 }

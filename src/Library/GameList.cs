@@ -1,3 +1,5 @@
+using Library.Strategies;
+
 namespace Library;
 /// <summary>
 /// Esta clase representa la lista de partidas en curso.
@@ -15,9 +17,9 @@ public class GameList
     /// <param name="player1"> Jugador 1.</param>
     /// <param name="player2"> Jugador 2.</param>
     /// <returns>La partida agregada.</returns>
-    public Game AddGame(Player player1, Player player2)
+    public Game AddGame(Player player1, Player player2, IStrategyStartingPlayer strategyStartingPlayer)
     {
-        Game game = new Game(player1, player2);
+        Game game = new Game(player1, player2, strategyStartingPlayer);
         this.Games.Add(game);
         return game;
     }
