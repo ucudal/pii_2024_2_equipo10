@@ -409,6 +409,61 @@
             Test del método FindAttackByName
             </summary>
         </member>
+        <member name="T:LibraryTests.HydreigonTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Hydreigon"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestName">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestType">
+            <summary>
+            Test del atributo type
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de los atributos life y currentLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de la cantidad de ataques que tiene Hydreigon
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestAddAFifthAttack">
+            <summary>
+            Test de la limitación de movimientos que tiene Hydreigon
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestCurrentStateAndEditState">
+            <summary>
+            Test del atributo CurrentState y el método EditSate
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestAsleepTurns">
+            <summary>
+            Test del atributo asleepTurns
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestAttacks">
+            <summary>
+            Test de los ataques que tiene Hydreigon, confirmando que fueron creados correctamente
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.HydreigonTest.TestFindAttackByName">
+            <summary>
+            Test del método FindAttackByName
+            </summary>
+        </member>
         <member name="T:LibraryTests.MewtwoTest">
             <summary>
             Test de la clase <see cref="T:Library.Mewtwo"/>
