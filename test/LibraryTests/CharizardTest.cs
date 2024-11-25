@@ -221,4 +221,13 @@ public class CharizardTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Charizard charizard = new Charizard();
+        Pokemon charizardClone = charizard.Instance();
+        Assert.That(charizardClone,Is.TypeOf<Charizard>());
+    }
+    
 }

@@ -227,11 +227,11 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("Facu");
         string result1 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Para rendirte primero debes estar en una batalla"));
+        Assert.That(result1, Is.EqualTo("Facu, Para rendirte primero debes estar en una batalla"));
         Facade.AddPlayerToWaitingList("Mati");
         Facade.StartGame("Facu", "Mati", new StrategyRandomStartingPlayer());
         string result2 = Facade.Surrender("Facu");
-        Assert.That(result1, Is.EqualTo("Ganador: Mati. Perdedor: Facu"));
+        Assert.That(result2, Is.EqualTo("El jugador Facu se ha rendido.\nGanador: Mati \nPerdedor: Facu"));
     }
 
     [Test]
@@ -249,6 +249,16 @@ public class FacadeTest
         Facade.ChooseAttack("mateo", "Thunder Shock");
         Facade.UseAnItem("pepe", "Super Potion", "Charizard");
         Assert.That(Facade.ShowItems("pepe"), Is.EqualTo("pepe, estos son tus items disponibles:\n1 Revive\n3 Super Potion\n2 Full Health\n"));
+    }
+
+    [Test]
+    public void TestEditDamageCalculatorStrategy()
+    {
+        Facade.AddPlayerToWaitingList("Facu");
+        Facade.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.EditDamageCalculatorStrategy("Facu",new StrategyNonCrit()),Is.EqualTo("Facu, no estás en una partida."));
+        Facade.StartGame("Facu", "Mateo", new StrategyRandomStartingPlayer());
+        Assert.That(Facade.EditDamageCalculatorStrategy("Facu",new StrategyNonCrit()),Is.EqualTo("Estrategia de daño crítico ha sido modificada"));
     }
 
 }

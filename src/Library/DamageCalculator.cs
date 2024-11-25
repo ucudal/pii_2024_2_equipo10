@@ -127,7 +127,7 @@ public class DamageCalculator
 
     public DamageCalculator()
     {
-        StrategyCritCheck = new StategyRandomCrit();
+        StrategyCritCheck = new StrategyRandomCrit();
     }
     
     /// <summary>

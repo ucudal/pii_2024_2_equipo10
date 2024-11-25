@@ -222,4 +222,12 @@ public class CaterpieTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Caterpie caterpie = new Caterpie();
+        Pokemon caterpieClone = caterpie.Instance();
+        Assert.That(caterpieClone,Is.TypeOf<Caterpie>());
+    }
 }
