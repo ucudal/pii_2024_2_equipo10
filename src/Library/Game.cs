@@ -252,12 +252,12 @@ public class Game
     {
         if (pokemon == null)
         {
-            return "Ese Pokemon no está en tu equipo.";
+            return "Ese Pokemon no está en tu equipo.\n";
         }
 
         if (pokemon.Name  == Players[ActivePlayer].ActivePokemon.Name)
         {
-            return "Ese ya es tu pokemon activo";
+            return "Ese ya es tu Pokemon activo\n";
         }
 
         if (this.Players[ActivePlayer].SetActivePokemon(pokemon))

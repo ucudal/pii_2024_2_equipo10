@@ -285,36 +285,29 @@ public static class Facade
         }
 
         Game game = GameList.FindGameByPlayer(player);
-        if (game == null)
-        {
-            return "La partida no pudo ser encontrada";
-        }
-
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
             if (!game.BothPlayersHaveChoosenTeam())
             {
-                return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
+                return "Alguno de los jugadores no ha seleccionado 6 Pokemons para iniciar el combate";
             }
 
             Pokemon choosenPokemon = player.FindPokemon(pokemonName);
-            if (choosenPokemon == null)
-            {
-                return $"El pokemon {pokemonName} no fue encontrado en tu equipo";
-            }
-
             string result = game.ChangePokemon(choosenPokemon);
-            if (result == "Ese Pokemon no está en tu equipo.")
+            if (result == "Ese Pokemon no está en tu equipo.\n")
             {
                 return result;
             }
 
+            if (result == "Ese ya es tu Pokemon activo\n")
+                return result;
+            
             string nextTurn = game.NextTurn();
             string gameStatus = CheckGameStatus(game);
             return result + "\n" + nextTurn + "\n" + gameStatus;
         }
 
-        return "No eres el jugador activo, no puedes realizar acciones";
+        return $"{playerName}, no eres el jugador activo, no puedes realizar acciones";
     }
 
     /// <summary>
@@ -560,7 +553,7 @@ public static class Facade
             {
                 player.AddToTeam(chosenPokemon.Instance());
                 result += $"{chosenPokemon.Name}\n";
-                availablePokemonIndexes.RemoveAt(randomIndex); // Remover para no repetir
+                availablePokemonIndexes.RemoveAt(randomIndex); 
             }
         }
         return result;
@@ -573,11 +566,7 @@ public static class Facade
         {
             return $"{playerName}, no estás en una partida.";
         }
-        Game? game = GameList.FindGameByPlayer(player);
-        if (game == null)
-        {
-            return "Esa partida no está en curso";
-        }
+        Game game = GameList.FindGameByPlayer(player);
         game.SetDamageCalculatorStrategy(strategyCritCheck);
         GameList.RemoveGame(game);
         GameList.GetGameList().Add(game);
