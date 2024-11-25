@@ -22,7 +22,7 @@ public class ChooseRandomCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync()
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        string result = Facade.ChooseRandom(displayName);
+        string result = Facade.Instance.ChooseRandom(displayName);
         await ReplyAsync(result);
     }
 

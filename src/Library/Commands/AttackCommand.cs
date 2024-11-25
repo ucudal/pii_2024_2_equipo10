@@ -30,7 +30,7 @@ public class AttackCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        result = Facade.ChooseAttack(displayName, attack);
+        result = Facade.Instance.ChooseAttack(displayName, attack);
         await ReplyAsync(result);
     }
 

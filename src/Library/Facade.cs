@@ -6,40 +6,50 @@ namespace Library;
 /// <summary>
 /// Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
 /// </summary>
-public static class Facade
+public class Facade
 {
+    private static Facade? _instance;
+    
     /// <summary>
     /// Lista de espera para jugadores que aún no están en una partida.
     /// </summary>
-    private static WaitingList WaitingList { get; set; } = new WaitingList();
+    private WaitingList WaitingList { get; set; } = new WaitingList();
 
     /// <summary>
     /// Lista de partidas en curso.
     /// </summary>
-    private static GameList GameList { get; } = new GameList();
+    private GameList GameList { get; } = new GameList();
 
     /// <summary>
     /// Catalogo de Pokemons.
     /// </summary>
-    //private static PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
+    //private  PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
 
-    private static PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
+    private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
 
-    /// <summary>
-    /// Limpia la WaitingList y GameList. Se utiliza exclusivamente en la implementación de Unit Tests.
-    /// </summary>
-    public static void CleanUp()
+    
+    public static Facade Instance
     {
-        foreach (Player player in WaitingList.GetWaitingList())
+        get
         {
-            WaitingList.RemovePlayer(player.Name);
-        }
-        
+            if (_instance == null)
+            {
+                _instance = new Facade();
+            }
 
-        foreach (Game game in GameList.GetGameList())
-        {
-            GameList.RemoveGame(game);
+            return _instance;
         }
+    }
+
+    public void Reset()
+    {
+        _instance = null;
+    }
+
+    private Facade()
+    {
+        this.WaitingList = new WaitingList();
+        this.GameList = new GameList();
     }
     
     /// <summary>
@@ -49,7 +59,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador.</param>
     /// <param name="pokemonName">Nombre del Pokemon que se quiere añadir al equipo.</param>
     /// <returns>Mensaje <c>string</c> indicando si el Pokemon fue añadido, si ya estaba ne el equipo o si hubo un error.</returns>
-    public static string ChooseTeam(string playerName, string pokemonName)
+    public string ChooseTeam(string playerName, string pokemonName)
     {
         Player player = GameList.FindPlayerByName(playerName);
 
@@ -84,7 +94,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador activo.</param>
     /// <returns>Un <c>string</c> de los ataques del Pokémon activo o un mensaje de error en
     /// caso de que el jugador no exista.</returns>
-    public static string ShowAtacks(string playerName)
+    public string ShowAtacks(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -103,7 +113,7 @@ public static class Facade
     /// <param name="playerToCheckName">Nombre del jugador cuya lista de Pokemon se va a comprobar (opcional). Si es
     /// <c>null</c> hace referencia al propio jugador. Si no, hace referencia a otro.</param>
     /// <returns>Un <c>string</c> de los Pokemon y sus HP o un mensaje de error.</returns>
-    public static string ShowPokemonsHp(string playerName, string? playerToCheckName = null)
+    public string ShowPokemonsHp(string playerName, string? playerToCheckName = null)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -183,7 +193,7 @@ public static class Facade
     /// <returns>
     /// Un mensaje <c>string</c> que indica el resultado de la acción.
     /// </returns>
-    public static string ChooseAttack(string playerName, string attackName)
+    public string ChooseAttack(string playerName, string attackName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -238,7 +248,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <returns>Mensaje <c>string</c> indicando si es o no su turno, junto con las opciones.</returns>
-    public static string CheckTurn(string playerName)
+    public string CheckTurn(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -269,7 +279,7 @@ public static class Facade
     /// <param name="game">La partida actual.</param>
     /// <returns><c>"Próximo turno"</c> en caso de que la partida siga o un <c>string</c> conteniendo el
     /// ganador y el perdedor.</returns>
-    public static string CheckGameStatus(Game game)
+    public string CheckGameStatus(Game game)
     {
         if (game != null)
         {
@@ -293,7 +303,7 @@ public static class Facade
     /// <returns>
     /// Un mensaje <c>string</c> que indica el resultado de la acción.
     /// </returns>
-    public static string ChangePokemon(string playerName, string pokemonName)
+    public string ChangePokemon(string playerName, string pokemonName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -342,7 +352,7 @@ public static class Facade
     /// <param name="item">Nombre del item a usar.</param>
     /// <param name="pokemon">Nombre del Pokemon objetivo.</param>
     /// <returns>Resultado del uso del item <c>string</c>.</returns>
-    public static string UseAnItem(string playerName, string item, string pokemon)
+    public string UseAnItem(string playerName, string item, string pokemon)
     {
         Player player = GameList.FindPlayerByName(playerName);
         Game game = GameList.FindGameByPlayer(player);
@@ -384,7 +394,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <returns>Mensaje indicando si el jugador fue agregado o ya estaba en la lista.</returns>
-    public static string AddPlayerToWaitingList(string playerName)
+    public string AddPlayerToWaitingList(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (GameList.FindGameByPlayer(player) != null)
@@ -404,7 +414,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <returns>Mensaje <c>string</c> indicando si el jugador fue removido o no estaba en la lista.</returns>
-    public static string RemovePlayerFromWaitingList(string playerName)
+    public  string RemovePlayerFromWaitingList(string playerName)
     {
         if (WaitingList.RemovePlayer(playerName))
             return $"{playerName} removido de la lista de espera";
@@ -416,7 +426,7 @@ public static class Facade
     /// Muestra todos los jugadores actualmente en la lista de espera.
     /// </summary>
     /// <returns>Lista de jugadores en espera o un mensaje indicando que no hay nadie esperando.</returns>
-    public static string GetAllPlayersWaiting()
+    public  string GetAllPlayersWaiting()
     {
         if (WaitingList.Count == 0)
         {
@@ -441,7 +451,7 @@ public static class Facade
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
     /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
-    private static string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
+    private  string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
@@ -461,7 +471,7 @@ public static class Facade
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
-    public static string StartGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
+    public  string StartGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
         Player opponent;
         Player player = GameList.FindPlayerByName(playerName);
@@ -504,7 +514,7 @@ public static class Facade
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
-    public static string ShowCatalogue()
+    public  string ShowCatalogue()
     {
         return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
     }
@@ -514,7 +524,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre de quien se rinde.</param>
     /// <returns><c>string</c> informando quien se rindió o si no está en partida.</returns>
-    public static string Surrender(string playerName)
+    public  string Surrender(string playerName)
     {
         Player? surrenderPlayer = GameList.FindPlayerByName(playerName);
         if (surrenderPlayer == null)
@@ -536,7 +546,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <returns><c>string</c> con el nombre y la cantidad de items disponibles.</returns>
-    public static string ShowItems(string playerName)
+    public  string ShowItems(string playerName)
     {
         Player? player = GameList.FindPlayerByName(playerName);
         if (GameList.FindGameByPlayer(player) == null)
@@ -558,7 +568,7 @@ public static class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador.</param>
     /// <returns><c>string</c> con el nombre de los Pokemons agregados.</returns>
-    public static string ChooseRandom(string playerName)
+    public  string ChooseRandom(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -583,7 +593,7 @@ public static class Facade
         return result;
     }
 
-    public static string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
+    public  string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
     {
         Player? player = GameList.FindPlayerByName(playerName);
         if (player == null)

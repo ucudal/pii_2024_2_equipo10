@@ -32,7 +32,7 @@ public class ChangeCommand : ModuleBase<SocketCommandContext>
         if (pokemonName == null)
             {await ReplyAsync("Para cambiar de Pokemon activo debes usar el siguiente formato: \n**!change** <**nombre del pokemon**>");}
         string playerName = CommandHelper.GetDisplayName(Context);
-        string result = Facade.ChangePokemon(playerName, pokemonName);
+        string result = Facade.Instance.ChangePokemon(playerName, pokemonName);
         await ReplyAsync(result);
     }
 

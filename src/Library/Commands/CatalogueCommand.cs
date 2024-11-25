@@ -20,7 +20,7 @@ public class CatalogueCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync()
     { 
-        await ReplyAsync(Facade.ShowCatalogue());
+        await ReplyAsync(Facade.Instance.ShowCatalogue());
     }
 
 }

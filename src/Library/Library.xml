@@ -379,11 +379,6 @@
             Catalogo de Pokemons.
             </summary>
         </member>
-        <member name="M:Library.Facade.CleanUp">
-            <summary>
-            Limpia la WaitingList y GameList. Se utiliza exclusivamente en la implementación de Unit Tests.
-            </summary>
-        </member>
         <member name="M:Library.Facade.ChooseTeam(System.String,System.String)">
             <summary>
             Historia 1:
