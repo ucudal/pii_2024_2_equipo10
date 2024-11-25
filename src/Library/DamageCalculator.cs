@@ -2,14 +2,17 @@ using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Xml;
+using Library.Strategies;
 
 namespace Library;
 
 // Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
 // Es la clase Experta al momento de calcular daño
 // Es una clase abstracta la cual nos permite evitar que el programa tenga interdependencias innecesarias (Aplicando DIP).
-public static class DamageCalculator
+public class DamageCalculator
 {
+    private IStrategyCritCheck StrategyCritCheck { get; set; }
+    
     /// <summary>
     /// Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
     /// </summary>
@@ -17,7 +20,7 @@ public static class DamageCalculator
     /// <c>Dictionary</c> Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
     /// y el valor es un factor de efectividad (2.0 para súperefectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
     /// </returns>
-    private static Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase
+    private Dictionary<Tuple<Type, Type>, double> EffectivnessDataBase
     {
         get
         {
@@ -121,6 +124,11 @@ public static class DamageCalculator
             return effectivnessDataBase;
         }
     }
+
+    public DamageCalculator()
+    {
+        StrategyCritCheck = new StategyRandomCrit();
+    }
     
     /// <summary>
     /// Obtiene la efectividad de un ataque de un tipo específico contra el o los tipos de un Pokemon.
@@ -131,7 +139,7 @@ public static class DamageCalculator
     /// Valor <c>double</c> indicando el factor de efectividad del ataque.
     /// <c>2.0</c> para súperefectivo, <c>0.5</c> para poco efectivo, <c>0.0</c> si no tiene efecto, y <c>1.0</c> si no hay una relación específica.
     /// </returns>
-    public static double GetEffectivness(Type type, List<Type> types)
+    public double GetEffectivness(Type type, List<Type> types)
     {
         foreach (Type type1 in types)
         {
@@ -156,15 +164,9 @@ public static class DamageCalculator
     /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
     /// o <c>1.0</c> si no es crítico.
     /// </returns>    
-    public static double CriticalCheck()
+    public double CriticalCheck()
     {
-        Random random = new Random();
-        int chance = random.Next(1,11);
-        if (chance == 1)
-        {
-            return 1.20;
-        }
-        return 1.0;
+        return StrategyCritCheck.CriticalCheck();
     }
     /// <summary>
     /// Aplica un efecto especial al Pokemon objetivo, siempre y cuando el ataque recibido sea especial y el Pokemon no tenga ya otro efecto.
@@ -175,7 +177,7 @@ public static class DamageCalculator
     /// Si el ataque es un <see cref="SpecialAttack"/> y el Pokemon objetivo no tiene un estado actual, 
     /// se aplica el efecto especial del ataque y se setea su cooldown.
     /// </remarks>
-    public static string SpecialCheck(Pokemon attackedPokemon, Attack attack)
+    public string SpecialCheck(Pokemon attackedPokemon, Attack attack)
     {
         if (attack is SpecialAttack specialAttack && attackedPokemon.CurrentState == null)
         {
@@ -200,7 +202,7 @@ public static class DamageCalculator
     /// El daño calculado como un <c>double</c>. 
     /// Devuelve <c>0.0</c> si el ataque falla.
     /// </returns>
-public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Player attackedPlayer)
+    public string CalculateDamage(Pokemon attackedPokemon, Attack attack, Player attackedPlayer)
     {
         Random random = new Random();
         int randomInt = random.Next(1, 101);
@@ -249,5 +251,10 @@ public static string CalculateDamage(Pokemon attackedPokemon, Attack attack, Pla
             return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
         }
         return "El ataque falló y no produjo daño\n";
+    }
+
+    public void SetCritCheckStategy(IStrategyCritCheck strategy)
+    {
+        this.StrategyCritCheck = strategy;
     }
 }
