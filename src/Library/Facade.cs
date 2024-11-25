@@ -1,4 +1,5 @@
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using Library.Strategies;
 
 namespace Library;
@@ -308,9 +309,9 @@ public static class Facade
                 return result;
             }
 
-            game.NextTurn();
-            string nextTurn = CheckGameStatus(game);
-            return result + "\n" + nextTurn;
+            string nextTurn = game.NextTurn();
+            string gameStatus = CheckGameStatus(game);
+            return result + "\n" + nextTurn + "\n" + gameStatus;
         }
 
         return "No eres el jugador activo, no puedes realizar acciones";
@@ -349,9 +350,9 @@ public static class Facade
             string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
             if (result.Contains("éxito"))
             {
-                game.NextTurn();
-                string nextTurn = CheckGameStatus(game);
-                return result + "\n" + nextTurn;
+                string nextTurn = game.NextTurn();
+                string gameStatus = CheckGameStatus(game);
+                return result + "\n" + nextTurn + "\n" + gameStatus;
             }
             return result;
         }
