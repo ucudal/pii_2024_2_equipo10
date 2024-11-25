@@ -198,11 +198,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory11()
     {
-        Assert.That(Facade.StartGame("facu", null), Is.EqualTo("No hay nadie esperando"));
-        Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("ines no está esperando"));
+        Assert.That(Facade.StartGame("facu", null), Is.EqualTo("facu, no estás en la lista de espera"));
+        Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("facu, no estás en la lista de espera"));
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Assert.That(Facade.StartGame("facu", "ines"), Is.EqualTo("Comienza facu vs ines"));
+        Assert.That(Facade.StartGame("facu", "ines").Contains("Comienza facu Vs. ines"));
+        Facade.AddPlayerToWaitingList("mateo");
+        Assert.That(Facade.StartGame("facu", null), Is.EqualTo("facu ya está en una partida"));
+        Assert.That(Facade.StartGame("mateo", "facu"), Is.EqualTo("facu no está esperando"));
+        Assert.That(Facade.StartGame("mateo", null), Is.EqualTo("No hay nadie más en la lista de espera"));
+        Facade.AddPlayerToWaitingList("mati");
+        Assert.That(Facade.StartGame("mateo", null).Contains("Comienza mateo Vs. mati"));
     }
 
     [Test]
