@@ -235,12 +235,14 @@ public class FacadeTest
         Facade.Instance.AddPlayerToWaitingList("facu");
         Facade.Instance.AddPlayerToWaitingList("ines");
         Facade.Instance.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
-        Assert.That(Facade.Instance.CheckTurn("facu"),
-            Is.EqualTo(
-                "Es tu turno:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
-        Assert.That(Facade.Instance.CheckTurn("ines"),
-            Is.EqualTo(
-                "No es tu turno, las opciones disponibles cuando sea tu turno son:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
+        Assert.That(Facade.Instance.CheckTurn("facu"), Is.EqualTo("facu, es tu turno"));
+        Assert.That(Facade.Instance.CheckTurn("ines"), Is.EqualTo("ines, no es tu turno"));
+    }
+    
+    [Test]
+    public void TestUserStory5UnknownPlayer()
+    {
+        Assert.That(Facade.Instance.CheckTurn("facu"), Is.EqualTo("El jugador facu no está en ninguna partida."));
     }
 
 
@@ -252,7 +254,7 @@ public class FacadeTest
     {
         Facade.Instance.AddPlayerToWaitingList("facu");
         Facade.Instance.AddPlayerToWaitingList("ines");
-        Facade.Instance.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
+        Facade.Instance.StartGame("facu", "ines", new StrategyPlayerOneStart());
         Facade.Instance.ChooseTeam("facu", "Charizard");
         Facade.Instance.ChooseTeam("ines", "Chikorita");
         string attack = Facade.Instance.ChooseAttack("facu", "Flamethrower");
@@ -314,14 +316,70 @@ public class FacadeTest
     /// Test de la historia de usuario 8.
     /// </summary>
     [Test]
-    public void TestUserStory8()
+    public void TestUserStory8NullPlayer()
+    {
+        string result = Facade.Instance.UseAnItem("facu", "Super Potion", "Charizard");
+        Assert.That(result, Is.EqualTo("El jugador facu no está en ninguna partida."));
+    }
+
+    [Test]
+    public void TestUserStory8PlayersNotReady()
     {
         Facade.Instance.AddPlayerToWaitingList("facu");
         Facade.Instance.AddPlayerToWaitingList("ines");
-        Facade.Instance.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
+        Facade.Instance.StartGame("facu", "ines", new StrategyPlayerOneStart());
         Facade.Instance.ChooseTeam("facu", "Charizard");
         string excpected = Facade.Instance.UseAnItem("facu", "Super Potion", "Charizard");
-        Assert.That(excpected, Is.EqualTo("Charizard ha ganado 70HP."));
+        Assert.That(excpected, Is.EqualTo("Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate"));
+    }
+    
+    [Test]
+    public void TestUserStory8InactivePlayer()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.ChooseTeam("mateo", "Charizard");
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Caterpie");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+
+        string result = Facade.Instance.UseAnItem("ines", "Full Health", "Chikorita");
+        Assert.That(result, Is.EqualTo("ines, no eres el jugador activo, no puedes realizar acciones"));
+    }
+
+    [Test]
+    public void TestUserStory8ExpectedUse()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.ChooseTeam("mateo", "Charizard");
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Caterpie");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+
+        Facade.Instance.ChooseAttack("mateo", "Fire punch");
+
+        string result = Facade.Instance.UseAnItem("ines", "Super Potion", "Caterpie");
+        string expected = $"ines, tu Caterpie ha ganado 70HP.\n¡Super Potion utilizada con éxito!\n\nPróximo turno, ahora es el turno de mateo";
+        Assert.That(result, Is.EqualTo(expected));
     }
 
 

@@ -377,7 +377,7 @@ public class Facade
             return result;
         }
 
-        return "No eres el jugador activo, no puedes realizar acciones";
+        return $"{player.Name}, no eres el jugador activo, no puedes realizar acciones";
     }
 
 
