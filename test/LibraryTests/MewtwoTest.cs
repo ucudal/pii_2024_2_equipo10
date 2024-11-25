@@ -210,4 +210,12 @@ public class MewtwoTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+
+    [Test]
+    public void TestInstance()
+    {
+        Mewtwo mewtwo = new Mewtwo();
+        Pokemon mewtwoClone = mewtwo.Instance();
+        Assert.That(mewtwoClone,Is.TypeOf<Mewtwo>());
+    }
 }

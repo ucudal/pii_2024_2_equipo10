@@ -221,4 +221,12 @@ public class ZeraoraTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Zeraora zeraora = new Zeraora();
+        Pokemon zeraoraClone = zeraora.Instance();
+        Assert.That(zeraoraClone,Is.TypeOf<Zeraora>());
+    }
 }

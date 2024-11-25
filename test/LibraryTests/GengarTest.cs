@@ -220,4 +220,13 @@ public class GengarTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Gengar gengar = new Gengar();
+        Pokemon gengarClone = gengar.Instance();
+        Assert.That(gengarClone,Is.TypeOf<Gengar>());
+    }
+    
 }
