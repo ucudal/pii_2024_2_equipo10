@@ -1,6 +1,6 @@
 namespace Library.Strategies;
 
-public class StategyRandomCrit : IStrategyCritCheck
+public class StrategyRandomCrit : IStrategyCritCheck
 {
     public double CriticalCheck()
     {

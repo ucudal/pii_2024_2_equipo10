@@ -103,7 +103,7 @@ public class ZeraoraTest
     }
 
     /// <summary>
-    /// Test de los ataques que tiene Zeraora, confirmando que fueron creados correctamente
+    /// Test de metodo FindAttackByName y los ataques que tiene Zeraora, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
@@ -199,26 +199,12 @@ public class ZeraoraTest
         Assert.That(actualLife3.Equals(360));
         Assert.That(actualLifeText3.Equals("360/380", StringComparison.Ordinal));
     }
-
-    /// <summary>
-    /// Test del método FindAttackByName
-    /// </summary>
+    
     [Test]
-    public void TestFindAttackByName()
+    public void TestInstance()
     {
         Zeraora zeraora = new Zeraora();
-        Attack attack = zeraora.FindAttackByName("Plasma Fist");
-        string attack1Name = attack.Name;
-        Type attack1Type = attack.Type;
-        double attack1Accuracy = attack.Accuracy;
-        int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Plasma Fist";
-        Type attack1ExcpectedType = Type.Electric;
-        double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 65;
-        Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
-        Assert.That(attack1Type.Equals(attack1ExcpectedType));
-        Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
+        Pokemon zeraoraClone = zeraora.Instance();
+        Assert.That(zeraoraClone,Is.TypeOf<Zeraora>());
     }
 }
