@@ -26,6 +26,8 @@ public class Game
     
     private DamageCalculator GameDamageCalculator { get; set; } = new DamageCalculator();
 
+    private string Log { get; set; } = "";
+
     /// <summary>
     /// Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
     /// </summary>
@@ -199,7 +201,9 @@ public class Game
                 }
                 Pokemon attackedPokemon = this.Players[(this.ActivePlayer + 1) % 2].ActivePokemon;
                 Player attackedPlayer = this.Players[(ActivePlayer+1)%2];
+                double lifeBeforeAttack = Players[(ActivePlayer + 1) % 2].ActivePokemon.CurrentLife;
                 string result = GameDamageCalculator.CalculateDamage(attackedPokemon, attack, attackedPlayer);
+                Log += $" Turno {TurnCount}: El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {(int)(lifeBeforeAttack-Players[(ActivePlayer + 1) % 2].ActivePokemon.CurrentLife)} debido al ataque {attack.Name} del {Players[ActivePlayer].ActivePokemon.Name} de {Players[ActivePlayer].Name}\n";
                 return result;
             }
             else return $"El {this.Players[ActivePlayer].ActivePokemon.Name} de {this.Players[ActivePlayer].Name} está {this.Players[ActivePlayer].ActivePokemon.CurrentState} y no ataca este turno :(\n";
@@ -235,7 +239,7 @@ public class Game
             player.GetItemList().Remove(item);
         }
         message = $"{player.Name}, tu {message}";
-
+        Log += $"Turno {TurnCount}: " + message + "\n";
         return message;
     }
 
@@ -250,6 +254,7 @@ public class Game
 
     public string ChangePokemon(Pokemon? pokemon)
     {
+        Pokemon previousPokemon = Players[ActivePlayer].ActivePokemon;
         if (pokemon == null)
         {
             return "Ese Pokemon no está en tu equipo.";
@@ -261,10 +266,10 @@ public class Game
         }
 
         if (this.Players[ActivePlayer].SetActivePokemon(pokemon))
-        { 
+        {
+            Log += $"Turno {TurnCount}: El jugador {Players[ActivePlayer].Name} cambió su pokemon activo {previousPokemon.Name} por {Players[ActivePlayer].Name} \n";
             return $"{pokemon.Name} es tu nuevo Pokemon activo.";
         }
-
         return $"{pokemon.Name} no tiene vida. Suerte bro, lo siento :/";
     }
 
@@ -298,5 +303,10 @@ public class Game
     public void SetDamageCalculatorStrategy(IStrategyCritCheck strategyCritCheck)
     {
         GameDamageCalculator.SetCritCheckStategy(strategyCritCheck);
+    }
+
+    public string GetLog()
+    {
+        return Log;
     }
 }

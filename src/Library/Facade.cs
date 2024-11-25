@@ -583,4 +583,15 @@ public static class Facade
         GameList.GetGameList().Add(game);
         return "Estrategia de daño crítico ha sido modificada";
     }
+
+    public static string ShowLog(string playerName)
+    {
+        Player? player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return $"{playerName}, no estás en una partida.";
+        }
+        Game game = GameList.FindGameByPlayer(player);
+        return game.GetLog();
+    }
 }
