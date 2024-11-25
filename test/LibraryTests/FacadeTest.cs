@@ -130,28 +130,37 @@ public class FacadeTest
     /// Test de la historia de usuario 7.
     /// </summary>
     [Test]
-    public void TestUserStory7()
+    public void TestUserStory7NotInGame()
     {
+        Assert.That(Facade.ChangePokemon("mateo", "Pikachu"),
+            Is.EqualTo("El jugador mateo no está en ninguna partida."));
+    }
+    
+    [Test]
+    public void TestUserStory7(){
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
+        Facade.StartGame("facu", "ines", new StrategyPlayerTwoStart());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("facu", "Gengar");
-        Facade.ChooseTeam("ines", "Chikorita");
-        string asd = Facade.ChangePokemon("facu", "Gengar");
-        string change = "No eres el jugador activo, no puedes realizar acciones";
-        Assert.That(asd, Is.EqualTo(change));
-        string asd1 = Facade.ChangePokemon("facu", "Gengar");
-        string change1 = "No eres el jugador activo, no puedes realizar acciones";
-        Assert.That(asd1, Is.EqualTo(change1));
-        Facade.ChooseTeam("ines", "Zeraora");
-        Facade.ChooseTeam("ines", "Caterpie");
         Facade.ChooseTeam("ines", "Mewtwo");
-        Facade.ChooseTeam("ines", "Gengar");
-        Facade.ChooseTeam("ines", "Haxorus");
-        string change2 = Facade.ChangePokemon("ines", "Mewtwo");
-        string excpected = "Mewtwo es tu nuevo pokemon activo. Próximo turno ahora es el turno de facu";
-        Assert.That(change1, Is.EqualTo(excpected));
+        Facade.ChooseTeam("ines", "Charizard");
+        Assert.That(Facade.ChangePokemon("ines", "Gengar"), 
+            Is.EqualTo("Alguno de los jugadores no ha seleccionado 6 Pokemons para iniciar el combate"));
+        
+        Assert.That(Facade.ChangePokemon("facu", "Gengar"), 
+            Is.EqualTo("facu, no eres el jugador activo, no puedes realizar acciones"));
+        
+        Facade.ChooseRandom("ines");
+        Facade.ChooseRandom("facu");
+        Assert.That(Facade.ChangePokemon("ines", "pokemon inexistente"), 
+            Is.EqualTo("Ese Pokemon no está en tu equipo.\n"));
+        
+        Assert.That(Facade.ChangePokemon("ines", "Mewtwo"), 
+            Is.EqualTo("Ese ya es tu Pokemon activo\n"));
+        
+        Assert.That(Facade.ChangePokemon("ines", "Charizard"), 
+            Is.EqualTo("Charizard es tu nuevo Pokemon activo.\n\nPróximo turno, ahora es el turno de facu"));
     }
 
 
