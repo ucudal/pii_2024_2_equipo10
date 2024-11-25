@@ -76,17 +76,12 @@
         </member>
         <member name="M:LibraryTests.CaterpieTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Caterpie, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Caterpie, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.CaterpieTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.CaterpieTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.CharizardTest">
@@ -131,17 +126,12 @@
         </member>
         <member name="M:LibraryTests.CharizardTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Charizard, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Charizard, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.CharizardTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.CharizardTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.ChikoritaTest">
@@ -186,17 +176,12 @@
         </member>
         <member name="M:LibraryTests.ChikoritaTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Chikorita, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Chikorita, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.ChikoritaTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.ChikoritaTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.FacadeTest">
@@ -341,17 +326,12 @@
         </member>
         <member name="M:LibraryTests.GengarTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Gengar, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Gengar, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.GengarTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.GengarTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.HaxorusTest">
@@ -396,17 +376,12 @@
         </member>
         <member name="M:LibraryTests.HaxorusTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Haxorus, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Haxorus, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.HaxorusTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.HaxorusTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.HydreigonTest">
@@ -501,17 +476,12 @@
         </member>
         <member name="M:LibraryTests.MewtwoTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Mewtwo, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Mewtwo, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.MewtwoTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.MewtwoTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.ReviveTest">
@@ -665,17 +635,12 @@
         </member>
         <member name="M:LibraryTests.ZeraoraTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Zeraora, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Zeraora, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.ZeraoraTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.ZeraoraTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
     </members>
