@@ -29,7 +29,7 @@ public class HpCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        result = Facade.ShowPokemonsHp(displayName, opponentDisplayName);
+        result = Facade.Instance.ShowPokemonsHp(displayName, opponentDisplayName);
         
         await ReplyAsync(result);
     }

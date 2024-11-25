@@ -51,7 +51,7 @@ public class UseCommand : ModuleBase<SocketCommandContext>
         }
 
         string displayName = CommandHelper.GetDisplayName(Context);
-        result = Facade.UseAnItem(displayName, itemName, pokemonName);
+        result = Facade.Instance.UseAnItem(displayName, itemName, pokemonName);
         await ReplyAsync(result);
     }
 }

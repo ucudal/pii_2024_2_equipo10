@@ -19,7 +19,7 @@ public class WaitingCommand : ModuleBase<SocketCommandContext>
     // ReSharper disable once UnusedMember.Global
     public async Task ExecuteAsync()
     {
-        string result = Facade.GetAllPlayersWaiting();
+        string result = Facade.Instance.GetAllPlayersWaiting();
 
         await ReplyAsync(result);
     }

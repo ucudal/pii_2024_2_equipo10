@@ -34,7 +34,7 @@ public class BattleCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        result = Facade.StartGame(displayName, opponentDisplayName, new StrategyRandomStartingPlayer());
+        result = Facade.Instance.StartGame(displayName, opponentDisplayName, new StrategyRandomStartingPlayer());
         await ReplyAsync(result);
         if(result.Contains(" Vs. "))
             await ReplyAsync("!choose <<Nombre del Pokemon>> para elegir un Pokemon\n!catalogue para ver el catalogo de Pokemones.\n!help para más comandos.");

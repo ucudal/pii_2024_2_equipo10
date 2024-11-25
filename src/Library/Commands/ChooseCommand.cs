@@ -26,7 +26,7 @@ public class ChooseCommand : ModuleBase<SocketCommandContext>
     {
         string displayName = CommandHelper.GetDisplayName(Context);
         string result;
-        result = Facade.ChooseTeam(displayName, pokemonName);
+        result = Facade.Instance.ChooseTeam(displayName, pokemonName);
         await ReplyAsync(result);
 
     }

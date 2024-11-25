@@ -22,7 +22,7 @@ public class SurrenderCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync()
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        string result = Facade.Surrender(displayName);
+        string result = Facade.Instance.Surrender(displayName);
         await ReplyAsync(result);
     }
 

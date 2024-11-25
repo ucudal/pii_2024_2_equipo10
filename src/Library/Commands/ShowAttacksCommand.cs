@@ -22,7 +22,7 @@ public class ShowAttacksCommand : ModuleBase<SocketCommandContext>
     public async Task ExecuteAsync()
     {
         string displayName = CommandHelper.GetDisplayName(Context);
-        string result = Facade.ShowAtacks(displayName);
+        string result = Facade.Instance.ShowAtacks(displayName);
         await ReplyAsync(result); 
     }
 }
