@@ -103,7 +103,7 @@ public class HaxorusTest
     }
 
     /// <summary>
-    /// Test de los ataques que tiene Haxorus, confirmando que fueron creados correctamente
+    /// Test de metodo FindAttackByName y los ataques que tiene Haxorus, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
@@ -186,28 +186,6 @@ public class HaxorusTest
         string actualLifeText3 = haxorus.GetLife();
         Assert.That(actualLife3.Equals(336));
         Assert.That(actualLifeText3.Equals("336/356", StringComparison.Ordinal));
-    }
-
-    /// <summary>
-    /// Test del método FindAttackByName
-    /// </summary>
-    [Test]
-    public void TestFindAttackByName()
-    {
-        Haxorus haxorus = new Haxorus();
-        Attack attack = haxorus.FindAttackByName("Outrage");
-        string attack1Name = attack.Name;
-        Type attack1Type = attack.Type;
-        double attack1Accuracy = attack.Accuracy;
-        int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Outrage";
-        Type attack1ExcpectedType = Type.Dragon;
-        double attack1ExcpectedAccuracy = 0.75;
-        int attack1ExcpectedPower = 120;
-        Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
-        Assert.That(attack1Type.Equals(attack1ExcpectedType));
-        Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
     
     [Test]

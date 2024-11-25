@@ -103,7 +103,7 @@ public class ChikoritaTest
 
     
     /// <summary>
-    /// Test de los ataques que tiene Chikorita, confirmando que fueron creados correctamente
+    /// Test de metodo FindAttackByName y los ataques que tiene Chikorita, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
@@ -196,28 +196,6 @@ public class ChikoritaTest
         string actualLifeText3 = chikorita.GetLife();
         Assert.That(actualLife3.Equals(274));
         Assert.That(actualLifeText3.Equals("274/294", StringComparison.Ordinal));
-    }
-    
-    /// <summary>
-    /// Test del método FindAttackByName
-    /// </summary>
-    [Test]
-    public void TestFindAttackByName()
-    {
-        Chikorita chikorita = new Chikorita();
-        Attack attack = chikorita.FindAttackByName("Magical leaf");
-        string attack1Name = attack.Name;
-        Type attack1Type = attack.Type;
-        double attack1Accuracy = attack.Accuracy;
-        int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Magical leaf";
-        Type attack1ExcpectedType = Type.Grass;
-        double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 45;
-        Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
-        Assert.That(attack1Type.Equals(attack1ExcpectedType));
-        Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
     
     [Test]

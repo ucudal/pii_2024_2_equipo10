@@ -106,7 +106,7 @@ public class CharizardTest
     }
     
     /// <summary>
-    /// Test de los ataques que tiene Charizard, confirmando que fueron creados correctamente
+    /// Test de metodo FindAttackByName y los ataques que tiene Charizard, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
@@ -198,28 +198,6 @@ public class CharizardTest
         string actualLifeText3 = charizard.GetLife();
         Assert.That(actualLife3.Equals(340));
         Assert.That(actualLifeText3.Equals("340/360", StringComparison.Ordinal));
-    }
-
-    /// <summary>
-    /// Test del método FindAttackByName
-    /// </summary>
-    [Test]
-    public void TestFindAttackByName()
-    {
-        Charizard charizard = new Charizard();
-        Attack attack = charizard.FindAttackByName("Dragon claw");
-        string attack1Name = attack.Name;
-        Type attack1Type = attack.Type;
-        double attack1Accuracy = attack.Accuracy;
-        int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Dragon claw";
-        Type attack1ExcpectedType = Type.Dragon;
-        double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 55;
-        Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
-        Assert.That(attack1Type.Equals(attack1ExcpectedType));
-        Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
     
     [Test]
