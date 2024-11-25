@@ -573,11 +573,7 @@ public static class Facade
         {
             return $"{playerName}, no estás en una partida.";
         }
-        Game? game = GameList.FindGameByPlayer(player);
-        if (game == null)
-        {
-            return "Esa partida no está en curso";
-        }
+        Game game = GameList.FindGameByPlayer(player);
         game.SetDamageCalculatorStrategy(strategyCritCheck);
         GameList.RemoveGame(game);
         GameList.GetGameList().Add(game);
