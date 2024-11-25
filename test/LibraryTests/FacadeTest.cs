@@ -235,12 +235,14 @@ public class FacadeTest
         Facade.Instance.AddPlayerToWaitingList("facu");
         Facade.Instance.AddPlayerToWaitingList("ines");
         Facade.Instance.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
-        Assert.That(Facade.Instance.CheckTurn("facu"),
-            Is.EqualTo(
-                "Es tu turno:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
-        Assert.That(Facade.Instance.CheckTurn("ines"),
-            Is.EqualTo(
-                "No es tu turno, las opciones disponibles cuando sea tu turno son:\n1- !Attack (ver los ataques con el pokemon activo)\n 2- !Item (ver los items disponibles)\n 3- !Change (ver pokemons disp. a cambiar)"));
+        Assert.That(Facade.Instance.CheckTurn("facu"), Is.EqualTo("facu, es tu turno"));
+        Assert.That(Facade.Instance.CheckTurn("ines"), Is.EqualTo("ines, no es tu turno"));
+    }
+    
+    [Test]
+    public void TestUserStory5UnknownPlayer()
+    {
+        Assert.That(Facade.Instance.CheckTurn("facu"), Is.EqualTo("El jugador facu no está en ninguna partida."));
     }
 
 
