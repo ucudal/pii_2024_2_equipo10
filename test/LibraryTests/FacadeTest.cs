@@ -14,6 +14,12 @@ namespace LibraryTests;
 [TestOf(typeof(Facade))]
 public class FacadeTest
 {
+    [SetUp]
+    public void SetUp()
+    {
+        //Facade.CleanUp();
+    }
+    
     /// <summary>
     /// Test de la historia de usuario 1.
     /// </summary>

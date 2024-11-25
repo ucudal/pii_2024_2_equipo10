@@ -11,7 +11,7 @@ public static class Facade
     /// <summary>
     /// Lista de espera para jugadores que aún no están en una partida.
     /// </summary>
-    private static WaitingList WaitingList { get; } = new WaitingList();
+    private static WaitingList WaitingList { get; set; } = new WaitingList();
 
     /// <summary>
     /// Lista de partidas en curso.
@@ -24,6 +24,23 @@ public static class Facade
     //private static PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
 
     private static PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
+
+    /// <summary>
+    /// Limpia la WaitingList y GameList. Se utiliza exclusivamente en la implementación de Unit Tests.
+    /// </summary>
+    public static void CleanUp()
+    {
+        foreach (Player player in WaitingList.GetWaitingList())
+        {
+            WaitingList.RemovePlayer(player.Name);
+        }
+        
+
+        foreach (Game game in GameList.GetGameList())
+        {
+            GameList.RemoveGame(game);
+        }
+    }
     
     /// <summary>
     /// Historia 1:
