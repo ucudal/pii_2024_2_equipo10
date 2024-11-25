@@ -209,4 +209,13 @@ public class HaxorusTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Haxorus haxorus = new Haxorus();
+        Pokemon haxorusClone = haxorus.Instance();
+        Assert.That(haxorusClone,Is.TypeOf<Haxorus>());
+    }
+    
 }

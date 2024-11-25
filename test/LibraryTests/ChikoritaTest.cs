@@ -219,4 +219,13 @@ public class ChikoritaTest
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
         Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
+    
+    [Test]
+    public void TestInstance()
+    {
+        Chikorita chikorita = new Chikorita();
+        Pokemon chikoritaClone = chikorita.Instance();
+        Assert.That(chikoritaClone,Is.TypeOf<Chikorita>());
+    }
+    
 }
