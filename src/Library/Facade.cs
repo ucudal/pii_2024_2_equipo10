@@ -293,7 +293,7 @@ public static class Facade
         {
             if (!game.BothPlayersHaveChoosenTeam())
             {
-                return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
+                return "Alguno de los jugadores no ha seleccionado 6 Pokemons para iniciar el combate";
             }
 
             Pokemon choosenPokemon = player.FindPokemon(pokemonName);

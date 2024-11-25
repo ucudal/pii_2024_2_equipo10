@@ -132,9 +132,10 @@ public class FacadeTest
     [Test]
     public void TestUserStory7()
     {
+        Assert.That(Facade.ChangePokemon("mateo", "Pikachu"), Is.EqualTo("El jugador mateo no está en ninguna partida."));
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
+        Facade.StartGame("facu", "ines", new StrategyPlayerOneStart());
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("facu", "Gengar");
         Facade.ChooseTeam("ines", "Chikorita");
