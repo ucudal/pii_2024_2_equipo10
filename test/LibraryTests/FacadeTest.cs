@@ -32,7 +32,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("mateo", "Caterpie");
         string result = "El pokemon Caterpie ya está en el equipo de mateo, no puedes volver a añadirlo";
         Assert.That(Facade.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
@@ -43,7 +43,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("mateo", "Caterpie");
         Facade.ChooseTeam("mateo", "Charizard");
         Facade.ChooseTeam("mateo", "Gengar");
@@ -59,7 +59,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         Facade.ChooseTeam("mateo", "Caterpie");
         Facade.ChooseTeam("mateo", "Charizard");
         Facade.ChooseTeam("mateo", "Gengar");
@@ -83,7 +83,7 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines");
+        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
         string result = "mateo, el pokemon Chocolate no fue encontrado";
         Assert.That(Facade.ChooseTeam("mateo", "Chocolate"), Is.EqualTo(result));
     }
@@ -140,8 +140,8 @@ public class FacadeTest
     {
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
-        Facade.ChooseTeam("mateo", "Caterpie");
+        Facade.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.ChooseTeam("mateo", "Charizard");
         Facade.ChooseTeam("mateo", "Chikorita");
         Facade.ChooseTeam("mateo", "Gengar");
         Facade.ChooseTeam("mateo", "Dragonite");
@@ -154,13 +154,16 @@ public class FacadeTest
         Facade.ChooseTeam("ines", "Haxorus");
         Facade.ChooseTeam("ines", "Pikachu");
         
+        
         string result1 =
-            "mateo esta es la vida de tus Pokemons: \n**Caterpie: 294/294 (Bug)**\nChikorita: 294/294 (Grass)\n" +
+            "mateo esta es la vida de tus Pokemons: \n**Charizard: 360/360 (Fire)**\nChikorita: 294/294 (Grass)\n" +
             "Gengar: 324/324 (Ghost)\nDragonite: 460/460 (Dragon)\nHaxorus: 356/356 (Dragon)\nPikachu: 295/295 (Electric)\n";
         
         string result2 =
-            "Esta es la vida de los Pokemons de ines: \n**Caterpie: 294/294 (Bug)**\nChikorita: 294/294 (Grass)\n" +
+            "Esta es la vida de los Pokemons de ines: \n**Caterpie: 115/294 (Bug)** **(Burned)**\nChikorita: 294/294 (Grass)\n" +
             "Gengar: 324/324 (Ghost)\nDragonite: 460/460 (Dragon)\nHaxorus: 356/356 (Dragon)\nPikachu: 295/295 (Electric)\n";
+
+        Facade.ChooseAttack("mateo", "Flamethrower");
         
         Assert.That(Facade.ShowPokemonsHp("mateo", null), Is.EqualTo(result1));
         Assert.That(Facade.ShowPokemonsHp("mateo", "ines"), Is.EqualTo(result2));
