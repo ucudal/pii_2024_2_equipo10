@@ -103,7 +103,7 @@ public class MewtwoTest
     }
 
     /// <summary>
-    /// Test de los ataques que tiene Mewtwo, confirmando que fueron creados correctamente
+    /// Test de metodo FindAttackByName y los ataques que tiene Mewtwo, confirmando que fueron creados correctamente
     /// </summary>
     [Test]
     public void TestAttacks()
@@ -187,28 +187,6 @@ public class MewtwoTest
         string actualLifeText3 = mewtwo.GetLife();
         Assert.That(actualLife3.Equals(396));
         Assert.That(actualLifeText3.Equals("396/416", StringComparison.Ordinal));
-    }
-
-    /// <summary>
-    /// Test del método FindAttackByName
-    /// </summary>
-    [Test]
-    public void TestFindAttackByName()
-    {
-        Mewtwo mewtwo = new Mewtwo();
-        Attack attack = mewtwo.FindAttackByName("Shadow Ball");
-        string attack1Name = attack.Name;
-        Type attack1Type = attack.Type;
-        double attack1Accuracy = attack.Accuracy;
-        int attack1Power = attack.Power;
-        string attack1ExcpectedName = "Shadow Ball";
-        Type attack1ExcpectedType = Type.Ghost;
-        double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 60;
-        Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
-        Assert.That(attack1Type.Equals(attack1ExcpectedType));
-        Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
-        Assert.That(attack1Power.Equals(attack1ExcpectedPower));
     }
 
     [Test]

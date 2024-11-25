@@ -451,17 +451,12 @@
         </member>
         <member name="M:LibraryTests.HydreigonTest.TestAttacks">
             <summary>
-            Test de los ataques que tiene Hydreigon, confirmando que fueron creados correctamente
+            Test de metodo FindAttackByName y los ataques que tiene Hydreigon, confirmando que fueron creados correctamente
             </summary>
         </member>
         <member name="M:LibraryTests.HydreigonTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
-            </summary>
-        </member>
-        <member name="M:LibraryTests.HydreigonTest.TestFindAttackByName">
-            <summary>
-            Test del método FindAttackByName
             </summary>
         </member>
         <member name="T:LibraryTests.MewtwoTest">
