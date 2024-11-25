@@ -32,12 +32,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory2()
     {
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no estás en ninguna partida."));
+        
         Facade.AddPlayerToWaitingList("mateo");
         Facade.AddPlayerToWaitingList("ines");
-        Facade.StartGame("mateo", "ines", new StrategyRandomStartingPlayer());
+        Facade.StartGame("mateo", "ines",  new StrategyRandomStartingPlayer());
+        
+        Assert.That(Facade.ShowAtacks("mateo"), Is.EqualTo("mateo, no tienes ningun Pokemon."));
+        
         Facade.ChooseTeam("mateo", "Caterpie");
         string result =
-            "Bug bite: tipo Bug, precisión 100, potencia 20\nTackle: tipo Normal, precisión 100, potencia 30\nBug stomp: tipo Bug, precisión 95, potencia 70, efecto especial Paralized, cooldown de uso 0\nString shot: tipo Bug, precisión 100, potencia 15\n";
+            "mateo, estos son los ataques de tu Pokemon activo:\n**Bug bite**: tipo *Bug*, precisión *100*, potencia *20*\n**Tackle**: tipo *Normal*, precisión *100*, potencia *30*\n**Bug stomp**: tipo *Bug*, precisión *95*, potencia *70*, efecto especial *Paralized*, cooldown de uso actual *0*\n**String shot**: tipo *Bug*, precisión *100*, potencia *15*\n";
         string mateo = Facade.ShowAtacks("mateo");
         Assert.That(mateo, Is.EqualTo(result));
     }
@@ -194,11 +199,17 @@ public class FacadeTest
     [Test]
     public void TestUserStory11()
     {
-        Assert.That(Facade.StartGame("facu", null, new StrategyRandomStartingPlayer()), Is.EqualTo("No hay nadie esperando"));
-        Assert.That(Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer()), Is.EqualTo("ines no está esperando"));
+        Assert.That(Facade.StartGame("facu", null,  new StrategyRandomStartingPlayer()), Is.EqualTo("facu, no estás en la lista de espera"));
+        Assert.That(Facade.StartGame("facu", "ines",  new StrategyRandomStartingPlayer()), Is.EqualTo("facu, no estás en la lista de espera"));
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
-        Assert.That(Facade.StartGame("facu", "ines", new StrategyRandomStartingPlayer()), Is.EqualTo("Comienza facu vs ines"));
+        Assert.That(Facade.StartGame("facu", "ines",  new StrategyRandomStartingPlayer()).Contains("Comienza facu Vs. ines"));
+        Facade.AddPlayerToWaitingList("mateo");
+        Assert.That(Facade.StartGame("facu", null, new StrategyRandomStartingPlayer()), Is.EqualTo("facu ya está en una partida"));
+        Assert.That(Facade.StartGame("mateo", "facu", new StrategyRandomStartingPlayer()), Is.EqualTo("facu no está esperando"));
+        Assert.That(Facade.StartGame("mateo", null, new StrategyRandomStartingPlayer()), Is.EqualTo("No hay nadie más en la lista de espera"));
+        Facade.AddPlayerToWaitingList("mati");
+        Assert.That(Facade.StartGame("mateo", null, new StrategyRandomStartingPlayer()).Contains("Comienza mateo Vs. mati"));
     }
 
     [Test]

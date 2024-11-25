@@ -98,7 +98,7 @@ public class Game
         }
 
         int loser = (winner + 1) % 2;
-        return $"Ganador: {Players[winner].Name}. Perdedor: {Players[loser].Name}";
+        return $"\nGanador: {Players[winner].Name}. Perdedor: {Players[loser].Name}";
 
     }
     /// <summary>

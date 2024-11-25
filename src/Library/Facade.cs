@@ -453,16 +453,10 @@ public static class Facade
         }
 
         if (WaitingList.FindPlayerByName(playerName) == null)
-            return $"{playerName}, no estas en la lista de espera";
-        
-        if (!OpponentProvided() && !SomebodyIsWaiting())
-            return "No hay nadie esperando";
+            return $"{playerName}, no estás en la lista de espera";
         
         if (!OpponentProvided())
         {
-            opponent = GameList.FindPlayerByName(opponentName);
-            if (GameList.FindGameByPlayer(opponent) != null)
-                return $"{opponentName} ya está en una partida";
             opponent = WaitingList.GetSomeone(playerName);
             if(opponent == null)
                 return "No hay nadie más en la lista de espera";
@@ -474,20 +468,12 @@ public static class Facade
         {
             return $"{opponentName} no está esperando";
         }
-
-        if (GameList.FindGameByPlayer(opponent) != null)
-            return $"{opponentName} ya está en una partida";
         
         return CreateGame(playerName, opponent!.Name, strategyStartingPlayer);
 
         bool OpponentProvided()
         {
             return !string.IsNullOrEmpty(opponentName);
-        }
-
-        bool SomebodyIsWaiting()
-        {
-            return WaitingList.Count != 0;
         }
 
         bool OpponentFound()
