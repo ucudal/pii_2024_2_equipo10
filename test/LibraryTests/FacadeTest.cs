@@ -168,13 +168,20 @@ public class FacadeTest
         Assert.That(Facade.ShowPokemonsHp("mateo", null), Is.EqualTo(result1));
         Assert.That(Facade.ShowPokemonsHp("mateo", "ines"), Is.EqualTo(result2));
     }
-    
-    
+
+
     /// <summary>
     /// Test de la historia de usuario 4.
     /// </summary>
     [Test]
-    public void TestUserStory4()
+    public void TestUserStory4NullPlayer()
+    {
+        string result = Facade.ChooseAttack("facu", "Flamethrower");
+        Assert.That(result, Is.EqualTo("facu, para poder atacar necesitas estar en una batalla."));
+    }
+    
+    [Test]
+    public void TestUserStory4IncompleteTeams()
     {
         Facade.AddPlayerToWaitingList("facu");
         Facade.AddPlayerToWaitingList("ines");
@@ -182,6 +189,34 @@ public class FacadeTest
         Facade.ChooseTeam("facu", "Charizard");
         Facade.ChooseTeam("ines", "Chikorita");
         Facade.ChooseAttack("facu", "Flamethrower");
+        string result = "facu, alguno de los jugadores no ha completado el equipo";
+    }
+
+    [Test]
+    public void TestUserStory4FullTeams()
+    {
+        Facade.AddPlayerToWaitingList("mateo");
+        Facade.AddPlayerToWaitingList("ines");
+        Facade.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.ChooseTeam("mateo", "Charizard");
+        Facade.ChooseTeam("mateo", "Chikorita");
+        Facade.ChooseTeam("mateo", "Gengar");
+        Facade.ChooseTeam("mateo", "Dragonite");
+        Facade.ChooseTeam("mateo", "Haxorus");
+        Facade.ChooseTeam("mateo", "Pikachu");
+        Facade.ChooseTeam("ines", "Caterpie");
+        Facade.ChooseTeam("ines", "Chikorita");
+        Facade.ChooseTeam("ines", "Gengar");
+        Facade.ChooseTeam("ines", "Dragonite");
+        Facade.ChooseTeam("ines", "Haxorus");
+        Facade.ChooseTeam("ines", "Pikachu");
+
+        string result1 = Facade.ChooseAttack("ines", "Bug bite");
+        string result2 = Facade.ChooseAttack("mateo", "aaa");
+        string expectedResult2 = "El ataque aaa no pudo ser encontrado";
+        
+        Assert.That(result1, Is.EqualTo("ines, no eres el jugador activo"));
+        Assert.That(result2, Is.EqualTo(expectedResult2));
     }
 
 

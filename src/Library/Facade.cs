@@ -171,7 +171,7 @@ public static class Facade
         Player player = GameList.FindPlayerByName(playerName);
         if (player == null)
         {
-            return $"{playerName} poder atacar necesitas estar en una batalla";
+            return $"{playerName}, para poder atacar necesitas estar en una batalla.";
         }
 
         Game playerGame = GameList.FindGameByPlayer(player);
