@@ -134,7 +134,8 @@ public class Game
                     StateLogic.BurnedEffect(pokemon);
                     if (pokemon.CurrentLife == 0)
                     {
-                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}";;
+                        Players[ActivePlayer].SetActivePokemon();
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
                     }
                     result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
@@ -145,7 +146,8 @@ public class Game
                     StateLogic.PoisonedEffect(pokemon);
                     if (pokemon.CurrentLife == 0)
                     {
-                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}";;
+                        Players[ActivePlayer].SetActivePokemon();
+                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
                     }
                     result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
                 }
