@@ -14,7 +14,7 @@ public class ReviveTest
     }
 
     /// <summary>
-    /// Test de pocion de revivir.
+    /// Verifica que el item Revive funciona correctamente.
     /// </summary>
     [Test]
     public void ReviveCorrectUse()
@@ -27,6 +27,9 @@ public class ReviveTest
         Assert.That(result, Is.EqualTo("Charizard ha revivido. \n¡Revive utilizada con éxito!"));
     }
 
+    /// <summary>
+    /// Verifica que el item Revive no puede utilizarse sobre un Pokemon que no está debilitado.
+    /// </summary>
     [Test]
     public void ReviveWrongUse()
     {

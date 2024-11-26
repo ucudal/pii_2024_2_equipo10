@@ -17,7 +17,7 @@ public class WaitingListTest
         waitingList = new WaitingList();
     }
     /// <summary>
-    /// Test del método AddPlayer
+    /// Verifica que los jugadores sean añadidos correctamente a la lista de espera y maneja los casos de jugadores duplicados y entradas inválidas.
     /// </summary>
     [Test]
     public void TestAddPlayer()
@@ -32,7 +32,7 @@ public class WaitingListTest
         Assert.Throws<ArgumentException>(() => waitingList.AddPlayer(string.Empty));
     }
     /// <summary>
-    /// Test del método RemovePlayer
+    /// Verifica que un jugador sea eliminado correctamente de la lista de espera.
     /// </summary>
     [Test]
     public void TestRemovePlayer()
@@ -43,7 +43,7 @@ public class WaitingListTest
         Assert.That(waitingList.GetWaitingList().Count, Is.EqualTo(0));
     }
     /// <summary>
-    /// Test del método FindPlayerByName
+    /// Verifica que un jugador pueda ser encontrado correctamente por su nombre.
     /// </summary>
     [Test]
     public void TestFindPlayerByName()
@@ -53,7 +53,7 @@ public class WaitingListTest
         Assert.That(waitingList.FindPlayerByName(""), Is.Null);
     }
     /// <summary>
-    /// Test del método GetSomeone
+    /// Verifica que el método pueda agregar correctamente a otro jugador de la lista de espera.
     /// </summary>
     [Test]
     public void TestGetSomeone()
@@ -70,7 +70,7 @@ public class WaitingListTest
         Assert.That(waitingList.GetSomeone("Player1").Name, Is.Not.EqualTo("Player1"));
     }
     /// <summary>
-    /// Test del método GetWaitingList
+    /// Verifica que se pueda obtener correctamente la lista de jugadores en espera.
     /// </summary>
     [Test]
     public void TestGetWaitingList()

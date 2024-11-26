@@ -8,7 +8,7 @@ using Type = System.Type;
 namespace LibraryTests;
 
 /// <summary>
-/// Test de la clase <see cref="Facade"/>
+/// Tests de la clase <see cref="Facade"/>
 /// </summary>
 [TestFixture]
 [TestOf(typeof(Facade))]
@@ -21,7 +21,7 @@ public class FacadeTest
     }
     
     /// <summary>
-    /// Test de la historia de usuario 1.
+    /// Verifica que un jugador puede añadir un Pokemon a su equipo.
     /// </summary>
     [Test]
     public void TestUserStory1Add1Pokemon()
@@ -32,7 +32,10 @@ public class FacadeTest
         string result = "El pokemon Caterpie fue añadido al equipo de mateo.\nElegiste 1/6";
         Assert.That(Facade.Instance.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
     }
-
+    
+    /// <summary>
+    /// Comprueba que no se puede añadir un Pokemon ya presente en el equipo del jugador.
+    /// </summary>
     [Test]
     public void TestUserStory1RepeatedPokemon()
     {
@@ -43,7 +46,11 @@ public class FacadeTest
         string result = "El pokemon Caterpie ya está en el equipo de mateo, no puedes volver a añadirlo";
         Assert.That(Facade.Instance.ChooseTeam("mateo", "Caterpie"), Is.EqualTo(result));
     }
-
+    
+    /// <summary>
+    /// Verifica que cuando el jugador completa su equipo con 6 Pokemon,
+    /// se muestra un mensaje indicando que el equipo está completo.
+    /// </summary>
     [Test]
     public void TestUserStory1LastPokemon()
     {
@@ -59,7 +66,10 @@ public class FacadeTest
         string result = $"El pokemon Pikachu fue añadido al equipo de mateo\nTu equipo está completo.";
         Assert.That(Facade.Instance.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
     }
-
+    
+    /// <summary>
+    ///Comprueba que no se pueden agregar más de 6 Pokemon a un equipo. 
+    /// </summary>
     [Test]
     public void TestUserStory1FullTeam()
     {
@@ -76,7 +86,10 @@ public class FacadeTest
         string result = "mateo, ya tienes 6 pokemones en el equipo, no puedes elegir más";
         Assert.That(Facade.Instance.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
     }
-
+    
+    /// <summary>
+    /// Verifica que se muestre un mensaje de error cuando un jugador intenta elegir un Pokemon sin estar en una partida.
+    /// </summary>
     [Test]
     public void TestUserStory1PlayerNotInGame()
     {
@@ -84,6 +97,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.ChooseTeam("mateo", "Pikachu"), Is.EqualTo(result));
     }
 
+    /// <summary>
+    /// Verifica que si un jugador intenta elegir un Pokemon inexistente, se muestra un mensaje de error.
+    /// </summary>
     [Test]
     public void TestUserStory1UnknownPokemon()
     {
@@ -96,7 +112,8 @@ public class FacadeTest
     
 
     /// <summary>
-    /// Test de la historia de usuario 2.
+    /// Verifica que un jugador puede ver los ataques de su Pokemon activo.
+    /// Si el jugador no tiene Pokemon, se muestra un mensaje que se lo informa.
     /// </summary>
     [Test]
     public void TestUserStory2()
@@ -117,7 +134,8 @@ public class FacadeTest
     }
 
     /// <summary>
-    /// Test de la historia de usuario 3.
+    /// Verifica que si un jugador no está en ninguna partida, se muestra un mensaje de error al
+    /// intentar ver el HP de los Pokemon.
     /// </summary>
     [Test]
     public void TestUserStory3NullPlayer()
@@ -126,6 +144,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.ShowPokemonsHp("facu", null), Is.EqualTo(result));
     }
     
+    /// <summary>
+    /// Verifica que se muestra el HP de los Pokemon del jugador y también si otro jugador no ha completado su equipo.
+    /// </summary>
     [Test]
     public void TestUserStory31Pokemon()
     {
@@ -140,8 +161,11 @@ public class FacadeTest
         Assert.That(Facade.Instance.ShowPokemonsHp("facu", "ines"), Is.EqualTo(result2));
     }
 
+    /// <summary>
+    /// Verifica que cuando ambos jugadores tienen equipos completos, se puede muestrar el HP de los Pokemon de ambos
+    /// jugadores.
+    /// </summary>
     [Test]
-
     public void TestUserStory3FullTeams()
     {
         Facade.Instance.AddPlayerToWaitingList("mateo");
@@ -177,7 +201,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 4.
+    /// Verifica que un jugador no puede realizar un ataque si no está en una partida.
     /// </summary>
     [Test]
     public void TestUserStory4NullPlayer()
@@ -186,6 +210,9 @@ public class FacadeTest
         Assert.That(result, Is.EqualTo("facu, para poder atacar necesitas estar en una batalla."));
     }
     
+    /// <summary>
+    /// Verifica que si alguno de los jugadores no tiene su equipo completo, no pueden realizarse ataques.
+    /// </summary>
     [Test]
     public void TestUserStory4IncompleteTeams()
     {
@@ -197,7 +224,11 @@ public class FacadeTest
         Facade.Instance.ChooseAttack("facu", "Flamethrower");
         string result = "facu, alguno de los jugadores no ha completado el equipo";
     }
-
+    
+    /// <summary>
+    /// Verifica que un jugador puede realizar un ataque solo si es el jugador activo y si el ataque existe en su
+    /// lista de ataques.
+    /// </summary>
     [Test]
     public void TestUserStory4FullTeams()
     {
@@ -227,7 +258,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 5.
+    /// Verifica que se muestre correctamente de que jugador es el turno.
     /// </summary>
     [Test]
     public void TestUserStory5()
@@ -239,6 +270,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.CheckTurn("ines"), Is.EqualTo("ines, no es tu turno"));
     }
     
+    /// <summary>
+    /// Verifica que se muestra un mensaje de error al verificar el turno si el jugador no está en ninguna partida.
+    /// </summary>
     [Test]
     public void TestUserStory5UnknownPlayer()
     {
@@ -247,7 +281,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 6.
+    /// Verifica que se muestra un mensaje de error al corroborar el estado de una partida si la misma no se encuentra.
     /// </summary>
     [Test]
     public void TestUserStory6NullGame()
@@ -255,6 +289,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.CheckGameStatus(null), Is.EqualTo("La partida no pudo ser encontrada"));
     }
     
+    /// <summary>
+    /// Verifica que se muestra el estado correcto del juego, indicando de quien es el siguiente turno.
+    /// </summary>
     [Test]
     public void TestUserStory6()
     {
@@ -305,7 +342,8 @@ public class FacadeTest
     }
 
     /// <summary>
-    /// Test de la historia de usuario 7.
+    /// Verifica que se muestra un mensaje de error si un jugador intenta cambiar su Pokemon activo sin estar en una
+    /// partida.
     /// </summary>
     [Test]
     public void TestUserStory7NotInGame()
@@ -314,6 +352,11 @@ public class FacadeTest
             Is.EqualTo("El jugador mateo no está en ninguna partida."));
     }
     
+    /// <summary>
+    /// Verifica que un jugador puede cambiar su Pokémon activo solo si está en una partida y si el Pokemon
+    /// pertenece a su equipo. Se valida que se muestren mensajes de error si el Pokemon no está en el equipo o si
+    /// no es el jugador activo.
+    /// </summary>
     [Test]
     public void TestUserStory7(){
         Facade.Instance.AddPlayerToWaitingList("facu");
@@ -343,7 +386,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 8.
+    /// Verifica que se muestra un mensaje de error si un jugador intenta usar un item sin estar en una partida.
     /// </summary>
     [Test]
     public void TestUserStory8NullPlayer()
@@ -351,7 +394,10 @@ public class FacadeTest
         string result = Facade.Instance.UseAnItem("facu", "Super Potion", "Charizard");
         Assert.That(result, Is.EqualTo("El jugador facu no está en ninguna partida."));
     }
-
+    
+    /// <summary>
+    /// Verifica que un jugador no puede usar un item si el otro jugador no ha completado su equipo.
+    /// </summary>
     [Test]
     public void TestUserStory8PlayersNotReady()
     {
@@ -363,6 +409,9 @@ public class FacadeTest
         Assert.That(excpected, Is.EqualTo("Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate"));
     }
     
+    /// <summary>
+    /// Verifica que el jugador inactivo no pueda usar items.
+    /// </summary>
     [Test]
     public void TestUserStory8InactivePlayer()
     {
@@ -386,6 +435,9 @@ public class FacadeTest
         Assert.That(result, Is.EqualTo("ines, no eres el jugador activo, no puedes realizar acciones"));
     }
 
+    /// <summary>
+    /// Verifica que el jugador activo pueda usar un item correctamente.
+    /// </summary>
     [Test]
     public void TestUserStory8ExpectedUse()
     {
@@ -414,7 +466,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 9.
+    /// Valida que un jugador pueda ser agregado correctamente a la lista de espera.
     /// </summary>
     [Test]
     public void TestUserStory9()
@@ -423,6 +475,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.AddPlayerToWaitingList("facu"), Is.EqualTo("facu ya está en la lista de espera"));
     }
 
+    /// <summary>
+    /// Verifica que un jugador pueda ser eliminado de la lista de espera correctamente.
+    /// </summary>
     [Test]
     public void TestUserStory9_1()
     {
@@ -434,7 +489,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 10.
+    /// Verifica que la lista de jugadores en espera se muestre correctamente.
     /// </summary>
     [Test]
     public void TestUserStory10()
@@ -448,7 +503,7 @@ public class FacadeTest
 
 
     /// <summary>
-    /// Test de la historia de usuario 11.
+    /// Verifica la lógica de inicio de partida entre dos jugadores en espera.
     /// </summary>
     [Test]
     public void TestUserStory11()
@@ -466,6 +521,9 @@ public class FacadeTest
         Assert.That(Facade.Instance.StartGame("mateo", null, new StrategyRandomStartingPlayer()).Contains("Comienza mateo Vs. mati"));
     }
 
+    /// <summary>
+    /// Verifica que un jugador solo pueda rendirse si está en una partida activa.
+    /// </summary>
     [Test]
     public void TestSurrender()
     {
@@ -478,6 +536,9 @@ public class FacadeTest
         Assert.That(result2, Is.EqualTo("El jugador Facu se ha rendido.\nGanador: Mati \nPerdedor: Facu"));
     }
 
+    /// <summary>
+    /// Verifica que los items disponibles de un jugador se muestren correctamente.
+    /// </summary>
     [Test]
     public void TestShowItems()
     {
@@ -495,6 +556,7 @@ public class FacadeTest
         Assert.That(Facade.Instance.ShowItems("pepe"), Is.EqualTo("pepe, estos son tus items disponibles:\n1 Revive\n3 Super Potion\n2 Full Health\n"));
     }
 
+    
     [Test]
     public void TestEditDamageCalculatorStrategy()
     {

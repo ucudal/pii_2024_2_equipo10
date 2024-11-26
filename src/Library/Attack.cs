@@ -38,11 +38,11 @@ public class Attack : IAttack
         {
             throw new ArgumentException("El nombre ingresado no es válido");
         }
-        if (Accuracy < 0 || Accuracy > 1)
+        if (accuracy < 0 || accuracy > 1)
         {
             throw new ArgumentException("La precision ingresada no es válido");
         }
-        if (Power < 0)
+        if (power < 0)
         {
            throw new ArgumentException("El poder ingresado no es válido");
         }
