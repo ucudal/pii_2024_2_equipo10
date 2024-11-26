@@ -154,14 +154,14 @@ public class DragoniteTest
         Assert.That(attack3Accuracy.Equals(attack3ExcpectedAccuracy));
         Assert.That(attack3Power.Equals(attack3ExcpectedPower));
         
-        if (attack2 is SpecialAttack specialAttack2)
+        if (attack3 is SpecialAttack specialAttack3)
         {
-            State sAttack2SpecialEffect = specialAttack2.SpecialEffect;
-            int sAttack2Cooldown = specialAttack2.Cooldown;
-            State attack2ExcpectedSpecialEffect = State.Paralized;
+            State sAttack3SpecialEffect = specialAttack3.SpecialEffect;
+            int sAttack3Cooldown = specialAttack3.Cooldown;
+            State attack3ExcpectedSpecialEffect = State.Paralized;
             int attack2ExcpectedCooldown = 0;
-            Assert.That(sAttack2SpecialEffect.Equals(attack2ExcpectedSpecialEffect));
-            Assert.That(sAttack2Cooldown.Equals(attack2ExcpectedCooldown));
+            Assert.That(sAttack3SpecialEffect.Equals(attack3ExcpectedSpecialEffect));
+            Assert.That(sAttack3Cooldown.Equals(attack2ExcpectedCooldown));
 
         }
 

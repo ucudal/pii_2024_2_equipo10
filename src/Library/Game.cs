@@ -22,15 +22,22 @@ public class Game
     /// </summary>
     public int TurnCount { get; private set; }
 
-    public IStrategyStartingPlayer StrategyStartingPlayer { get; set; }
+    /// <summary>
+    /// Estrategia que determina de que jugador es el primer turno
+    /// </summary>
+    public IStrategyStartingPlayer StrategyStartingPlayer { get; }
     
-    private DamageCalculator GameDamageCalculator { get; set; } = new DamageCalculator();
+    /// <summary>
+    /// Calculadora de daño, encargada de realizar los cálculos de daño.
+    /// </summary>
+    private DamageCalculator GameDamageCalculator { get; } = new DamageCalculator();
 
     /// <summary>
-    /// Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+    /// Constructor de la clase. Agrega a los jugadores a la partida y según su estrategia determinará cuál de los jugadores tiene el primer turno. Inicializa el contador de turnos en 0.
     /// </summary>
     /// <param name="player1"> Primer jugador.</param>
     /// <param name="player2"> Segundo jugador.</param>
+    /// <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
     public Game(Player player1, Player player2, IStrategyStartingPlayer strategyStartingPlayer)
     {
         this.Players.Add(player1);
@@ -121,6 +128,10 @@ public class Game
         }
     }
 
+    /// <summary>
+    /// Método que se encarga de verificar si los pokemones de los jugadores tienen los estados <c>Burned</c> (Quemado) o <c>Poisoned</c> (Envenenado )
+    /// </summary>
+    /// <returns> <c>string</c> indicando  </returns>
     public string SpecialEffectExecute()
     {
         string result = "";
@@ -137,14 +148,13 @@ public class Game
                         player.ActivePokemon.EditState(null);
                         if (player.SetActivePokemon())
                         {
-                           return  result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                           return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";
                         }
 
-                        return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + "PERECIÓ :'( \n";
+                        return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + "PERECIÓ :'( \n";
                     }
 
-                    return result +=
-                        $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n";
+                    return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n";
                 }
 
                 if (pokemon.CurrentState == State.Poisoned)
@@ -156,12 +166,12 @@ public class Game
                         Players[ActivePlayer].ActivePokemon.EditState(null);
                         if (Players[ActivePlayer].SetActivePokemon())
                         {
-                           return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + $"PERECIÓ :'( \n\n {player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                           return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + $"PERECIÓ :'( \n\n {player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";
                         }
-                        return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + "PERECIÓ :'( \n";
+                        return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + "PERECIÓ :'( \n";
                     }
 
-                    return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n";
+                    return $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n";
                 }
             }
         }
@@ -246,7 +256,7 @@ public class Game
         }
 
         string message = item.Use(pokemon);
-        if (message.Contains("éxito"))
+        if (message.Contains("éxito", StringComparison.Ordinal))
         {
             player.GetItemList().Remove(item);
         }
@@ -289,7 +299,7 @@ public class Game
     /// </summary>
     /// <param name="checkPlayer"> El jugador a buscar</param>
     /// <returns> <c>true</c> si lo encontró, <c>false</c> en caso contrario </returns>
-    public bool CheckPlayerInGame(Player checkPlayer)
+    public bool CheckPlayerInGame(Player? checkPlayer)
     {
         if (checkPlayer != null)
         {

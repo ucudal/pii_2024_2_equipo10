@@ -7,6 +7,7 @@
         <member name="T:Library.Attack">
             <summary>
             Esta clase representa un ataque básico que puede aprender el pokémon.
+            Implementa la interfaz <see cref="T:Library.IAttack"/>.
             </summary>
         </member>
         <member name="P:Library.Attack.Name">
@@ -309,6 +310,12 @@
             jugadores esperando para jugar.
             </summary>
         </member>
+        <member name="T:Library.DamageCalculator">
+            <summary>
+            Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
+            Es la clase Experta al momento de calcular daño
+            </summary>
+        </member>
         <member name="P:Library.DamageCalculator.EffectivnessDataBase">
             <summary>
             Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokemon.
@@ -317,6 +324,11 @@
             <c>Dictionary</c> Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
             y el valor es un factor de efectividad (2.0 para súperefectivo, 0.5 para poco efectivo, 0.0 para sin efecto).
             </returns>
+        </member>
+        <member name="M:Library.DamageCalculator.#ctor">
+            <summary>
+            Contstructor de la clase DamageCalculator. Aplica el patrón Grasp Creator al asignar una estrategia predefinida.
+            </summary>
         </member>
         <member name="M:Library.DamageCalculator.GetEffectivness(Library.Type,System.Collections.Generic.List{Library.Type})">
             <summary>
@@ -361,6 +373,12 @@
             Devuelve <c>0.0</c> si el ataque falla.
             </returns>
         </member>
+        <member name="M:Library.DamageCalculator.SetCritCheckStategy(Library.Strategies.IStrategyCritCheck)">
+            <summary>
+            Asigna una estrategia para el cálculo de daño crítico.
+            </summary>
+            <param name="strategy"> Estrategia a asignar </param>
+        </member>
         <member name="T:Library.Dragonite">
             <summary>
             Esta clase representa el Pokemon Dragonite.
@@ -397,7 +415,7 @@
         </member>
         <member name="T:Library.Facade">
             <summary>
-            Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
+            Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot. Esta clase es un singleton.
             </summary>
         </member>
         <member name="P:Library.Facade.WaitingList">
@@ -417,7 +435,7 @@
         </member>
         <member name="P:Library.Facade.Instance">
             <summary>
-            Crea una nueva instancia de Fachada si aún no existe. Implementando así el patrón singleton
+            Crea una nueva instancia de la clase Fachada si aún no existe. Implementando así el patrón singleton
             </summary>
         </member>
         <member name="M:Library.Facade.Reset">
@@ -540,6 +558,7 @@
             </summary>
             <param name="playerName">Nombre del primer jugador.</param>
             <param name="opponentName">Nombre del oponente.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
             <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
         </member>
         <member name="M:Library.Facade.StartGame(System.String,System.String,Library.Strategies.IStrategyStartingPlayer)">
@@ -582,7 +601,7 @@
         </member>
         <member name="M:Library.Facade.EditDamageCalculatorStrategy(System.String,Library.Strategies.IStrategyCritCheck)">
             <summary>
-            
+            Este método se encarga de cambiar la estrategia asignada en la calculadora de daño. Se utiliza solo para tests
             </summary>
             <param name="playerName"> Nombre del jugador </param>
             <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
@@ -631,12 +650,23 @@
             Obtiene la cantidad de turnos que lleva la partida.
             </summary>
         </member>
+        <member name="P:Library.Game.StrategyStartingPlayer">
+            <summary>
+            Estrategia que determina de que jugador es el primer turno
+            </summary>
+        </member>
+        <member name="P:Library.Game.GameDamageCalculator">
+            <summary>
+            Calculadora de daño, encargada de realizar los cálculos de daño.
+            </summary>
+        </member>
         <member name="M:Library.Game.#ctor(Library.Player,Library.Player,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
-            Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+            Constructor de la clase. Agrega a los jugadores a la partida y según su estrategia determinará cuál de los jugadores tiene el primer turno. Inicializa el contador de turnos en 0.
             </summary>
             <param name="player1"> Primer jugador.</param>
             <param name="player2"> Segundo jugador.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
         </member>
         <member name="M:Library.Game.GetPlayers">
             <summary>
@@ -666,6 +696,12 @@
             <summary>
             Reduce el tiempo de enfriamiento (cooldown) de todos los ataques especiales de cada Pokemon en los equipos de los jugadores.
             </summary>
+        </member>
+        <member name="M:Library.Game.SpecialEffectExecute">
+            <summary>
+            Método que se encarga de verificar si los pokemones de los jugadores tienen los estados <c>Burned</c> (Quemado) o <c>Poisoned</c> (Envenenado )
+            </summary>
+            <returns> <c>string</c> indicando  </returns>
         </member>
         <member name="M:Library.Game.NextTurn">
             <summary>
@@ -737,6 +773,7 @@
             </summary>
             <param name="player1"> Jugador 1.</param>
             <param name="player2"> Jugador 2.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno.</param>
             <returns>La partida agregada.</returns>
         </member>
         <member name="M:Library.GameList.RemoveGame(Library.Game)">
@@ -799,6 +836,12 @@
             Constructor de Gengar, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Gengar.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Gengar</c></returns>
+        </member>
         <member name="T:Library.Haxorus">
             <summary>
             Esta clase representa el Pokemon Haxorus.
@@ -809,6 +852,29 @@
             <summary>
             Constructor de Haxorus, implementa el patron GRASP creator.
             </summary>
+        </member>
+        <member name="M:Library.Haxorus.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Haxorus</c></returns>
+        </member>
+        <member name="T:Library.Hydreigon">
+            <summary>
+            Esta clase representa el Pokemon Hydreigon.
+            Al ser un Pokemon hereda de la clase <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Hydreigon.#ctor">
+            <summary>
+            Constructor de Hydreigon, implementa el patron GRASP creator.
+            </summary>
+        </member>
+        <member name="M:Library.Hydreigon.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Hydreigon</c></returns>
         </member>
         <member name="T:Library.IAttack">
             <summary>
@@ -863,6 +929,12 @@
             Constructor de Jigglypuff, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Jigglypuff.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Jigglypuff</c></returns>
+        </member>
         <member name="T:Library.Mewtwo">
             <summary>
             Esta clase representa el Pokemon Mewtwo.
@@ -874,6 +946,12 @@
             Constructor de Mewtwo, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Mewtwo.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Mewtwo</c></returns>
+        </member>
         <member name="T:Library.Pikachu">
             <summary>
             Esta clase representa el Pokemon Pikachu.
@@ -884,6 +962,12 @@
             <summary>
             Constructor de Pikachu, implementa el patron GRASP creator.
             </summary>
+        </member>
+        <member name="M:Library.Pikachu.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Pikachu</c></returns>
         </member>
         <member name="T:Library.Player">
             <summary>
@@ -1112,7 +1196,7 @@
         </member>
         <member name="M:Library.Pokemon.Instance">
             <summary>
-            Método abstracto para obtener una nueva instancia del Pokemon deseado.
+            Método abstracto para obtener una nueva instancia del Pokemon deseado. Aplicando así el patrón prototype
             </summary>
         </member>
         <member name="T:Library.PokemonCatalogue">
@@ -1186,6 +1270,12 @@
             Constructor de Scyther, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Scyther.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Scyther</c></returns>
+        </member>
         <member name="T:Library.SpecialAttack">
             <summary>
             Esta clase representa un ataque especial.
@@ -1219,7 +1309,7 @@
         </member>
         <member name="M:Library.SpecialAttack.SetCooldown">
             <summary>
-            Le asigna 2 a el contador de turnos que se deben esperar para usar el ataque.
+            Le asigna 2 al contador de turnos que se deben esperar para usar el ataque.
             </summary>
         </member>
         <member name="M:Library.SpecialAttack.InfoAttack">
@@ -1231,6 +1321,26 @@
         <member name="T:Library.State">
             <summary>
             Representa los estados negativos que puede tener un Pokemon.
+            </summary>
+        </member>
+        <member name="F:Library.State.Asleep">
+            <summary>
+            Estado dormido
+            </summary>
+        </member>
+        <member name="F:Library.State.Paralized">
+            <summary>
+            Estado paralizado
+            </summary>
+        </member>
+        <member name="F:Library.State.Poisoned">
+            <summary>
+            Estado envenenado
+            </summary>
+        </member>
+        <member name="F:Library.State.Burned">
+            <summary>
+            Estado Quemado
             </summary>
         </member>
         <member name="T:Library.StateLogic">
@@ -1405,6 +1515,81 @@
             Representa los tipos.
             </summary>
         </member>
+        <member name="F:Library.Type.Bug">
+            <summary>
+            Tipo bicho
+            </summary>
+        </member>
+        <member name="F:Library.Type.Dragon">
+            <summary>
+            Tipo dragón
+            </summary>
+        </member>
+        <member name="F:Library.Type.Electric">
+            <summary>
+            Tipo eléctrico
+            </summary>
+        </member>
+        <member name="F:Library.Type.Fighting">
+            <summary>
+            Tipo lucha
+            </summary>
+        </member>
+        <member name="F:Library.Type.Fire">
+            <summary>
+            Tipo fuego
+            </summary>
+        </member>
+        <member name="F:Library.Type.Flying">
+            <summary>
+            Tipo volador
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ghost">
+            <summary>
+            Tipo ghost
+            </summary>
+        </member>
+        <member name="F:Library.Type.Grass">
+            <summary>
+            Tipo grass
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ground">
+            <summary>
+            Tipo ground
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ice">
+            <summary>
+            Tipo ice
+            </summary>
+        </member>
+        <member name="F:Library.Type.Normal">
+            <summary>
+            Tipo normal
+            </summary>
+        </member>
+        <member name="F:Library.Type.Poison">
+            <summary>
+            Tipo veneno
+            </summary>
+        </member>
+        <member name="F:Library.Type.Psychic">
+            <summary>
+            Tipo Psíquico
+            </summary>
+        </member>
+        <member name="F:Library.Type.Rock">
+            <summary>
+            Tipo roca
+            </summary>
+        </member>
+        <member name="F:Library.Type.Water">
+            <summary>
+            Tipo agua
+            </summary>
+        </member>
         <member name="T:Library.WaitingList">
             <summary>
             Esta clase representa la lista de espera.
@@ -1468,6 +1653,12 @@
             <summary>
             Constructor de Zeraora, implementa el patron GRASP creator.
             </summary>
+        </member>
+        <member name="M:Library.Zeraora.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Hydreigon</c></returns>
         </member>
         <member name="T:Ucu.Poo.DiscordBot.Services.Bot">
             <summary>

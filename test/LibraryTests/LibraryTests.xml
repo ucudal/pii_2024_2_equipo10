@@ -84,6 +84,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.CaterpieTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.CharizardTest">
             <summary>
             Test de la clase <see cref="T:Library.Charizard"/>
@@ -132,6 +137,11 @@
         <member name="M:LibraryTests.CharizardTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.CharizardTest.TestInstance">
+            <summary>
+            Test del método Instance
             </summary>
         </member>
         <member name="T:LibraryTests.ChikoritaTest">
@@ -184,6 +194,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.ChikoritaTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.DragoniteTest">
             <summary>
             Test de la clase <see cref="T:Library.Dragonite"/>
@@ -234,6 +249,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.DragoniteTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.EnteiTest">
             <summary>
             Test de la clase <see cref="T:Library.Entei"/>
@@ -282,6 +302,11 @@
         <member name="M:LibraryTests.EnteiTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestInstance">
+            <summary>
+            Test del método Instance
             </summary>
         </member>
         <member name="T:LibraryTests.FacadeTest">
@@ -566,6 +591,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.GastrodonTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.GengarTest">
             <summary>
             Test de la clase <see cref="T:Library.Gengar"/>
@@ -614,6 +644,11 @@
         <member name="M:LibraryTests.GengarTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GengarTest.TestInstance">
+            <summary>
+            Test del método Instance
             </summary>
         </member>
         <member name="T:LibraryTests.HaxorusTest">
@@ -666,6 +701,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.HaxorusTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.HydreigonTest">
             <summary>
             Test de la clase <see cref="T:Library.Hydreigon"/>
@@ -716,6 +756,11 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="M:LibraryTests.HydreigonTest.TestInstance">
+            <summary>
+            Test del método Instance
+            </summary>
+        </member>
         <member name="T:LibraryTests.MewtwoTest">
             <summary>
             Test de la clase <see cref="T:Library.Mewtwo"/>
@@ -764,6 +809,11 @@
         <member name="M:LibraryTests.MewtwoTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.MewtwoTest.TestInstance">
+            <summary>
+            Test del método Instance
             </summary>
         </member>
         <member name="T:LibraryTests.ReviveTest">
@@ -948,6 +998,11 @@
         <member name="M:LibraryTests.ZeraoraTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.ZeraoraTest.TestInstance">
+            <summary>
+            Test del método Instance
             </summary>
         </member>
     </members>
