@@ -152,7 +152,7 @@ public class Player
     /// <c>null</c> si el ataque no se encuentra en la lista de ataques.
     /// <c>Attack</c> si lo encontró.
     /// </returns>
-    public Attack FindAttack(string strAttack)
+    public Attack? FindAttack(string strAttack)
     {
         foreach (IAttack attack in this.ActivePokemon.GetAttacks())
         {

@@ -214,7 +214,7 @@ public class Facade
 
         Game playerGame = GameList.FindGameByPlayer(player);
 
-        if (!playerGame.BothPlayersHaveChoosenTeam())
+        if (!playerGame.BothPlayersHaveChosenTeam())
         {
             return $"{playerName}, alguno de los jugadores no ha completado el equipo";
         }
@@ -319,7 +319,7 @@ public class Facade
         Game game = GameList.FindGameByPlayer(player);
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
-            if (!game.BothPlayersHaveChoosenTeam())
+            if (!game.BothPlayersHaveChosenTeam())
             {
                 return "Alguno de los jugadores no ha seleccionado 6 Pokemons para iniciar el combate";
             }
@@ -367,7 +367,7 @@ public class Facade
         
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
-            if (!game.BothPlayersHaveChoosenTeam())
+            if (!game.BothPlayersHaveChosenTeam())
             {
                 return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
             }

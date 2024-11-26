@@ -309,7 +309,7 @@ public class Game
     /// Revisa si ambos jugadores completaron sus equipos.
     /// </summary>
     /// <returns><c>true</c> si ambos están completos, <c>false</c> en caso contrario</returns>
-    public bool BothPlayersHaveChoosenTeam()
+    public bool BothPlayersHaveChosenTeam()
     {
         return Players[ActivePlayer].GetPokemonTeam().Count == 6 &&
                Players[(ActivePlayer + 1) % 2].GetPokemonTeam().Count == 6;
