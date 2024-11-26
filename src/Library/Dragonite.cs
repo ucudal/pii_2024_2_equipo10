@@ -16,6 +16,10 @@ public class Dragonite : Pokemon
         
     }
     
+    /// <summary>
+    /// Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+    /// </summary>
+    /// <returns><c>Pokemon</c> del subtipo <c>Dragonite</c></returns>
     public override Pokemon Instance()
     {
         return new Dragonite();

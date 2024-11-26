@@ -198,6 +198,9 @@ public class ChikoritaTest
         Assert.That(actualLifeText3.Equals("274/294", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

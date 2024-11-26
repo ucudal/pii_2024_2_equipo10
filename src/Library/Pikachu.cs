@@ -15,7 +15,10 @@ public class Pikachu : Pokemon
     {
         
     }
-    
+    /// <summary>
+    /// Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+    /// </summary>
+    /// <returns><c>Pokemon</c> del subtipo <c>Pikachu</c></returns>
     public override Pokemon Instance()
     {
         return new Pikachu();

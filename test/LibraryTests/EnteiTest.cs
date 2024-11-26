@@ -205,6 +205,9 @@ public class EnteiTest
         Assert.That(actualLifeText3.Equals("470/490", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

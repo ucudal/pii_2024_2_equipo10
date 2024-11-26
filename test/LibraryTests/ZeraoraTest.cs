@@ -200,6 +200,9 @@ public class ZeraoraTest
         Assert.That(actualLifeText3.Equals("360/380", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

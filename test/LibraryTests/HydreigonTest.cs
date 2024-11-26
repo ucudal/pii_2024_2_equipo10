@@ -202,6 +202,9 @@ public class HydreigonTest
         Assert.That(actualLifeText3.Equals("368/388", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

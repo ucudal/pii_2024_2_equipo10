@@ -187,7 +187,10 @@ public class HaxorusTest
         Assert.That(actualLife3.Equals(336));
         Assert.That(actualLifeText3.Equals("336/356", StringComparison.Ordinal));
     }
-    
+   
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

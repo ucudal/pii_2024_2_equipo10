@@ -183,7 +183,7 @@ public class FacadeTest
         Facade.Instance.ChooseTeam("ines", "Dragonite");
         Facade.Instance.ChooseTeam("ines", "Haxorus");
         Facade.Instance.ChooseTeam("ines", "Pikachu");
-        
+        Facade.Instance.EditDamageCalculatorStrategy("mateo",new StrategyNonCrit());
         
         string result1 =
             "mateo esta es la vida de tus Pokemons: \n**Charizard: 360/360 (Fire)**\nChikorita: 294/294 (Grass)\n" +
@@ -307,6 +307,41 @@ public class FacadeTest
         string expected = Facade.Instance.CheckGameStatus(game);
         
         Assert.That(expected, Is.EqualTo("Próximo turno, ahora es el turno de ines"));
+    }
+    
+    /// <summary>
+    /// Verifica que se muestre un mensaje indicando 
+    /// </summary>
+    [Test]
+    public void TestUserStory6WinnerTest()
+    {
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.EditDamageCalculatorStrategy("mateo", new StrategyNonCrit());
+        Facade.Instance.ChooseTeam("mateo", "Charizard");
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Caterpie");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+        Facade.Instance.ChooseAttack("mateo", "Dragon claw");
+        Facade.Instance.ChangePokemon("ines","Pikachu");
+        Facade.Instance.ChooseAttack("mateo", "Dragon claw");
+        Facade.Instance.ChangePokemon("ines","Dragonite");
+        Facade.Instance.ChooseAttack("mateo", "Dragon claw");
+        Facade.Instance.ChangePokemon("ines","Haxorus");
+        Facade.Instance.ChooseAttack("mateo", "Dragon claw");
+        Facade.Instance.ChangePokemon("ines","Gengar");
+        Facade.Instance.ChooseAttack("mateo", "Dragon claw");
+        Facade.Instance.ChooseAttack("ines", "Razor leaf");
+        Assert.That(Facade.Instance.ChooseAttack("mateo", "Dragon claw"), Is.EqualTo("El Chikorita de ines recibió 55000 puntos de daño\nPERECIÓ :'( \n\nGanador: mateo. Perdedor: ines"));
     }
 
     /// <summary>
@@ -464,6 +499,7 @@ public class FacadeTest
     {
         Assert.That(Facade.Instance.GetAllPlayersWaiting(), Is.EqualTo("No hay nadie esperando"));
         Facade.Instance.AddPlayerToWaitingList("facu");
+        Assert.That(Facade.Instance.GetAllPlayersWaiting(), Is.EqualTo("Esperan: facu; "));
         Facade.Instance.AddPlayerToWaitingList("ines");
         Assert.That(Facade.Instance.GetAllPlayersWaiting(), Is.EqualTo("Esperan: facu; ines; "));
     }

@@ -6,8 +6,10 @@ using Library.Strategies;
 
 namespace Library;
 
-// Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
-// Es la clase Experta al momento de calcular daño
+/// <summary>
+/// Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
+/// Es la clase Experta al momento de calcular daño
+/// </summary>
 public class DamageCalculator
 {
     private IStrategyCritCheck StrategyCritCheck { get; set; }
@@ -124,6 +126,9 @@ public class DamageCalculator
         }
     }
 
+    /// <summary>
+    /// Contstructor de la clase DamageCalculator. Aplica el patrón Grasp Creator al asignar una estrategia predefinida.
+    /// </summary>
     public DamageCalculator()
     {
         StrategyCritCheck = new StrategyRandomCrit();
@@ -157,10 +162,10 @@ public class DamageCalculator
     }
 
     /// <summary>
-    /// Determina si un ataque resulta en un golpe crítico basado en una probabilidad aleatoria.
+    /// Determina si un ataque resulta en un golpe crítico basado en la estrategia que esté utilizando.
     /// </summary>
     /// <returns>
-    /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
+    /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad al usar la estrategia de daño random), 
     /// o <c>1.0</c> si no es crítico.
     /// </returns>    
     public double CriticalCheck()
@@ -244,16 +249,20 @@ public class DamageCalculator
             {
                 if(attackedPlayer.SetActivePokemon())
                     return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" + effectivnessCheck + criticalCheck + specialResult +
-                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPlayer.Name}";
+                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPlayer.Name} \n";
                 return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" +
-                       effectivnessCheck + criticalCheck + specialResult + "PERECIÓ :'( ";
+                       effectivnessCheck + criticalCheck + specialResult + "PERECIÓ :'( "+"\n";
             }
                 
-            return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
+            return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult + "\n";
         }
         return "El ataque falló y no produjo daño\n";
     }
 
+    /// <summary>
+    /// Asigna una estrategia para el cálculo de daño crítico.
+    /// </summary>
+    /// <param name="strategy"> Estrategia a asignar </param>
     public void SetCritCheckStategy(IStrategyCritCheck strategy)
     {
         this.StrategyCritCheck = strategy;

@@ -15,6 +15,10 @@ public class Mewtwo: Pokemon
     {
     }
     
+    /// <summary>
+    /// Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+    /// </summary>
+    /// <returns><c>Pokemon</c> del subtipo <c>Mewtwo</c></returns>
     public override Pokemon Instance()
     {
         return new Mewtwo();

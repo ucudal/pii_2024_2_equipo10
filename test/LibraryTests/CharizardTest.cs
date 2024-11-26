@@ -120,7 +120,7 @@ public class CharizardTest
         string attack1ExcpectedName = "Dragon claw";
         Type attack1ExcpectedType = Type.Dragon;
         double attack1ExcpectedAccuracy = 1;
-        int attack1ExcpectedPower = 55;
+        int attack1ExcpectedPower = 55000;
         Assert.That(attack1Name.Equals(attack1ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack1Type.Equals(attack1ExcpectedType));
         Assert.That(attack1Accuracy.Equals(attack1ExcpectedAccuracy));
@@ -132,7 +132,7 @@ public class CharizardTest
         int attack2Power = attack2.Power;
         string attack2ExcpectedName = "Flamethrower";
         Type attack2ExcpectedType = Type.Fire;
-        double attack2ExcpectedAccuracy = 0.95;
+        double attack2ExcpectedAccuracy = 1;
         int attack2ExcpectedPower = 75;
         if (attack2 is SpecialAttack specialAttack2)
         {
@@ -200,6 +200,9 @@ public class CharizardTest
         Assert.That(actualLifeText3.Equals("340/360", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

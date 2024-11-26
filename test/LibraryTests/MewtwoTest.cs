@@ -189,6 +189,9 @@ public class MewtwoTest
         Assert.That(actualLifeText3.Equals("396/416", StringComparison.Ordinal));
     }
 
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

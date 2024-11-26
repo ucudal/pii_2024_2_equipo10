@@ -164,12 +164,12 @@ public class GastrodonTest
         Assert.That(attack3Accuracy.Equals(attack3ExcpectedAccuracy));
         Assert.That(attack3Power.Equals(attack3ExcpectedPower));
 
-        Attack attack4 = gastrodon.FindAttackByName("Sludge bomb");
+        Attack attack4 = gastrodon.FindAttackByName("Sludge Bomb");
         string attack4Name = attack4.Name;
         Type attack4Type = attack4.Type;
         double attack4Accuracy = attack4.Accuracy;
         int attack4Power = attack4.Power;
-        string attack4ExcpectedName = "Sludge bomb";
+        string attack4ExcpectedName = "Sludge Bomb";
         Type attack4ExcpectedType = Type.Poison;
         double attack4ExcpectedAccuracy = 0.95;
         int attack4ExcpectedPower = 70;
@@ -183,7 +183,7 @@ public class GastrodonTest
         {
             State sAttack2SpecialEffect = specialAttack4.SpecialEffect;
             int sAttack2Cooldown = specialAttack4.Cooldown;
-            State attack2ExcpectedSpecialEffect = State.Burned;
+            State attack2ExcpectedSpecialEffect = State.Poisoned;
             int attack2ExcpectedCooldown = 0;
             Assert.That(sAttack2SpecialEffect.Equals(attack2ExcpectedSpecialEffect));
             Assert.That(sAttack2Cooldown.Equals(attack2ExcpectedCooldown));
@@ -214,6 +214,9 @@ public class GastrodonTest
         Assert.That(actualLifeText3.Equals("406/426", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

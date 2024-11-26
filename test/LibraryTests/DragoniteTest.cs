@@ -205,6 +205,10 @@ public class DragoniteTest
         Assert.That(actualLifeText3.Equals("440/460", StringComparison.Ordinal));
     }
     
+    
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

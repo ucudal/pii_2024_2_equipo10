@@ -199,6 +199,9 @@ public class GengarTest
         Assert.That(actualLifeText3.Equals("304/324", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

@@ -134,22 +134,34 @@ public class Game
                     StateLogic.BurnedEffect(pokemon);
                     if (pokemon.CurrentLife == 0)
                     {
-                        Players[ActivePlayer].SetActivePokemon();
-                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                        player.ActivePokemon.EditState(null);
+                        if (player.SetActivePokemon())
+                        {
+                           return  result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                        }
+
+                        return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n" + "PERECIÓ :'( \n";
                     }
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
+
+                    return result +=
+                        $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforeBurnedEffect - pokemon.CurrentLife)}HP por estar {State.Burned}.\n";
                 }
 
                 if (pokemon.CurrentState == State.Poisoned)
                 {
                     double lifeBeforePoisonedEffect = pokemon.CurrentLife;
-                    StateLogic.PoisonedEffect(pokemon);
+                    StateLogic.PoisonedEffect(pokemon);                    
                     if (pokemon.CurrentLife == 0)
                     {
-                        Players[ActivePlayer].SetActivePokemon();
-                        result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n" + $"PERECIÓ :'( \n\n{player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                        Players[ActivePlayer].ActivePokemon.EditState(null);
+                        if (Players[ActivePlayer].SetActivePokemon())
+                        {
+                           return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + $"PERECIÓ :'( \n\n {player.ActivePokemon.Name} es el nuevo Pokemon activo de {player.Name}\n";;
+                        }
+                        return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n" + "PERECIÓ :'( \n";
                     }
-                    result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect-pokemon.CurrentLife)}HP por estar {pokemon.CurrentState}.\n";
+
+                    return result += $"El {pokemon.Name} de {player.Name} perdió {(int)(lifeBeforePoisonedEffect - pokemon.CurrentLife)}HP por estar {State.Poisoned}.\n";
                 }
             }
         }
@@ -166,6 +178,10 @@ public class Game
         {
            CooldownCheck();
            result += SpecialEffectExecute();
+           if (!GameStatus())
+           {
+               return result;
+           }
            this.ActivePlayer = (this.ActivePlayer + 1) % 2;           
            this.TurnCount++;
         }
@@ -289,12 +305,20 @@ public class Game
         return false;
     }
 
+    /// <summary>
+    /// Revisa si ambos jugadores completaron sus equipos.
+    /// </summary>
+    /// <returns><c>true</c> si ambos están completos, <c>false</c> en caso contrario</returns>
     public bool BothPlayersHaveChoosenTeam()
     {
         return Players[ActivePlayer].GetPokemonTeam().Count == 6 &&
                Players[(ActivePlayer + 1) % 2].GetPokemonTeam().Count == 6;
     }
     
+    /// <summary>
+    /// Permite cambiar la estrategia que contiene la calculadora de daño, solo se usa en los tests.
+    /// </summary>
+    /// <param name="strategyCritCheck"> La estrategia elegida para determinar los golpes críticos</param>
     public void SetDamageCalculatorStrategy(IStrategyCritCheck strategyCritCheck)
     {
         GameDamageCalculator.SetCritCheckStategy(strategyCritCheck);

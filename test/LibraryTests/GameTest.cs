@@ -20,8 +20,8 @@ public class GameTest
     public void TestChangePokemon()
     {
         Player player1 = new Player("1");
-        Player player2 = new Player("1");
-        Game game = new Game(player1, player2, new StrategyRandomStartingPlayer());
+        Player player2 = new Player("2");
+        Game game = new Game(player1, player2, new StrategyPlayerOneStart());
         Charizard charizard= new Charizard();
         Gengar gengar = new Gengar();
         player1.SetActivePokemon(charizard);
