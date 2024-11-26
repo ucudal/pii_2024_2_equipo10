@@ -157,10 +157,10 @@ public class DamageCalculator
     }
 
     /// <summary>
-    /// Determina si un ataque resulta en un golpe crítico basado en una probabilidad aleatoria.
+    /// Determina si un ataque resulta en un golpe crítico basado en la estrategia que esté utilizando.
     /// </summary>
     /// <returns>
-    /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
+    /// Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad al usar la estrategia de daño random), 
     /// o <c>1.0</c> si no es crítico.
     /// </returns>    
     public double CriticalCheck()
