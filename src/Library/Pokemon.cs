@@ -91,6 +91,9 @@ public abstract class Pokemon
         
     }
 
+    /// <summary>
+    /// Establece un número aleatorio entre 1 y 4 de turnos durante los cuales un Pokemon estará dormido.
+    /// </summary>
     public void SetAsleepTurns()
     {
         Random random = new Random();
@@ -180,6 +183,9 @@ public abstract class Pokemon
         return null;
     }
 
+    /// <summary>
+    /// Método abstracto para obtener una nueva instancia del Pokemon deseado.
+    /// </summary>
     public abstract Pokemon Instance();
 
 }

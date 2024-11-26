@@ -14,8 +14,8 @@ public class FullHealth : IItem
     /// <summary>
     /// Le quita cualquier estado negativo al Pokemon.
     /// </summary>
-    /// <param name="pokemon">Pokemón a ser curado.</param>
-    /// <returns>El pokemon ya no tiene estado negativo.</returns>
+    /// <param name="pokemon">Pokemon a ser curado.</param>
+    /// <returns>El Pokemon ya no tiene estado negativo.</returns>
     public string? Use(Pokemon? pokemon)
     {
         if (pokemon != null)

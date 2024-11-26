@@ -19,5 +19,8 @@ public interface IAttack
     /// </summary>
     public double Accuracy {get;}
 
+    /// <summary>
+    /// Genera una descripción del ataque.
+    /// </summary>
     public string InfoAttack();
 }
