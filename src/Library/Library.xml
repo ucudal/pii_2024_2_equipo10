@@ -39,6 +39,12 @@
             <param name="accuracy">Precisión del ataque a crear.</param>
             <param name="power">Potencia del ataque a crear.</param>
         </member>
+        <member name="M:Library.Attack.InfoAttack">
+            <summary>
+            Genera una descripción formateada del ataque.
+            Incluye el nombre, tipo, precisión y potencia del ataque.
+            </summary>
+        </member>
         <member name="T:Library.Caterpie">
             <summary>
             Esta clase representa el Pokemon Caterpie.
@@ -287,7 +293,7 @@
         </member>
         <member name="P:Library.DamageCalculator.EffectivnessDataBase">
             <summary>
-            Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokémon.
+            Proporciona el valor de efectividad de los ataques entre diferentes tipos de Pokemon.
             </summary>
             <returns>
             <c>Dictionary</c> Diccionario donde la clave es una tupla que representa el tipo del ataque y el tipo del Pokemon objetivo, 
@@ -379,6 +385,22 @@
             Catalogo de Pokemons.
             </summary>
         </member>
+        <member name="P:Library.Facade.Instance">
+            <summary>
+            Crea una nueva instancia de Fachada si aún no existe.
+            </summary>
+        </member>
+        <member name="M:Library.Facade.Reset">
+            <summary>
+            Restablece la instancia a null, permitiendo crear una nueva.
+            </summary>
+        </member>
+        <member name="M:Library.Facade.#ctor">
+            <summary>
+            Constructor de la clase Facade.
+            Inicializa las listas de espera y de juegos.
+            </summary>
+        </member>
         <member name="M:Library.Facade.ChooseTeam(System.String,System.String)">
             <summary>
             Historia 1:
@@ -432,7 +454,7 @@
             Comprueba el estado de una partida y determina si continúa o hay un ganador.
             </summary>
             <param name="game">La partida actual.</param>
-            <returns><c>"Próximo turno"</c> en caso de que la partida siga o un <c>string</c> conteniendo el
+            <returns><c>"Próximo turno, ahora es el turno de..."</c> en caso de que la partida siga o un <c>string</c> conteniendo el
             ganador y el perdedor.</returns>
         </member>
         <member name="M:Library.Facade.ChangePokemon(System.String,System.String)">
@@ -541,8 +563,8 @@
             <summary>
             Le quita cualquier estado negativo al Pokemon.
             </summary>
-            <param name="pokemon">Pokemón a ser curado.</param>
-            <returns>El pokemon ya no tiene estado negativo.</returns>
+            <param name="pokemon">Pokemon a ser curado.</param>
+            <returns>El Pokemon ya no tiene estado negativo.</returns>
         </member>
         <member name="M:Library.FullHealth.#ctor">
             <summary>
@@ -737,6 +759,11 @@
         <member name="P:Library.IAttack.Accuracy">
             <summary>
             Precisión del ataque.
+            </summary>
+        </member>
+        <member name="M:Library.IAttack.InfoAttack">
+            <summary>
+            Genera una descripción del ataque.
             </summary>
         </member>
         <member name="T:Library.IItem">
@@ -965,6 +992,11 @@
             </summary>
             <param name="hp">Puntos de vida a recuperar.</param>
         </member>
+        <member name="M:Library.Pokemon.SetAsleepTurns">
+            <summary>
+            Establece un número aleatorio entre 1 y 4 de turnos durante los cuales un Pokemon estará dormido.
+            </summary>
+        </member>
         <member name="M:Library.Pokemon.TakeDamage(System.Double)">
             <summary>
             Resta puntos de vida a la vida actual. Convierte double a int para poder hacer la resta.
@@ -1008,6 +1040,11 @@
             </summary>
             <param name="attackString"> Nombre del ataque a buscar </param>
             <returns> <c>Attack</c> si lo encontró, <c>null</c> si no </returns>
+        </member>
+        <member name="M:Library.Pokemon.Instance">
+            <summary>
+            Método abstracto para obtener una nueva instancia del Pokemon deseado.
+            </summary>
         </member>
         <member name="T:Library.PokemonCatalogue">
             <summary>
@@ -1114,6 +1151,12 @@
         <member name="M:Library.SpecialAttack.SetCooldown">
             <summary>
             Le asigna 2 a el contador de turnos que se deben esperar para usar el ataque.
+            </summary>
+        </member>
+        <member name="M:Library.SpecialAttack.InfoAttack">
+            <summary>
+            Genera una descripción formateada del ataque.
+            Incluye el nombre, tipo, precisión, potencia del ataque, efecto especial y cooldown.
             </summary>
         </member>
         <member name="T:Library.State">
