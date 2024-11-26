@@ -26,7 +26,7 @@
         </member>
         <member name="M:LibraryTests.AttackTest.TestInvalidAccuracy">
             <summary>
-            Test de Accuracy invalido.
+            Test de Accuracy inválido.
             </summary>
         </member>
         <member name="M:LibraryTests.AttackTest.TestInvalidPower">
@@ -184,64 +184,212 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="T:LibraryTests.EnteiTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Entei"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestName">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestType">
+            <summary>
+            Test del atributo type
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de los atributos life y currentLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de la cantidad de ataques que tiene Entei
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAddAFifthAttack">
+            <summary>
+            Test de la limitación de movimientos que tiene Entei
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestCurrentStateAndEditState">
+            <summary>
+            Test del atributo CurrentState y el método EditSate
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAsleepTurns">
+            <summary>
+            Test del atributo asleepTurns
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAttacks">
+            <summary>
+            Test de metodo FindAttackByName y los ataques que tiene Entei, confirmando que fueron creados correctamente
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
         <member name="T:LibraryTests.FacadeTest">
             <summary>
-            Test de la clase <see cref="T:Library.Facade"/>
+            Tests de la clase <see cref="T:Library.Facade"/>
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory1Add1Pokemon">
             <summary>
-            Test de la historia de usuario 1.
+            Verifica que un jugador puede añadir un Pokemon a su equipo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1RepeatedPokemon">
+            <summary>
+            Comprueba que no se puede añadir un Pokemon ya presente en el equipo del jugador.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1LastPokemon">
+            <summary>
+            Verifica que cuando el jugador completa su equipo con 6 Pokemon,
+            se muestra un mensaje indicando que el equipo está completo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1FullTeam">
+             <summary>
+            Comprueba que no se pueden agregar más de 6 Pokemon a un equipo. 
+             </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1PlayerNotInGame">
+            <summary>
+            Verifica que se muestre un mensaje de error cuando un jugador intenta elegir un Pokemon sin estar en una partida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory1UnknownPokemon">
+            <summary>
+            Verifica que si un jugador intenta elegir un Pokemon inexistente, se muestra un mensaje de error.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory2">
             <summary>
-            Test de la historia de usuario 2.
+            Verifica que un jugador puede ver los ataques de su Pokemon activo.
+            Si el jugador no tiene Pokemon, se muestra un mensaje que se lo informa.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory3NullPlayer">
             <summary>
-            Test de la historia de usuario 3.
+            Verifica que si un jugador no está en ninguna partida, se muestra un mensaje de error al
+            intentar ver el HP de los Pokemon.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory31Pokemon">
+            <summary>
+            Verifica que se muestra el HP de los Pokemon del jugador y también si otro jugador no ha completado su equipo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory3FullTeams">
+            <summary>
+            Verifica que cuando ambos jugadores tienen equipos completos, se puede muestrar el HP de los Pokemon de ambos
+            jugadores.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory4NullPlayer">
             <summary>
-            Test de la historia de usuario 4.
+            Verifica que un jugador no puede realizar un ataque si no está en una partida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4IncompleteTeams">
+            <summary>
+            Verifica que si alguno de los jugadores no tiene su equipo completo, no pueden realizarse ataques.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4FullTeams">
+            <summary>
+            Verifica que un jugador puede realizar un ataque solo si es el jugador activo y si el ataque existe en su
+            lista de ataques.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory5">
             <summary>
-            Test de la historia de usuario 5.
+            Verifica que se muestre correctamente de que jugador es el turno.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory5UnknownPlayer">
+            <summary>
+            Verifica que se muestra un mensaje de error al verificar el turno si el jugador no está en ninguna partida.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory6NullGame">
             <summary>
-            Test de la historia de usuario 6.
+            Verifica que se muestra un mensaje de error al corroborar el estado de una partida si la misma no se encuentra.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory6">
+            <summary>
+            Verifica que se muestra el estado correcto del juego, indicando de quien es el siguiente turno.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory7NotInGame">
             <summary>
-            Test de la historia de usuario 7.
+            Verifica que se muestra un mensaje de error si un jugador intenta cambiar su Pokemon activo sin estar en una
+            partida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory7">
+            <summary>
+            Verifica que un jugador puede cambiar su Pokémon activo solo si está en una partida y si el Pokemon
+            pertenece a su equipo. Se valida que se muestren mensajes de error si el Pokemon no está en el equipo o si
+            no es el jugador activo.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory8NullPlayer">
             <summary>
-            Test de la historia de usuario 8.
+            Verifica que se muestra un mensaje de error si un jugador intenta usar un item sin estar en una partida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory8PlayersNotReady">
+            <summary>
+            Verifica que un jugador no puede usar un item si el otro jugador no ha completado su equipo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory8InactivePlayer">
+            <summary>
+            Verifica que el jugador inactivo no pueda usar items.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory8ExpectedUse">
+            <summary>
+            Verifica que el jugador activo pueda usar un item correctamente.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory9">
             <summary>
-            Test de la historia de usuario 9.
+            Valida que un jugador pueda ser agregado correctamente a la lista de espera.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory9_1">
+            <summary>
+            Verifica que un jugador pueda ser eliminado de la lista de espera correctamente.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory10">
             <summary>
-            Test de la historia de usuario 10.
+            Verifica que la lista de jugadores en espera se muestre correctamente.
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory11">
             <summary>
-            Test de la historia de usuario 11.
+            Verifica la lógica de inicio de partida entre dos jugadores en espera.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestSurrender">
+            <summary>
+            Verifica que un jugador solo pueda rendirse si está en una partida activa.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestShowItems">
+            <summary>
+            Verifica que los items disponibles de un jugador se muestren correctamente.
             </summary>
         </member>
         <member name="T:LibraryTests.FullHealthTest">
@@ -251,7 +399,18 @@
         </member>
         <member name="M:LibraryTests.FullHealthTest.FullHealthCorrectUse">
             <summary>
-            Test de pocion de curacion.
+            Verifica que al usar una FullHealth sobre un Pokemon dormido, su estado se restablezca correctamente.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FullHealthTest.FullHealthUseOnHealthyPokemon">
+            <summary>
+            Verifica que al usar una FullHealth sobre un Pokemon sin estado negativo, el resultado sea un mensaje
+            indicando que actualmente no tiene ningún estado negativo.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FullHealthTest.FullHealthNullPokemon">
+            <summary>
+            Verifica que al intentar usar una FullHealth sobre un Pokemon nulo, el resultado sea nulo.
             </summary>
         </member>
         <member name="T:LibraryTests.GameListTest">
@@ -261,27 +420,45 @@
         </member>
         <member name="M:LibraryTests.GameListTest.TestAddGame">
             <summary>
-            Test del método AddGame
+            Verifica que el método AddGame agrega correctamente un juego a la lista de juegos.
             </summary>
         </member>
         <member name="M:LibraryTests.GameListTest.TestRemoveGame">
-             <summary>
-            Test del método RemoveGame
-             </summary>
+            <summary>
+            Verifica que el método RemoveGame elimina correctamente un juego de la lista de juegos
+            y que no puede eliminar un juego que no está en la lista.
+            </summary>
         </member>
         <member name="M:LibraryTests.GameListTest.TestFindPlayerByName">
             <summary>
-            Test del método FindPlayerBYName
+            Verifica que el método FindPlayerByName devuelve el jugador correcto cuando se busca por
+            nombre y retorna null si el jugador no existe.
             </summary>
         </member>
         <member name="M:LibraryTests.GameListTest.TestFindGameByPlayer">
             <summary>
-            Test del método FindGameByPlayer
+            Verifica que el método FindGameByPlayer devuelve el juego en el que se encuentra un jugador y retorna
+            null si el jugador no participa en ningún juego.
             </summary>
         </member>
         <member name="M:LibraryTests.GameListTest.TestGetGameList">
             <summary>
-            Test del método GetGameList
+            Verifica que el método GetGameList devuelve correctamente la lista de juegos.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTest.TestChangePokemon">
+            <summary>
+            Verifica que el método ChangePokemon cambia correctamente el Pokemon activo de un jugador durante la partida.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTest.TestWinnerPlayer1">
+            <summary>
+            Verifica que el método Winner devuelve correctamente el ganador de la partida, en caso de que sea el jugador 1.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.GameTest.TestWinnerPlayer2">
+            <summary>
+            Verifica que el método Winner devuelve correctamente el ganador de la partida, en caso de que sea el jugador 2.
             </summary>
         </member>
         <member name="T:LibraryTests.GastrodonTest">
@@ -541,7 +718,12 @@
         </member>
         <member name="M:LibraryTests.ReviveTest.ReviveCorrectUse">
             <summary>
-            Test de pocion de revivir.
+            Verifica que el item Revive funciona correctamente.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.ReviveTest.ReviveWrongUse">
+            <summary>
+            Verifica que el item Revive no puede utilizarse sobre un Pokemon que no está debilitado.
             </summary>
         </member>
         <member name="T:LibraryTests.SpecialAttackTest">
@@ -549,9 +731,24 @@
             Test de la clase <see cref="T:Library.SpecialAttack"/>
             </summary>
         </member>
-        <member name="M:LibraryTests.SpecialAttackTest.TestSpecialAttack">
+        <member name="M:LibraryTests.SpecialAttackTest.TestConstructor">
             <summary>
-            Test de ataque especial.
+            Test del constructor de <see cref="T:Library.SpecialAttack"/>.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SpecialAttackTest.TestLowerCooldown">
+            <summary>
+            Test para el método <see cref="M:Library.SpecialAttack.LowerCooldown"/> para verificar que el cooldown disminuye correctamente.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SpecialAttackTest.TestSetCooldown">
+            <summary>
+            Test para el método <see cref="M:Library.SpecialAttack.SetCooldown"/> para asegurar que el cooldown se restablece a 4.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SpecialAttackTest.TestInfoAttack">
+            <summary>
+            Test del método <see cref="M:Library.SpecialAttack.InfoAttack"/> para verificar que la descripción del ataque sea correcta.
             </summary>
         </member>
         <member name="M:LibraryTests.StateLogicTest.AsleepEffectDecreasesTurnsAndReturnsTrue">

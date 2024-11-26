@@ -1,5 +1,7 @@
 using Library;
 using NUnit.Framework;
+using Type = Library.Type;
+
 namespace LibraryTests;
 
 /// <summary>
@@ -39,18 +41,18 @@ public class AttackTest
     [Test]
     public void TestNullName()
     {
-        Attack attack;
-        Assert.That(new Attack("",Library.Type.Electric, 1, 30), Is.EqualTo("El nombre ingresado no es válido"));
+        var result = Assert.Throws<ArgumentException>(() => new Attack("", Type.Electric, 1.0, 30));
+        Assert.That(result.Message, Is.EqualTo("El nombre ingresado no es válido"));
     }
 
     /// <summary>
-    /// Test de Accuracy invalido.
+    /// Test de Accuracy inválido.
     /// </summary>
     [Test]
     public void TestInvalidAccuracy()
     {
-        Attack attack;
-        Assert.That(new Attack("impactrueno",Library.Type.Electric, 70000, 30).Equals("La precision ingresada no es válido"));
+        var result = Assert.Throws<ArgumentException>(() => new Attack("impactrueno", Type.Electric, 70000.0, 30));
+        Assert.That(result.Message, Is.EqualTo("La precision ingresada no es válido"));
     }
 
     /// <summary>
@@ -59,7 +61,7 @@ public class AttackTest
     [Test]
     public void TestInvalidPower()
     {
-        Attack attack;
-        Assert.That(new Attack("",Library.Type.Electric, 1, -80000).Equals("El poder ingresado no es válido"));
+        var result = Assert.Throws<ArgumentException>(() => new Attack("impactrueno", Type.Electric, 0.8, -20));
+        Assert.That(result.Message, Is.EqualTo("El poder ingresado no es válido"));
     }
 }
