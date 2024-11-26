@@ -14,9 +14,8 @@ public class FullHealthTest
     }
 
     /// <summary>
-    /// Test de pocion de curacion.
+    /// Verifica que al usar una FullHealth sobre un Pokemon dormido, su estado se restablezca correctamente.
     /// </summary>
-
     [Test]
     public void FullHealthCorrectUse()
     {
@@ -27,6 +26,10 @@ public class FullHealthTest
         Assert.That(charizard.CurrentState.Equals(null));
     }
 
+    /// <summary>
+    /// Verifica que al usar una FullHealth sobre un Pokemon sin estado negativo, el resultado sea un mensaje
+    /// indicando que actualmente no tiene ningún estado negativo.
+    /// </summary>
     [Test]
     public void FullHealthUseOnHealthyPokemon()
     {
@@ -36,6 +39,9 @@ public class FullHealthTest
         Assert.That(result.Equals("Charizard no tiene ningún estado negativo"));
     }
 
+    /// <summary>
+    /// Verifica que al intentar usar una FullHealth sobre un Pokemon nulo, el resultado sea nulo.
+    /// </summary>
     [Test]
     public void FullHealthNullPokemon()
     {

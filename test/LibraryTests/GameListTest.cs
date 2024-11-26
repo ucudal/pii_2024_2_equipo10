@@ -27,7 +27,7 @@ public class GameListTest
     }
     
     /// <summary>
-    /// Test del método AddGame
+    /// Verifica que el método AddGame agrega correctamente un juego a la lista de juegos.
     /// </summary>
     [Test]
     public void TestAddGame()
@@ -40,7 +40,8 @@ public class GameListTest
         Assert.That(gameList.GetGameList().Contains(game2));
     }
     /// <summary>
-    ///Test del método RemoveGame
+    /// Verifica que el método RemoveGame elimina correctamente un juego de la lista de juegos
+    /// y que no puede eliminar un juego que no está en la lista.
     /// </summary>
     [Test]
     public void TestRemoveGame()
@@ -50,8 +51,10 @@ public class GameListTest
         Game game2 = new Game(player3, player4, StrategyStartingPlayer);
         Assert.That(!gameList.RemoveGame(game2));
     }
+    
     /// <summary>
-    /// Test del método FindPlayerBYName
+    /// Verifica que el método FindPlayerByName devuelve el jugador correcto cuando se busca por
+    /// nombre y retorna null si el jugador no existe.
     /// </summary>
     [Test]
     public void TestFindPlayerByName()
@@ -60,8 +63,10 @@ public class GameListTest
         Assert.That(gameList.FindPlayerByName("jugador1"), Is.EqualTo(player1));
         Assert.That(gameList.FindPlayerByName(" "), Is.Null);
     }
+    
     /// <summary>
-    /// Test del método FindGameByPlayer
+    /// Verifica que el método FindGameByPlayer devuelve el juego en el que se encuentra un jugador y retorna
+    /// null si el jugador no participa en ningún juego.
     /// </summary>
     [Test]
     public void TestFindGameByPlayer()
@@ -70,8 +75,9 @@ public class GameListTest
         Assert.That(gameList.FindGameByPlayer(player1),Is.EqualTo(game1));
         Assert.That(gameList.FindGameByPlayer(player3), Is.Null);
     }
+    
     /// <summary>
-    /// Test del método GetGameList
+    /// Verifica que el método GetGameList devuelve correctamente la lista de juegos.
     /// </summary>
     [Test]
     public void TestGetGameList()

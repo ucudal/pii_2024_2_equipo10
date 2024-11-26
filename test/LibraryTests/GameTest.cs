@@ -13,7 +13,10 @@ public class GameTest
     {
     }
 
-    [Test] //Test para verificar que se cambie de pokemon activo correctamente
+    /// <summary>
+    /// Verifica que el método ChangePokemon cambia correctamente el Pokemon activo de un jugador durante la partida.
+    /// </summary>
+    [Test] 
     public void TestChangePokemon()
     {
         Player player1 = new Player("1");
@@ -27,7 +30,10 @@ public class GameTest
 
     }
 
-    [Test]  //Test para verificar que se imprima correctamente el mensaje final ganador.
+    /// <summary>
+    /// Verifica que el método Winner devuelve correctamente el ganador de la partida, en caso de que sea el jugador 1.
+    /// </summary>
+    [Test]
     public void TestWinnerPlayer1()
     {
         Player player1 = new Player("Player 1");
@@ -43,6 +49,9 @@ public class GameTest
 
     }
 
+    /// <summary>
+    /// Verifica que el método Winner devuelve correctamente el ganador de la partida, en caso de que sea el jugador 2.
+    /// </summary>
     [Test]
     public void TestWinnerPlayer2()
     {
