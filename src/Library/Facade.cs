@@ -591,7 +591,7 @@ public class Facade
         return result;
     }
     /// <summary>
-    /// 
+    /// Este método se encarga de cambiar la estrategia asignada en la calculadora de daño. Se utiliza solo para tests
     /// </summary>
     /// <param name="playerName"> Nombre del jugador </param>
     /// <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
