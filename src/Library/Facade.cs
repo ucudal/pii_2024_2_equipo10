@@ -27,7 +27,9 @@ public class Facade
 
     private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
 
-    
+    /// <summary>
+    /// Crea una nueva instancia de Fachada si aún no existe.
+    /// </summary>
     public static Facade Instance
     {
         get
@@ -41,11 +43,18 @@ public class Facade
         }
     }
 
+    /// <summary>
+    /// Restablece la instancia a null, permitiendo crear una nueva.
+    /// </summary>
     public void Reset()
     {
         _instance = null;
     }
 
+    /// <summary>
+    /// Constructor de la clase Facade.
+    /// Inicializa las listas de espera y de juegos.
+    /// </summary>
     private Facade()
     {
         this.WaitingList = new WaitingList();
@@ -277,7 +286,7 @@ public class Facade
     /// Comprueba el estado de una partida y determina si continúa o hay un ganador.
     /// </summary>
     /// <param name="game">La partida actual.</param>
-    /// <returns><c>"Próximo turno"</c> en caso de que la partida siga o un <c>string</c> conteniendo el
+    /// <returns><c>"Próximo turno, ahora es el turno de..."</c> en caso de que la partida siga o un <c>string</c> conteniendo el
     /// ganador y el perdedor.</returns>
     public string CheckGameStatus(Game game)
     {

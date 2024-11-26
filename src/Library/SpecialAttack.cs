@@ -49,6 +49,10 @@ public class SpecialAttack : Attack
         Cooldown = 4;
     }
     
+    /// <summary>
+    /// Genera una descripción formateada del ataque.
+    /// Incluye el nombre, tipo, precisión, potencia del ataque, efecto especial y cooldown.
+    /// </summary>
     public string InfoAttack()
     {
         return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia *{this.Power}*, efecto especial *{this.SpecialEffect}*, cooldown de uso actual *{this.Cooldown}*\n";

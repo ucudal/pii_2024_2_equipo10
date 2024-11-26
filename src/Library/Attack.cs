@@ -52,6 +52,11 @@ public class Attack : IAttack
         this.Power =power;
     }
 
+    
+    /// <summary>
+    /// Genera una descripción formateada del ataque.
+    /// Incluye el nombre, tipo, precisión y potencia del ataque.
+    /// </summary>
     public string InfoAttack()
     {
         return $"**{this.Name}**: tipo *{this.Type}*, precisión *{this.Accuracy*100}*, potencia *{this.Power}*\n";
