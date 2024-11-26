@@ -234,7 +234,7 @@ public class FacadeTest
     {
         Facade.Instance.AddPlayerToWaitingList("facu");
         Facade.Instance.AddPlayerToWaitingList("ines");
-        Facade.Instance.StartGame("facu", "ines", new StrategyRandomStartingPlayer());
+        Facade.Instance.StartGame("facu", "ines", new StrategyPlayerOneStart());
         Assert.That(Facade.Instance.CheckTurn("facu"), Is.EqualTo("facu, es tu turno"));
         Assert.That(Facade.Instance.CheckTurn("ines"), Is.EqualTo("ines, no es tu turno"));
     }
@@ -250,28 +250,26 @@ public class FacadeTest
     /// Test de la historia de usuario 6.
     /// </summary>
     [Test]
+    public void TestUserStory6NullGame()
+    {
+        Assert.That(Facade.Instance.CheckGameStatus(null), Is.EqualTo("La partida no pudo ser encontrada"));
+    }
+    
+    [Test]
     public void TestUserStory6()
     {
-        Facade.Instance.AddPlayerToWaitingList("facu");
-        Facade.Instance.AddPlayerToWaitingList("ines");
-        Facade.Instance.StartGame("facu", "ines", new StrategyPlayerOneStart());
-        Facade.Instance.ChooseTeam("facu", "Charizard");
-        Facade.Instance.ChooseTeam("ines", "Chikorita");
-        string attack = Facade.Instance.ChooseAttack("facu", "Flamethrower");
-        string excpected = "El equipo está incompleto, por favor elige 6 pokemones para poder comenzar la batalla";
-        Assert.That(attack.Equals(excpected, StringComparison.Ordinal));
-        Facade.Instance.ChooseTeam("facu", "Zeraora");
-        Facade.Instance.ChooseTeam("facu", "Caterpie");
-        Facade.Instance.ChooseTeam("facu", "Mewtwo");
-        Facade.Instance.ChooseTeam("facu", "Chikorita");
-        Facade.Instance.ChooseTeam("facu", "Haxorus");
-        string attack1 = Facade.Instance.ChooseAttack("facu", "Flamethrower");
-        string excpected1 = $"Chikorita recibió 150 puntos de daño Próximo turno, ahora es el turno de ines";
-        Assert.That(attack1.Equals(excpected1, StringComparison.Ordinal));
-        string attack2 = Facade.Instance.ChooseAttack("facu", "Flamethrower");
-        string excpected2 = "No eres el jugador activo";
-        Assert.That(attack2.Equals(excpected2, StringComparison.Ordinal));
+        Player mateo = new Player("mateo");
+        Player ines = new Player("ines");
+        Game game = new Game(mateo, ines, new StrategyPlayerOneStart());
+        Gengar gengar = new Gengar();
+        Haxorus haxorus = new Haxorus();
+        mateo.AddToTeam(gengar);
+        ines.AddToTeam(haxorus);
 
+        game.NextTurn();
+        string expected = Facade.Instance.CheckGameStatus(game);
+        
+        Assert.That(expected, Is.EqualTo("Próximo turno, ahora es el turno de ines"));
     }
 
     /// <summary>
@@ -391,6 +389,15 @@ public class FacadeTest
     {
         Assert.That(Facade.Instance.AddPlayerToWaitingList("facu"), Is.EqualTo("facu agregado a la lista de espera"));
         Assert.That(Facade.Instance.AddPlayerToWaitingList("facu"), Is.EqualTo("facu ya está en la lista de espera"));
+    }
+
+    [Test]
+    public void TestUserStory9_1()
+    {
+        Assert.That(Facade.Instance.RemovePlayerFromWaitingList("facu"), Is.EqualTo("facu no está en la lista de espera"));
+        Facade.Instance.AddPlayerToWaitingList("facu");
+        Assert.That(Facade.Instance.RemovePlayerFromWaitingList("facu"), Is.EqualTo("facu removido de la lista de espera"));
+ 
     }
 
 
