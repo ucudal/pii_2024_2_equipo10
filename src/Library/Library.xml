@@ -558,6 +558,7 @@
             </summary>
             <param name="playerName">Nombre del primer jugador.</param>
             <param name="opponentName">Nombre del oponente.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
             <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
         </member>
         <member name="M:Library.Facade.StartGame(System.String,System.String,Library.Strategies.IStrategyStartingPlayer)">
@@ -600,7 +601,7 @@
         </member>
         <member name="M:Library.Facade.EditDamageCalculatorStrategy(System.String,Library.Strategies.IStrategyCritCheck)">
             <summary>
-            
+            Este método se encarga de cambiar la estrategia asignada en la calculadora de daño. Se utiliza solo para tests
             </summary>
             <param name="playerName"> Nombre del jugador </param>
             <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
@@ -649,12 +650,23 @@
             Obtiene la cantidad de turnos que lleva la partida.
             </summary>
         </member>
+        <member name="P:Library.Game.StrategyStartingPlayer">
+            <summary>
+            Estrategia que determina de que jugador es el primer turno
+            </summary>
+        </member>
+        <member name="P:Library.Game.GameDamageCalculator">
+            <summary>
+            Calculadora de daño, encargada de realizar los cálculos de daño.
+            </summary>
+        </member>
         <member name="M:Library.Game.#ctor(Library.Player,Library.Player,Library.Strategies.IStrategyStartingPlayer)">
             <summary>
-            Constructor de la clase. Agrega a los jugadores a la partida y determina de forma aleatoria cual comienza la partida. Inicializa el contador de turnos en 0.
+            Constructor de la clase. Agrega a los jugadores a la partida y según su estrategia determinará cuál de los jugadores tiene el primer turno. Inicializa el contador de turnos en 0.
             </summary>
             <param name="player1"> Primer jugador.</param>
             <param name="player2"> Segundo jugador.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
         </member>
         <member name="M:Library.Game.GetPlayers">
             <summary>
@@ -684,6 +696,12 @@
             <summary>
             Reduce el tiempo de enfriamiento (cooldown) de todos los ataques especiales de cada Pokemon en los equipos de los jugadores.
             </summary>
+        </member>
+        <member name="M:Library.Game.SpecialEffectExecute">
+            <summary>
+            Método que se encarga de verificar si los pokemones de los jugadores tienen los estados <c>Burned</c> (Quemado) o <c>Poisoned</c> (Envenenado )
+            </summary>
+            <returns> <c>string</c> indicando  </returns>
         </member>
         <member name="M:Library.Game.NextTurn">
             <summary>
@@ -755,6 +773,7 @@
             </summary>
             <param name="player1"> Jugador 1.</param>
             <param name="player2"> Jugador 2.</param>
+            <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno.</param>
             <returns>La partida agregada.</returns>
         </member>
         <member name="M:Library.GameList.RemoveGame(Library.Game)">
@@ -1304,6 +1323,26 @@
             Representa los estados negativos que puede tener un Pokemon.
             </summary>
         </member>
+        <member name="F:Library.State.Asleep">
+            <summary>
+            Estado dormido
+            </summary>
+        </member>
+        <member name="F:Library.State.Paralized">
+            <summary>
+            Estado paralizado
+            </summary>
+        </member>
+        <member name="F:Library.State.Poisoned">
+            <summary>
+            Estado envenenado
+            </summary>
+        </member>
+        <member name="F:Library.State.Burned">
+            <summary>
+            Estado Quemado
+            </summary>
+        </member>
         <member name="T:Library.StateLogic">
             <summary>
             Esta clase representa la lógia de los estados del Pokemon.
@@ -1474,6 +1513,81 @@
         <member name="T:Library.Type">
             <summary>
             Representa los tipos.
+            </summary>
+        </member>
+        <member name="F:Library.Type.Bug">
+            <summary>
+            Tipo bicho
+            </summary>
+        </member>
+        <member name="F:Library.Type.Dragon">
+            <summary>
+            Tipo dragón
+            </summary>
+        </member>
+        <member name="F:Library.Type.Electric">
+            <summary>
+            Tipo eléctrico
+            </summary>
+        </member>
+        <member name="F:Library.Type.Fighting">
+            <summary>
+            Tipo lucha
+            </summary>
+        </member>
+        <member name="F:Library.Type.Fire">
+            <summary>
+            Tipo fuego
+            </summary>
+        </member>
+        <member name="F:Library.Type.Flying">
+            <summary>
+            Tipo volador
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ghost">
+            <summary>
+            Tipo ghost
+            </summary>
+        </member>
+        <member name="F:Library.Type.Grass">
+            <summary>
+            Tipo grass
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ground">
+            <summary>
+            Tipo ground
+            </summary>
+        </member>
+        <member name="F:Library.Type.Ice">
+            <summary>
+            Tipo ice
+            </summary>
+        </member>
+        <member name="F:Library.Type.Normal">
+            <summary>
+            Tipo normal
+            </summary>
+        </member>
+        <member name="F:Library.Type.Poison">
+            <summary>
+            Tipo veneno
+            </summary>
+        </member>
+        <member name="F:Library.Type.Psychic">
+            <summary>
+            Tipo Psíquico
+            </summary>
+        </member>
+        <member name="F:Library.Type.Rock">
+            <summary>
+            Tipo roca
+            </summary>
+        </member>
+        <member name="F:Library.Type.Water">
+            <summary>
+            Tipo agua
             </summary>
         </member>
         <member name="T:Library.WaitingList">
