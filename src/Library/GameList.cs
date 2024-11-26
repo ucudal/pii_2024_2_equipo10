@@ -16,6 +16,7 @@ public class GameList
     /// </summary>
     /// <param name="player1"> Jugador 1.</param>
     /// <param name="player2"> Jugador 2.</param>
+    /// <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno.</param>
     /// <returns>La partida agregada.</returns>
     public Game AddGame(Player player1, Player player2, IStrategyStartingPlayer strategyStartingPlayer)
     {

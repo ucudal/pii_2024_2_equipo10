@@ -1,5 +1,4 @@
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+
 using Library.Strategies;
 
 namespace Library;
@@ -14,12 +13,12 @@ public class Facade
     /// <summary>
     /// Lista de espera para jugadores que aún no están en una partida.
     /// </summary>
-    private WaitingList WaitingList { get; set; } = new WaitingList();
+    private WaitingList WaitingList { get; set; }
 
     /// <summary>
     /// Lista de partidas en curso.
     /// </summary>
-    private GameList GameList { get; } = new GameList();
+    private GameList GameList { get; }
 
     /// <summary>
     /// Catalogo de Pokemons.
@@ -234,7 +233,7 @@ public class Facade
                 {
                     string result = "";
                     result += game.ExecuteAttack(attack);
-                    if (result.Contains("no se puede usar hasta que pasen"))
+                    if (result.Contains("no se puede usar hasta que pasen", StringComparison.Ordinal))
                     {return result;}
                     result += game.NextTurn();
                     result += CheckGameStatus(game);
@@ -273,8 +272,7 @@ public class Facade
                 return $"{playerName}, no es tu turno";
             }
         }
-
-        return null;
+        return "No se encontró la partida.";
     }
 
     /// <summary>
@@ -353,13 +351,14 @@ public class Facade
     public string UseAnItem(string playerName, string item, string pokemon)
     {
         Player player = GameList.FindPlayerByName(playerName);
-        Game game = GameList.FindGameByPlayer(player);
         
         if (player == null)
         {
             return $"El jugador {playerName} no está en ninguna partida.";
         }
-
+        
+        Game game = GameList.FindGameByPlayer(player);
+        
         if (game == null)
         {
             return "Partida inexistente.";
@@ -440,7 +439,6 @@ public class Facade
         return result;
     }
 
-    //
     /// <summary>
     /// Historia de usuario 11:
     /// Crea una nueva partida entre dos jugadores, quitándolos de la lista de espera y agregando la partida a la lista de
@@ -448,6 +446,7 @@ public class Facade
     /// </summary>
     /// <param name="playerName">Nombre del primer jugador.</param>
     /// <param name="opponentName">Nombre del oponente.</param>
+    /// <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
     /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
     private  string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {

@@ -193,6 +193,10 @@ public class DamageCalculator
             }
             return $"{attackedPokemon.Name} fue afectado con {specialAttack.SpecialEffect}\n";
         }
+        if (attack is SpecialAttack specialAttack2)
+        {
+            specialAttack2.SetCooldown();
+        }
         return"";
     }
 
