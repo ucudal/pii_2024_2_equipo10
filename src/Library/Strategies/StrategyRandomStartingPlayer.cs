@@ -7,7 +7,7 @@ public class StrategyRandomStartingPlayer : IStrategyStartingPlayer
 {
     
     /// <summary>
-    /// Obtiene un valor aleatorio entre 0 y 1.
+    /// El método de esta estrategia siempre va a determinar aleatoriamente qué jugador en la lista de la partida comienza.
     /// </summary>
     /// <returns><c>int</c> <c>0</c>  o <c>1</c>. Representando el primer y segundo elemento de la lista de jugadores</returns>
     public int StartingPlayer()

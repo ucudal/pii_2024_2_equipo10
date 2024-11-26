@@ -200,6 +200,9 @@ public class CharizardTest
         Assert.That(actualLifeText3.Equals("340/360", StringComparison.Ordinal));
     }
     
+    /// <summary>
+    /// Test del método Instance
+    /// </summary>
     [Test]
     public void TestInstance()
     {

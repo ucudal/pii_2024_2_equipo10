@@ -13,7 +13,10 @@ public class Caterpie: Pokemon
     {
         
     }
-    
+    /// <summary>
+    /// Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+    /// </summary>
+    /// <returns><c>Pokemon</c> del subtipo <c>Caterpie</c></returns>
     public override Pokemon Instance()
     {
         return new Caterpie();

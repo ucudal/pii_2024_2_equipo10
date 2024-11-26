@@ -184,6 +184,56 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="T:LibraryTests.DragoniteTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Dragonite"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestName">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestType">
+            <summary>
+            Test del atributo type
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de los atributos life y currentLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de la cantidad de ataques que tiene Dragonite
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestAddAFifthAttack">
+            <summary>
+            Test de la limitación de movimientos que tiene Dragonite
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestCurrentStateAndEditState">
+            <summary>
+            Test del atributo CurrentState y el método EditSate
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestAsleepTurns">
+            <summary>
+            Test del atributo asleepTurns
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestAttacks">
+            <summary>
+            Test de metodo FindAttackByName y los ataques que tiene Dragonite, confirmando que fueron creados correctamente
+            </summary>
+        </member>
+        <member name="M:LibraryTests.DragoniteTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
         <member name="T:LibraryTests.EnteiTest">
             <summary>
             Test de la clase <see cref="T:Library.Entei"/>
@@ -327,6 +377,11 @@
         <member name="M:LibraryTests.FacadeTest.TestUserStory6">
             <summary>
             Verifica que se muestra el estado correcto del juego, indicando de quien es el siguiente turno.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory6WinnerTest">
+            <summary>
+            Verifica que se muestre un mensaje indicando 
             </summary>
         </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory7NotInGame">
@@ -733,22 +788,27 @@
         </member>
         <member name="M:LibraryTests.SpecialAttackTest.TestConstructor">
             <summary>
-            Test del constructor de <see cref="T:Library.SpecialAttack"/>.
+            Test del constructor.
             </summary>
         </member>
         <member name="M:LibraryTests.SpecialAttackTest.TestLowerCooldown">
             <summary>
-            Test para el método <see cref="M:Library.SpecialAttack.LowerCooldown"/> para verificar que el cooldown disminuye correctamente.
+            Verifica que el cooldown de un ataque especial disminuye correctamente llamando al metodo LowerCooldown().
             </summary>
         </member>
         <member name="M:LibraryTests.SpecialAttackTest.TestSetCooldown">
             <summary>
-            Test para el método <see cref="M:Library.SpecialAttack.SetCooldown"/> para asegurar que el cooldown se restablece a 4.
+            Verifica que el método SetCooldown() restablece a 4 el cooldown del ataque especial.
             </summary>
         </member>
         <member name="M:LibraryTests.SpecialAttackTest.TestInfoAttack">
             <summary>
-            Test del método <see cref="M:Library.SpecialAttack.InfoAttack"/> para verificar que la descripción del ataque sea correcta.
+            Verifica que la descripción del ataque especial sea correcta.
+            </summary>
+        </member>
+        <member name="M:LibraryTests.SpecialAttackTest.TestSpecialAttack">
+            <summary>
+            Test de ataque especial.
             </summary>
         </member>
         <member name="M:LibraryTests.StateLogicTest.AsleepEffectDecreasesTurnsAndReturnsTrue">
@@ -817,27 +877,27 @@
         </member>
         <member name="M:LibraryTests.WaitingListTest.TestAddPlayer">
             <summary>
-            Test del método AddPlayer
+            Verifica que los jugadores sean añadidos correctamente a la lista de espera y maneja los casos de jugadores duplicados y entradas inválidas.
             </summary>
         </member>
         <member name="M:LibraryTests.WaitingListTest.TestRemovePlayer">
             <summary>
-            Test del método RemovePlayer
+            Verifica que un jugador sea eliminado correctamente de la lista de espera.
             </summary>
         </member>
         <member name="M:LibraryTests.WaitingListTest.TestFindPlayerByName">
             <summary>
-            Test del método FindPlayerByName
+            Verifica que un jugador pueda ser encontrado correctamente por su nombre.
             </summary>
         </member>
         <member name="M:LibraryTests.WaitingListTest.TestGetSomeone">
             <summary>
-            Test del método GetSomeone
+            Verifica que el método pueda agregar correctamente a otro jugador de la lista de espera.
             </summary>
         </member>
         <member name="M:LibraryTests.WaitingListTest.TestGetWaitingList">
             <summary>
-            Test del método GetWaitingList
+            Verifica que se pueda obtener correctamente la lista de jugadores en espera.
             </summary>
         </member>
         <member name="T:LibraryTests.ZeraoraTest">

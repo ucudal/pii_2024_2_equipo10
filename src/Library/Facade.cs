@@ -4,10 +4,11 @@ using Library.Strategies;
 
 namespace Library;
 /// <summary>
-/// Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot
+/// Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del chatbot. Esta clase es un singleton.
 /// </summary>
 public class Facade
 {
+    
     private static Facade? _instance;
     
     /// <summary>
@@ -28,7 +29,7 @@ public class Facade
     private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
 
     /// <summary>
-    /// Crea una nueva instancia de Fachada si aún no existe.
+    /// Crea una nueva instancia de la clase Fachada si aún no existe. Implementando así el patrón singleton
     /// </summary>
     public static Facade Instance
     {
@@ -44,7 +45,7 @@ public class Facade
     }
 
     /// <summary>
-    /// Restablece la instancia a null, permitiendo crear una nueva.
+    /// Restablece la instancia a null, permitiendo crear una nueva. Solo se utiliza en los tests.
     /// </summary>
     public void Reset()
     {
@@ -54,6 +55,7 @@ public class Facade
     /// <summary>
     /// Constructor de la clase Facade.
     /// Inicializa las listas de espera y de juegos.
+    /// Es privado para impedir que otras clases puedan crear instancias
     /// </summary>
     private Facade()
     {
@@ -455,10 +457,9 @@ public class Facade
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent, strategyStartingPlayer);
         Game game = GameList.FindGameByPlayer(player);
-        string ActivePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
-        return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {ActivePlayerName}\n";
+        string activePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
+        return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {activePlayerName}\n";
     }
-
     /// <summary>
     /// Historia de usuario 11.1:
     /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o un jugador
@@ -466,6 +467,7 @@ public class Facade
     /// </summary>
     /// <param name="playerName">Nombre del jugador que inicia la batalla.</param>
     /// <param name="opponentName">Nombre del oponente (opcional).</param>
+    /// <param name="strategyStartingPlayer"> La estrategia que determinará el jugador inicial</param>
     /// <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
     public  string StartGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
@@ -588,7 +590,12 @@ public class Facade
         }
         return result;
     }
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="playerName"> Nombre del jugador </param>
+    /// <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
+    /// <returns></returns>
     public  string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
     {
         Player? player = GameList.FindPlayerByName(playerName);

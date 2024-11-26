@@ -13,7 +13,10 @@ public class Charizard : Pokemon
     {
         
     }
-    
+    /// <summary>
+    /// Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+    /// </summary>
+    /// <returns><c>Pokemon</c> del subtipo <c>Charizard</c></returns>
     public override Pokemon Instance()
     {
         return new Charizard();

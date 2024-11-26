@@ -1,6 +1,7 @@
 namespace Library;
     /// <summary>
     /// Esta clase representa un ataque básico que puede aprender el pokémon.
+    /// Implementa la interfaz <see cref="IAttack"/>.
     /// </summary>
 public class Attack : IAttack
 {

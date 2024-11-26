@@ -42,7 +42,7 @@ public class SpecialAttack : Attack
     }
 
     /// <summary>
-    /// Le asigna 2 a el contador de turnos que se deben esperar para usar el ataque.
+    /// Le asigna 2 al contador de turnos que se deben esperar para usar el ataque.
     /// </summary>
     public void SetCooldown()
     {

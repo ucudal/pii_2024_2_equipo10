@@ -8,7 +8,7 @@ public class PokemonCatalogue
     /// <summary>
     /// Lista de Pokemons.
     /// </summary>
-    public List<Pokemon> PokemonList { get; private set; } = new List<Pokemon>();
+    public List<Pokemon> PokemonList { get; } = new List<Pokemon>();
     
     /// <summary>
     /// Cantidad de Pokemons en el catálogo

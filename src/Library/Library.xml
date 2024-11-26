@@ -56,6 +56,12 @@
             Constructor de Caterpie, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Caterpie.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Caterpie</c></returns>
+        </member>
         <member name="T:Library.Charizard">
             <summary>
             Esta clase representa el Pokemon Charizard.
@@ -67,6 +73,12 @@
             Constructor de Charizard, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Charizard.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Charizard</c></returns>
+        </member>
         <member name="T:Library.Chikorita">
             <summary>
             Esta clase representa el Pokemon Chikorita.
@@ -77,6 +89,12 @@
             <summary>
             Constructor de Chikorita, implementa el patron GRASP creator.
             </summary>
+        </member>
+        <member name="M:Library.Chikorita.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Chikorita</c></returns>
         </member>
         <member name="T:Library.Commands.AttackCommand">
             <summary>
@@ -354,6 +372,12 @@
             Constructor de Dragonite, implementa el patron GRASP creator.
             </summary>
         </member>
+        <member name="M:Library.Dragonite.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Dragonite</c></returns>
+        </member>
         <member name="T:Library.Entei">
             <summary>
             Esta clase representa el Pokemon Entei.
@@ -364,6 +388,12 @@
             <summary>
             Constructor de Entei, implementa el patron GRASP creator.
             </summary>
+        </member>
+        <member name="M:Library.Entei.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Entei</c></returns>
         </member>
         <member name="T:Library.Facade">
             <summary>
@@ -387,18 +417,19 @@
         </member>
         <member name="P:Library.Facade.Instance">
             <summary>
-            Crea una nueva instancia de Fachada si aún no existe.
+            Crea una nueva instancia de Fachada si aún no existe. Implementando así el patrón singleton
             </summary>
         </member>
         <member name="M:Library.Facade.Reset">
             <summary>
-            Restablece la instancia a null, permitiendo crear una nueva.
+            Restablece la instancia a null, permitiendo crear una nueva. Solo se utiliza en los tests.
             </summary>
         </member>
         <member name="M:Library.Facade.#ctor">
             <summary>
             Constructor de la clase Facade.
             Inicializa las listas de espera y de juegos.
+            Es privado para impedir que otras clases puedan crear instancias
             </summary>
         </member>
         <member name="M:Library.Facade.ChooseTeam(System.String,System.String)">
@@ -519,6 +550,7 @@
             </summary>
             <param name="playerName">Nombre del jugador que inicia la batalla.</param>
             <param name="opponentName">Nombre del oponente (opcional).</param>
+            <param name="strategyStartingPlayer"> La estrategia que determinará el jugador inicial</param>
             <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
         </member>
         <member name="M:Library.Facade.ShowCatalogue">
@@ -547,6 +579,14 @@
             </summary>
             <param name="playerName">Nombre del jugador.</param>
             <returns><c>string</c> con el nombre de los Pokemons agregados.</returns>
+        </member>
+        <member name="M:Library.Facade.EditDamageCalculatorStrategy(System.String,Library.Strategies.IStrategyCritCheck)">
+            <summary>
+            
+            </summary>
+            <param name="playerName"> Nombre del jugador </param>
+            <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
+            <returns></returns>
         </member>
         <member name="T:Library.FullHealth">
             <summary>
@@ -669,6 +709,18 @@
             <param name="checkPlayer"> El jugador a buscar</param>
             <returns> <c>true</c> si lo encontró, <c>false</c> en caso contrario </returns>
         </member>
+        <member name="M:Library.Game.BothPlayersHaveChoosenTeam">
+            <summary>
+            Revisa si ambos jugadores completaron sus equipos.
+            </summary>
+            <returns><c>true</c> si ambos están completos, <c>false</c> en caso contrario</returns>
+        </member>
+        <member name="M:Library.Game.SetDamageCalculatorStrategy(Library.Strategies.IStrategyCritCheck)">
+            <summary>
+            Permite cambiar la estrategia que contiene la calculadora de daño, solo se usa en los tests.
+            </summary>
+            <param name="strategyCritCheck"> La estrategia elegida para determinar los golpes críticos</param>
+        </member>
         <member name="T:Library.GameList">
             <summary>
             Esta clase representa la lista de partidas en curso.
@@ -718,6 +770,23 @@
             <summary>
             Devuelve la lista de partidas.
             </summary>
+        </member>
+        <member name="T:Library.Gastrodon">
+            <summary>
+            Esta clase representa el Pokemon Gastrodon.
+            Al ser un Pokemon hereda de la clase  <see cref="T:Library.Pokemon"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Gastrodon.#ctor">
+            <summary>
+            Constructor de Gastrodon, implementa el patron GRASP creator.
+            </summary>
+        </member>
+        <member name="M:Library.Gastrodon.Instance">
+            <summary>
+            Este método retorna una copia del pokemon aplicando así, el patrón prototype.
+            </summary>
+            <returns><c>Pokemon</c> del subtipo <c>Gastrodon</c></returns>
         </member>
         <member name="T:Library.Gengar">
             <summary>
@@ -1217,12 +1286,24 @@
             <summary>
             Este método se encarga de definir como va a funcionar esta estrategia, cada estrategia implementa su propia funcionalidad
             </summary>
-            <returns><c> Un valor <c>double</c> determinando si el golpe fue crítico o no </c></returns>
+            <returns>Un valor <c>double</c> determinando si el golpe fue crítico o no</returns>
+        </member>
+        <member name="T:Library.Strategies.IStrategyStartingPlayer">
+            <summary>
+            Esta interfaz es utilizada para poder aplicar el patrón strategy,
+            sirve para definir diferentes resultados al momento de verificar que jugador va a tener el primer turno
+            </summary>
+        </member>
+        <member name="M:Library.Strategies.IStrategyStartingPlayer.StartingPlayer">
+            <summary>
+            Este método se encarga de definir como va a funcionar esta estrategia, cada estrategia implementa su propia funcionalidad
+            </summary>
+            <returns>Un valor <c>int</c> que va a ser usado como índice de la lista de jugadores para determinar que jugador tiene el primer turno</returns>
         </member>
         <member name="T:Library.Strategies.StrategyAlwaysCrit">
             <summary>
             Esta clase representa una estrategia que determina el daño crítico hecho por el ataque de un pokemon.
-            Al ser una estrategia que determina el daño crítico, hereda de la clase  <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
+            Al ser una estrategia que determina el daño crítico, implementa la interfaz <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
             </summary>
         </member>
         <member name="M:Library.Strategies.StrategyAlwaysCrit.CriticalCheck">
@@ -1234,19 +1315,43 @@
         <member name="T:Library.Strategies.StrategyNonCrit">
             <summary>
             Esta clase representa una estrategia que determina el daño crítico hecho por el ataque de un pokemon.
-            Al ser una estrategia que determina el daño crítico, hereda de la clase  <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
+            Al ser una estrategia que determina el daño crítico, implementa la interfaz <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
             </summary>
         </member>
         <member name="M:Library.Strategies.StrategyNonCrit.CriticalCheck">
             <summary>
-            El método de esta estrategia siempre va a determinar que todos los ataques hechos por un pokemon son críticos.
+            El método de esta estrategia siempre va a determinar que todos los ataques hechos por un pokemon no sean críticos.
             </summary>
-            <returns>Un valor <c>double</c>: <c>1.20</c>. Determinando así que el golpe nunca es crítico</returns>
+            <returns>Un valor <c>double</c>: <c>1.0</c>. Determinando así que el golpe nunca es crítico</returns>
+        </member>
+        <member name="T:Library.Strategies.StrategyPlayerOneStart">
+            <summary>
+            Esta clase representa una estrategia que determina quién va a ser el jugador que tenga el primer turno.
+            Al ser una estrategia que determina quién va a ser el jugador que tenga el primer turno, implementa la interfaz <see cref="T:Library.Strategies.IStrategyStartingPlayer"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Strategies.StrategyPlayerOneStart.StartingPlayer">
+            <summary>
+            El método de esta estrategia siempre va a determinar que el primer jugador en la lista de la partida comienza.
+            </summary>
+            <returns><c>int</c> 0 representando el primer elemento de la lista</returns>
+        </member>
+        <member name="T:Library.Strategies.StrategyPlayerTwoStart">
+            <summary>
+            Esta clase representa una estrategia que determina quién va a ser el jugador que tenga el primer turno.
+            Al ser una estrategia que determina quién va a ser el jugador que tenga el primer turno, implementa la interfaz <see cref="T:Library.Strategies.IStrategyStartingPlayer"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Strategies.StrategyPlayerTwoStart.StartingPlayer">
+            <summary>
+            El método de esta estrategia siempre va a determinar que el segundo jugador en la lista de la partida comienza.
+            </summary>
+            <returns><c>int</c> 0 representando el primer elemento de la lista</returns>
         </member>
         <member name="T:Library.Strategies.StrategyRandomCrit">
             <summary>
             Esta clase representa una estrategia que determina el daño crítico hecho por el ataque de un pokemon.
-            Al ser una estrategia que determina el daño crítico, hereda de la clase  <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
+            Al ser una estrategia que determina el daño crítico, implementa la interfaz <see cref="T:Library.Strategies.IStrategyCritCheck"/>.
             </summary>
         </member>
         <member name="M:Library.Strategies.StrategyRandomCrit.CriticalCheck">
@@ -1257,6 +1362,18 @@
             Un valor <c>double</c>: <c>1.20</c> si el ataque es crítico (10% de probabilidad), 
             o <c>1.0</c> si no es crítico.
             </returns> 
+        </member>
+        <member name="T:Library.Strategies.StrategyRandomStartingPlayer">
+            <summary>
+            Esta clase representa una estrategia que determina quién va a ser el jugador que tenga el primer turno.
+            Al ser una estrategia que determina quién va a ser el jugador que tenga el primer turno, implementa la interfaz <see cref="T:Library.Strategies.IStrategyStartingPlayer"/>.
+            </summary>
+        </member>
+        <member name="M:Library.Strategies.StrategyRandomStartingPlayer.StartingPlayer">
+            <summary>
+            El método de esta estrategia siempre va a determinar aleatoriamente qué jugador en la lista de la partida comienza.
+            </summary>
+            <returns><c>int</c> <c>0</c>  o <c>1</c>. Representando el primer y segundo elemento de la lista de jugadores</returns>
         </member>
         <member name="T:Library.SuperPotion">
             <summary>

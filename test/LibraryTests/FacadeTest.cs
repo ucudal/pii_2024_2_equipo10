@@ -309,6 +309,9 @@ public class FacadeTest
         Assert.That(expected, Is.EqualTo("Próximo turno, ahora es el turno de ines"));
     }
     
+    /// <summary>
+    /// Verifica que se muestre un mensaje indicando 
+    /// </summary>
     [Test]
     public void TestUserStory6WinnerTest()
     {

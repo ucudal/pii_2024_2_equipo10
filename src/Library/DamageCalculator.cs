@@ -6,8 +6,10 @@ using Library.Strategies;
 
 namespace Library;
 
-// Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
-// Es la clase Experta al momento de calcular daño
+/// <summary>
+/// Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene una única responsabilidad
+/// Es la clase Experta al momento de calcular daño
+/// </summary>
 public class DamageCalculator
 {
     private IStrategyCritCheck StrategyCritCheck { get; set; }
@@ -124,6 +126,9 @@ public class DamageCalculator
         }
     }
 
+    /// <summary>
+    /// Contstructor de la clase DamageCalculator. Aplica el patrón Grasp Creator al asignar una estrategia predefinida.
+    /// </summary>
     public DamageCalculator()
     {
         StrategyCritCheck = new StrategyRandomCrit();
@@ -254,6 +259,10 @@ public class DamageCalculator
         return "El ataque falló y no produjo daño\n";
     }
 
+    /// <summary>
+    /// Asigna una estrategia para el cálculo de daño crítico.
+    /// </summary>
+    /// <param name="strategy"> Estrategia a asignar </param>
     public void SetCritCheckStategy(IStrategyCritCheck strategy)
     {
         this.StrategyCritCheck = strategy;

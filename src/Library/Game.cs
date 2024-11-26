@@ -305,12 +305,20 @@ public class Game
         return false;
     }
 
+    /// <summary>
+    /// Revisa si ambos jugadores completaron sus equipos.
+    /// </summary>
+    /// <returns><c>true</c> si ambos están completos, <c>false</c> en caso contrario</returns>
     public bool BothPlayersHaveChoosenTeam()
     {
         return Players[ActivePlayer].GetPokemonTeam().Count == 6 &&
                Players[(ActivePlayer + 1) % 2].GetPokemonTeam().Count == 6;
     }
     
+    /// <summary>
+    /// Permite cambiar la estrategia que contiene la calculadora de daño, solo se usa en los tests.
+    /// </summary>
+    /// <param name="strategyCritCheck"> La estrategia elegida para determinar los golpes críticos</param>
     public void SetDamageCalculatorStrategy(IStrategyCritCheck strategyCritCheck)
     {
         GameDamageCalculator.SetCritCheckStategy(strategyCritCheck);
