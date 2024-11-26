@@ -19,21 +19,6 @@
             Test del atributo Power en 0.
             </summary>
         </member>
-        <member name="M:LibraryTests.AttackTest.TestNullName">
-            <summary>
-            Test del nombre nulo
-            </summary>
-        </member>
-        <member name="M:LibraryTests.AttackTest.TestInvalidAccuracy">
-            <summary>
-            Test de Accuracy invalido.
-            </summary>
-        </member>
-        <member name="M:LibraryTests.AttackTest.TestInvalidPower">
-            <summary>
-            Test de Power invalido.
-            </summary>
-        </member>
         <member name="T:LibraryTests.CaterpieTest">
             <summary>
             Test de la clase <see cref="T:Library.Caterpie"/>

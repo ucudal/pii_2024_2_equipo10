@@ -245,12 +245,12 @@ public class DamageCalculator
             {
                 if(attackedPlayer.SetActivePokemon())
                     return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" + effectivnessCheck + criticalCheck + specialResult +
-                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPlayer.Name}";
+                       $"PERECIÓ :'( \n\n{attackedPlayer.ActivePokemon.Name} es el nuevo Pokemon activo de {attackedPlayer.Name} \n";
                 return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño\n" +
-                       effectivnessCheck + criticalCheck + specialResult + "PERECIÓ :'( ";
+                       effectivnessCheck + criticalCheck + specialResult + "PERECIÓ :'( "+"\n";
             }
                 
-            return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult;
+            return $"El {attackedPokemon.Name} de {attackedPlayer.Name} recibió {damage} puntos de daño.\n" + effectivnessCheck + criticalCheck + specialResult + "\n";
         }
         return "El ataque falló y no produjo daño\n";
     }

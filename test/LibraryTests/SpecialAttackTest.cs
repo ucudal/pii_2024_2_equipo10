@@ -26,7 +26,8 @@ public class SpecialAttackTest
         SpecialAttack lanzallamas = new SpecialAttack("lanzallamas", Library.Type.Fire, 1, 40, Library.State.Burned);
         Gengar gengar = new Gengar();
         player.AddToTeam(gengar);
-        //DamageCalculator.Instance.CalculateDamage(gengar,lanzallamas, player);
+        DamageCalculator damageCalculator = new DamageCalculator();
+        damageCalculator.CalculateDamage(gengar,lanzallamas, player);
         Assert.That(lanzallamas.SpecialEffect.Equals(gengar.CurrentState));
 
     }

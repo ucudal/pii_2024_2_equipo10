@@ -15,7 +15,7 @@ public class GameListTest
     private Player player2;
     private Player player3;
     private Player player4;
-    private IStrategyStartingPlayer StrategyStartingPlayer { get; set; } = new StrategyRandomStartingPlayer();
+    private IStrategyStartingPlayer StrategyStartingPlayer { get; } = new StrategyRandomStartingPlayer();
     [SetUp]
     public void SetUp()
     {

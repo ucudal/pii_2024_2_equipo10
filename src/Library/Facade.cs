@@ -215,12 +215,6 @@ public class Facade
             return $"El ataque {attackName} no pudo ser encontrado";
         }
 
-        Game actualGame = GameList.FindGameByPlayer(player);
-        if (actualGame == null)
-        {
-            return "Esa partida no está en curso";
-        }
-
         foreach (Game game in GameList.GetGameList())
         {
             if (game.CheckPlayerInGame(player))
