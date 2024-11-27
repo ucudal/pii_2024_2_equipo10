@@ -15,7 +15,7 @@ También, no tuvimos complicaciones mayores al momento de integrar el bot de dis
 
 Aprendimos a utilizar los patrones "Prototype" y "Strategy" los cuales fueron muy útiles para el funcionamiento y testeo del bot. Además de aprender como hacer que el bot mande un mensaje apenas este se conecte.
 
-##¿Qué recursos (páginas web, libros, foros, etc) encontraron que les fueron valiosos para sortear los desafíos que encontraron?##
+## ¿Qué recursos (páginas web, libros, foros, etc) encontraron que les fueron valiosos para sortear los desafíos que encontraron? ##
 
 Nuestros principales recursos fueron:
 
