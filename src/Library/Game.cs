@@ -31,7 +31,13 @@ public class Game
     /// Calculadora de daño, encargada de realizar los cálculos de daño.
     /// </summary>
     private DamageCalculator GameDamageCalculator { get; } = new DamageCalculator();
-
+    
+    public List<Type> RestrictedTypes { get; } = new List<Type>();
+    
+    public List<Pokemon> RestrictedPokemons { get; } = new List<Pokemon>();
+    
+    public List<IItem> RestrictedItems { get; } = new List<IItem>();
+    
     /// <summary>
     /// Constructor de la clase. Agrega a los jugadores a la partida y según su estrategia determinará cuál de los jugadores tiene el primer turno. Inicializa el contador de turnos en 0.
     /// </summary>
@@ -332,5 +338,93 @@ public class Game
     public void SetDamageCalculatorStrategy(IStrategyCritCheck strategyCritCheck)
     {
         GameDamageCalculator.SetCritCheckStategy(strategyCritCheck);
+    }
+
+    /// <summary>
+    /// Agrega una resticción.
+    /// </summary>
+    /// <param name="type"> Tipo a restringir.</param>
+    /// <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+    public bool AddRestriction(Type type)
+    {
+        if (this.RestrictedTypes.Contains(type))
+        {
+            return false;
+        }
+        this.RestrictedTypes.Add(type);
+        return true;
+    }
+    
+    /// <summary>
+    /// Agrega una resticción.
+    /// </summary>
+    /// <param name="pokemon"> Pokemon a restringir.</param>
+    /// <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+    public bool AddRestriction(Pokemon pokemon)
+    {
+        if (this.RestrictedPokemons.Contains(pokemon))
+        {
+            return false;
+        }
+        this.RestrictedPokemons.Add(pokemon);
+        return true;
+    }
+    
+    /// <summary>
+    /// Agrega una resticción.
+    /// </summary>
+    /// <param name="item"> Item a restringir.</param>
+    /// <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+    public bool AddRestriction(IItem item)
+    {
+        if (this.RestrictedItems.Contains(item))
+        {
+            return false;
+        }
+        this.RestrictedItems.Add(item);
+        return true;
+    }
+    
+    /// <summary>
+    /// Chequea si está restringido.
+    /// </summary>
+    /// <param name="type">Tipo a chequear si está restringido.</param>
+    /// <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
+    public bool IsRestricted(Type type)
+    {
+        if (this.RestrictedTypes.Contains(type))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// Chequea si está restringido.
+    /// </summary>
+    /// <param name="pokemon">Pokemon a chequear si está restringido.</param>
+    /// <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
+    public bool IsRestricted(Pokemon pokemon)
+    {
+        if (this.RestrictedPokemons.Contains(pokemon))
+        {
+            return true;
+        }
+        return false;
+    }
+    
+    /// <summary>
+    /// Chequea si está restringido.
+    /// </summary>
+    /// <param name="item">Item a chequear si está restringido.</param>
+    /// <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
+    public bool IsRestricted(IItem item)
+    {
+        foreach (IItem restrictedItem in this.RestrictedItems)
+        {
+            if (item.Name == restrictedItem.Name)
+                return true;
+        }
+        return false;
     }
 }

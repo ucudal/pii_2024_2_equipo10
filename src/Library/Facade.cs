@@ -27,6 +27,8 @@ public class Facade
 
     private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
 
+    private List<Type> Types { get; } = new List<Type>();
+
     /// <summary>
     /// Crea una nueva instancia de la clase Fachada si aún no existe. Implementando así el patrón singleton
     /// </summary>
@@ -60,6 +62,21 @@ public class Facade
     {
         this.WaitingList = new WaitingList();
         this.GameList = new GameList();
+        this.Types.Add(Type.Dragon);
+        this.Types.Add(Type.Bug);
+        this.Types.Add(Type.Electric);
+        this.Types.Add(Type.Fighting);
+        this.Types.Add(Type.Fire);
+        this.Types.Add(Type.Flying);
+        this.Types.Add(Type.Ghost);
+        this.Types.Add(Type.Grass);
+        this.Types.Add(Type.Ground);
+        this.Types.Add(Type.Ice);
+        this.Types.Add(Type.Normal);
+        this.Types.Add(Type.Poison);
+        this.Types.Add(Type.Psychic);
+        this.Types.Add(Type.Rock);
+        this.Types.Add(Type.Water);
     }
     
     /// <summary>
@@ -72,7 +89,7 @@ public class Facade
     public string ChooseTeam(string playerName, string pokemonName)
     {
         Player player = GameList.FindPlayerByName(playerName);
-
+        Game game = GameList.FindGameByPlayer(player);
         if (player == null)
             return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
 
@@ -84,6 +101,8 @@ public class Facade
             {
                 if (pokemon.Name == pokemonName)
                 {
+                    if (game.IsRestricted(pokemon) || game.IsRestricted(pokemon.GetTypes()[0]))
+                        return $"{playerName}, {pokemon.Name} está restringido.";
                     Pokemon newPokemon = pokemon.Instance();
                     player.AddToTeam(newPokemon);
                     if (player.TeamCount == 6)
@@ -348,10 +367,9 @@ public class Facade
     /// <param name="item">Nombre del item a usar.</param>
     /// <param name="pokemon">Nombre del Pokemon objetivo.</param>
     /// <returns>Resultado del uso del item <c>string</c>.</returns>
-    public string UseAnItem(string playerName, string item, string pokemon)
+    public string UseAnItem(string playerName, string itemName, string pokemon)
     {
         Player player = GameList.FindPlayerByName(playerName);
-        
         if (player == null)
         {
             return $"El jugador {playerName} no está en ninguna partida.";
@@ -363,6 +381,17 @@ public class Facade
         {
             return "Partida inexistente.";
         }
+
+        foreach (IItem item in player.GetItemList())
+        {
+            if (item.Name == itemName)
+            {
+                if (game.IsRestricted(item))
+                {
+                    return $"El item {itemName} está prohibido.";
+                }
+            }
+        }
         
         if (game.GetPlayers()[game.ActivePlayer].Name == playerName)
         {
@@ -371,7 +400,7 @@ public class Facade
                 return "Ambos jugadores no han seleccionado 6 pokemones para iniciar el combate";
             }
 
-            string result = game.UseItem(player.FindItem(item), player.FindPokemon(pokemon));
+            string result = game.UseItem(player.FindItem(itemName), player.FindPokemon(pokemon));
             if (result.Contains("éxito"))
             {
                 string nextTurn = game.NextTurn();
@@ -511,9 +540,10 @@ public class Facade
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
-    public  string ShowCatalogue()
+    public  string ShowCatalogue(string playerName)
     {
-        return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
+        Game game = GameList.FindGameByPlayer(GameList.FindPlayerByName(playerName));
+        return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue(game);
     }
 
     /// <summary>
@@ -546,12 +576,13 @@ public class Facade
     public  string ShowItems(string playerName)
     {
         Player? player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
         if (GameList.FindGameByPlayer(player) == null)
             return $"{playerName}, no estás en una partida.";
         string result = $"{playerName}, estos son tus items disponibles:\n";
         List<string> repeatedItems = new List<string>();
         foreach (IItem item in player.GetItemList())
-            if (!repeatedItems.Contains(item.Name))
+            if (!repeatedItems.Contains(item.Name) && !game.IsRestricted(item))
                 if (player.ItemCount(item.Name) != 0)
                 {
                     result += player.ItemCount(item.Name) + " " + item.Name + "\n";
@@ -595,7 +626,7 @@ public class Facade
     /// <param name="playerName"> Nombre del jugador </param>
     /// <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
     /// <returns></returns>
-    public  string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
+    public string EditDamageCalculatorStrategy(string playerName, IStrategyCritCheck strategyCritCheck)
     {
         Player? player = GameList.FindPlayerByName(playerName);
         if (player == null)
@@ -607,5 +638,47 @@ public class Facade
         GameList.RemoveGame(game);
         GameList.GetGameList().Add(game);
         return "Estrategia de daño crítico ha sido modificada";
+    }
+
+    /// <summary>
+    /// Agrega una restriccion a la partida del jugador.
+    /// </summary>
+    /// <param name="playerName">Nombre del jugador.</param>
+    /// <param name="newRestriction">Nombre de la nueva restricción.</param>
+    /// <returns>Si se pudo o no realizar la restricción.</returns>
+    public string NewRestriction(string playerName, string newRestriction)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
+        bool result = false;
+        if (game == null)
+            return $"{playerName}, no estás en una partida";
+        
+        foreach (Type type in Types)
+        {
+            if (newRestriction == type.ToString())
+            {
+                result = game.AddRestriction(type);
+            }
+        }
+        
+        foreach (Pokemon pokemon in Pokedex.PokemonList)
+        {
+            if (pokemon.Name == newRestriction)
+            {
+                result = game.AddRestriction(pokemon);
+            }
+        }
+
+        foreach (IItem item in player.GetItemList())
+        {
+            if (item.Name == newRestriction)
+            {
+                result = game.AddRestriction(item);
+            }
+        }
+        if (result)
+            return  $"{newRestriction} ha sido prohibido.";;
+        return $"{newRestriction} no existe o ya ha sido prohibido previamente";
     }
 }

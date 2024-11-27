@@ -79,12 +79,21 @@ public class PokemonCatalogue
     /// Devuelve el nombre de todos los Pokemons en el catálogo. 
     /// </summary>
     /// <returns><c>string</c></returns>
-    public string ShowCatalogue()
+    public string ShowCatalogue(Game game)
     {
         string pokemonsAvailable = "";
+        if (game == null)
+        {
+            foreach (Pokemon pokemon in this.PokemonList)
+            {
+                pokemonsAvailable += pokemon.Name +"\n";
+            }
+            return pokemonsAvailable;
+        }
         foreach (Pokemon pokemon in this.PokemonList)
         {
-            pokemonsAvailable += pokemon.Name +"\n";
+            if(!game.IsRestricted(pokemon))
+                pokemonsAvailable += pokemon.Name +"\n";
         }
         return pokemonsAvailable;
     }

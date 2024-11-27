@@ -645,4 +645,31 @@ public class FacadeTest
         Assert.That(Facade.Instance.EditDamageCalculatorStrategy("Facu",new StrategyNonCrit()),Is.EqualTo("Estrategia de daño crítico ha sido modificada"));
     }
 
+    [Test]
+    public void TestNewRestriction()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("pepe");
+        Facade.Instance.StartGame("mateo", "pepe", new StrategyPlayerOneStart());
+        Assert.That(Facade.Instance.NewRestriction("mateo", "pokemon inexistente"), 
+            Is.EqualTo("pokemon inexistente no existe o ya ha sido prohibido previamente"));
+        
+        Assert.That(Facade.Instance.NewRestriction("mateo", "Pikachu"), 
+            Is.EqualTo("Pikachu ha sido prohibido."));
+        
+        Assert.That(Facade.Instance.ChooseTeam("mateo", "Pikachu"), 
+            Is.EqualTo("mateo, Pikachu está restringido."));
+        
+        Assert.That(Facade.Instance.NewRestriction("mateo", "Super Potion"), 
+            Is.EqualTo("Super Potion ha sido prohibido."));
+
+        Facade.Instance.ChooseTeam("mateo", "Charizard");
+        Facade.Instance.ChooseRandom("mateo");
+        Facade.Instance.ChooseRandom("pepe");
+        Assert.That(Facade.Instance.UseAnItem("mateo", "Super Potion", "Charizard"), 
+            Is.EqualTo("El item Super Potion está prohibido."));
+        
+        Assert.That(Facade.Instance.NewRestriction("mateo", "Fire"),
+            Is.EqualTo("Fire ha sido prohibido."));
+    }
 }

@@ -572,7 +572,7 @@
             <param name="strategyStartingPlayer"> La estrategia que determinará el jugador inicial</param>
             <returns> <c>string</c> indicando si la batalla comenzó o si hubo algún error.</returns>
         </member>
-        <member name="M:Library.Facade.ShowCatalogue">
+        <member name="M:Library.Facade.ShowCatalogue(System.String)">
             <summary>
             Muestra el catálogo de Pokemon disponibles.
             </summary>
@@ -606,6 +606,14 @@
             <param name="playerName"> Nombre del jugador </param>
             <param name="strategyCritCheck"> La estrategia que determinará el cálculo de daño crítico de la calculadora</param>
             <returns></returns>
+        </member>
+        <member name="M:Library.Facade.NewRestriction(System.String,System.String)">
+            <summary>
+            Agrega una restriccion a la partida del jugador.
+            </summary>
+            <param name="playerName">Nombre del jugador.</param>
+            <param name="newRestriction">Nombre de la nueva restricción.</param>
+            <returns>Si se pudo o no realizar la restricción.</returns>
         </member>
         <member name="T:Library.FullHealth">
             <summary>
@@ -756,6 +764,48 @@
             Permite cambiar la estrategia que contiene la calculadora de daño, solo se usa en los tests.
             </summary>
             <param name="strategyCritCheck"> La estrategia elegida para determinar los golpes críticos</param>
+        </member>
+        <member name="M:Library.Game.AddRestriction(Library.Type)">
+            <summary>
+            Agrega una resticción.
+            </summary>
+            <param name="type"> Tipo a restringir.</param>
+            <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+        </member>
+        <member name="M:Library.Game.AddRestriction(Library.Pokemon)">
+            <summary>
+            Agrega una resticción.
+            </summary>
+            <param name="pokemon"> Pokemon a restringir.</param>
+            <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+        </member>
+        <member name="M:Library.Game.AddRestriction(Library.IItem)">
+            <summary>
+            Agrega una resticción.
+            </summary>
+            <param name="item"> Item a restringir.</param>
+            <returns><c>true</c> si se concretó la restricción. <c>false</c> si había sido restringido previamente.</returns>
+        </member>
+        <member name="M:Library.Game.IsRestricted(Library.Type)">
+            <summary>
+            Chequea si está restringido.
+            </summary>
+            <param name="type">Tipo a chequear si está restringido.</param>
+            <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
+        </member>
+        <member name="M:Library.Game.IsRestricted(Library.Pokemon)">
+            <summary>
+            Chequea si está restringido.
+            </summary>
+            <param name="pokemon">Pokemon a chequear si está restringido.</param>
+            <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
+        </member>
+        <member name="M:Library.Game.IsRestricted(Library.IItem)">
+            <summary>
+            Chequea si está restringido.
+            </summary>
+            <param name="item">Item a chequear si está restringido.</param>
+            <returns><c>true</c> si está restringido. <c>false</c> si no.</returns>
         </member>
         <member name="T:Library.GameList">
             <summary>
@@ -1229,7 +1279,7 @@
             Crea una instancia del catálogo si no existe una.
             </summary>
         </member>
-        <member name="M:Library.PokemonCatalogue.ShowCatalogue">
+        <member name="M:Library.PokemonCatalogue.ShowCatalogue(Library.Game)">
             <summary>
             Devuelve el nombre de todos los Pokemons en el catálogo. 
             </summary>

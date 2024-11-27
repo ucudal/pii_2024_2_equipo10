@@ -1,6 +1,7 @@
 using Library;
 using Library.Strategies;
 using NUnit.Framework;
+using Type = Library.Type;
 
 namespace LibraryTests;
 
@@ -65,5 +66,43 @@ public class GameTest
         Attack attack = new Attack("kamehameha", Library.Type.Electric, 1, 1000);
         game.ExecuteAttack(attack);
         Assert.That(game.Winner(), Is.EqualTo($"\nGanador: Player 2. Perdedor: Player 1"));
+    }
+
+    [Test]
+    public void TestAddTypeRestriction()
+    {
+        Game game = new Game(new Player("Player 1"), new Player("Player 2"), new StrategyRandomStartingPlayer());
+        game.AddRestriction(Type.Electric);
+        Assert.That(game.RestrictedTypes.Contains(Type.Electric));
+        Assert.That(!game.AddRestriction(Type.Electric));
+        
+        //chequeo que efectivamente este restringido.
+        Assert.That(game.IsRestricted(Type.Electric));
+    }
+    
+    [Test]
+    public void TestAddPokemonRestriction()
+    {
+        Game game = new Game(new Player("Player 1"), new Player("Player 2"), new StrategyRandomStartingPlayer());
+        Pokemon pokemon = new Charizard();
+        game.AddRestriction(pokemon);
+        Assert.That(game.RestrictedPokemons.Contains(pokemon));
+        Assert.That(!game.AddRestriction(pokemon));
+        
+        //chequeo que efectivamente este restringido.
+        Assert.That(game.IsRestricted(pokemon));
+    }
+    
+    [Test]
+    public void TestAddItemRestriction()
+    {
+        Game game = new Game(new Player("Player 1"), new Player("Player 2"), new StrategyRandomStartingPlayer());
+        IItem item = new SuperPotion();
+        game.AddRestriction(item);
+        Assert.That(game.RestrictedItems.Contains(item));
+        Assert.That(!game.AddRestriction(item));
+        
+        //chequeo que efectivamente este restringido.
+        Assert.That(game.IsRestricted(item));
     }
 }
