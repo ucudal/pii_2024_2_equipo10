@@ -17,16 +17,11 @@ public class PokemonCatalogue
     {
         get { return this.PokemonList.Count; }
     }
-
-    /// <summary>
-    /// Instancia del catálogo.
-    /// </summary>
-    private static PokemonCatalogue? _instance;
-
+    
     /// <summary>
     /// Crea las instancias de los Pokemons y los agrega a la lista.
     /// </summary>
-    private PokemonCatalogue()
+    public PokemonCatalogue()
     {
         Charizard charizard = new Charizard();
         Chikorita chikorita = new Chikorita();
@@ -59,21 +54,6 @@ public class PokemonCatalogue
 
     }
     
-    /// <summary>
-    /// Crea una instancia del catálogo si no existe una.
-    /// </summary>
-    public static PokemonCatalogue Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = new PokemonCatalogue();
-            }
-
-            return _instance;
-        }
-    }
     
     /// <summary>
     /// Devuelve el nombre de todos los Pokemons en el catálogo. 

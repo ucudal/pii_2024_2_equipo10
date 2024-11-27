@@ -22,6 +22,8 @@ public class Game
     /// </summary>
     public int TurnCount { get; private set; }
 
+    public Restrictions Restrictions { get; }
+    
     /// <summary>
     /// Estrategia que determina de que jugador es el primer turno
     /// </summary>
@@ -45,6 +47,7 @@ public class Game
         this.TurnCount = 0;
         this.StrategyStartingPlayer = strategyStartingPlayer;
         this.ActivePlayer = StartingPlayer();
+        this.Restrictions = new Restrictions();
     }
 
     /// <summary>
@@ -55,6 +58,8 @@ public class Game
         return Players;
     }
 
+    public PokemonCatalogue Pokedex { get; } = new PokemonCatalogue();
+
     /// <summary>
     /// Obtiene un valor aleatorio entre 0 y 1.
     /// </summary>
@@ -63,6 +68,94 @@ public class Game
     {
         return StrategyStartingPlayer.StartingPlayer();
     }
+    
+    public Pokemon? FindPokemon(string pokemonName)
+    {
+        foreach (Pokemon pokemon in Pokedex.PokemonList)
+        {
+            if (pokemon.Name == pokemonName)
+            {
+                return pokemon;
+            }
+        }
+
+        return null;
+    }
+
+    public string GetRestrictions()
+    {
+        string restrictions = "Tipos restringidos:\n";
+        
+        foreach (string type in Restrictions.RestrictedTypes)
+        {
+            restrictions += $"{type}\n";
+        }
+
+        restrictions += "Pokemons restringidos:\n";
+        foreach (Pokemon poke in Restrictions.RestrictedPokemons)
+        {
+            restrictions += $"{poke.Name}\n";
+        }
+
+        restrictions += "Items restringidos:\n";
+        foreach (IItem item in Restrictions.RestrictedItems)
+        {
+            restrictions += $"{item.Name}\n";
+        }
+
+        return restrictions;
+
+    }
+
+    
+    public void ApplyRestrictions()
+    {
+        foreach (string type in Restrictions.RestrictedTypes)
+        {
+            foreach (Pokemon poke in Pokedex.PokemonList)
+            {
+                foreach (Type typee in poke.GetTypes())
+                {
+                    if (typee.ToString() == type)
+                    {
+                        Pokedex.PokemonList.Remove(poke);
+
+                    }
+                }
+            }
+        }
+
+        foreach (Pokemon pokemon in Restrictions.RestrictedPokemons)
+        {
+            foreach (Pokemon poke in Pokedex.PokemonList)
+            {
+                if (poke.Name == pokemon.Name)
+                {
+                    Pokedex.PokemonList.Remove(poke);
+                }
+            }
+        }
+
+        foreach (IItem item in Restrictions.RestrictedItems)
+        {
+            foreach (Player player in Players)
+            {
+                foreach (IItem iitem in player.GetItemList())
+                {
+                    if (iitem.Name == item.Name)
+                    {
+                        while (player.ItemCount(item.Name) > 0)
+                        {
+                            player.GetItemList().Remove(item);
+                        }
+
+                    }
+                }
+            }   
+        }
+        
+    }
+    
     
     /// <summary>
     /// Verifica si el juego sigue en curso evaluando el nivel de vida de cada Pokemon para ambos jugadores.

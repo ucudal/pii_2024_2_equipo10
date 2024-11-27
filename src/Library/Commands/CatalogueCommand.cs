@@ -20,7 +20,8 @@ public class CatalogueCommand : ModuleBase<SocketCommandContext>
         """)]
     public async Task ExecuteAsync()
     { 
-        await ReplyAsync(Facade.Instance.ShowCatalogue());
+        string playerName = CommandHelper.GetDisplayName(Context);
+        await ReplyAsync(Facade.Instance.ShowCatalogue(playerName));
     }
 
 }

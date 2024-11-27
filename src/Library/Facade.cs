@@ -19,14 +19,7 @@ public class Facade
     /// Lista de partidas en curso.
     /// </summary>
     private GameList GameList { get; }
-
-    /// <summary>
-    /// Catalogo de Pokemons.
-    /// </summary>
-    //private  PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
-
-    private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
-
+    
     /// <summary>
     /// Crea una nueva instancia de la clase Fachada si aún no existe. Implementando así el patrón singleton
     /// </summary>
@@ -72,6 +65,7 @@ public class Facade
     public string ChooseTeam(string playerName, string pokemonName)
     {
         Player player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
 
         if (player == null)
             return $"{playerName}, para poder elegir un equipo, primero debes estar en una batalla";
@@ -80,7 +74,7 @@ public class Facade
         { 
             if (player.FindPokemonByName(pokemonName))
                 return $"El pokemon {pokemonName} ya está en el equipo de {playerName}, no puedes volver a añadirlo";
-            foreach (Pokemon pokemon in Pokedex.PokemonList)
+            foreach (Pokemon pokemon in game.Pokedex.PokemonList)
             {
                 if (pokemon.Name == pokemonName)
                 {
@@ -457,8 +451,139 @@ public class Facade
         GameList.AddGame(player, opponent, strategyStartingPlayer);
         Game game = GameList.FindGameByPlayer(player);
         string activePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
-        return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {activePlayerName}\n";
+        return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {activePlayerName}\n. Si deseas añadir restricciones puedes utilizar el comando !restric. \n";
     }
+
+    public bool FindType(string stringtype)
+    {
+        ///No supe como iterar sobre un enum, por eso esta lista hardcodeada. 
+        List<string> StringTypes = [Type.Bug.ToString(), Type.Dragon.ToString(), Type.Electric.ToString(), Type.Fighting.ToString(), 
+            Type.Fire.ToString(), Type.Flying.ToString(),Type.Ghost.ToString(), Type.Grass.ToString(), Type.Ground.ToString(), 
+            Type.Ice.ToString(), Type.Normal.ToString(), Type.Poison.ToString(),Type.Psychic.ToString(), Type.Rock.ToString(), Type.Water.ToString()];
+        
+        if (StringTypes.Contains(stringtype))
+        {
+            return true;
+        }
+
+        return false;
+    }
+    
+    
+    /// <summary>
+    /// Historia de usuario 12. Como entrenador quiero agregar restricciones de Tipos de Pokemons, Pokemons y Items a la batalla.
+    /// </summary>
+    public string AddGameRestrictions(string playerName, string restriction)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        
+        if (player == null)
+        {
+            return $"El jugador {playerName} no está en ninguna partida.";
+        }
+        
+        Game game = GameList.FindGameByPlayer(player);
+        
+        
+        if (game == null)
+        {
+            return "Partida inexistente.";
+        }
+
+        if (game.TurnCount != 0)
+        {
+            return "Solamente pueden añadirse restricciones al inicio de la partida";
+        }
+        
+        if (game.GetPlayers()[game.ActivePlayer].Name == playerName) //Se define que el jugador que comienza aleatoriamente la partida sera el unico que pueda agregar restricciones.
+        {
+            if (player.FindItem(restriction) != null)
+            {
+                game.Restrictions.AddRestriction(player.FindItem(restriction));
+                return "Restricción añadida";
+            }
+
+            if (game.FindPokemon(restriction) != null)
+            {
+                game.Restrictions.AddRestriction(game.FindPokemon(restriction));
+                return "Restricción añadida";
+            }
+
+            if (FindType(restriction))
+            {
+                game.Restrictions.AddRestriction(restriction);
+                return "Restricción añadida";
+            }
+
+            return "No logró encontrarse ese Pokemon, Item o Tipo.";
+        }
+
+        return $"{player.Name}, no eres el jugador activo, no puedes elegir las restricciones.";
+    }
+
+    public string AcceptRestrictions(string playerName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        
+        if (player == null)
+        {
+            return $"El jugador {playerName} no está en ninguna partida.";
+        }
+        
+        Game game = GameList.FindGameByPlayer(player);
+        
+        
+        if (game == null)
+        {
+            return "Partida inexistente.";
+        }
+
+        if (game.TurnCount != 0)
+        {
+            return "Solamente pueden aceptarse restricciones al inicio de la partida";
+        }
+
+        if (game.GetPlayers()[(game.ActivePlayer + 1) % 2].Name == playerName) //Se define que el jugador que NO comienza aleatoriamente la partida sera el unico que pueda aceptar restricciones.
+        {
+            game.ApplyRestrictions();
+            return $"Restricciones aceptadas correctamente.\n {game.GetRestrictions()}";
+        }
+        return $"{player.Name}, no te corresponde aceptar las restricciones.";
+    }
+    
+    public string RejectRestrictions(string playerName)
+    {
+        Player player = GameList.FindPlayerByName(playerName);
+        
+        if (player == null)
+        {
+            return $"El jugador {playerName} no está en ninguna partida.";
+        }
+        
+        Game game = GameList.FindGameByPlayer(player);
+        
+        
+        if (game == null)
+        {
+            return "Partida inexistente.";
+        }
+
+        if (game.TurnCount != 0)
+        {
+            return "Solamente pueden rechazarse restricciones al inicio de la partida";
+        }
+
+        if (game.GetPlayers()[(game.ActivePlayer + 1) % 2].Name == playerName) //Se define que el jugador que NO comienza aleatoriamente la partida sera el unico que pueda rechazar restricciones.
+        {
+            game.Restrictions.ClearRestrictions();
+            return "Restricciones aceptadas correctamente.";
+        }
+        return $"{player.Name}, no te corresponde aceptar las restricciones.";
+    }
+    
+    
+    
+    
     /// <summary>
     /// Historia de usuario 11.1:
     /// Inicia una batalla entre dos jugadores, eligiendo un oponente específico o un jugador
@@ -511,9 +636,12 @@ public class Facade
     /// Muestra el catálogo de Pokemon disponibles.
     /// </summary>
     /// <returns> <c>Lista</c> de Pokemon en el catálogo.</returns>
-    public  string ShowCatalogue()
+    public  string ShowCatalogue(string playerName)
     {
-        return "**Catalogo de Pokemons:**\n" + Pokedex.ShowCatalogue();
+        Player player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
+        
+        return "**Catalogo de Pokemons:**\n" + game.Pokedex.ShowCatalogue();
     }
 
     /// <summary>
@@ -568,17 +696,18 @@ public class Facade
     public  string ChooseRandom(string playerName)
     {
         Player player = GameList.FindPlayerByName(playerName);
+        Game game = GameList.FindGameByPlayer(player);
         if (player == null)
             return $"{playerName}, no estás en una partida.";
         if (player.TeamCount >= 6)
             return $"{playerName}, ya tienes un equipo completo de Pokémon.";
-        List<int> availablePokemonIndexes = Enumerable.Range(0, Pokedex.PokemonCount).ToList();
+        List<int> availablePokemonIndexes = Enumerable.Range(0, game.Pokedex.PokemonCount).ToList();
         Random random = new Random();
         string result = $"{playerName}, estos son los Pokemons elegidos aleatoriamente:\n";
         while (player.TeamCount < 6)
         {
             int randomIndex = random.Next(availablePokemonIndexes.Count);
-            Pokemon chosenPokemon = Pokedex.PokemonList[availablePokemonIndexes[randomIndex]];
+            Pokemon chosenPokemon = game.Pokedex.PokemonList[availablePokemonIndexes[randomIndex]];
 
             if (!player.FindPokemonByName(chosenPokemon.Name))
             {
