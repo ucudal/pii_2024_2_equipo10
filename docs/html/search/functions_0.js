@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['addattack_0',['AddAttack',['../classLibrary_1_1Pokemon.html#afb6abd5fc8418d94dbcad9bdc8820e33',1,'Library::Pokemon']]],
-  ['addgame_1',['AddGame',['../classLibrary_1_1GameList.html#acbab8e4b66af16b4ee5cd7b3669a5f82',1,'Library::GameList']]],
-  ['addplayer_2',['AddPlayer',['../classLibrary_1_1WaitingList.html#a47c96f30aa249140efbc4de70897c252',1,'Library::WaitingList']]],
-  ['addtoteam_3',['AddToTeam',['../classLibrary_1_1Player.html#aca63ec3547f91e79f9f5c22e366dec9f',1,'Library::Player']]],
-  ['attack_4',['Attack',['../classLibrary_1_1Attack.html#ab9d514e0369d223cd133d62f9c7422a1',1,'Library::Attack']]]
+  ['addattack_0',['AddAttack',['../classLibrary_1_1Pokemon.html#afb6abd5fc8418d94dbcad9bdc8820e33',1,'Library.Pokemon.AddAttack(IAttack attack)'],['../classLibrary_1_1Pokemon.html#afb6abd5fc8418d94dbcad9bdc8820e33',1,'Library.Pokemon.AddAttack(IAttack attack)']]],
+  ['addgame_1',['AddGame',['../classLibrary_1_1GameList.html#acbab8e4b66af16b4ee5cd7b3669a5f82',1,'Library.GameList.AddGame(Player player1, Player player2)'],['../classLibrary_1_1GameList.html#a45c0f28f038e39c006b22a98de193244',1,'Library.GameList.AddGame(Player player1, Player player2, IStrategyStartingPlayer strategyStartingPlayer)']]],
+  ['addplayer_2',['AddPlayer',['../classLibrary_1_1WaitingList.html#a47c96f30aa249140efbc4de70897c252',1,'Library.WaitingList.AddPlayer(string playerName)'],['../classLibrary_1_1WaitingList.html#a47c96f30aa249140efbc4de70897c252',1,'Library.WaitingList.AddPlayer(string playerName)']]],
+  ['addplayertowaitinglist_3',['AddPlayerToWaitingList',['../classLibrary_1_1Facade.html#ab8784ba49bab75ab95697412f7154c37',1,'Library.Facade.AddPlayerToWaitingList(string playerName)'],['../classLibrary_1_1Facade.html#a28c360b7b080e1dc99a7bab8aacea2d8',1,'Library.Facade.AddPlayerToWaitingList(string playerName)']]],
+  ['addtoteam_4',['AddToTeam',['../classLibrary_1_1Player.html#aca63ec3547f91e79f9f5c22e366dec9f',1,'Library.Player.AddToTeam(Pokemon pokemon)'],['../classLibrary_1_1Player.html#a89c81a80f17cad301cb264164f8e6490',1,'Library.Player.AddToTeam(Pokemon pokemon)']]],
+  ['asleepeffectdecreasesturnsandreturnstrue_5',['AsleepEffectDecreasesTurnsAndReturnsTrue',['../classLibraryTests_1_1StateLogicTest.html#ae05e3983460603c7cd9af708e5be1c7c',1,'LibraryTests::StateLogicTest']]],
+  ['asleepeffectisnotset_6',['AsleepEffectIsNotSet',['../classLibraryTests_1_1StateLogicTest.html#a77a74306f33c1cef3f1b2ce075e8837d',1,'LibraryTests::StateLogicTest']]],
+  ['asleepeffectwakespokemonandreturnsfalse_7',['AsleepEffectWakesPokemonAndReturnsFalse',['../classLibraryTests_1_1StateLogicTest.html#a2d056ee95b21771e97c6130591cad345',1,'LibraryTests::StateLogicTest']]],
+  ['attack_8',['Attack',['../classLibrary_1_1Attack.html#ab9d514e0369d223cd133d62f9c7422a1',1,'Library.Attack.Attack(string name, Type type, double accuracy, int power)'],['../classLibrary_1_1Attack.html#ab9d514e0369d223cd133d62f9c7422a1',1,'Library.Attack.Attack(string name, Type type, double accuracy, int power)']]]
 ];

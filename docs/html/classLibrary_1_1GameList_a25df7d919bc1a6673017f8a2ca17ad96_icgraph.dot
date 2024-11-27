@@ -1,0 +1,66 @@
+digraph "Library.GameList.RemoveGame"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.GameList.RemoveGame",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Elimina una partida de la lista de partidas."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Facade.CheckGame\lStatus",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a26ddb0a7ae0b909f2ded88a249a58aaa",tooltip="Historia de usuario 6: Comprueba el estado de una partida y determina si continúa o hay un ganador."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Facade.ChangePokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a8997a21e19d2a44cd060422768dfbddd",tooltip="Historia de usuario 7: Permite a un jugador activo cambiar su Pokemon actual durante su turno en una ..."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.Commands.ChangeCommand.\lExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1ChangeCommand.html#a7fa738b2d7cc6f9c0aac78740e7be862",tooltip="Envía a la fachada un mensaje con el nombre del Pokemon que el jugador seleccionó para ser su nuevo P..."];
+  Node3 -> Node5 [id="edge4_Node000003_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="LibraryTests.FacadeTest.\lTestUserStory6WinnerTest",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#aa848dbd02da950df82e2147a6a284abb",tooltip="Verifica que se muestre un mensaje indicando."];
+  Node3 -> Node6 [id="edge5_Node000003_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="LibraryTests.FacadeTest.\lTestUserStory7",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#aadc312a366fe3e403d4e63671454031c",tooltip="Test de la historia de usuario 7."];
+  Node3 -> Node7 [id="edge6_Node000003_Node000007",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="LibraryTests.FacadeTest.\lTestUserStory7NotInGame",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#add57cb11e369fb7a1488cb5a855a0dda",tooltip="Verifica que se muestra un mensaje de error si un jugador intenta cambiar su Pokemon activo sin estar..."];
+  Node2 -> Node8 [id="edge7_Node000002_Node000008",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="Library.Facade.ChooseAttack",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a654944afb774828780427cef30687c84",tooltip="Historia de usuario 4: Permite a un jugador elegir y ejecutar un ataque durante su turno en una parti..."];
+  Node8 -> Node9 [id="edge8_Node000008_Node000009",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node9 [id="Node000009",label="Library.Commands.AttackCommand.\lExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1AttackCommand.html#a348884af05a12f00e675e4438bb6b0ee",tooltip="Envía a la fachada un mensaje con el ataque a utilizar."];
+  Node8 -> Node10 [id="edge9_Node000008_Node000010",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node10 [id="Node000010",label="LibraryTests.FacadeTest.\lTestShowItems",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a90456bb6f0c4f16501499eefaa327dfd",tooltip="Verifica que los items disponibles de un jugador se muestren correctamente."];
+  Node8 -> Node11 [id="edge10_Node000008_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node11 [id="Node000011",label="LibraryTests.FacadeTest.\lTestUserStory3FullTeams",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#aac6a0d41eb91460778db5af54f63130b",tooltip="Verifica que cuando ambos jugadores tienen equipos completos, se puede muestrar el HP de los Pokemon ..."];
+  Node8 -> Node12 [id="edge11_Node000008_Node000012",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node12 [id="Node000012",label="LibraryTests.FacadeTest.\lTestUserStory4",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a2fe51ecedbe3ba492916233594b36d73",tooltip="Test de la historia de usuario 4."];
+  Node8 -> Node13 [id="edge12_Node000008_Node000013",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node13 [id="Node000013",label="LibraryTests.FacadeTest.\lTestUserStory4FullTeams",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a7b3d6724741172801da3d1894f315940",tooltip="Verifica que un jugador puede realizar un ataque solo si es el jugador activo y si el ataque existe e..."];
+  Node8 -> Node14 [id="edge13_Node000008_Node000014",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node14 [id="Node000014",label="LibraryTests.FacadeTest.\lTestUserStory4IncompleteTeams",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a270a6bd92ed46ac82aa45ad06ad24107",tooltip="Verifica que si alguno de los jugadores no tiene su equipo completo, no pueden realizarse ataques."];
+  Node8 -> Node15 [id="edge14_Node000008_Node000015",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node15 [id="Node000015",label="LibraryTests.FacadeTest.\lTestUserStory4Inmune",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#ac8d1246dbc158a1b08a951d64b6b3452",tooltip="Verifica que se puede realizar daño en base a las efectividades."];
+  Node8 -> Node16 [id="edge15_Node000008_Node000016",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node16 [id="Node000016",label="LibraryTests.FacadeTest.\lTestUserStory4NotVeryEffective",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a547153a9aa7c2ec004d557adad2453ca",tooltip="Verifica que se puede realizar daño en base a las efectividades."];
+  Node8 -> Node17 [id="edge16_Node000008_Node000017",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node17 [id="Node000017",label="LibraryTests.FacadeTest.\lTestUserStory4NullPlayer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a38ba04a79d940e3bad2c742b6243734e",tooltip="Verifica que un jugador no puede realizar un ataque si no está en una partida."];
+  Node8 -> Node18 [id="edge17_Node000008_Node000018",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node18 [id="Node000018",label="LibraryTests.FacadeTest.\lTestUserStory4SuperEffective\lAttack",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#af5515ac555b36a2ca31956045c2692a8",tooltip="Verifica que se puede realizar daño en base a las efectividades."];
+  Node8 -> Node19 [id="edge18_Node000008_Node000019",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node19 [id="Node000019",label="LibraryTests.FacadeTest.\lTestUserStory6",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a35433150a75ceba9bed321a7c37c8e9a",tooltip="Test de la historia de usuario 6."];
+  Node8 -> Node5 [id="edge19_Node000008_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node8 -> Node20 [id="edge20_Node000008_Node000020",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node20 [id="Node000020",label="LibraryTests.FacadeTest.\lTestUserStory8ExpectedUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#aac6e7e8d73bf8f1303e20064465bb8e1",tooltip="Verifica que el jugador activo pueda usar un item correctamente."];
+  Node2 -> Node19 [id="edge21_Node000002_Node000019",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node21 [id="edge22_Node000002_Node000021",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node21 [id="Node000021",label="LibraryTests.FacadeTest.\lTestUserStory6NullGame",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a449e40612f3960914c79b6196b20196c",tooltip="Verifica que se muestra un mensaje de error al corroborar el estado de una partida si la misma no se ..."];
+  Node2 -> Node22 [id="edge23_Node000002_Node000022",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node22 [id="Node000022",label="Library.Facade.UseAnItem",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#ac824fa926ae85650e174fad4cd2a738d",tooltip="Historia de usuario 8 Permite a un jugador usar un item en un Pokemon."];
+  Node1 -> Node23 [id="edge24_Node000001_Node000023",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node23 [id="Node000023",label="Library.Facade.EditDamage\lCalculatorStrategy",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a9809b5935c0b49409da62958cd65b597",tooltip="Este método se encarga de cambiar la estrategia asignada en la calculadora de daño...."];
+  Node23 -> Node11 [id="edge25_Node000023_Node000011",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node23 -> Node5 [id="edge26_Node000023_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node24 [id="edge27_Node000001_Node000024",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node24 [id="Node000024",label="Library.Facade.Surrender",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a4da326581139b7ba8ec08003e30b7b14",tooltip="Elimina la partida de la lista de partidas em curso."];
+  Node24 -> Node25 [id="edge28_Node000024_Node000025",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node25 [id="Node000025",label="Library.Commands.Surrender\lCommand.ExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1SurrenderCommand.html#a0c2a380d2d4324b1ae2b0994094c948a",tooltip="Termina la partida en curso dandole la victoria al oponente."];
+  Node24 -> Node26 [id="edge29_Node000024_Node000026",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node26 [id="Node000026",label="LibraryTests.FacadeTest.\lTestSurrender",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a59409b12f5f11ca59b1722c05da89de0",tooltip="Verifica que un jugador solo pueda rendirse si está en una partida activa."];
+  Node1 -> Node27 [id="edge30_Node000001_Node000027",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node27 [id="Node000027",label="LibraryTests.GameListTest.\lTestRemoveGame",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1GameListTest.html#ab3b3b6784694918a7c1f24da80ecc85f",tooltip="Verifica que el método RemoveGame elimina correctamente un juego de la lista de juegos y que no puede..."];
+}

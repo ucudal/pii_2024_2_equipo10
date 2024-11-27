@@ -1,0 +1,14 @@
+digraph "Library.Game.Game"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Library.Game.Game",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Constructor de la clase. Agrega a los jugadores a la partida y según su estrategia determinará cuál d..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Game.StartingPlayer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#abd80e606fec7d88f0cd70a89cb29b6b4",tooltip="Obtiene un valor aleatorio entre 0 y 1."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Strategies.IStrategy\lStartingPlayer.StartingPlayer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$interfaceLibrary_1_1Strategies_1_1IStrategyStartingPlayer.html#a522b2c296c6aa06cb8daf5db4472c5ab",tooltip="Este método se encarga de definir como va a funcionar esta estrategia, cada estrategia implementa su ..."];
+}

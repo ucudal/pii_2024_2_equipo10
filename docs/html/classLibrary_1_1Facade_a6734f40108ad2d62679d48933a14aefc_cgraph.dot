@@ -1,0 +1,18 @@
+digraph "Library.Facade.ShowAtacks"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Library.Facade.ShowAtacks",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Historia de usuario 2: Muestra los ataques disponibles del Pokemon activo de un jugador."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.GameList.FindPlayer\lByName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff",tooltip="Devuelve un jugador buscandolo por su nombre."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Game.GetPlayers",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#a1fb151121019847487457c48804a2ad4",tooltip="Obtiene la lista de jugadores de la partida."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.Player.GetPokemon\lAttacks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Player.html#a77e9a764b7c44e1b9e27c732038a7ded",tooltip="Devuelve un string con los nombres de todos los ataques del pokemon activo."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Library.Pokemon.GetAttacks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#a7d75c0e46aae96acbbeee27639f365b4",tooltip="Devuelve la lista de ataques del Pokemon."];
+}

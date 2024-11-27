@@ -1,0 +1,14 @@
+digraph "LibraryTests.GameTest.TestChangePokemon"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="LibraryTests.GameTest.Test\lChangePokemon",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Verifica que el método ChangePokemon cambia correctamente el Pokemon activo de un jugador durante la ..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Game.ChangePokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#a9dd5a455b44cc24f7f9a6e9bcdc37b69",tooltip="Cambia el Pokemon activo del jugador actual por otro de su equipo, verificando si el cambio es válido..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Player.SetActive\lPokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Player.html#a1dc483f61f95351bd3266c5f9663bfb1",tooltip="Cambia el pokemon activo si está vivo."];
+}

@@ -11,7 +11,10 @@ digraph "C:/Repos/pii_2024_2_equipo10/src/Library"
   subgraph clusterdir_f741251061e5c7c7ed48ab45c3348f11 {
     graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_f741251061e5c7c7ed48ab45c3348f11.html",tooltip=""]
     dir_f741251061e5c7c7ed48ab45c3348f11 [shape=plaintext, label="Library"];
+  dir_c008c50350ae5a8ff46a2d72b681473c [label="Commands", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_c008c50350ae5a8ff46a2d72b681473c.html",tooltip=""];
   dir_489a34f874ee199237b4241587f8b6f5 [label="obj", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_489a34f874ee199237b4241587f8b6f5.html",tooltip=""];
+  dir_f34ccfc2e84e060712e8a2693295cc54 [label="Services", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_f34ccfc2e84e060712e8a2693295cc54.html",tooltip=""];
+  dir_108adb7f52394b4be7b82306086f5ed3 [label="Strategies", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_108adb7f52394b4be7b82306086f5ed3.html",tooltip=""];
   }
   }
 }

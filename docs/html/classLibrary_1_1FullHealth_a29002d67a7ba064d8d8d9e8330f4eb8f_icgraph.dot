@@ -9,4 +9,8 @@ digraph "Library.FullHealth.Use"
   Node1 [id="Node000001",label="Library.FullHealth.Use",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Le quita cualquier estado negativo al Pokemon."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="LibraryTests.FullHealthTest.\lFullHealthCorrectUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FullHealthTest.html#a9647b8d51d0e1d9a61ee17feb8bc2ea4",tooltip="Test de pocion de curacion."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LibraryTests.FullHealthTest.\lFullHealthNullPokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FullHealthTest.html#a7012c7dc01031149d86ebdeed3bc690a",tooltip="Verifica que al intentar usar una FullHealth sobre un Pokemon nulo, el resultado sea nulo."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="LibraryTests.FullHealthTest.\lFullHealthUseOnHealthyPokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FullHealthTest.html#aea1efa1626c5fb3235041b34a82e56b5",tooltip="Verifica que al usar una FullHealth sobre un Pokemon sin estado negativo, el resultado sea un mensaje..."];
 }

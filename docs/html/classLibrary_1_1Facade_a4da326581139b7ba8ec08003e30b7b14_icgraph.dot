@@ -1,0 +1,14 @@
+digraph "Library.Facade.Surrender"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Facade.Surrender",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Elimina la partida de la lista de partidas em curso."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Commands.Surrender\lCommand.ExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1SurrenderCommand.html#a0c2a380d2d4324b1ae2b0994094c948a",tooltip="Termina la partida en curso dandole la victoria al oponente."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LibraryTests.FacadeTest.\lTestSurrender",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a59409b12f5f11ca59b1722c05da89de0",tooltip="Verifica que un jugador solo pueda rendirse si está en una partida activa."];
+}

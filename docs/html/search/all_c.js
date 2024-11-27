@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['plantilla_0',['Qué hay configurado en esta plantilla',['../md_C_1_2Repos_2pii__2024__2__equipo10_2README.html',1,'']]],
-  ['player_1',['Player',['../classLibrary_1_1Player.html',1,'Library.Player'],['../classLibrary_1_1Player.html#a52100c57bcecb1bf8044a0489dcc6575',1,'Library.Player.Player()']]],
-  ['pokemon_2',['Pokemon',['../classLibrary_1_1Pokemon.html',1,'Library.Pokemon'],['../classLibrary_1_1Pokemon.html#a2d63fcf1c1fc96d572fc20996a8a755f',1,'Library.Pokemon.Pokemon()']]],
-  ['power_3',['Power',['../classLibrary_1_1Attack.html#a415d3f2ab9e38d5def9c43ca901557d1',1,'Library::Attack']]]
+  ['name_0',['Name',['../classLibrary_1_1Attack.html#aaf1bf878f7e6827955ba95c05e73bf69',1,'Library.Attack.Name'],['../classLibrary_1_1FullHealth.html#a178ebe71fc3230e3de63fb15f20d4218',1,'Library.FullHealth.Name'],['../interfaceLibrary_1_1IAttack.html#a98f2c518cc7fc3042b19f84686467863',1,'Library.IAttack.Name'],['../interfaceLibrary_1_1IItem.html#ad20045382e11b86966a8d9e0d1d48934',1,'Library.IItem.Name'],['../classLibrary_1_1Player.html#ad38909add16eeffa279286032bd6d868',1,'Library.Player.Name'],['../classLibrary_1_1Pokemon.html#a8c423e4cf937eb89619ede98029a0735',1,'Library.Pokemon.Name'],['../classLibrary_1_1Revive.html#a7beb483b7a45d1a93868a575ed9d171f',1,'Library.Revive.Name'],['../classLibrary_1_1SuperPotion.html#a8ca740ecb19937e2da3ba93670bc7cc8',1,'Library.SuperPotion.Name']]],
+  ['nextturn_1',['NextTurn',['../classLibrary_1_1Game.html#a25e0e9d427c0b038062ad00141a493f7',1,'Library.Game.NextTurn()'],['../classLibrary_1_1Game.html#a71cc44489b1dc016e9be39903a1e38d2',1,'Library.Game.NextTurn()']]],
+  ['normal_2',['Normal',['../namespaceLibrary.html#a4957a30a7a794dd2546fd1082ad83609a960b44c579bc2f6818d2daaf9e4c16f0',1,'Library.Normal'],['../namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da960b44c579bc2f6818d2daaf9e4c16f0',1,'Library.Normal']]],
+  ['nullpokemontest_3',['NullPokemonTest',['../classLibraryTests_1_1SuperPotionTest.html#a526d5063ee58a185692f71924f5254bf',1,'LibraryTests::SuperPotionTest']]]
 ];

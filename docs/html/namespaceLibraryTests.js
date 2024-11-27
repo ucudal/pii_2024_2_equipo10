@@ -1,17 +1,25 @@
 var namespaceLibraryTests =
 [
+    [ "Strategies", "namespaceLibraryTests_1_1Strategies.html", "namespaceLibraryTests_1_1Strategies" ],
     [ "AttackTest", "classLibraryTests_1_1AttackTest.html", "classLibraryTests_1_1AttackTest" ],
     [ "CaterpieTest", "classLibraryTests_1_1CaterpieTest.html", "classLibraryTests_1_1CaterpieTest" ],
     [ "CharizardTest", "classLibraryTests_1_1CharizardTest.html", "classLibraryTests_1_1CharizardTest" ],
     [ "ChikoritaTest", "classLibraryTests_1_1ChikoritaTest.html", "classLibraryTests_1_1ChikoritaTest" ],
+    [ "DragoniteTest", "classLibraryTests_1_1DragoniteTest.html", "classLibraryTests_1_1DragoniteTest" ],
+    [ "EnteiTest", "classLibraryTests_1_1EnteiTest.html", "classLibraryTests_1_1EnteiTest" ],
     [ "FacadeTest", "classLibraryTests_1_1FacadeTest.html", "classLibraryTests_1_1FacadeTest" ],
     [ "FullHealthTest", "classLibraryTests_1_1FullHealthTest.html", "classLibraryTests_1_1FullHealthTest" ],
-    [ "GameTest", "classLibraryTests_1_1GameTest.html", null ],
+    [ "GameListTest", "classLibraryTests_1_1GameListTest.html", "classLibraryTests_1_1GameListTest" ],
+    [ "GameTest", "classLibraryTests_1_1GameTest.html", "classLibraryTests_1_1GameTest" ],
+    [ "GastrodonTest", "classLibraryTests_1_1GastrodonTest.html", "classLibraryTests_1_1GastrodonTest" ],
     [ "GengarTest", "classLibraryTests_1_1GengarTest.html", "classLibraryTests_1_1GengarTest" ],
     [ "HaxorusTest", "classLibraryTests_1_1HaxorusTest.html", "classLibraryTests_1_1HaxorusTest" ],
+    [ "HydreigonTest", "classLibraryTests_1_1HydreigonTest.html", "classLibraryTests_1_1HydreigonTest" ],
     [ "MewtwoTest", "classLibraryTests_1_1MewtwoTest.html", "classLibraryTests_1_1MewtwoTest" ],
     [ "ReviveTest", "classLibraryTests_1_1ReviveTest.html", "classLibraryTests_1_1ReviveTest" ],
     [ "SpecialAttackTest", "classLibraryTests_1_1SpecialAttackTest.html", "classLibraryTests_1_1SpecialAttackTest" ],
+    [ "StateLogicTest", "classLibraryTests_1_1StateLogicTest.html", "classLibraryTests_1_1StateLogicTest" ],
     [ "SuperPotionTest", "classLibraryTests_1_1SuperPotionTest.html", "classLibraryTests_1_1SuperPotionTest" ],
+    [ "WaitingListTest", "classLibraryTests_1_1WaitingListTest.html", "classLibraryTests_1_1WaitingListTest" ],
     [ "ZeraoraTest", "classLibraryTests_1_1ZeraoraTest.html", "classLibraryTests_1_1ZeraoraTest" ]
 ];

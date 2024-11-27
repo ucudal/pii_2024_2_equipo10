@@ -25,12 +25,20 @@
 var NAVTREE =
 [
   [ "Object Lifecycle", "index.html", [
+    [ "Qué hay configurado en esta plantilla", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html", [
+      [ "Convenciones", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html#autotoc_md1", null ],
+      [ "Dónde encontrar información sobre los errores/avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html#autotoc_md2", null ],
+      [ "Cómo deshabilitar temporalmente los avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html#autotoc_md3", [
+        [ "Roslyn Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html#autotoc_md4", null ],
+        [ "StyleCop Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2pii__2024__2__equipo10_2README.html#autotoc_md5", null ]
+      ] ]
+    ] ],
     [ "Qué hay configurado en esta plantilla", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html", [
-      [ "Convenciones", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md1", null ],
-      [ "Dónde encontrar información sobre los errores/avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md2", null ],
-      [ "Cómo deshabilitar temporalmente los avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md3", [
-        [ "Roslyn Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md4", null ],
-        [ "StyleCop Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md5", null ]
+      [ "Convenciones", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md7", null ],
+      [ "Dónde encontrar información sobre los errores/avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md8", null ],
+      [ "Cómo deshabilitar temporalmente los avisos al compilar", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md9", [
+        [ "Roslyn Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md10", null ],
+        [ "StyleCop Analyzer", "md_C_1_2Repos_2pii__2024__2__equipo10_2README.html#autotoc_md11", null ]
       ] ]
     ] ],
     [ "Packages", "namespaces.html", [
@@ -45,8 +53,8 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
-        [ "Functions", "functions_func.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Properties", "functions_prop.html", null ]
       ] ]
     ] ],
@@ -58,9 +66,13 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AttackTest_8cs_source.html",
-"classLibraryTests_1_1ZeraoraTest.html#a795661d38e354292a5af622212e144de",
-"namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da583d6a9fe10d672474e2cdca476113b7"
+"CatalogueCommand_8cs_source.html",
+"classLibraryTests_1_1FacadeTest.html#a35433150a75ceba9bed321a7c37c8e9a",
+"classLibraryTests_1_1MewtwoTest.html#a4cd7b9897b81bca8814b97dcaed00ca1",
+"classLibrary_1_1Commands_1_1SurrenderCommand.html",
+"classLibrary_1_1Player.html#a89c81a80f17cad301cb264164f8e6490",
+"functions.html",
+"src_2Library_2FullHealth_8cs_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

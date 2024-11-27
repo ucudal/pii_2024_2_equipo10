@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['power_0',['Power',['../classLibrary_1_1Attack.html#a415d3f2ab9e38d5def9c43ca901557d1',1,'Library::Attack']]]
+  ['name_0',['Name',['../classLibrary_1_1Attack.html#aaf1bf878f7e6827955ba95c05e73bf69',1,'Library.Attack.Name'],['../classLibrary_1_1FullHealth.html#a178ebe71fc3230e3de63fb15f20d4218',1,'Library.FullHealth.Name'],['../interfaceLibrary_1_1IAttack.html#a98f2c518cc7fc3042b19f84686467863',1,'Library.IAttack.Name'],['../interfaceLibrary_1_1IItem.html#ad20045382e11b86966a8d9e0d1d48934',1,'Library.IItem.Name'],['../classLibrary_1_1Player.html#ad38909add16eeffa279286032bd6d868',1,'Library.Player.Name'],['../classLibrary_1_1Pokemon.html#a8c423e4cf937eb89619ede98029a0735',1,'Library.Pokemon.Name'],['../classLibrary_1_1Revive.html#a7beb483b7a45d1a93868a575ed9d171f',1,'Library.Revive.Name'],['../classLibrary_1_1SuperPotion.html#a8ca740ecb19937e2da3ba93670bc7cc8',1,'Library.SuperPotion.Name']]]
 ];

@@ -1,0 +1,12 @@
+digraph "Library.Game.SpecialEffectExecute"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Game.SpecialEffect\lExecute",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Método que se encarga de verificar si los pokemones de los jugadores tienen los estados Burned (Quema..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Game.NextTurn",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#a71cc44489b1dc016e9be39903a1e38d2",tooltip="Avanza al siguiente turno del juego. Actualiza el contador de turnos, reduce el cooldown de los ataqu..."];
+}

@@ -1,16 +1,31 @@
 var classLibrary_1_1Game =
 [
     [ "Game", "classLibrary_1_1Game.html#a00d54c50696a36cd8b1e0fc25062a5a3", null ],
+    [ "Game", "classLibrary_1_1Game.html#a1bfa0da42bdc4ef2423723d25ccf679f", null ],
+    [ "BothPlayersHaveChosenTeam", "classLibrary_1_1Game.html#a528d52cbb8d9637f8dd55cdf6c7ceea1", null ],
     [ "ChangePokemon", "classLibrary_1_1Game.html#a9dd5a455b44cc24f7f9a6e9bcdc37b69", null ],
+    [ "ChangePokemon", "classLibrary_1_1Game.html#a808107e5f5a88e6540524ba4829a8dc0", null ],
     [ "CheckPlayerInGame", "classLibrary_1_1Game.html#a6fef208659545ad27589078aa7298cce", null ],
+    [ "CheckPlayerInGame", "classLibrary_1_1Game.html#ab370b9b1542bb083d78f1708cc8ef07b", null ],
+    [ "CooldownCheck", "classLibrary_1_1Game.html#af4a72e9e14ded2568541b18696014825", null ],
     [ "CooldownCheck", "classLibrary_1_1Game.html#af4a72e9e14ded2568541b18696014825", null ],
     [ "ExecuteAttack", "classLibrary_1_1Game.html#a656f35f805445764adcdd3a51de65693", null ],
+    [ "ExecuteAttack", "classLibrary_1_1Game.html#a25142733833a36fd79da48c53e80f225", null ],
+    [ "GameStatus", "classLibrary_1_1Game.html#a0a385f5808069509de00a98164a7db4c", null ],
     [ "GameStatus", "classLibrary_1_1Game.html#a0a385f5808069509de00a98164a7db4c", null ],
     [ "GetPlayers", "classLibrary_1_1Game.html#a1fb151121019847487457c48804a2ad4", null ],
+    [ "GetPlayers", "classLibrary_1_1Game.html#a1fb151121019847487457c48804a2ad4", null ],
     [ "NextTurn", "classLibrary_1_1Game.html#a25e0e9d427c0b038062ad00141a493f7", null ],
+    [ "NextTurn", "classLibrary_1_1Game.html#a71cc44489b1dc016e9be39903a1e38d2", null ],
     [ "Random0or1", "classLibrary_1_1Game.html#a22ba715120446cdf89e169233cad6867", null ],
+    [ "SetDamageCalculatorStrategy", "classLibrary_1_1Game.html#a77f6da1303c22a2e9318018ae687da41", null ],
+    [ "SpecialEffectExecute", "classLibrary_1_1Game.html#a1fdbbd02b0369e33eb6a90f10f7077f3", null ],
+    [ "StartingPlayer", "classLibrary_1_1Game.html#abd80e606fec7d88f0cd70a89cb29b6b4", null ],
     [ "UseItem", "classLibrary_1_1Game.html#a35db53b070d4c81bbc40b9a10ffdeede", null ],
+    [ "UseItem", "classLibrary_1_1Game.html#ab7db3ee6536d824f47d94c629f78678b", null ],
     [ "Winner", "classLibrary_1_1Game.html#aa80cd9a167630fe0426d07e0cc57ca01", null ],
-    [ "ActivePlayer", "classLibrary_1_1Game.html#a10e4e7852bdf3a3f81c8bcb8e77fc6ef", null ],
-    [ "TurnCount", "classLibrary_1_1Game.html#a18e1b6c392787417ba7f144517c8ef70", null ]
+    [ "Winner", "classLibrary_1_1Game.html#aa80cd9a167630fe0426d07e0cc57ca01", null ],
+    [ "ActivePlayer", "classLibrary_1_1Game.html#acb30d499afc6078b378f885abb1dac52", null ],
+    [ "StrategyStartingPlayer", "classLibrary_1_1Game.html#aa4efe3d427ebeb49bbff3e93f253009d", null ],
+    [ "TurnCount", "classLibrary_1_1Game.html#ae0504c37107702ca94be1ce077030d49", null ]
 ];

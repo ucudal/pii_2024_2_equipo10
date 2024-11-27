@@ -1,7 +1,8 @@
 var namespaces_dup =
 [
-    [ "ConsoleApplication", "namespaceConsoleApplication.html", null ],
     [ "Library", "namespaceLibrary.html", "namespaceLibrary" ],
     [ "LibraryTests", "namespaceLibraryTests.html", "namespaceLibraryTests" ],
-    [ "Tests", "namespaceTests.html", "namespaceTests" ]
+    [ "Program", "namespaceProgram.html", null ],
+    [ "Tests", "namespaceTests.html", "namespaceTests" ],
+    [ "Ucu", "namespaceUcu.html", "namespaceUcu" ]
 ];

@@ -1,0 +1,14 @@
+digraph "Library.Facade.RemovePlayerFromWaitingList"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Facade.RemovePlayer\lFromWaitingList",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Historia de usuario 9.1: Remueve un jugador de la lista de espera."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Commands.LeaveCommand.\lExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1LeaveCommand.html#a7f1bf0c5e2d80619aba43d8e27ca3575",tooltip="Implementa el comando 'leave' del bot. Este comando remueve el jugador que envía el mensaje de la lis..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LibraryTests.FacadeTest.\lTestUserStory9_1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#af138d4012ab860533759da2839dcde10",tooltip="Verifica que un jugador pueda ser eliminado de la lista de espera correctamente."];
+}

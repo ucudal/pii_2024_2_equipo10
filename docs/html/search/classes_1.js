@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['caterpie_0',['Caterpie',['../classLibrary_1_1Caterpie.html',1,'Library']]],
-  ['caterpietest_1',['CaterpieTest',['../classLibraryTests_1_1CaterpieTest.html',1,'LibraryTests']]],
-  ['charizard_2',['Charizard',['../classLibrary_1_1Charizard.html',1,'Library']]],
-  ['charizardtest_3',['CharizardTest',['../classLibraryTests_1_1CharizardTest.html',1,'LibraryTests']]],
-  ['chikorita_4',['Chikorita',['../classLibrary_1_1Chikorita.html',1,'Library']]],
-  ['chikoritatest_5',['ChikoritaTest',['../classLibraryTests_1_1ChikoritaTest.html',1,'LibraryTests']]]
+  ['battlecommand_0',['BattleCommand',['../classLibrary_1_1Commands_1_1BattleCommand.html',1,'Library::Commands']]],
+  ['bot_1',['Bot',['../classUcu_1_1Poo_1_1DiscordBot_1_1Services_1_1Bot.html',1,'Ucu::Poo::DiscordBot::Services']]]
 ];

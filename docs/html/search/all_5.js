@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['facadetest_0',['FacadeTest',['../classLibraryTests_1_1FacadeTest.html',1,'LibraryTests']]],
-  ['findattack_1',['FindAttack',['../classLibrary_1_1Player.html#ae71c6dd4e6de83f82e3b6629a2511248',1,'Library::Player']]],
-  ['findattackbyname_2',['FindAttackByName',['../classLibrary_1_1Pokemon.html#ab6cbaeb20e371ec9049d2b53ed8c7e8c',1,'Library::Pokemon']]],
-  ['findgamebyplayer_3',['FindGameByPlayer',['../classLibrary_1_1GameList.html#ae4cc442c2a00c3746fd92955ddcb849a',1,'Library::GameList']]],
-  ['finditem_4',['FindItem',['../classLibrary_1_1Player.html#a16305aed363ffcf597644f27c1d6f76e',1,'Library::Player']]],
-  ['findplayerbyname_5',['FindPlayerByName',['../classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff',1,'Library.GameList.FindPlayerByName()'],['../classLibrary_1_1WaitingList.html#a69b27efd2d600c5c60cf18019dc3f0b8',1,'Library.WaitingList.FindPlayerByName()']]],
-  ['findpokemon_6',['FindPokemon',['../classLibrary_1_1Player.html#af06ccac797112f0921c8f4976f62add4',1,'Library::Player']]],
-  ['fullhealth_7',['FullHealth',['../classLibrary_1_1FullHealth.html',1,'Library.FullHealth'],['../classLibrary_1_1FullHealth.html#aed15c19feb8d5ce18726fcec9fa64eb5',1,'Library.FullHealth.FullHealth()']]],
-  ['fullhealthcorrectuse_8',['FullHealthCorrectUse',['../classLibraryTests_1_1FullHealthTest.html#a9647b8d51d0e1d9a61ee17feb8bc2ea4',1,'LibraryTests::FullHealthTest']]],
-  ['fullhealthtest_9',['FullHealthTest',['../classLibraryTests_1_1FullHealthTest.html',1,'LibraryTests']]]
+  ['facade_0',['Facade',['../classLibrary_1_1Facade.html',1,'Library']]],
+  ['facadetest_1',['FacadeTest',['../classLibraryTests_1_1FacadeTest.html',1,'LibraryTests']]],
+  ['fighting_2',['Fighting',['../namespaceLibrary.html#a4957a30a7a794dd2546fd1082ad83609aef492f571a74192b637adada68fdd94a',1,'Library.Fighting'],['../namespaceLibrary.html#aad57d9c84664c92603518b4b1265977daef492f571a74192b637adada68fdd94a',1,'Library.Fighting']]],
+  ['findattack_3',['FindAttack',['../classLibrary_1_1Player.html#ae71c6dd4e6de83f82e3b6629a2511248',1,'Library.Player.FindAttack(string strAttack)'],['../classLibrary_1_1Player.html#acd1502e4a8b9b30dbc25fa80f55bf66f',1,'Library.Player.FindAttack(string strAttack)']]],
+  ['findattackbyname_4',['FindAttackByName',['../classLibrary_1_1Pokemon.html#ab6cbaeb20e371ec9049d2b53ed8c7e8c',1,'Library.Pokemon.FindAttackByName(string attackString)'],['../classLibrary_1_1Pokemon.html#ab6cbaeb20e371ec9049d2b53ed8c7e8c',1,'Library.Pokemon.FindAttackByName(string attackString)']]],
+  ['findgamebyplayer_5',['FindGameByPlayer',['../classLibrary_1_1GameList.html#ae4cc442c2a00c3746fd92955ddcb849a',1,'Library.GameList.FindGameByPlayer(Player player)'],['../classLibrary_1_1GameList.html#ae4cc442c2a00c3746fd92955ddcb849a',1,'Library.GameList.FindGameByPlayer(Player player)']]],
+  ['finditem_6',['FindItem',['../classLibrary_1_1Player.html#a16305aed363ffcf597644f27c1d6f76e',1,'Library.Player.FindItem(string strItem)'],['../classLibrary_1_1Player.html#a6498115dc4e2b48c5a16699e0a01ac2f',1,'Library.Player.FindItem(string strItem)']]],
+  ['findplayerbyname_7',['FindPlayerByName',['../classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff',1,'Library.GameList.FindPlayerByName()'],['../classLibrary_1_1WaitingList.html#a69b27efd2d600c5c60cf18019dc3f0b8',1,'Library.WaitingList.FindPlayerByName()'],['../classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff',1,'Library.GameList.FindPlayerByName()'],['../classLibrary_1_1WaitingList.html#a69b27efd2d600c5c60cf18019dc3f0b8',1,'Library.WaitingList.FindPlayerByName()']]],
+  ['findpokemon_8',['FindPokemon',['../classLibrary_1_1Player.html#af06ccac797112f0921c8f4976f62add4',1,'Library.Player.FindPokemon(string strPokemon)'],['../classLibrary_1_1Player.html#af06ccac797112f0921c8f4976f62add4',1,'Library.Player.FindPokemon(string strPokemon)']]],
+  ['findpokemonbyname_9',['FindPokemonByName',['../classLibrary_1_1Player.html#a5014994bf275f49a548e7621badd2415',1,'Library::Player']]],
+  ['fire_10',['Fire',['../namespaceLibrary.html#a4957a30a7a794dd2546fd1082ad83609abd2b7e5f85a6ea65065c4ebc6d7c95bb',1,'Library.Fire'],['../namespaceLibrary.html#aad57d9c84664c92603518b4b1265977dabd2b7e5f85a6ea65065c4ebc6d7c95bb',1,'Library.Fire']]],
+  ['flying_11',['Flying',['../namespaceLibrary.html#a4957a30a7a794dd2546fd1082ad83609a444733081a578880ba8a563d3c59d22d',1,'Library.Flying'],['../namespaceLibrary.html#aad57d9c84664c92603518b4b1265977da444733081a578880ba8a563d3c59d22d',1,'Library.Flying']]],
+  ['fullhealth_12',['FullHealth',['../classLibrary_1_1FullHealth.html',1,'Library.FullHealth'],['../classLibrary_1_1FullHealth.html#aed15c19feb8d5ce18726fcec9fa64eb5',1,'Library.FullHealth.FullHealth()'],['../classLibrary_1_1FullHealth.html#aed15c19feb8d5ce18726fcec9fa64eb5',1,'Library.FullHealth.FullHealth()']]],
+  ['fullhealthcorrectuse_13',['FullHealthCorrectUse',['../classLibraryTests_1_1FullHealthTest.html#a9647b8d51d0e1d9a61ee17feb8bc2ea4',1,'LibraryTests.FullHealthTest.FullHealthCorrectUse()'],['../classLibraryTests_1_1FullHealthTest.html#a9647b8d51d0e1d9a61ee17feb8bc2ea4',1,'LibraryTests.FullHealthTest.FullHealthCorrectUse()']]],
+  ['fullhealthnullpokemon_14',['FullHealthNullPokemon',['../classLibraryTests_1_1FullHealthTest.html#a7012c7dc01031149d86ebdeed3bc690a',1,'LibraryTests::FullHealthTest']]],
+  ['fullhealthtest_15',['FullHealthTest',['../classLibraryTests_1_1FullHealthTest.html',1,'LibraryTests']]],
+  ['fullhealthuseonhealthypokemon_16',['FullHealthUseOnHealthyPokemon',['../classLibraryTests_1_1FullHealthTest.html#aea1efa1626c5fb3235041b34a82e56b5',1,'LibraryTests::FullHealthTest']]]
 ];

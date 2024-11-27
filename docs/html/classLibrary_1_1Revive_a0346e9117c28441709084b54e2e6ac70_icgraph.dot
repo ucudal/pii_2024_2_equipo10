@@ -9,4 +9,6 @@ digraph "Library.Revive.Use"
   Node1 [id="Node000001",label="Library.Revive.Use",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Revive al Pokemon asignando a su vida actual la mitad de la vida base, si está vivo no se revive."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="LibraryTests.ReviveTest.\lReviveCorrectUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1ReviveTest.html#a8f3b3809f2f233cc9c617445031a1e5a",tooltip="Test de pocion de revivir."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LibraryTests.ReviveTest.\lReviveWrongUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1ReviveTest.html#a46c8445b11dbfedc1e09ffd6c912618c",tooltip="Verifica que el item Revive no puede utilizarse sobre un Pokemon que no está debilitado."];
 }

@@ -1,0 +1,16 @@
+digraph "LibraryTests.HydreigonTest.TestRestoreBaseLifeTakeDamageAndGetLife"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="LibraryTests.HydreigonTest.\lTestRestoreBaseLifeTakeDamageAnd\lGetLife",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Test de los métodos RestoreBaseLife, TakeDamage y GetLife."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Pokemon.GainLife",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#a77bd0fac1537a76fbdfa1eebbe17f985",tooltip="Suma puntos de vida a la vida actual, considerando que la vida actual no puede ser mayor a la vida ba..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Pokemon.GetLife",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#ad7ecbc1418ce8ce1310b9bb3737d62d6",tooltip="Devuele la vida del Pokemon en el formato vidaActual/vidaBase."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.Pokemon.TakeDamage",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#af6dd4fd79bfeb99769976f6c26e497e5",tooltip="Resta puntos de vida a la vida actual. Convierte double a int para poder hacer la resta...."];
+}

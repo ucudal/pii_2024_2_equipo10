@@ -1,0 +1,25 @@
+digraph "Library.Commands.HpCommand.ExecuteAsync"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="Library.Commands.HpCommand.\lExecuteAsync",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Muestra la vida de los Pokemons del jugador que utiliza el comando si no se pasa el nombre del oponen..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Facade.ShowPokemonsHp",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a021e3e6d485a0cb0599f1821b49ef30c",tooltip="Historia de usuario 3: Muestra los puntos de vida (HP) de los Pokemon de un jugador."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Game.CheckPlayer\lInGame",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#a6fef208659545ad27589078aa7298cce",tooltip="Busca si hay un jugador con el mismo nombre que el del parámetro en una partida."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.GameList.FindGame\lByPlayer",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html#ae4cc442c2a00c3746fd92955ddcb849a",tooltip="Devuelve la partida en la que se encuentra un jugador."];
+  Node4 -> Node5 [id="edge4_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="Library.Game.GetPlayers",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html#a1fb151121019847487457c48804a2ad4",tooltip="Obtiene la lista de jugadores de la partida."];
+  Node2 -> Node6 [id="edge5_Node000002_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="Library.GameList.FindPlayer\lByName",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html#a08e1d49ca4fdca05d55d094865a850ff",tooltip="Devuelve un jugador buscandolo por su nombre."];
+  Node6 -> Node5 [id="edge6_Node000006_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node2 -> Node7 [id="edge7_Node000002_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="Library.Pokemon.GetLife",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#ad7ecbc1418ce8ce1310b9bb3737d62d6",tooltip="Devuele la vida del Pokemon en el formato vidaActual/vidaBase."];
+  Node2 -> Node8 [id="edge8_Node000002_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="Library.Player.GetPokemonTeam",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Player.html#a6f5a234d3af2613c0c6bce8be92baab3",tooltip="Devuelve la lista de pokemons del jugador."];
+}

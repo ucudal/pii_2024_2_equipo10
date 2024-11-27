@@ -1,0 +1,16 @@
+digraph "Library.Player.ItemCount"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Player.ItemCount",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Se encarga de determinar la cantidad de instancias de un item que tiene el jugador en su lista de ite..."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Facade.ShowItems",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#ad549661271bb9a21203fac96721c0fa2",tooltip="Muestra los items del jugador."];
+  Node2 -> Node3 [id="edge2_Node000002_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Commands.ShowItems\lCommand.ExecuteAsync",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Commands_1_1ShowItemsCommand.html#a6756f4952cbc7fb519b1ab6eeb202425",tooltip="Muestra los items disponibles del jugador."];
+  Node2 -> Node4 [id="edge3_Node000002_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="LibraryTests.FacadeTest.\lTestShowItems",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1FacadeTest.html#a90456bb6f0c4f16501499eefaa327dfd",tooltip="Verifica que los items disponibles de un jugador se muestren correctamente."];
+}

@@ -12,6 +12,7 @@ digraph "C:/Repos/pii_2024_2_equipo10/test/LibraryTests"
     graph [ bgcolor="#edf0f7", pencolor="grey25", label="", fontname=Helvetica,fontsize=10 style="filled,bold", URL="dir_6c8e1213d96547949c4ad1dee757a549.html",tooltip=""]
     dir_6c8e1213d96547949c4ad1dee757a549 [shape=plaintext, label="LibraryTests"];
   dir_0567e4b2e116c46e2bf644a8aa059564 [label="obj", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_0567e4b2e116c46e2bf644a8aa059564.html",tooltip=""];
+  dir_8267bccf0f6c4bf330a42a4feb7e48cf [label="Strategies", fillcolor="#a2b4d6", color="grey25", style="filled", URL="dir_8267bccf0f6c4bf330a42a4feb7e48cf.html",tooltip=""];
   }
   }
 }

@@ -8,5 +8,13 @@ digraph "Library.SuperPotion.Use"
   rankdir="RL";
   Node1 [id="Node000001",label="Library.SuperPotion.Use",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Suma 70 HP a la vida actual del Pokemon."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="LibraryTests.SuperPotion\lTest.SuperPotionCorrectUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#a82b27fac16f96b33ccffd3df5567d001",tooltip="Test de pocion de curacion."];
+  Node2 [id="Node000002",label="LibraryTests.SuperPotion\lTest.NullPokemonTest",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#a526d5063ee58a185692f71924f5254bf",tooltip="Verifica que al intentar usar SuperPotion con un Pokemon nulo, el resultado sea nulo."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="LibraryTests.SuperPotion\lTest.SuperPotionCorrectUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#a82b27fac16f96b33ccffd3df5567d001",tooltip="Test de pocion de curacion."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="LibraryTests.SuperPotion\lTest.SuperPotionCorrectUse1",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#a385213d9479541c22d0a314aff5169d2",tooltip="Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 60 puntos de da..."];
+  Node1 -> Node5 [id="edge4_Node000001_Node000005",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="LibraryTests.SuperPotion\lTest.SuperPotionCorrectUse2",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#a275ba27a5e3c499e582ec2bf7ee2c07c",tooltip="Verifica que SuperPotion recupere correctamente 70HP de un Pokemon después de recibir 80 puntos de da..."];
+  Node1 -> Node6 [id="edge5_Node000001_Node000006",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="LibraryTests.SuperPotion\lTest.SuperPotionHealthyPokemonUse",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibraryTests_1_1SuperPotionTest.html#afef0568233cc83fc53b45b75effb4180",tooltip="Verifica que SuperPotion no tenga efecto si el Pokemon ya tiene su vida completa, y que la vida del P..."];
 }

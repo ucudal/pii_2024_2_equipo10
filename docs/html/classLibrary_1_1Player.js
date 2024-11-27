@@ -1,14 +1,26 @@
 var classLibrary_1_1Player =
 [
     [ "Player", "classLibrary_1_1Player.html#a52100c57bcecb1bf8044a0489dcc6575", null ],
+    [ "Player", "classLibrary_1_1Player.html#a52100c57bcecb1bf8044a0489dcc6575", null ],
     [ "AddToTeam", "classLibrary_1_1Player.html#aca63ec3547f91e79f9f5c22e366dec9f", null ],
+    [ "AddToTeam", "classLibrary_1_1Player.html#a89c81a80f17cad301cb264164f8e6490", null ],
     [ "FindAttack", "classLibrary_1_1Player.html#ae71c6dd4e6de83f82e3b6629a2511248", null ],
+    [ "FindAttack", "classLibrary_1_1Player.html#acd1502e4a8b9b30dbc25fa80f55bf66f", null ],
     [ "FindItem", "classLibrary_1_1Player.html#a16305aed363ffcf597644f27c1d6f76e", null ],
+    [ "FindItem", "classLibrary_1_1Player.html#a6498115dc4e2b48c5a16699e0a01ac2f", null ],
     [ "FindPokemon", "classLibrary_1_1Player.html#af06ccac797112f0921c8f4976f62add4", null ],
+    [ "FindPokemon", "classLibrary_1_1Player.html#af06ccac797112f0921c8f4976f62add4", null ],
+    [ "FindPokemonByName", "classLibrary_1_1Player.html#a5014994bf275f49a548e7621badd2415", null ],
+    [ "GetItemList", "classLibrary_1_1Player.html#a2150b3552c081b27d259d0928de09668", null ],
     [ "GetItemList", "classLibrary_1_1Player.html#a2150b3552c081b27d259d0928de09668", null ],
     [ "GetPokemonAttacks", "classLibrary_1_1Player.html#a77e9a764b7c44e1b9e27c732038a7ded", null ],
+    [ "GetPokemonAttacks", "classLibrary_1_1Player.html#a77e9a764b7c44e1b9e27c732038a7ded", null ],
     [ "GetPokemonTeam", "classLibrary_1_1Player.html#a6f5a234d3af2613c0c6bce8be92baab3", null ],
+    [ "GetPokemonTeam", "classLibrary_1_1Player.html#a6f5a234d3af2613c0c6bce8be92baab3", null ],
+    [ "ItemCount", "classLibrary_1_1Player.html#ad1de9088eb192fd7951de1bcc3327213", null ],
     [ "SetActivePokemon", "classLibrary_1_1Player.html#a1dc483f61f95351bd3266c5f9663bfb1", null ],
-    [ "ActivePokemon", "classLibrary_1_1Player.html#a030387e896acdeb9cdd7ed9ee5193599", null ],
-    [ "Name", "classLibrary_1_1Player.html#aecafe46b465d7340dbcd7a4c31f44f88", null ]
+    [ "SetActivePokemon", "classLibrary_1_1Player.html#ae680d1fee380e2eee7462ea418b82651", null ],
+    [ "ActivePokemon", "classLibrary_1_1Player.html#ab3b3dd787c5ecfd18931263e12e25c47", null ],
+    [ "Name", "classLibrary_1_1Player.html#ad38909add16eeffa279286032bd6d868", null ],
+    [ "TeamCount", "classLibrary_1_1Player.html#a9a974785bc047d4ae13c42942f846666", null ]
 ];

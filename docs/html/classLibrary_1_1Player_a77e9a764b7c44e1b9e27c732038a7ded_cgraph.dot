@@ -9,4 +9,6 @@ digraph "Library.Player.GetPokemonAttacks"
   Node1 [id="Node000001",label="Library.Player.GetPokemon\lAttacks",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Devuelve un string con los nombres de todos los ataques del pokemon activo."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
   Node2 [id="Node000002",label="Library.Pokemon.GetAttacks",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Pokemon.html#a7d75c0e46aae96acbbeee27639f365b4",tooltip="Devuelve la lista de ataques del Pokemon."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.IAttack.InfoAttack",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$interfaceLibrary_1_1IAttack.html#ae1d9f015158d56aae38b051a6b0d9299",tooltip="Genera una descripción del ataque."];
 }

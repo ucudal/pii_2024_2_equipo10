@@ -1,0 +1,16 @@
+digraph "Library.Game.BothPlayersHaveChosenTeam"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="RL";
+  Node1 [id="Node000001",label="Library.Game.BothPlayers\lHaveChosenTeam",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Revisa si ambos jugadores completaron sus equipos."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="Library.Facade.ChangePokemon",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a1519c6b71e81f41a591e639f950cee76",tooltip="Historia de usuario 7: Permite a un jugador activo cambiar su Pokemon actual durante su turno en una ..."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="Library.Facade.ChooseAttack",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#a1f5339c8342daf1f8ae3cd6aacf7fab8",tooltip="Historia de usuario 4: Permite a un jugador elegir y ejecutar un ataque durante su turno en una parti..."];
+  Node1 -> Node4 [id="edge3_Node000001_Node000004",dir="back",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="Library.Facade.UseAnItem",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html#ac824fa926ae85650e174fad4cd2a738d",tooltip="Historia de usuario 8 Permite a un jugador usar un item en un Pokemon."];
+}

@@ -6,5 +6,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="Library.GameList",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1GameList.html",tooltip="Esta clase representa la lista de partidas en curso."];
+  Node0 [id="Node000000",label="Library.Facade",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Facade.html",tooltip="Esta clase representa la fachada, la cual tiene los métodos escenciales para el funcionamiento del ch..."];
 }

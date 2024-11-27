@@ -6,5 +6,5 @@ digraph "Graphical Class Hierarchy"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node0 [id="Node000000",label="Library.Game",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1Game.html",tooltip="Esta clase representa una partida entre dos jugadores."];
+  Node0 [id="Node000000",label="Library.DamageCalculator",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$classLibrary_1_1DamageCalculator.html",tooltip="Es una clase a la cual le delegamos la función de calcular el daño para aplicar SRP así game tiene un..."];
 }
