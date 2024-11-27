@@ -27,5 +27,4 @@ Nuestros principales recursos fueron:
 
 ## Reflexiones adicionales:
 
-En lo personal nos encantó tener la oportunidad de poder trabajar en este proyecto, fue un camino largo pero que trajo sus frutos, pudimos aprender bastante acerca del funcionamiento de github, el lenguaje de programación C#, y muchas cosas más.
-Algunos tuvimos la oportunidad de aprender bastante acerca de Pokemon y otros que ya tenían cierto conocimiento tuvieron la oportunidad de poder crear una variante de un juego que nos terminó fascinando a todos.
+En lo personal nos encantó tener la oportunidad de poder trabajar en este proyecto, fue un camino largo pero que trajo sus frutos, pudimos aprender bastante acerca del funcionamiento de github, el lenguaje de programación C#, y muchas cosas más a lo largo de todo el semestre. Algunos tuvimos la oportunidad de aprender bastante acerca de Pokemon y otros que ya tenían cierto conocimiento tuvieron la oportunidad de poder crear una variante de un juego que nos terminó fascinando a todos.
