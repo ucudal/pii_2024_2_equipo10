@@ -184,6 +184,56 @@
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
         </member>
+        <member name="T:LibraryTests.EnteiTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Entei"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestName">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestType">
+            <summary>
+            Test del atributo type
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de los atributos life y currentLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de la cantidad de ataques que tiene Entei
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAddAFifthAttack">
+            <summary>
+            Test de la limitación de movimientos que tiene Entei
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestCurrentStateAndEditState">
+            <summary>
+            Test del atributo CurrentState y el método EditSate
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAsleepTurns">
+            <summary>
+            Test del atributo asleepTurns
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestAttacks">
+            <summary>
+            Test de metodo FindAttackByName y los ataques que tiene Entei, confirmando que fueron creados correctamente
+            </summary>
+        </member>
+        <member name="M:LibraryTests.EnteiTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
         <member name="T:LibraryTests.FacadeTest">
             <summary>
             Test de la clase <see cref="T:Library.Facade"/>
@@ -480,6 +530,56 @@
             </summary>
         </member>
         <member name="M:LibraryTests.HydreigonTest.TestRestoreBaseLifeTakeDamageAndGetLife">
+            <summary>
+            Test de los métodos RestoreBaseLife, TakeDamage y GetLife
+            </summary>
+        </member>
+        <member name="T:LibraryTests.JigglypuffTest">
+            <summary>
+            Test de la clase <see cref="T:Library.Jigglypuff"/>
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestName">
+            <summary>
+            Test del atributo name
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestType">
+            <summary>
+            Test del atributo type
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestLifeAndCurrentLife">
+            <summary>
+            Test de los atributos life y currentLife
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestIfItHasFourAttacks">
+            <summary>
+            Test de la cantidad de ataques que tiene Jigglypuff
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestAddAFifthAttack">
+            <summary>
+            Test de la limitación de movimientos que tiene Jigglypuff
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestCurrentStateAndEditState">
+            <summary>
+            Test del atributo CurrentState y el método EditSate
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestAsleepTurns">
+            <summary>
+            Test del atributo asleepTurns
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestAttacks">
+            <summary>
+            Test de metodo FindAttackByName y los ataques que tiene Jigglypuff, confirmando que fueron creados correctamente
+            </summary>
+        </member>
+        <member name="M:LibraryTests.JigglypuffTest.TestRestoreBaseLifeTakeDamageAndGetLife">
             <summary>
             Test de los métodos RestoreBaseLife, TakeDamage y GetLife
             </summary>
