@@ -187,5 +187,4 @@ public abstract class Pokemon
     /// Método abstracto para obtener una nueva instancia del Pokemon deseado. Aplicando así el patrón prototype
     /// </summary>
     public abstract Pokemon Instance();
-
 }

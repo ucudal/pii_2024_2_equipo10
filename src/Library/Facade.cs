@@ -25,7 +25,7 @@ public class Facade
     /// </summary>
     //private  PokemonCatalogue pokemonCatalogue { get; } = PokemonCatalogue.Instance;
 
-    private PokemonCatalogue Pokedex { get; } = PokemonCatalogue.Instance;
+    private PokemonCatalogue Pokedex { get; set; } = PokemonCatalogue.Instance;
 
     /// <summary>
     /// Crea una nueva instancia de la clase Fachada si aún no existe. Implementando así el patrón singleton
@@ -448,7 +448,7 @@ public class Facade
     /// <param name="opponentName">Nombre del oponente.</param>
     /// <param name="strategyStartingPlayer"> Estrategia que determinara como se va a determinar que jugador tiene el primer turno</param>
     /// <returns>Mensaje <c>string</c> confirmando el inicio de la partida entre ambos jugadores.</returns>
-    private  string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
+    private string CreateGame(string playerName, string opponentName, IStrategyStartingPlayer strategyStartingPlayer)
     {
         Player player = WaitingList.FindPlayerByName(playerName);
         Player opponent = WaitingList.FindPlayerByName(opponentName);
@@ -456,6 +456,7 @@ public class Facade
         WaitingList.RemovePlayer(opponentName);
         GameList.AddGame(player, opponent, strategyStartingPlayer);
         Game game = GameList.FindGameByPlayer(player);
+        player.RestrictionManager.RestrictionItem(game);
         string activePlayerName = game.GetPlayers()[game.ActivePlayer].Name;
         return $"¡Comienza {playerName} Vs. {opponentName}!\nComienza atacando {activePlayerName}\n";
     }
@@ -607,5 +608,67 @@ public class Facade
         GameList.RemoveGame(game);
         GameList.GetGameList().Add(game);
         return "Estrategia de daño crítico ha sido modificada";
+    }
+
+    public string SetRestriction(string playerName, string appliedRestriction)
+    {
+        Player? player = WaitingList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "El jugador no se encuentra en la lista de espera.";
+        }
+        
+        Pokemon? pokemon = PokemonCatalogue.Instance.FindPokemonByName(appliedRestriction);
+        if (pokemon != null)
+        {
+            string restriction = player.RestrictionManager.RestrictionPokemon(pokemon);
+            Pokedex = player.RestrictionManager.Pokedex;
+            return restriction;
+        }
+
+        IItem? item = player.FindItem(appliedRestriction);
+        if (item != null)
+        {
+            return player.RestrictionManager.SetRestrictedItem(item);
+        }
+
+        Type? type = PokemonCatalogue.Instance.GetPossibleTypes(appliedRestriction);
+        if (type != null)
+        {
+            string restriction = player.RestrictionManager.RestrictionType(type);
+            Pokedex = player.RestrictionManager.Pokedex;
+            return restriction;
+        }
+
+        return "La restricción no pudo ser aplicada";
+    }
+
+    public string GetGameRestrictions(string playerName, string? playerToCheckName = null)
+    {
+        Player? player = WaitingList.FindPlayerByName(playerName);
+        Player? playerToCheck = WaitingList.FindPlayerByName(playerToCheckName);
+
+        if (player == null)
+        {
+            return "El jugador no se encuentra en la lista de espera.";
+        }
+
+        if (playerToCheck == null)
+        {
+            return player.RestrictionManager.GetRestrictions();
+        }
+        return playerToCheck.RestrictionManager.GetRestrictions();
+    }
+
+    public string DeclineRestriction(string playerName)
+    {
+        Player? player = WaitingList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return "El jugador no se encuentra en la lista de espera.";
+        }
+        Pokedex.Reset();
+        Pokedex = PokemonCatalogue.Instance;
+        return "No se aceptaron los cambios";
     }
 }

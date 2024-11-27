@@ -1235,6 +1235,11 @@
             </summary>
             <returns><c>string</c></returns>
         </member>
+        <member name="T:Library.RestrictionManager">
+            <summary>
+            Esta clase es la experta en manejar las restricciones de una batalla
+            </summary>
+        </member>
         <member name="T:Library.Revive">
             <summary>
             Esta clase representa el item Revive.

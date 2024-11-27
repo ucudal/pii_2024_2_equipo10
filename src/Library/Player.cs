@@ -26,6 +26,8 @@ public class Player
     /// </summary>
     public Pokemon ActivePokemon { get; private set; }
     
+    public RestrictionManager RestrictionManager { get;}
+    
     /// <summary>
     /// Cantidad de Pokemons en el equipo del jugador.
     /// </summary>
@@ -51,6 +53,7 @@ public class Player
         this.Items.Add(new SuperPotion());
         this.Items.Add(new FullHealth());
         this.Items.Add(new FullHealth());
+        this.RestrictionManager = new RestrictionManager();
     }
     
     /// <summary>
@@ -235,5 +238,17 @@ public class Player
             }
         }
         return result;
+    }
+
+    public bool CheckItemInItemList(IItem item)
+    {
+        foreach (IItem playerItem in this.Items)
+        {
+            if (item.Name == playerItem.Name)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

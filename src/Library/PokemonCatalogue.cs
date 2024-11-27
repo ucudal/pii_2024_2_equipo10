@@ -18,10 +18,18 @@ public class PokemonCatalogue
         get { return this.PokemonList.Count; }
     }
 
+    public void Reset()
+    {
+        _instance = null;
+    }
+    
     /// <summary>
     /// Instancia del catálogo.
     /// </summary>
     private static PokemonCatalogue? _instance;
+
+    
+    private Dictionary<string, Type> PossibleTypes { get; }
 
     /// <summary>
     /// Crea las instancias de los Pokemons y los agrega a la lista.
@@ -56,7 +64,37 @@ public class PokemonCatalogue
         PokemonList.Add(jigglypuff);
         PokemonList.Add(pikachu);
         PokemonList.Add(scyther);
-
+        Type fire = Type.Fire;
+        Type water = Type.Water;
+        Type grass = Type.Grass;
+        Type electric = Type.Electric;
+        Type ground = Type.Ground;
+        Type bug = Type.Bug;
+        Type dragon = Type.Dragon;
+        Type fighting = Type.Fighting;
+        Type flying = Type.Flying;
+        Type ghost = Type.Ghost;
+        Type ice = Type.Ice;
+        Type normal = Type.Normal;
+        Type poison = Type.Poison;
+        Type psychic = Type.Psychic;
+        Type rock = Type.Rock;
+        PossibleTypes = new Dictionary<string, Type>();
+        PossibleTypes.Add("Fire", fire);
+        PossibleTypes.Add("Water", water);
+        PossibleTypes.Add("Grass", grass);
+        PossibleTypes.Add("Electric", electric);
+        PossibleTypes.Add("Ground", ground);
+        PossibleTypes.Add("Bug", bug);
+        PossibleTypes.Add("Dragon", dragon);
+        PossibleTypes.Add("Fighting", fighting);
+        PossibleTypes.Add("Flying", flying);
+        PossibleTypes.Add("Ghost", ghost);
+        PossibleTypes.Add("Ice", ice);
+        PossibleTypes.Add("Normal", normal);
+        PossibleTypes.Add("Poison", poison);
+        PossibleTypes.Add("Psychic", psychic);
+        PossibleTypes.Add("Rock", rock);
     }
     
     /// <summary>
@@ -89,5 +127,56 @@ public class PokemonCatalogue
         return pokemonsAvailable;
     }
 
-    
+    public void Remove(Pokemon pokemon)
+    {
+        PokemonList.Remove(pokemon);
+    }
+
+    public bool CheckPokemonTypes(Type? pokemonType)
+    {
+        foreach (Pokemon pokemon in PokemonList)
+        {
+            foreach (Type type in pokemon.GetTypes())
+            {
+                if (type == pokemonType)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public bool CheckPokemonInCatalogue(Pokemon playerPokemon)
+    {
+        foreach (Pokemon pokemon in PokemonList)
+        {
+            if (pokemon.Name == playerPokemon.Name)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Pokemon? FindPokemonByName(string pokemonName)
+    {
+        foreach (Pokemon pokemon in PokemonList)
+        {
+            if (pokemon.Name == pokemonName)
+            {
+                return pokemon;
+            }
+        }
+        return null;
+    }
+
+    public Type? GetPossibleTypes(string pType)
+    {
+        if (PossibleTypes.ContainsKey(pType))
+        {
+            return PossibleTypes[pType];
+        }
+        return null;
+    }
 }

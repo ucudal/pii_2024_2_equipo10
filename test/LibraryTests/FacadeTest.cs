@@ -644,5 +644,69 @@ public class FacadeTest
         Facade.Instance.StartGame("Facu", "Mateo", new StrategyRandomStartingPlayer());
         Assert.That(Facade.Instance.EditDamageCalculatorStrategy("Facu",new StrategyNonCrit()),Is.EqualTo("Estrategia de daño crítico ha sido modificada"));
     }
-
+    
+    [Test]
+    public void TestSetRestrictionPokemon()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.SetRestriction("Facu","Charizard"),Is.EqualTo("La restricción ha sido aplicada"));
+        Facade.Instance.StartGame("Facu", "Mateo", new StrategyPlayerOneStart());
+        Assert.That(Facade.Instance.ChooseTeam("Facu", "Charizard"), Is.EqualTo("Facu, el pokemon Charizard no fue encontrado"));
+    }
+    
+    [Test]
+    public void TestSetRestrictionType()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.SetRestriction("Facu","Water"),Is.EqualTo("La restricción ha sido aplicada"));
+        Facade.Instance.StartGame("Facu", "Mateo", new StrategyPlayerOneStart());
+        Assert.That(Facade.Instance.ChooseTeam("Facu", "Gastrodon"), Is.EqualTo("Facu, el pokemon Gastrodon no fue encontrado"));
+    }
+    
+    [Test]
+    public void TestSetRestrictionItem()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.SetRestriction("Facu","Super Potion"),Is.EqualTo("La restricción fue aplicada"));
+    }
+    
+    [Test]
+    public void TestGetRestrictions()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.GetGameRestrictions("Facu", null),Is.EqualTo("Pokemon restringido: False\nTipo de pokemon restringido: False\n Item restringido: False\n"));
+        Assert.That(Facade.Instance.SetRestriction("Facu","Charizard"),Is.EqualTo("La restricción ha sido aplicada"));
+        Assert.That(Facade.Instance.GetGameRestrictions("Facu", null),Is.EqualTo("Pokemon restringido: True\nTipo de pokemon restringido: False\n Item restringido: False\n"));
+        Assert.That(Facade.Instance.GetGameRestrictions("Mateo", null),Is.EqualTo("Pokemon restringido: False\nTipo de pokemon restringido: False\n Item restringido: False\n"));
+    }
+    
+    [Test]
+    public void TestSetRestrictionNotInWaitingList()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.SetRestriction("Inés","Super Potion"),Is.EqualTo("El jugador no se encuentra en la lista de espera."));
+    }
+    
+    [Test]
+    public void TestDeclineRestrictions()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.SetRestriction("Facu","Charizard"),Is.EqualTo("La restricción ha sido aplicada"));
+        Assert.That(Facade.Instance.DeclineRestriction("Facu"),Is.EqualTo("No se aceptaron los cambios"));
+    }
+    
+    [Test]
+    public void TestDeclineRestrictions2()
+    {
+        Facade.Instance.AddPlayerToWaitingList("Facu");
+        Facade.Instance.AddPlayerToWaitingList("Mateo");
+        Assert.That(Facade.Instance.DeclineRestriction("José"),Is.EqualTo("El jugador no se encuentra en la lista de espera."));
+    }
+    
 }
