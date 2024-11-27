@@ -745,7 +745,7 @@
             <param name="checkPlayer"> El jugador a buscar</param>
             <returns> <c>true</c> si lo encontró, <c>false</c> en caso contrario </returns>
         </member>
-        <member name="M:Library.Game.BothPlayersHaveChoosenTeam">
+        <member name="M:Library.Game.BothPlayersHaveChosenTeam">
             <summary>
             Revisa si ambos jugadores completaron sus equipos.
             </summary>
