@@ -384,6 +384,21 @@
             lista de ataques.
             </summary>
         </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4SuperEffectiveAttack">
+            <summary>
+            Verifica que se puede realizar daño en base a las efectividades
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4Inmune">
+            <summary>
+            Verifica que se puede realizar daño en base a las efectividades
+            </summary>
+        </member>
+        <member name="M:LibraryTests.FacadeTest.TestUserStory4NotVeryEffective">
+            <summary>
+            Verifica que se puede realizar daño en base a las efectividades
+            </summary>
+        </member>
         <member name="M:LibraryTests.FacadeTest.TestUserStory5">
             <summary>
             Verifica que se muestre correctamente de que jugador es el turno.

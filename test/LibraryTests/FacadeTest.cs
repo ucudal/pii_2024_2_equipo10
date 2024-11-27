@@ -252,10 +252,84 @@ public class FacadeTest
         string result2 = Facade.Instance.ChooseAttack("mateo", "aaa");
         string expectedResult2 = "El ataque aaa no pudo ser encontrado";
         
+        Assert.That(Facade.Instance.ChooseAttack("mateo", "Wing Attack"), Is.EqualTo("El Caterpie de ines recibió 80 puntos de daño.\n¡Es super efectivo!\n\nPróximo turno, ahora es el turno de ines"));
         Assert.That(result1, Is.EqualTo("ines, no eres el jugador activo"));
         Assert.That(result2, Is.EqualTo(expectedResult2));
     }
 
+    /// <summary>
+    /// Verifica que se puede realizar daño en base a las efectividades
+    /// </summary>
+    [Test]
+    public void TestUserStory4SuperEffectiveAttack()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.ChooseTeam("mateo", "Charizard");
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Caterpie");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+        Assert.That(
+            Facade.Instance.ChooseAttack("mateo", "Flamethrower")
+                .Contains("¡Es super efectivo!", StringComparison.OrdinalIgnoreCase), Is.True);
+    }
+    
+    /// <summary>
+    /// Verifica que se puede realizar daño en base a las efectividades
+    /// </summary>
+    [Test]
+    public void TestUserStory4Inmune()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.ChooseTeam("mateo", "Zeraora");
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Charizard");
+        Assert.That(Facade.Instance.ChooseAttack("mateo", "Plasma Fist").Contains("es inmune a ataques de tipo Electric", StringComparison.OrdinalIgnoreCase), Is.True);
+    }
+    
+    /// <summary>
+    /// Verifica que se puede realizar daño en base a las efectividades
+    /// </summary>
+    [Test]
+    public void TestUserStory4NotVeryEffective()
+    {
+        Facade.Instance.AddPlayerToWaitingList("mateo");
+        Facade.Instance.AddPlayerToWaitingList("ines");
+        Facade.Instance.StartGame("mateo", "ines", new StrategyPlayerOneStart());
+        Facade.Instance.ChooseTeam("mateo", "Chikorita");
+        Facade.Instance.ChooseTeam("mateo", "Zeraora");
+        Facade.Instance.ChooseTeam("mateo", "Gengar");
+        Facade.Instance.ChooseTeam("mateo", "Dragonite");
+        Facade.Instance.ChooseTeam("mateo", "Haxorus");
+        Facade.Instance.ChooseTeam("mateo", "Pikachu");
+        Facade.Instance.ChooseTeam("ines", "Charizard");
+        Facade.Instance.ChooseTeam("ines", "Chikorita");
+        Facade.Instance.ChooseTeam("ines", "Gengar");
+        Facade.Instance.ChooseTeam("ines", "Dragonite");
+        Facade.Instance.ChooseTeam("ines", "Haxorus");
+        Facade.Instance.ChooseTeam("ines", "Pikachu");
+        Assert.That(Facade.Instance.ChooseAttack("mateo", "Razor leaf").Contains("No es muy efectivo...", StringComparison.OrdinalIgnoreCase), Is.True);
+    }
 
     /// <summary>
     /// Verifica que se muestre correctamente de que jugador es el turno.
