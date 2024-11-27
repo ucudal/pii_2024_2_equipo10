@@ -236,4 +236,9 @@ public class Player
         }
         return result;
     }
+
+    public void RemoveItem(IItem item)
+    {
+        this.Items.Remove(item);
+    }
 }

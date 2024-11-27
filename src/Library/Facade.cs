@@ -608,4 +608,78 @@ public class Facade
         GameList.GetGameList().Add(game);
         return "Estrategia de daño crítico ha sido modificada";
     }
+    
+    
+    public string RestrictItems(string playerName,IItem item)
+    {
+        Player? player = GameList.FindPlayerByName(playerName);
+        if (player == null)
+        {
+            return $"{playerName}, no estás en una partida.";
+        }
+        Game game = GameList.FindGameByPlayer(player);
+        List<Player> players = game.GetPlayers();
+        List<IItem> itemsp1 = players[0].GetItemList();
+        List<IItem> itemsp2 = players[1].GetItemList();
+        
+        foreach (var i in itemsp1)
+        {
+            if (i == item)
+            {
+                players[0].RemoveItem(item);
+            }
+        }
+        
+        foreach (var i in itemsp2)
+        {
+            if (i == item)
+            {
+                players[1].RemoveItem(item);
+            }
+        }
+
+        return $"Los items {item} han sido eliminados para ambos jugadores. No se podran usar durante la partida.";
+    }
+
+    public string RestrictPokemonType(string playerName, List<Type> typesToEliminate)
+    {
+        foreach (var i in typesToEliminate)
+        {
+            foreach (var pokemon in Pokedex.PokemonList)
+            {
+                /*
+                if (pokemon.type == i)
+                {
+                    Pokedex.PokemonList.Remove(i);
+                }
+                */
+            }
+        }
+        return "";
+    }
+
+    public string RestrictPokemon(string playerName, List<Pokemon> pokemonsToEliminate)
+    {
+        foreach (var pkm in pokemonsToEliminate)
+        {
+            
+            foreach (var pokemon in Pokedex.PokemonList)
+            {
+                if (pkm.Name == pokemon.Name)
+                {
+                    Pokedex.PokemonList.Remove(pkm);
+                }
+            }
+        }
+
+        string EliminatedPokemons = "";
+        foreach (var i in pokemonsToEliminate)
+        {
+            EliminatedPokemons = EliminatedPokemons + i.Name + " ";
+        }
+
+        return $"Los pokemon {EliminatedPokemons} han sido eliminados para ambos jugadores. No podran ser elegidos.";
+    }
+    
+    
 }
