@@ -4,7 +4,8 @@
 
 Consideramos que el desafío más difícil fue:
 
-- Realizar los test que tienen cierta aleatoriedad
+- Realizar los test que tienen cierta aleatoriedad:
+
 Estos test nos dieron varios problemas principalmente ya que no podíamos determinar un resultado absoluto, ya que este variaba según los valores aleatoriamente recibidos (Ejemplo, si un pokemon hacía un golpe crítico, el daño inflingido y el mensaje devuelto variaban, y así con varios más).
 
 Afortunadamente se nos ocurrió utilizar el patrón de comportamiento "Strategy" para poder realizar los test sin necesidad de modificar la jugabilidad.
