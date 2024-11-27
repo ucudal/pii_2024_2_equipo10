@@ -1,43 +1,30 @@
-# Qué hay configurado en esta plantilla
+# Reflexión trabajo final equipo 10:
 
-1. Un proyecto de biblioteca (creado con [`dotnet new classlib --name Library`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `src\Library`
-2. Un proyecto de aplicación de consola (creado con [`dotnet new console --name Program`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `src\Program`
-3. Un proyecto de prueba en [NUnit](https://nunit.org/) (creado con [`dotnet new nunit --name LibraryTests`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new?tabs=netcore22)) en la carpeta `test\LibraryTests`
-4. Un proyecto de [Doxygen](https://www.doxygen.nl/index.html) para generación de sitio web de documentación en la carpeta `docs`
-5. Análisis estático con [Roslyn analyzers](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/overview) en los proyectos de biblioteca y de aplicación
-6. Análisis de estilo con [StyleCop](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/README.md) en los proyectos de biblioteca y de aplicación
-7. Una solución `ProjectTemplate.sln` que referencia todos los proyectos de C# y facilita la compilación con [`dotnet build`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-build).
-8. Tareas preconfiguradas para compilar y ejecutar los proyectos, ejecutar las pruebas, y generar documentación desde VSCode en la carpeta `.vscode`
-9. Análisis de cobertura de los casos de prueba mediante []() que aparece en los márgenes con el complemento de VS Code [Coverage Gutters](https://marketplace.visualstudio.com/items?itemName=ryanluker.vscode-coverage-gutters).
-10. Ejecución automática de compilación y prueba mediante [GitHub Actions](https://docs.github.com/en/actions) configuradas en el repositorio al hacer [push](https://github.com/git-guides/git-push) o [pull request](https://docs.github.com/en/github/collaborating-with-pull-requests).
+## ¿Qué desafíos de la entrega fueron los más difíciles?
 
-Vean este 🎥 [video](https://web.microsoftstream.com/video/55c6a06c-07dc-4f95-a96d-768f198c9044) que explica el funcionamiento de la plantilla.
+Consideramos que el desafío más difícil fue:
 
-## Convenciones
+- Realizar los test que tienen cierta aleatoriedad
+Estos test nos dieron varios problemas principalmente ya que no podíamos determinar un resultado absoluto, ya que este variaba según los valores aleatoriamente recibidos (Ejemplo, si un pokemon hacía un golpe crítico, el daño inflingido y el mensaje devuelto variaban, y así con varios más).
 
-[Convenciones de código en C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/inside-a-program/coding-conventions)
+Afortunadamente se nos ocurrió utilizar el patrón de comportamiento "Strategy" para poder realizar los test sin necesidad de modificar la jugabilidad.
 
-[Convenciones de nombres en C#](https://docs.microsoft.com/en-us/dotnet/standard/design-guidelines/naming-guidelines)
+También, no tuvimos complicaciones mayores al momento de integrar el bot de discord, solo menores que pudieron ser resueltas con bastante facilidad.
 
-## Dónde encontrar información sobre los errores/avisos al compilar
+## ¿Qué cosas aprendieron enfrentándose al proyecto que no aprendieron en clase como parte de la currícula?
 
-[C# Compiler Errors (CS*)](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/compiler-messages/)
+Aprendimos a utilizar los patrones "Prototype" y "Strategy" los cuales fueron muy útiles para el funcionamiento y testeo del bot. Además de aprender como hacer que el bot mande un mensaje apenas este se conecte.
 
-[Roslyn Analyzer Warnings (CA*)](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/categories)
+##¿Qué recursos (páginas web, libros, foros, etc) encontraron que les fueron valiosos para sortear los desafíos que encontraron?
 
-[StyleCop Analyzer Warnings (SA*)](https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/DOCUMENTATION.md)
+Nuestros principales recursos fueron:
 
-# Cómo deshabilitar temporalmente los avisos al compilar
+- El contenido de webasignatura (lecturas)
+- Microsoft Learn
+- Refactoring Guru
+- Algún tutorial de YouTube (De ahí sacamos la idea del mensaje de inicio)
 
-## Roslyn Analyzer
+## Reflexiones adicionales:
 
-Comentar las siguientes líneas en los archivos de proyecto (`*.csproj`)
-```
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-```
-
-## StyleCop Analyzer
-
-Comentar la línea `<PackageReference Include="StyleCop.Analyzers" Version="1.1.118"/>` en los archivos de proyecto (`*.csproj`)
+En lo personal nos encantó tener la oportunidad de poder trabajar en este proyecto, fue un camino largo pero que trajo sus frutos, pudimos aprender bastante acerca del funcionamiento de github, el lenguaje de programación C#, y muchas cosas más.
+Algunos tuvimos la oportunidad de aprender bastante acerca de Pokemon y otros que ya tenían cierto conocimiento tuvieron la oportunidad de poder crear una variante de un juego que nos terminó fascinando a todos.
