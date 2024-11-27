@@ -247,6 +247,7 @@ public class FacadeTest
         Facade.Instance.ChooseTeam("ines", "Dragonite");
         Facade.Instance.ChooseTeam("ines", "Haxorus");
         Facade.Instance.ChooseTeam("ines", "Pikachu");
+        Facade.Instance.EditDamageCalculatorStrategy("mateo",new StrategyNonCrit());
 
         string result1 = Facade.Instance.ChooseAttack("ines", "Bug bite");
         string result2 = Facade.Instance.ChooseAttack("mateo", "aaa");

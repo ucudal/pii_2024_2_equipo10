@@ -155,7 +155,7 @@ public class CharizardTest
         int attack3Power = attack3.Power;
         string attack3ExcpectedName = "Wing Attack";
         Type attack3ExcpectedType = Type.Flying;
-        double attack3ExcpectedAccuracy = 0.9;
+        double attack3ExcpectedAccuracy = 1;
         int attack3ExcpectedPower = 40;
         Assert.That(attack3Name.Equals(attack3ExcpectedName, StringComparison.Ordinal));
         Assert.That(attack3Type.Equals(attack3ExcpectedType));
